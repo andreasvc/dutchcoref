@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="20" id="0" rel="top">
+    <node begin="0" cat="conj" end="19" id="1" rel="--">
+      <node begin="0" cat="smain" end="11" id="2" rel="cnj">
+        <node begin="0" cat="np" end="3" id="3" index="1" rel="su">
+          <node begin="0" end="1" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="decap" his_1_1="normal" id="4" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="Het"/>
+          <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="5" infl="e" lcat="ap" lemma="Frans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Frans" sense="Frans" vform="adj" word="Franse"/>
+          <node begin="2" end="3" frame="proper_name(sg,'ORG')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="6" lcat="np" lemma="Renault" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="Renault" sense="Renault" word="Renault"/>
+        </node>
+        <node begin="3" end="4" frame="verb(hebben,past(sg),part_transitive(over))" his="normal" his_1="normal" id="7" infl="sg" lcat="smain" lemma="over_nemen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="neem_over" sc="part_transitive(over)" sense="neem_over" tense="past" word="nam" wvorm="pv"/>
+        <node begin="4" cat="ap" end="7" id="8" rel="mod">
+          <node begin="4" cat="np" end="6" id="9" rel="me">
+            <node begin="4" buiging="met-e" end="5" frame="adj_number(enkele)" his="normal" his_1="normal" id="10" infl="enkele" lcat="detp" lemma="enkel" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="enkel" sense="enkel" special="adj_number" vwtype="onbep" word="enkele"/>
+            <node begin="5" end="6" frame="tmp_noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="jaar" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="jaar" sense="jaar" special="tmp" word="jaren"/>
+          </node>
+          <node begin="6" end="7" frame="pred_np_me_adjective(tmpadv)" his="normal" his_1="normal" id="12" lcat="ap" lemma="geleden" pos="adj" postag="BW()" pt="bw" rel="hd" root="geleden" sc="pred_np_me" sense="geleden" word="geleden"/>
+        </node>
+        <node begin="7" cat="np" end="9" id="13" rel="obj1">
+          <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="auto_bouwer" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="auto_bouwer" sense="auto_bouwer" word="autobouwer"/>
+          <node begin="8" end="9" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="15" lcat="np" lemma="Nissan" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="app" rnum="sg" root="Nissan" sense="Nissan" word="Nissan"/>
+        </node>
+        <node begin="9" end="10" frame="adverb" his="normal" his_1="normal" id="16" lcat="advp" lemma="grotendeels" pos="adv" postag="BW()" pt="bw" rel="mod" root="grotendeels" sense="grotendeels" word="grotendeels"/>
+        <node begin="10" end="11" frame="particle(over)" his="normal" his_1="normal" id="17" lcat="part" lemma="over" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="over" sense="over" vztype="fin" word="over"/>
+      </node>
+      <node begin="11" conjtype="neven" end="12" frame="conj(en)" his="normal" his_1="normal" id="18" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="0" cat="smain" end="19" id="19" rel="cnj">
+        <node begin="0" end="3" id="20" index="1" rel="su"/>
+        <node begin="12" end="13" frame="verb(hebben,past(sg),part_als_pred_np(aan))" his="normal" his_1="normal" id="21" infl="sg" lcat="smain" lemma="aan_stellen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="stel_aan" sc="part_als_pred_np(aan)" sense="stel_aan" tense="past" word="stelde" wvorm="pv"/>
+        <node begin="13" end="14" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="22" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+        <node begin="14" cat="mwu" end="16" his="normal" his_1="names_dictionary" id="23" mwu_root="Carlos Ghosn" mwu_sense="Carlos Ghosn" rel="obj1">
+          <node begin="14" end="15" frame="proper_name(sg,'PER')" id="24" lcat="np" lemma="Carlos" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Carlos" sense="Carlos" spectype="deeleigen" word="Carlos"/>
+          <node begin="15" end="16" frame="proper_name(sg,'PER')" id="25" lcat="np" lemma="Ghosn" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Ghosn" sense="Ghosn" spectype="deeleigen" word="Ghosn"/>
+        </node>
+        <node begin="16" end="17" frame="particle(aan)" his="normal" his_1="normal" id="26" lcat="part" lemma="aan" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="aan" sense="aan" vztype="fin" word="aan"/>
+        <node begin="17" cat="cp" end="19" id="27" rel="predc">
+          <node begin="17" end="18" frame="complementizer(als)" his="normal" his_1="normal" id="28" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+          <node begin="18" end="19" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="voorzitter" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="body" rnum="sg" root="voorzitter" sense="voorzitter" word="voorzitter"/>
+        </node>
+      </node>
+    </node>
+    <node begin="19" end="20" frame="punct(punt)" his="normal" his_1="normal" id="30" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="50">Het Franse Renault nam enkele jaren geleden autobouwer Nissan grotendeels over en stelde er Carlos Ghosn aan als voorzitter .</sentence>
+  <comments>
+    <comment>Q#50|Het Franse Renault nam enkele jaren geleden autobouwer Nissan grotendeels over en stelde er Carlos Ghosn aan als voorzitter .|1|1|-7.38420818699999</comment>
+  </comments>
+</alpino_ds>

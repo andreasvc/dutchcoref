@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="0" cat="smain" end="15" id="1" rel="--">
+      <node begin="0" end="1" frame="adverb" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="advp" lemma="algauw" pos="adv" postag="BW()" pt="bw" rel="mod" root="algauw" sense="algauw" word="Algauw"/>
+      <node begin="1" end="2" frame="verb(zijn,past(pl),ld_pp)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="verhuizen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="verhuis" sc="ld_pp" sense="verhuis" stype="declarative" tense="past" word="verhuisden" wvorm="pv"/>
+      <node begin="2" cat="np" end="5" id="4" rel="su">
+        <node aform="compar" begin="2" buiging="met-e" end="3" frame="adjective(ere)" graad="basis" his="normal" his_1="normal" id="5" infl="e" lcat="ap" lemma="ander" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="ander" sense="ander" vform="adj" word="andere"/>
+        <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="6" infl="e" lcat="ap" lemma="groot" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="groot" sense="groot" vform="adj" word="grote"/>
+        <node begin="4" end="5" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="7" lcat="np" lemma="handel_natie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="handel_natie" sense="handel_natie" word="handelsnaties"/>
+      </node>
+      <node begin="5" cat="pp" end="15" id="8" rel="ld">
+        <node begin="5" end="6" frame="preposition(naar,[toe])" his="normal" his_1="normal" id="9" lcat="pp" lemma="naar" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naar" sense="naar" vztype="init" word="naar"/>
+        <node begin="6" cat="np" end="15" id="10" rel="obj1">
+          <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="7" end="8" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="stad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="stad" sense="stad" word="stad"/>
+          <node begin="8" cat="rel" end="15" id="13" rel="mod">
+            <node begin="8" end="9" frame="er_wh_loc_adverb" getal="getal" his="normal" his_1="normal" id="14" index="1" lcat="advp" lemma="waar" naamval="obl" pdtype="adv-pron" persoon="3o" pos="adv" postag="VNW(vb,adv-pron,obl,vol,3o,getal)" pt="vnw" rel="rhd" root="waar" sense="waar" special="er_loc" status="vol" vwtype="vb" wh="ywh" word="waar"/>
+            <node begin="8" cat="ssub" end="15" id="15" rel="body">
+              <node begin="8" end="9" id="16" index="1" rel="mod"/>
+              <node begin="9" cat="np" end="14" id="17" rel="su">
+                <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="18" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="geest" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="geest" sense="geest" word="geest"/>
+                <node begin="11" cat="pp" end="14" id="20" rel="mod">
+                  <node begin="11" end="12" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="21" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="12" cat="np" end="14" id="22" rel="obj1">
+                    <node begin="12" end="13" frame="determiner(de)" his="normal" his_1="normal" id="23" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node begin="13" end="14" frame="proper_name(sg)" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="24" lcat="np" lemma="Renaissance" naamval="stan" neclass="MISC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Renaissance" sense="Renaissance" word="Renaissance"/>
+                  </node>
+                </node>
+              </node>
+              <node begin="14" end="15" frame="verb(unacc,past(sg),ninv(intransitive,part_intransitive(rond)))" his="normal" his_1="part-V" id="25" infl="sg" lcat="ssub" lemma="rond_waren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="waar_rond" sc="part_intransitive(rond)" sense="waar_rond" tense="past" word="rondwaarde" wvorm="pv"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="26" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="135">Algauw verhuisden andere grote handelsnaties naar de stad waar de geest van de Renaissance rondwaarde .</sentence>
+  <comments>
+    <comment>Q#135|Algauw verhuisden andere grote handelsnaties naar de stad waar de geest van de Renaissance rondwaarde .|1|1|-8.381607505019998</comment>
+  </comments>
+</alpino_ds>

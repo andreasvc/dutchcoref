@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="31" id="0" rel="top">
+    <node begin="16" end="17" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="30" id="2" rel="--">
+      <node begin="0" cat="np" end="2" id="3" rel="su">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="4" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="Die"/>
+        <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="wet" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="wet" sense="wet" word="wet"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,sg3,sbar)" his="normal" his_1="normal" id="6" infl="sg3" lcat="smain" lemma="bepalen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="bepaal" sc="sbar" sense="bepaal" stype="declarative" tense="present" word="bepaalt" wvorm="pv"/>
+      <node begin="3" cat="cp" end="16" id="7" rel="vc">
+        <node begin="3" conjtype="onder" end="4" frame="complementizer(dat)" his="normal" his_1="normal" id="8" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="4" cat="ssub" end="16" id="9" rel="body">
+          <node begin="4" cat="np" end="6" id="10" index="1" rel="su">
+            <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="Belgisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Belgisch" sense="Belgisch" vform="adj" word="Belgische"/>
+            <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="rechtbank" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="rechtbank" sense="rechtbank" word="rechtbanken"/>
+          </node>
+          <node begin="14" end="15" frame="verb('hebben/zijn',pl,aux(inf))" his="normal" his_1="normal" id="13" infl="pl" lcat="ssub" lemma="kunnen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kan" sc="aux(inf)" sense="kan" tense="present" word="kunnen" wvorm="pv"/>
+          <node begin="4" cat="inf" end="16" id="14" rel="vc">
+            <node begin="4" end="6" id="15" index="1" rel="su"/>
+            <node begin="6" cat="np" end="14" id="16" rel="obj1">
+              <node begin="6" buiging="met-e" end="7" frame="noun(de,count,pl)" gen="de" getal-n="mv-n" his="normal" his_1="normal" id="17" lcat="np" lemma="verdachte" num="pl" pos="noun" positie="nom" postag="WW(vd,nom,met-e,mv-n)" pt="ww" rel="hd" rnum="pl" root="verdachte" sense="verdachte" word="verdachten" wvorm="vd"/>
+              <node begin="7" cat="pp" end="14" id="18" rel="mod">
+                <node begin="7" end="8" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="19" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="8" cat="conj" end="14" id="20" rel="obj1">
+                  <node begin="9" conjtype="neven" end="10" frame="conj(en)" his="normal" his_1="normal" id="21" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+                  <node begin="8" cat="np" end="14" id="22" rel="cnj">
+                    <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="23" lcat="np" lemma="oorlog_misdaad" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="oorlog_misdaad" sense="oorlog_misdaad" word="oorlogsmisdaden"/>
+                    <node begin="11" cat="pp" end="14" id="24" index="2" rel="mod">
+                      <node begin="11" end="12" frame="preposition(tegen,[aan,in,op])" his="normal" his_1="normal" id="25" lcat="pp" lemma="tegen" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tegen" sense="tegen" vztype="init" word="tegen"/>
+                      <node begin="12" cat="np" end="14" id="26" rel="obj1">
+                        <node begin="12" end="13" frame="determiner(de)" his="normal" his_1="normal" id="27" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                        <node begin="13" end="14" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="menselijkheid" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="menselijkheid" sense="menselijkheid" word="menselijkheid"/>
+                      </node>
+                    </node>
+                  </node>
+                  <node begin="10" cat="np" end="14" id="29" rel="cnj">
+                    <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="misdaad" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="misdaad" sense="misdaad" word="misdaden"/>
+                    <node begin="11" end="14" id="31" index="2" rel="mod"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="32" infl="inf" lcat="inf" lemma="vervolgen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="vervolg" sc="transitive" sense="vervolg" word="vervolgen" wvorm="inf"/>
+          </node>
+        </node>
+      </node>
+      <node begin="17" cat="pp" end="30" id="33" rel="mod">
+        <node begin="17" end="18" frame="preposition(ongeacht,[])" his="normal" his_1="normal" id="34" lcat="pp" lemma="ongeacht" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="ongeacht" sense="ongeacht" vztype="init" word="ongeacht"/>
+        <node begin="18" cat="np" end="30" id="35" rel="obj1">
+          <node begin="18" end="19" frame="determiner(de)" his="normal" his_1="normal" id="36" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="19" end="20" frame="meas_mod_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="37" lcat="np" lemma="plaats" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="plaats" sense="plaats" special="meas_mod" word="plaats"/>
+          <node begin="20" cat="pp" end="30" id="38" rel="mod">
+            <node begin="20" end="21" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="39" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="21" cat="conj" end="30" id="40" rel="obj1">
+              <node begin="21" cat="np" end="23" id="41" rel="cnj">
+                <node begin="21" end="22" frame="determiner(de)" his="normal" his_1="normal" id="42" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="22" end="23" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="43" lcat="np" lemma="misdaad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="misdaad" sense="misdaad" word="misdaad"/>
+              </node>
+              <node begin="23" conjtype="neven" end="24" frame="conj(en)" his="normal" his_1="normal" id="44" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+              <node begin="24" cat="np" end="30" id="45" rel="cnj">
+                <node begin="24" end="25" frame="determiner(de)" his="normal" his_1="normal" id="46" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="25" end="26" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="47" lcat="np" lemma="nationaliteit" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="nationaliteit" sense="nationaliteit" word="nationaliteit"/>
+                <node begin="26" cat="pp" end="30" id="48" rel="mod">
+                  <node begin="26" end="27" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="49" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="27" cat="np" end="30" id="50" rel="obj1">
+                    <node begin="27" end="28" frame="determiner(de)" his="normal" his_1="normal" id="51" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node aform="base" begin="28" buiging="met-e" end="29" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="52" infl="e" lcat="ap" lemma="vermeend" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="vermeend" sense="vermeend" vform="adj" word="vermeende"/>
+                    <node begin="29" end="30" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="53" lcat="np" lemma="dader" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="dader" sense="dader" word="daders"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="30" end="31" frame="punct(punt)" his="normal" his_1="normal" id="54" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="6">Die wet bepaalt dat Belgische rechtbanken verdachten van oorlogsmisdaden en misdaden tegen de menselijkheid kunnen vervolgen , ongeacht de plaats van de misdaad en de nationaliteit van de vermeende daders .</sentence>
+  <comments>
+    <comment>Q#6|Die wet bepaalt dat Belgische rechtbanken verdachten van oorlogsmisdaden en misdaden tegen de menselijkheid kunnen vervolgen , ongeacht de plaats van de misdaad en de nationaliteit van de vermeende daders .|1|1|-12.244176529579995</comment>
+  </comments>
+</alpino_ds>

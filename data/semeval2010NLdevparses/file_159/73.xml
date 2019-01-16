@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="26" id="0" rel="top">
+    <node begin="16" end="17" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="conj" end="25" id="2" rel="--">
+      <node begin="0" cat="smain" end="16" id="3" rel="cnj">
+        <node begin="0" cat="conj" end="10" id="4" rel="su">
+          <node begin="0" cat="np" end="5" id="5" rel="cnj">
+            <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="6" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+            <node begin="1" end="2" frame="noun(de,count,sg,app_measure)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="emeritus_hoogleraar" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="emeritus_hoogleraar" sc="app_measure" sense="emeritus_hoogleraar" word="emeritus-hoogleraar"/>
+            <node begin="2" cat="np" end="5" id="8" rel="app">
+              <node begin="2" end="3" frame="noun(het,both,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="arbeid_recht" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="arbeid_recht" sense="arbeid_recht" word="arbeidsrecht"/>
+              <node begin="3" cat="mwu" end="5" his="name" his_1="not_begin" id="10" mwu_root="Roger Blanpain" mwu_sense="Roger Blanpain" rel="app">
+                <node begin="3" end="4" frame="proper_name(sg,'PER')" id="11" lcat="np" lemma="Roger" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Roger" sense="Roger" spectype="deeleigen" word="Roger"/>
+                <node begin="4" end="5" frame="proper_name(sg,'PER')" id="12" lcat="np" lemma="Blanpain" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Blanpain" sense="Blanpain" spectype="deeleigen" word="Blanpain"/>
+              </node>
+            </node>
+          </node>
+          <node begin="5" conjtype="neven" end="6" frame="conj(en)" his="normal" his_1="normal" id="13" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="6" cat="np" end="10" id="14" rel="cnj">
+            <node begin="6" end="7" frame="determiner(een)" his="normal" his_1="normal" id="15" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="7" end="8" frame="noun(de,count,sg,measure)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="schare" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="schare" sc="measure" sense="schare" word="schare"/>
+            <node begin="8" cat="np" end="10" id="17" rel="mod">
+              <node aform="base" begin="8" buiging="met-e" end="9" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" infl="e" lcat="ap" lemma="academisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="academisch" sense="academisch" vform="adj" word="academische"/>
+              <node aform="base" begin="9" buiging="met-e" end="10" frame="nominalized_adjective" getal-n="mv-n" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="getrouw" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="hd" root="getrouw" sense="getrouw" special="a_noun" word="getrouwen"/>
+            </node>
+          </node>
+        </node>
+        <node begin="10" end="11" frame="verb(hebben,past(pl),part_transitive(over))" his="normal" his_1="normal" id="20" infl="pl" lcat="smain" lemma="over_maken" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="maak_over" sc="part_transitive(over)" sense="maak_over" stype="declarative" tense="past" word="maakten" wvorm="pv"/>
+        <node begin="11" end="12" frame="er_loc_adverb" getal="getal" his="normal" his_1="normal" id="21" lcat="advp" lemma="daar" naamval="obl" pdtype="adv-pron" persoon="3o" pos="adv" postag="VNW(aanw,adv-pron,obl,vol,3o,getal)" pt="vnw" rel="mod" root="daar" sense="daar" special="er_loc" status="vol" vwtype="aanw" word="daar"/>
+        <node begin="12" cat="np" end="15" id="22" rel="obj1">
+          <node begin="12" cat="detp" end="14" id="23" rel="det">
+            <node begin="12" end="13" frame="adverb" his="normal" his_1="normal" id="24" lcat="advp" lemma="nogal" pos="adv" postag="BW()" pt="bw" rel="mod" root="nogal" sense="nogal" word="nogal"/>
+            <node begin="13" end="14" frame="determiner(wat,nwh,mod,pro,nparg,ntopicpro)" getal="ev" his="normal" his_1="normal" id="25" infl="wat" lcat="detp" lemma="wat" naamval="stan" pdtype="pron" persoon="3o" pos="det" postag="VNW(onbep,pron,stan,vol,3o,ev)" pt="vnw" rel="hd" root="wat" sense="wat" status="vol" vwtype="onbep" wh="nwh" word="wat"/>
+          </node>
+          <node begin="14" end="15" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="spektakel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="spektakel" sense="spektakel" word="spektakel"/>
+        </node>
+        <node begin="15" end="16" frame="particle(over)" his="normal" his_1="normal" id="27" lcat="part" lemma="over" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="over" sense="over" vztype="fin" word="over"/>
+      </node>
+      <node begin="17" conjtype="neven" end="18" frame="conj(en)" his="normal" his_1="normal" id="28" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="18" cat="smain" end="25" id="29" rel="cnj">
+        <node begin="18" cat="pp" end="21" id="30" rel="mod">
+          <node begin="18" end="19" frame="preposition(naar,[toe])" his="normal" his_1="normal" id="31" lcat="pp" lemma="naar" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naar" sense="naar" vztype="init" word="naar"/>
+          <node begin="19" cat="np" end="21" id="32" rel="obj1">
+            <node aform="base" begin="19" buiging="zonder" end="20" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="33" infl="no_e" lcat="ap" lemma="buitenlands" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="buitenlands" sense="buitenlands" vform="adj" word="buitenlands"/>
+            <node begin="20" end="21" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="34" lcat="np" lemma="voorbeeld" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="voorbeeld" sense="voorbeeld" word="voorbeeld"/>
+          </node>
+        </node>
+        <node begin="21" end="22" frame="verb(hebben,past(pl),nonp_copula)" his="normal" his_1="normal" id="35" infl="pl" lcat="smain" lemma="doen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="doe" sc="nonp_copula" sense="doe" stype="declarative" tense="past" word="deden" wvorm="pv"/>
+        <node begin="22" cat="np" end="24" id="36" rel="su">
+          <node begin="22" buiging="met-e" end="23" frame="adj_number(enkele)" his="normal" his_1="normal" id="37" infl="enkele" lcat="detp" lemma="enkel" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="enkel" sense="enkel" special="adj_number" vwtype="onbep" word="enkele"/>
+          <node begin="23" end="24" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="38" lcat="np" lemma="arbeid_rechter" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="arbeid_rechter" sense="arbeid_rechter" word="arbeidsrechters"/>
+        </node>
+        <node aform="base" begin="24" buiging="zonder" end="25" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="39" infl="no_e" lcat="ap" lemma="wrevelig" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="wrevelig" sense="wrevelig" vform="adj" word="wrevelig"/>
+      </node>
+    </node>
+    <node begin="25" end="26" frame="punct(punt)" his="normal" his_1="normal" id="40" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="73">De emeritus-hoogleraar arbeidsrecht Roger Blanpain en een schare academische getrouwen maakten daar nogal wat spektakel over , en naar buitenlands voorbeeld deden enkele arbeidsrechters wrevelig .</sentence>
+  <comments>
+    <comment>Q#73|De emeritus-hoogleraar arbeidsrecht Roger Blanpain en een schare academische getrouwen maakten daar nogal wat spektakel over , en naar buitenlands voorbeeld deden enkele arbeidsrechters wrevelig .|1|1|5.956632506139997</comment>
+  </comments>
+</alpino_ds>

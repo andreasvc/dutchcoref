@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="17" id="0" rel="top">
+    <node begin="0" cat="smain" end="16" id="1" rel="--">
+      <node begin="0" cat="pp" end="3" id="2" rel="mod">
+        <node begin="0" end="1" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="Met"/>
+        <node begin="1" cat="np" end="3" id="4" rel="obj1">
+          <node begin="1" end="2" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="5" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+          <node begin="2" end="3" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="geweld" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="geweld" sense="geweld" word="geweld"/>
+        </node>
+      </node>
+      <node begin="3" end="4" frame="verb(zijn,sg3,part_intransitive(aan))" his="normal" his_1="normal" id="7" infl="sg3" lcat="smain" lemma="aan_breken" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="breek_aan" sc="part_intransitive(aan)" sense="breek_aan" stype="declarative" tense="present" word="breekt" wvorm="pv"/>
+      <node begin="4" cat="np" end="7" id="8" rel="su">
+        <node begin="4" end="5" frame="determiner(een)" his="normal" his_1="normal" id="9" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+        <node aform="base" begin="5" buiging="met-e" end="6" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="10" infl="e" lcat="ap" lemma="nieuw" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="nieuw" sense="nieuw" vform="adj" word="nieuwe"/>
+        <node begin="6" end="7" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="fase" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="fase" sense="fase" special="tmp" word="fase"/>
+      </node>
+      <node begin="7" end="8" frame="particle(aan)" his="normal" his_1="normal" id="12" lcat="part" lemma="aan" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="aan" sense="aan" vztype="fin" word="aan"/>
+      <node begin="8" cat="pp" end="16" id="13" rel="mod">
+        <node begin="8" end="9" frame="preposition(in,[])" his="normal" his_1="normal" id="14" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="9" cat="np" end="16" id="15" rel="obj1">
+          <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="10" cat="ap" end="13" id="17" rel="mod">
+            <node begin="10" cat="np" end="12" id="18" rel="me">
+              <node begin="10" end="11" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="19" infl="pl_num" lcat="detp" lemma="36" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="36" sense="36" special="hoofd" word="36"/>
+              <node begin="11" end="12" frame="tmp_noun(het,count,bare_meas)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="jaar" naamval="stan" ntype="soort" num="bare_meas" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="pl" root="jaar" sense="jaar" special="tmp" word="jaar"/>
+            </node>
+            <node aform="base" begin="12" buiging="met-e" end="13" frame="np_me_adjective(e)" his="normal" his_1="normal" id="21" infl="e" lcat="ap" lemma="durend" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="hd" root="durend" sc="np_me" sense="durend" vform="adj" word="durende" wvorm="od"/>
+          </node>
+          <node begin="13" end="14" frame="noun(de,both,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="burger_oorlog" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="burger_oorlog" sense="burger_oorlog" word="burgeroorlog"/>
+          <node begin="14" cat="pp" end="16" id="23" rel="mod">
+            <node begin="14" end="15" frame="preposition(in,[])" his="normal" his_1="normal" id="24" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="15" end="16" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="25" lcat="np" lemma="Colombia" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Colombia" sense="Colombia" word="Colombia"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="16" end="17" frame="punct(punt)" his="normal" his_1="normal" id="26" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="6">Met het geweld breekt een nieuwe fase aan in de 36 jaar durende burgeroorlog in Colombia .</sentence>
+  <comments>
+    <comment>Q#6|Met het geweld breekt een nieuwe fase aan in de 36 jaar durende burgeroorlog in Colombia .|1|1|-7.085110853059992</comment>
+  </comments>
+</alpino_ds>

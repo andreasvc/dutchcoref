@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="0" cat="smain" end="22" id="1" rel="--">
+      <node begin="0" case="both" def="def" end="1" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" genus="fem" getal="ev" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,ev,fem)" pt="vnw" rel="su" rnum="sg" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="Ze"/>
+      <node begin="1" end="2" frame="verb(hebben,modal_not_u,modifier(tr_sbar))" his="normal" his_1="normal" id="3" infl="modal_not_u" lcat="smain" lemma="willen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="wil" sc="modifier(tr_sbar)" sense="wil" stype="declarative" tense="present" word="wil" wvorm="pv"/>
+      <node begin="2" cat="mwu" end="4" his="normal" his_1="normal" id="4" mwu_root="onder meer" mwu_sense="onder meer" rel="mod">
+        <node begin="2" end="3" frame="adverb" id="5" lcat="advp" lemma="onder" pos="adv" postag="VZ(init)" pt="vz" rel="mwp" root="onder" sense="onder" vztype="init" word="onder"/>
+        <node begin="3" buiging="zonder" end="4" frame="adverb" graad="comp" id="6" lcat="advp" lemma="meer" naamval="stan" pdtype="grad" pos="adv" positie="vrij" postag="VNW(onbep,grad,stan,vrij,zonder,comp)" pt="vnw" rel="mwp" root="meer" sense="meer" vwtype="onbep" word="meer"/>
+      </node>
+      <node begin="4" cat="conj" end="22" id="7" rel="vc">
+        <node begin="4" cat="cp" end="13" id="8" rel="cnj">
+          <node begin="4" conjtype="onder" end="5" frame="complementizer(dat)" his="normal" his_1="normal" id="9" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+          <node begin="5" cat="ssub" end="13" id="10" rel="body">
+            <node begin="5" end="6" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="11" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+            <node begin="6" cat="np" end="10" id="12" rel="su">
+              <node begin="6" end="7" frame="determiner(een)" his="normal" his_1="normal" id="13" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node aform="base" begin="7" buiging="zonder" end="8" frame="adjective(ge_no_e(adv))" his="normal" his_1="normal" id="14" infl="no_e" lcat="ppart" lemma="gegarandeerd" pos="adj" positie="prenom" postag="WW(vd,prenom,zonder)" pt="ww" rel="mod" root="gegarandeerd" sense="gegarandeerd" vform="psp" word="gegarandeerd" wvorm="vd"/>
+              <node begin="8" end="9" frame="noun(het,count,sg,measure)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="aantal" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="aantal" sc="measure" sense="aantal" word="aantal"/>
+              <node begin="9" end="10" frame="meas_mod_noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="plaats" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="mod" rnum="pl" root="plaats" sense="plaats" special="meas_mod" word="plaatsen"/>
+            </node>
+            <node begin="10" end="11" frame="verb(zijn,sg3,intransitive)" his="normal" his_1="normal" id="17" infl="sg3" lcat="ssub" lemma="komen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="kom" sc="intransitive" sense="kom" tense="present" word="komt" wvorm="pv"/>
+            <node begin="11" cat="pp" end="13" id="18" rel="mod">
+              <node begin="11" end="12" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="19" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+              <node aform="base" begin="12" buiging="met-e" end="13" frame="nominalized_adjective" getal-n="mv-n" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="Franstalig" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="obj1" rnum="pl" root="Franstalig" sense="Franstalig" special="a_noun" word="Franstaligen"/>
+            </node>
+          </node>
+        </node>
+        <node begin="13" conjtype="neven" end="14" frame="conj(en)" his="normal" his_1="normal" id="21" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="14" cat="cp" end="22" id="22" rel="cnj">
+          <node begin="14" conjtype="onder" end="15" frame="complementizer(dat)" his="normal" his_1="normal" id="23" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+          <node begin="15" cat="ssub" end="22" id="24" rel="body">
+            <node begin="15" cat="np" end="18" id="25" index="1" rel="su">
+              <node begin="15" end="16" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="26" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node aform="base" begin="16" buiging="met-e" end="17" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="27" infl="e" lcat="ap" lemma="Frans_talig" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Frans_talig" sense="Frans_talig" vform="adj" word="Franstalige"/>
+              <node begin="17" end="18" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="personeel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="personeel" sense="personeel" word="personeel"/>
+            </node>
+            <node begin="20" end="21" frame="verb(hebben,sg,modifier(aux(inf)))" his="normal" his_1="normal" id="29" infl="sg" lcat="ssub" lemma="mogen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="mag" sc="modifier(aux(inf))" sense="mag" tense="present" word="mag" wvorm="pv"/>
+            <node begin="15" cat="inf" end="22" id="30" rel="vc">
+              <node begin="15" end="18" id="31" index="1" rel="su"/>
+              <node begin="18" end="19" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="32" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+              <node begin="19" end="20" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="Frans" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Frans" sense="Frans" word="Frans"/>
+              <node begin="21" buiging="zonder" end="22" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="34" infl="inf" lcat="inf" lemma="spreken" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="spreek" sc="transitive" sense="spreek" word="spreken" wvorm="inf"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="35" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="8">Ze wil onder meer dat er een gegarandeerd aantal plaatsen komt voor Franstaligen en dat het Franstalige personeel er Frans mag spreken .</sentence>
+  <comments>
+    <comment>Q#8|Ze wil onder meer dat er een gegarandeerd aantal plaatsen komt voor Franstaligen en dat het Franstalige personeel er Frans mag spreken .|1|1|-7.865627583959992</comment>
+  </comments>
+</alpino_ds>

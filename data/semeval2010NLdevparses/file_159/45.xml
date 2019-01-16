@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="15" id="2" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="du" lemma="en" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="en" sc="root" sense="en" word="En"/>
+      <node begin="1" cat="du" end="15" id="4" rel="nucl">
+        <node begin="1" cat="np" end="6" id="5" rel="dp">
+          <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+          <node begin="2" cat="pp" end="6" id="7" rel="mod">
+            <node begin="2" end="3" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="8" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="3" cat="np" end="6" id="9" rel="obj1">
+              <node begin="3" end="4" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="decap" his_1="not_begin" id="10" lcat="np" lemma="werkgelegenheid" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="werkgelegenheid" sense="werkgelegenheid" word="Werkgelegenheid"/>
+              <node begin="4" cat="mwu" end="6" his="normal" his_1="names_dictionary" id="11" mwu_root="Laurette Onkelinx" mwu_sense="Laurette Onkelinx" rel="app">
+                <node begin="4" end="5" frame="proper_name(sg,'PER')" id="12" lcat="np" lemma="Laurette" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Laurette" sense="Laurette" spectype="deeleigen" word="Laurette"/>
+                <node begin="5" end="6" frame="proper_name(sg,'PER')" id="13" lcat="np" lemma="Onkelinx" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Onkelinx" sense="Onkelinx" spectype="deeleigen" word="Onkelinx"/>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="7" cat="advp" end="15" id="14" rel="dp">
+          <node begin="7" end="8" frame="loc_adverb" his="normal" his_1="normal" id="15" lcat="advp" lemma="bovenaan" pos="adv" postag="BW()" pt="bw" rel="hd" root="bovenaan" sense="bovenaan" special="loc" word="bovenaan"/>
+          <node begin="8" cat="pp" end="15" id="16" rel="mod">
+            <node begin="8" end="9" frame="preposition(in,[])" his="normal" his_1="normal" id="17" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="9" cat="np" end="15" id="18" rel="obj1">
+              <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="pik_orde" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="pik_orde" sense="pik_orde" word="pikorde"/>
+              <node begin="11" cat="pp" end="15" id="21" rel="mod">
+                <node begin="11" end="12" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="22" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+                <node begin="12" cat="np" end="15" id="23" rel="obj1">
+                  <node begin="12" end="13" frame="determiner(de)" his="normal" his_1="normal" id="24" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node aform="base" begin="13" buiging="met-e" end="14" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="25" infl="e" lcat="ap" lemma="Waals" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Waals" sense="Waals" vform="adj" word="Waalse"/>
+                  <node begin="14" end="15" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="socialist" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="socialist" sense="socialist" word="socialisten"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(vraag)" his="normal" his_1="normal" id="27" lcat="punct" lemma="?" pos="punct" postag="LET()" pt="let" rel="--" root="?" sense="?" special="vraag" word="?"/>
+  </node>
+  <sentence sentid="45">En minister van Werkgelegenheid Laurette Onkelinx , bovenaan in de pikorde bij de Waalse socialisten ?</sentence>
+  <comments>
+    <comment>Q#45|En minister van Werkgelegenheid Laurette Onkelinx , bovenaan in de pikorde bij de Waalse socialisten ?|1|1|0.7951852438399989</comment>
+  </comments>
+</alpino_ds>

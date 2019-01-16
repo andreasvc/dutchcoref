@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="27" id="0" rel="top">
+    <node begin="12" end="13" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="1" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="14" end="15" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="2" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="15" end="16" frame="punct(komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="26" id="4" rel="--">
+      <node begin="0" cat="pp" end="7" id="5" rel="mod">
+        <node begin="0" end="1" frame="preposition(in,[])" his="normal" his_1="decap" his_1_1="normal" id="6" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="In"/>
+        <node begin="1" cat="np" end="7" id="7" rel="obj1">
+          <node begin="1" end="2" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="8" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+          <node begin="2" end="3" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="land" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="land" sense="land" word="land"/>
+          <node begin="3" cat="pp" end="7" id="10" rel="mod">
+            <node begin="3" end="4" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="11" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="4" cat="np" end="7" id="12" rel="obj1">
+              <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="13" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node aform="base" begin="5" buiging="met-e" end="6" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="14" infl="e" lcat="ap" lemma="leven_lang" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="leven_lang" sense="leven_lang" vform="adj" word="levenslange"/>
+              <node begin="6" end="7" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="baan" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="baan" sense="baan" word="baan"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="7" end="8" frame="verb(hebben,pl,transitive_ndev)" his="normal" his_1="normal" id="16" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="heb" sc="transitive_ndev" sense="heb" stype="declarative" tense="present" word="hebben" wvorm="pv"/>
+      <node begin="8" end="9" frame="adverb" his="normal" his_1="normal" id="17" lcat="advp" lemma="zelfs" pos="adv" postag="BW()" pt="bw" rel="mod" root="zelfs" sense="zelfs" word="zelfs"/>
+      <node begin="9" cat="np" end="11" id="18" rel="su">
+        <node aform="base" begin="9" buiging="met-e" end="10" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="19" infl="e" lcat="ap" lemma="middelgroot" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="middelgroot" sense="middelgroot" vform="adj" word="middelgrote"/>
+        <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="stad" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="stad" sense="stad" word="steden"/>
+      </node>
+      <node begin="11" cat="np" end="26" id="21" rel="obj1">
+        <node begin="11" buiging="zonder" end="12" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="22" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+        <node begin="13" end="14" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="23" lcat="np" lemma="arbeidsbemiddelingsstraat" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="arbeidsbemiddelingsstraat" sense="arbeidsbemiddelingsstraat" word="arbeidsbemiddelingsstraat"/>
+        <node begin="16" cat="whrel" end="26" id="24" rel="mod">
+          <node begin="16" end="17" frame="er_wh_loc_adverb" getal="getal" his="normal" his_1="normal" id="25" index="1" lcat="advp" lemma="waar" naamval="obl" pdtype="adv-pron" persoon="3o" pos="adv" postag="VNW(vb,adv-pron,obl,vol,3o,getal)" pt="vnw" rel="rhd" root="waar" sense="waar" special="er_loc" status="vol" vwtype="vb" wh="ywh" word="waar"/>
+          <node begin="16" cat="ssub" end="26" id="26" rel="body">
+            <node begin="16" end="17" id="27" index="1" rel="mod"/>
+            <node begin="17" cat="advp" end="20" id="28" rel="mod">
+              <node begin="17" cat="mwu" end="19" his="normal" his_1="normal" id="29" mwu_root="&apos;s ochtends" mwu_sense="&apos;s ochtends" rel="hd">
+                <node begin="17" end="18" frame="tmp_adverb" id="30" lcat="advp" lemma="&apos;s" lwtype="bep" naamval="gen" npagr="evmo" pos="adv" postag="LID(bep,gen,evmo)" pt="lid" rel="mwp" root="&apos;s" sense="&apos;s" special="tmp" word="&apos;s"/>
+                <node begin="18" end="19" frame="tmp_adverb" getal="ev" graad="basis" id="31" lcat="advp" lemma="ochtends" naamval="gen" ntype="soort" pos="adv" postag="N(soort,ev,basis,gen)" pt="n" rel="mwp" root="ochtends" sense="ochtends" special="tmp" word="ochtends"/>
+              </node>
+              <node begin="19" end="20" frame="postadv_adverb" his="normal" his_1="normal" id="32" lcat="advp" lemma="vroeg" pos="adv" postag="BW()" pt="bw" rel="mod" root="vroeg" sense="vroeg" special="postadv" word="vroeg"/>
+            </node>
+            <node begin="20" cat="np" end="22" id="33" rel="su">
+              <node begin="20" end="21" frame="noun(de,count,pl,measure)" gen="de" getal-n="mv-n" graad="basis" his="normal" his_1="normal" id="34" lcat="np" lemma="duizenden" num="pl" numtype="hoofd" pos="noun" positie="nom" postag="TW(hoofd,nom,mv-n,basis)" pt="tw" rel="hd" rnum="pl" root="duizenden" sc="measure" sense="duizenden" word="duizenden"/>
+              <node begin="21" end="22" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="35" lcat="np" lemma="dagloners" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mod" root="dagloners" sense="dagloners" word="dagloners"/>
+            </node>
+            <node begin="22" end="23" frame="verb(hebben,pl,pc_pp(op))" his="normal" his_1="normal" id="36" infl="pl" lcat="ssub" lemma="hopen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="hoop" sc="pc_pp(op)" sense="hoop-op" tense="present" word="hopen" wvorm="pv"/>
+            <node begin="23" cat="pp" end="26" id="37" rel="pc">
+              <node begin="23" end="24" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="38" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+              <node begin="24" cat="np" end="26" id="39" rel="obj1">
+                <node begin="24" end="25" frame="determiner(een)" his="normal" his_1="normal" id="40" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                <node begin="25" end="26" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="41" lcat="np" lemma="karwei" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="karwei" sense="karwei" word="karwei"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="26" end="27" frame="punct(punt)" his="normal" his_1="normal" id="42" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="45">In het land van de levenslange baan hebben zelfs middelgrote steden hun &apos; arbeidsbemiddelingsstraat &apos; , waar &apos;s ochtends vroeg duizenden dagloners hopen op een karwei .</sentence>
+  <comments>
+    <comment>Q#45|In het land van de levenslange baan hebben zelfs middelgrote steden hun &apos; arbeidsbemiddelingsstraat &apos; , waar &apos;s ochtends vroeg duizenden dagloners hopen op een karwei .|1|1|-1.931752724740003</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="smain" end="11" id="1" rel="--">
+      <node begin="0" cat="np" end="3" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" cat="mwu" end="3" his="normal" his_1="names_dictionary" id="4" mwu_root="Rode Duivels" mwu_sense="Rode Duivels" rel="hd">
+          <node begin="1" end="2" frame="proper_name(both,'ORG')" id="5" lcat="np" lemma="Rode" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="pl" root="Rode" sense="Rode" spectype="deeleigen" word="Rode"/>
+          <node begin="2" end="3" frame="proper_name(both,'ORG')" id="6" lcat="np" lemma="Duivels" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="pl" root="Duivels" sense="Duivels" spectype="deeleigen" word="Duivels"/>
+        </node>
+      </node>
+      <node begin="3" end="4" frame="verb(zijn,pl,part_ld_pp(terecht))" his="normal" his_1="normal" id="7" infl="pl" lcat="smain" lemma="terecht_komen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kom_terecht" sc="part_ld_pp(terecht)" sense="kom_terecht" stype="declarative" tense="present" word="komen" wvorm="pv"/>
+      <node begin="4" end="5" frame="tmp_adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="dan" pos="adv" postag="BW()" pt="bw" rel="mod" root="dan" sense="dan" special="tmp" word="dan"/>
+      <node begin="5" buiging="zonder" end="6" frame="particle(terecht)" graad="basis" his="normal" his_1="normal" id="9" lcat="part" lemma="terecht" pos="part" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="svp" root="terecht" sense="terecht" word="terecht"/>
+      <node begin="6" cat="pp" end="11" id="10" rel="ld">
+        <node begin="6" end="7" frame="preposition(in,[])" his="normal" his_1="normal" id="11" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="7" cat="np" end="11" id="12" rel="obj1">
+          <node begin="7" end="8" frame="determiner(een)" his="normal" his_1="normal" id="13" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node begin="8" end="9" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="land" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="land" sense="land" word="land"/>
+          <node begin="9" cat="pp" end="11" id="15" rel="mod">
+            <node begin="9" end="10" frame="preposition(in,[])" his="normal" his_1="normal" id="16" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="crisis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="crisis" sense="crisis" word="crisis"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="18" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="5">De Rode Duivels komen dan terecht in een land in crisis .</sentence>
+  <comments>
+    <comment>Q#5|De Rode Duivels komen dan terecht in een land in crisis .|1|1|-0.4607520489199981</comment>
+  </comments>
+</alpino_ds>

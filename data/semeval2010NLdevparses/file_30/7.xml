@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="0" cat="smain" end="22" id="1" rel="--">
+      <node begin="0" cat="np" end="5" id="2" rel="su">
+        <node aform="base" begin="0" buiging="met-e" end="1" frame="adjective(e)" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="3" infl="e" lcat="ap" lemma="hormonaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="hormonaal" sense="hormonaal" vform="adj" word="Hormonale"/>
+        <node begin="1" end="2" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="verandering" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="verandering" sense="verandering" word="veranderingen"/>
+        <node begin="2" cat="pp" end="5" id="5" rel="mod">
+          <node begin="2" end="3" frame="preposition(in,[])" his="normal" his_1="normal" id="6" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="3" cat="np" end="5" id="7" rel="obj1">
+            <node begin="3" end="4" frame="determiner(een)" his="normal" his_1="normal" id="8" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="4" end="5" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="9" lcat="np" lemma="moeder_lichaam" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="moeder_lichaam" sense="moeder_lichaam" word="moederlichaam"/>
+          </node>
+        </node>
+      </node>
+      <node begin="5" end="6" frame="verb(hebben,pl,er_pp_sbar(tot))" his="normal" his_1="normal" id="10" infl="pl" lcat="smain" lemma="leiden" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="leid" sc="er_pp_sbar(tot)" sense="leid-tot" stype="declarative" tense="present" word="leiden" wvorm="pv"/>
+      <node begin="6" cat="pp" end="22" id="11" rel="pc">
+        <node begin="6" end="7" frame="er_adverb(tot)" his="normal" his_1="normal" id="12" lcat="pp" lemma="ertoe" pos="pp" postag="BW()" pt="bw" rel="hd" root="ertoe" sense="ertoe" special="er" word="ertoe"/>
+        <node begin="7" cat="cp" end="22" id="13" rel="vc">
+          <node begin="7" conjtype="onder" end="8" frame="complementizer(dat)" his="normal" his_1="normal" id="14" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+          <node begin="8" cat="ssub" end="22" id="15" rel="body">
+            <node aform="base" begin="8" buiging="met-e" end="9" frame="nominalized_adjective" getal-n="mv-n" graad="basis" his="compound" his_1="2" id="16" lcat="np" lemma="eerst_geboren" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="su" rnum="pl" root="eerst_geboren" sense="eerst_geboren" special="a_noun" word="eerstgeborenen"/>
+            <node begin="11" end="12" frame="verb(hebben,pl,transitive_ndev)" his="normal" his_1="normal" id="17" infl="pl" lcat="ssub" lemma="hebben" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="heb" sc="transitive_ndev" sense="heb" tense="present" word="hebben" wvorm="pv"/>
+            <node begin="9" cat="np" end="22" id="18" rel="obj1">
+              <node begin="10" end="11" frame="noun(de,count,sg,vp)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="kans" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="kans" sc="vp" sense="kans" word="kans"/>
+              <node begin="12" cat="oti" end="16" id="20" rel="vc">
+                <node begin="12" end="13" frame="complementizer(om)" his="normal" his_1="normal" id="21" lcat="oti" lemma="om" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="om" sc="om" sense="om" vztype="init" word="om"/>
+                <node begin="13" cat="ti" end="16" id="22" rel="body">
+                  <node begin="14" end="15" frame="complementizer(te)" his="normal" his_1="normal" id="23" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+                  <node begin="13" cat="inf" end="16" id="24" rel="body">
+                    <node begin="13" end="14" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="allergie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="allergie" sense="allergie" word="allergieën"/>
+                    <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="26" infl="inf" lcat="inf" lemma="ontwikkelen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="ontwikkel" sc="transitive" sense="ontwikkel" word="ontwikkelen" wvorm="inf"/>
+                  </node>
+                </node>
+              </node>
+              <node begin="9" cat="ap" end="22" id="27" rel="det">
+                <node aform="compar" begin="9" buiging="zonder" end="10" frame="adjective(meer)" graad="comp" his="normal" his_1="normal" id="28" infl="meer" lcat="ap" lemma="meer" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,comp)" pt="vnw" rel="hd" root="meer" sense="meer" vform="adj" vwtype="onbep" word="meer"/>
+                <node begin="16" cat="cp" end="22" id="29" rel="obcomp">
+                  <node begin="16" conjtype="onder" end="17" frame="comparative(dan)" his="normal" his_1="normal" id="30" lcat="comparative" lemma="dan" pos="comparative" postag="VG(onder)" pt="vg" rel="cmp" root="dan" sense="dan" word="dan"/>
+                  <node begin="17" cat="conj" end="22" id="31" rel="body">
+                    <node begin="17" cat="np" end="20" id="32" rel="cnj">
+                      <node begin="17" buiging="zonder" end="18" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="33" index="1" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                      <node aform="compar" begin="18" buiging="met-e" end="19" frame="adjective(ere)" graad="comp" his="normal" his_1="normal" id="34" index="2" infl="e" lcat="ap" lemma="jong" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,comp,met-e,stan)" pt="adj" rel="mod" root="jong" sense="jong" vform="adj" word="jongere"/>
+                      <node begin="19" end="20" frame="noun(het,count,pl)" gen="het" getal="mv" graad="dim" his="normal" his_1="normal" id="35" lcat="np" lemma="broer" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,dim)" pt="n" rel="hd" rnum="pl" root="broer_DIM" sense="broer_DIM" word="broertjes"/>
+                    </node>
+                    <node begin="20" conjtype="neven" end="21" frame="conj(of)" his="normal" his_1="normal" id="36" lcat="vg" lemma="of" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="of" sense="of" word="of"/>
+                    <node begin="17" cat="np" end="22" id="37" rel="cnj">
+                      <node begin="17" end="18" id="38" index="1" rel="det"/>
+                      <node begin="18" end="19" id="39" index="2" rel="mod"/>
+                      <node begin="21" end="22" frame="noun(het,count,pl)" gen="het" getal="mv" graad="dim" his="normal" his_1="normal" id="40" lcat="np" lemma="zus" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,dim)" pt="n" rel="hd" rnum="pl" root="zus_DIM" sense="zus_DIM" word="zusjes"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="41" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Hormonale veranderingen in een moederlichaam leiden ertoe dat eerstgeborenen meer kans hebben om allergieën te ontwikkelen dan hun jongere broertjes of zusjes .</sentence>
+  <comments>
+    <comment>Q#7|Hormonale veranderingen in een moederlichaam leiden ertoe dat eerstgeborenen meer kans hebben om allergieën te ontwikkelen dan hun jongere broertjes of zusjes .|1|1|-17.562833674539995</comment>
+  </comments>
+</alpino_ds>

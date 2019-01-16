@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="20" id="0" rel="top">
+    <node begin="14" end="15" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="16" end="17" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="0" cat="smain" end="19" id="3" rel="--">
+      <node begin="0" cat="np" end="2" id="4" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" end="2" frame="noun(both,both,both)" gen="both" getal="mv" graad="basis" his="noun" id="6" lcat="np" lemma="kinesisten" ntype="soort" num="both" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="kinesisten" sense="kinesisten" word="kinesisten"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,pl,pc_pp(tegen))" his="normal" his_1="normal" id="7" infl="pl" lcat="smain" lemma="protesteren" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="protesteer" sc="pc_pp(tegen)" sense="protesteer-tegen" stype="declarative" tense="present" word="protesteren" wvorm="pv"/>
+      <node begin="3" end="4" frame="er_adverb(met)" his="normal" his_1="normal" id="8" lcat="pp" lemma="daarmee" pos="pp" postag="BW()" pt="bw" rel="mod" root="daarmee" sense="daarmee" special="er" word="daarmee"/>
+      <node begin="4" cat="pp" end="19" id="9" rel="pc">
+        <node begin="4" end="5" frame="preposition(tegen,[aan,in,op])" his="normal" his_1="normal" id="10" lcat="pp" lemma="tegen" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tegen" sense="tegen" vztype="init" word="tegen"/>
+        <node begin="5" cat="np" end="19" id="11" rel="obj1">
+          <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="12" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="besparing" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="besparing" sense="besparing" word="besparingen"/>
+          <node begin="7" cat="rel" end="19" id="14" rel="mod">
+            <node begin="7" case="no_obl" end="8" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="15" index="1" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="pl" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+            <node begin="7" cat="ssub" end="19" id="16" rel="body">
+              <node begin="7" end="8" id="17" index="1" rel="obj1"/>
+              <node begin="8" cat="np" end="16" id="18" rel="su">
+                <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+                <node begin="9" cat="pp" end="12" id="20" rel="mod">
+                  <node begin="9" end="10" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="21" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="10" cat="mwu" end="12" his="normal" his_1="names_dictionary" id="22" mwu_root="Sociale Zaken" mwu_sense="Sociale Zaken" rel="obj1">
+                    <node begin="10" end="11" frame="proper_name(sg,'ORG')" id="23" lcat="np" lemma="Sociale" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Sociale" sense="Sociale" spectype="deeleigen" word="Sociale"/>
+                    <node begin="11" end="12" frame="proper_name(sg,'ORG')" id="24" lcat="np" lemma="Zaken" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Zaken" sense="Zaken" spectype="deeleigen" word="Zaken"/>
+                  </node>
+                </node>
+                <node begin="12" cat="mwu" end="14" his="normal" his_1="names_dictionary" id="25" mwu_root="Frank Vandenbroucke" mwu_sense="Frank Vandenbroucke" rel="app">
+                  <node begin="12" end="13" frame="proper_name(sg,'PER')" id="26" lcat="np" lemma="Frank" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Frank" sense="Frank" spectype="deeleigen" word="Frank"/>
+                  <node begin="13" end="14" frame="proper_name(sg,'PER')" id="27" lcat="np" lemma="Vandenbroucke" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Vandenbroucke" sense="Vandenbroucke" spectype="deeleigen" word="Vandenbroucke"/>
+                </node>
+                <node begin="15" end="16" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="28" lcat="np" lemma="SP.A" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="SP.A" sense="SP.A" word="SP.A"/>
+              </node>
+              <node begin="17" case="dat_acc" def="def" end="18" frame="pronoun(nwh,thi,pl,de,dat_acc,def)" gen="de" getal="mv" his="normal" his_1="normal" id="29" lcat="np" lemma="hen" naamval="obl" num="pl" pdtype="pron" per="thi" persoon="3p" pos="pron" postag="VNW(pers,pron,obl,vol,3p,mv)" pt="vnw" rel="obj2" rnum="pl" root="hen" sense="hen" status="vol" vwtype="pers" wh="nwh" word="hen"/>
+              <node begin="18" end="19" frame="verb(hebben,sg3,ninv(np_np,part_np_np(op)))" his="normal" his_1="part-V" id="30" infl="sg3" lcat="ssub" lemma="op_leggen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="leg_op" sc="part_np_np(op)" sense="leg_op" tense="present" word="oplegt" wvorm="pv"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="19" end="20" frame="punct(punt)" his="normal" his_1="normal" id="31" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">De kinesisten protesteren daarmee tegen de besparingen die minister van Sociale Zaken Frank Vandenbroucke ( SP.A ) hen oplegt .</sentence>
+  <comments>
+    <comment>Q#4|De kinesisten protesteren daarmee tegen de besparingen die minister van Sociale Zaken Frank Vandenbroucke ( SP.A ) hen oplegt .|1|1|-15.843016715000003</comment>
+  </comments>
+</alpino_ds>

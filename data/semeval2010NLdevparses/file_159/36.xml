@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="27" id="0" rel="top">
+    <node begin="19" end="20" frame="punct(ligg_streep)" his="normal" his_1="normal" id="1" lcat="punct" lemma="-" pos="punct" postag="LET()" pt="let" rel="--" root="-" sense="-" special="ligg_streep" word="-"/>
+    <node begin="21" end="22" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="26" id="3" rel="--">
+      <node begin="0" cat="smain" end="19" id="4" rel="dp">
+        <node begin="0" cat="pp" end="6" id="5" rel="mod">
+          <node begin="0" end="1" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="decap" his_1_1="normal" id="6" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="Met"/>
+          <node begin="1" cat="np" end="6" id="7" rel="obj1">
+            <node begin="1" buiging="zonder" end="2" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="8" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+            <node begin="2" end="3" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="primaat" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="primaat" sense="primaat" word="primaat"/>
+            <node begin="3" cat="pp" end="6" id="10" rel="mod">
+              <node begin="3" end="4" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="11" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="4" cat="np" end="6" id="12" rel="obj1">
+                <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="13" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="5" end="6" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="politiek" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="politiek" sense="politiek" word="politiek"/>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="6" end="7" frame="verb(hebben,sg_heeft,transitive_ndev)" his="normal" his_1="normal" id="15" infl="sg_heeft" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="heb" sc="transitive_ndev" sense="heb" stype="declarative" tense="present" word="heeft" wvorm="pv"/>
+        <node begin="7" cat="mwu" end="9" his="normal" his_1="names_dictionary" id="16" mwu_root="Guy Verhofstadt" mwu_sense="Guy Verhofstadt" rel="su">
+          <node begin="7" end="8" frame="proper_name(sg,'PER')" id="17" lcat="np" lemma="Guy" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Guy" sense="Guy" spectype="deeleigen" word="Guy"/>
+          <node begin="8" end="9" frame="proper_name(sg,'PER')" id="18" lcat="np" lemma="Verhofstadt" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Verhofstadt" sense="Verhofstadt" spectype="deeleigen" word="Verhofstadt"/>
+        </node>
+        <node begin="9" cat="np" end="19" id="19" rel="obj1">
+          <node begin="9" end="10" frame="determiner(een)" his="normal" his_1="normal" id="20" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="10" buiging="met-e" end="11" frame="adjective(ge_e)" his="normal" his_1="normal" id="21" infl="e" lcat="ppart" lemma="beperkt" pos="adj" positie="prenom" postag="WW(vd,prenom,met-e)" pt="ww" rel="mod" root="beperkt" sense="beperkt" vform="psp" word="beperkte" wvorm="vd"/>
+          <node begin="11" end="12" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="belangstelling" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="belangstelling" sense="belangstelling" word="belangstelling"/>
+          <node begin="12" cat="pp" end="19" id="23" rel="mod">
+            <node begin="12" end="13" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+            <node begin="13" cat="np" end="19" id="25" rel="obj1">
+              <node begin="13" end="14" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="26" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node begin="14" end="15" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="27" lcat="np" lemma="overleg" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="overleg" sense="overleg" word="overleg"/>
+              <node begin="15" cat="pp" end="19" id="28" rel="mod">
+                <node begin="15" end="16" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="29" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+                <node begin="16" cat="np" end="19" id="30" rel="obj1">
+                  <node begin="16" end="17" frame="determiner(de)" his="normal" his_1="normal" id="31" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node aform="base" begin="17" buiging="met-e" end="18" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="32" infl="e" lcat="ap" lemma="sociaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="sociaal" sense="sociaal" vform="adj" word="sociale"/>
+                  <node begin="18" end="19" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="partner" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="partner" sense="partner" word="partners"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="20" cat="du" end="26" id="34" rel="dp">
+        <node begin="20" end="21" frame="adverb" his="normal" his_1="normal" id="35" lcat="advp" lemma="althans" pos="adv" postag="BW()" pt="bw" rel="dp" root="althans" sense="althans" word="althans"/>
+        <node begin="22" cat="cp" end="26" id="36" rel="dp">
+          <node begin="22" conjtype="onder" end="23" frame="complementizer(zoals)" his="normal" his_1="normal" id="37" lcat="cp" lemma="zoals" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="zoals" sc="zoals" sense="zoals" word="zoals"/>
+          <node begin="23" cat="ssub" end="26" id="38" rel="body">
+            <node begin="23" end="24" frame="determiner(het,nwh,nmod,pro,nparg)" getal="ev" his="normal" his_1="normal" id="39" infl="het" lcat="np" lemma="dat" naamval="stan" pdtype="pron" persoon="3o" pos="det" postag="VNW(aanw,pron,stan,vol,3o,ev)" pt="vnw" rel="su" rnum="sg" root="dat" sense="dat" status="vol" vwtype="aanw" wh="nwh" word="dat"/>
+            <node aform="base" begin="24" buiging="zonder" end="25" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="40" infl="no_e" lcat="ap" lemma="traditioneel" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="traditioneel" sense="traditioneel" vform="adj" word="traditioneel"/>
+            <node begin="25" end="26" frame="verb(unacc,past(sg),intransitive)" his="normal" his_1="normal" id="41" infl="sg" lcat="ssub" lemma="verlopen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="verloop" sc="intransitive" sense="verloop" tense="past" word="verliep" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="26" end="27" frame="punct(punt)" his="normal" his_1="normal" id="42" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="36">Met zijn primaat van de politiek heeft Guy Verhofstadt een beperkte belangstelling voor het overleg met de sociale partners - althans , zoals dat traditioneel verliep .</sentence>
+  <comments>
+    <comment>Q#36|Met zijn primaat van de politiek heeft Guy Verhofstadt een beperkte belangstelling voor het overleg met de sociale partners - althans , zoals dat traditioneel verliep .|1|1|-4.714810191479998</comment>
+  </comments>
+</alpino_ds>

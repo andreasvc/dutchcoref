@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="0" cat="smain" end="22" id="1" rel="--">
+      <node begin="0" end="1" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="2" index="1" lcat="np" lemma="Sharon" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="su" rnum="sg" root="Sharon" sense="Sharon" word="Sharon"/>
+      <node begin="1" end="2" frame="verb(hebben,past(sg),modifier(aux(inf)))" his="normal" his_1="normal" id="3" infl="sg" lcat="smain" lemma="willen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="wil" sc="modifier(aux(inf))" sense="wil" stype="declarative" tense="past" word="wou" wvorm="pv"/>
+      <node begin="0" cat="inf" end="22" id="4" rel="vc">
+        <node begin="0" end="1" id="5" index="1" rel="su"/>
+        <node begin="2" end="3" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="6" lcat="np" lemma="Arafat" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="obj2" rnum="sg" root="Arafat" sense="Arafat" word="Arafat"/>
+        <node begin="3" cat="np" end="5" id="7" rel="obj1">
+          <node begin="3" end="4" frame="modal_adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="alleen" pos="adv" postag="BW()" pt="bw" rel="mod" root="alleen" sc="modal" sense="alleen" word="alleen"/>
+          <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="toestemming" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="toestemming" sense="toestemming" word="toestemming"/>
+        </node>
+        <node begin="5" buiging="zonder" end="6" frame="verb(hebben,inf,np_np)" his="normal" his_1="normal" id="10" infl="inf" lcat="inf" lemma="geven" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="geef" sc="np_np" sense="geef" word="geven" wvorm="inf"/>
+        <node begin="6" cat="cp" end="22" id="11" rel="mod">
+          <node begin="6" conjtype="onder" end="7" frame="complementizer(als)" his="normal" his_1="normal" id="12" lcat="cp" lemma="als" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="als" sc="als" sense="als" word="als"/>
+          <node begin="7" cat="ssub" end="22" id="13" rel="body">
+            <node begin="7" case="nom" def="def" end="8" frame="pronoun(nwh,thi,sg,de,nom,def)" gen="de" genus="masc" getal="ev" his="normal" his_1="normal" id="14" lcat="np" lemma="hij" naamval="nomin" num="sg" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,nomin,vol,3,ev,masc)" pt="vnw" rel="su" rnum="sg" root="hij" sense="hij" status="vol" vwtype="pers" wh="nwh" word="hij"/>
+            <node begin="8" cat="np" end="21" id="15" rel="obj1">
+              <node begin="8" end="9" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="9" end="10" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="dader" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="dader" sense="dader" word="daders"/>
+              <node begin="10" cat="pp" end="21" id="18" rel="mod">
+                <node begin="10" end="11" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="19" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="11" cat="np" end="21" id="20" rel="obj1">
+                  <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="moord" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="moord" sense="moord" word="moord"/>
+                  <node begin="13" cat="pp" end="21" id="23" rel="mod">
+                    <node begin="13" end="14" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="24" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+                    <node begin="14" cat="np" end="21" id="25" rel="obj1">
+                      <node begin="14" end="15" frame="determiner(de)" his="normal" his_1="normal" id="26" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                      <node aform="base" begin="15" buiging="met-e" end="16" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="27" infl="e" lcat="ap" lemma="Israëlisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Israëlisch" sense="Israëlisch" vform="adj" word="Israëlische"/>
+                      <node begin="16" end="17" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+                      <node begin="17" cat="pp" end="19" id="29" rel="mod">
+                        <node begin="17" end="18" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="30" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                        <node begin="18" end="19" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="31" lcat="np" lemma="Toerisme" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="Toerisme" sense="Toerisme" word="Toerisme"/>
+                      </node>
+                      <node begin="19" cat="mwu" end="21" his="name" his_1="not_begin" id="32" mwu_root="Revahan Zeevi" mwu_sense="Revahan Zeevi" rel="app">
+                        <node begin="19" end="20" frame="proper_name(sg,'PER')" id="33" lcat="np" lemma="Revahan" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Revahan" sense="Revahan" spectype="deeleigen" word="Revahan"/>
+                        <node begin="20" end="21" frame="proper_name(sg,'PER')" id="34" lcat="np" lemma="Zeevi" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Zeevi" sense="Zeevi" spectype="deeleigen" word="Zeevi"/>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node begin="21" end="22" frame="verb(hebben,past(sg),ninv(transitive,part_transitive(op)))" his="normal" his_1="part-V" id="35" infl="sg" lcat="ssub" lemma="op_pakken" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="pak_op" sc="part_transitive(op)" sense="pak_op" tense="past" word="oppakte" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="36" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">Sharon wou Arafat alleen toestemming geven als hij de daders van de moord op de Israëlische minister van Toerisme Revahan Zeevi oppakte .</sentence>
+  <comments>
+    <comment>Q#3|Sharon wou Arafat alleen toestemming geven als hij de daders van de moord op de Israëlische minister van Toerisme Revahan Zeevi oppakte .|1|1|-11.058413470299998</comment>
+  </comments>
+</alpino_ds>

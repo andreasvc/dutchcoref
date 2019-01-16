@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="4" end="5" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="9" end="10" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="13" end="14" frame="punct(komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="20" id="4" rel="--">
+      <node begin="0" cat="np" end="9" id="5" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="6" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="7" infl="e" lcat="ap" lemma="Colombiaans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Colombiaans" sense="Colombiaans" vform="adj" word="Colombiaanse"/>
+        <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="rebel_beweging" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rebel_beweging" sense="rebel_beweging" word="rebellenbeweging"/>
+        <node begin="3" end="4" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="9" lcat="np" lemma="FARC" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="app" rnum="sg" root="FARC" sense="FARC" word="FARC"/>
+        <node begin="5" cat="mwu" end="9" his="name" his_1="not_begin" id="10" mwu_root="Revolutionaire Strijdkrachten van Colombia" mwu_sense="Revolutionaire Strijdkrachten van Colombia" rel="mod">
+          <node begin="5" end="6" frame="proper_name(both,'ORG')" id="11" lcat="np" lemma="Revolutionaire" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Revolutionaire" sense="Revolutionaire" spectype="deeleigen" word="Revolutionaire"/>
+          <node begin="6" end="7" frame="proper_name(both,'ORG')" id="12" lcat="np" lemma="Strijdkrachten" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Strijdkrachten" sense="Strijdkrachten" spectype="deeleigen" word="Strijdkrachten"/>
+          <node begin="7" end="8" frame="proper_name(both,'ORG')" id="13" lcat="np" lemma="van" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="van" sense="van" spectype="deeleigen" word="van"/>
+          <node begin="8" end="9" frame="proper_name(both,'ORG')" id="14" lcat="np" lemma="Colombia" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Colombia" sense="Colombia" spectype="deeleigen" word="Colombia"/>
+        </node>
+      </node>
+      <node begin="10" end="11" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="15" infl="sg3" lcat="smain" lemma="ontvoeren" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="ontvoer" sc="transitive" sense="ontvoer" stype="declarative" tense="present" word="ontvoert" wvorm="pv"/>
+      <node begin="11" cat="np" end="20" id="16" rel="obj1">
+        <node begin="11" cat="mwu" end="13" his="normal" his_1="names_dictionary" id="17" mwu_root="Ingrid Betancourt" mwu_sense="Ingrid Betancourt" rel="hd">
+          <node begin="11" end="12" frame="proper_name(sg,'PER')" id="18" lcat="np" lemma="Ingrid" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Ingrid" sense="Ingrid" spectype="deeleigen" word="Ingrid"/>
+          <node begin="12" end="13" frame="proper_name(sg,'PER')" id="19" lcat="np" lemma="Betancourt" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Betancourt" sense="Betancourt" spectype="deeleigen" word="Betancourt"/>
+        </node>
+        <node begin="14" cat="np" end="20" id="20" rel="app">
+          <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="21" lcat="np" lemma="kandidate" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="kandidate" sense="kandidate" word="kandidate"/>
+          <node begin="15" cat="pp" end="18" id="22" rel="mod">
+            <node begin="15" end="16" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="23" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+            <node begin="16" cat="np" end="18" id="24" rel="obj1">
+              <node begin="16" end="17" frame="determiner(de)" his="normal" his_1="normal" id="25" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="17" end="18" frame="tmp_noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="president_verkiezing" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="president_verkiezing" sense="president_verkiezing" special="tmp" word="presidentsverkiezingen"/>
+            </node>
+          </node>
+          <node begin="18" cat="np" end="20" id="27" rel="mod">
+            <node begin="18" end="19" frame="tmp_noun(het,count,sg,measure)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="eind" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="eind" sc="measure" sense="eind" special="tmp" word="eind"/>
+            <node begin="19" end="20" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="mei" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="mei" sense="mei" special="tmp" word="mei"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="30" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">De Colombiaanse rebellenbeweging FARC ( Revolutionaire Strijdkrachten van Colombia ) ontvoert Ingrid Betancourt , kandidate bij de presidentsverkiezingen eind mei .</sentence>
+  <comments>
+    <comment>Q#2|De Colombiaanse rebellenbeweging FARC ( Revolutionaire Strijdkrachten van Colombia ) ontvoert Ingrid Betancourt , kandidate bij de presidentsverkiezingen eind mei .|1|1|-2.7395207367599994</comment>
+  </comments>
+</alpino_ds>

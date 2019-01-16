@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="3" id="0" rel="top">
+    <node begin="0" cat="np" end="3" id="1" rel="--">
+      <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(ge_both(adv))" his="normal" his_1="decap" his_1_1="normal" id="2" infl="both" lcat="ppart" lemma="gesloten" pos="adj" positie="prenom" postag="WW(vd,prenom,zonder)" pt="ww" rel="mod" root="gesloten" sense="gesloten" vform="psp" word="Gesloten" wvorm="vd"/>
+      <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="3" lcat="np" lemma="centrum" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="centrum" sense="centrum" word="centrum"/>
+      <node begin="2" end="3" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="4" lcat="np" lemma="Everberg" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="app" rnum="sg" root="Everberg" sense="Everberg" word="Everberg"/>
+    </node>
+  </node>
+  <sentence sentid="1">Gesloten centrum Everberg</sentence>
+  <comments>
+    <comment>Q#1|Gesloten centrum Everberg|1|1|-1.3518928850400005</comment>
+  </comments>
+</alpino_ds>

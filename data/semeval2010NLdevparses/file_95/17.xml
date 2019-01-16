@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="8" end="9" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="15" end="16" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="20" id="3" rel="--">
+      <node begin="0" cat="np" end="2" id="4" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" end="2" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="stad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="stad" sense="stad" word="stad"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="7" infl="sg" lcat="smain" lemma="importeren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="importeer" sc="transitive" sense="importeer" stype="declarative" tense="past" word="importeerde" wvorm="pv"/>
+      <node aform="base" begin="3" buiging="zonder" end="4" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="8" infl="no_e" lcat="ap" lemma="aanvankelijk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="aanvankelijk" sense="aanvankelijk" vform="adj" word="aanvankelijk"/>
+      <node begin="4" cat="conj" end="20" id="9" rel="obj1">
+        <node begin="4" cat="np" end="8" id="10" rel="cnj">
+          <node begin="4" end="5" frame="modal_adverb" his="normal" his_1="normal" id="11" index="1" lcat="advp" lemma="vooral" pos="adv" postag="BW()" pt="bw" rel="mod" root="vooral" sc="modal" sense="vooral" word="vooral"/>
+          <node begin="5" end="6" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="wol" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="wol" sense="wol" word="wol"/>
+          <node begin="6" cat="pp" end="8" id="13" rel="mod">
+            <node begin="6" end="7" frame="preposition(uit,[vandaan])" his="normal" his_1="normal" id="14" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="uit"/>
+            <node begin="7" end="8" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="15" lcat="np" lemma="Engeland" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Engeland" sense="Engeland" word="Engeland"/>
+          </node>
+        </node>
+        <node begin="4" cat="np" end="15" id="16" rel="cnj">
+          <node begin="4" end="5" id="17" index="1" rel="mod"/>
+          <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="18" lcat="np" lemma="basis_grondstof" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="basis_grondstof" sense="basis_grondstof" word="basisgrondstof"/>
+          <node begin="10" cat="pp" end="15" id="19" rel="mod">
+            <node begin="10" end="11" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="20" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+            <node begin="11" cat="np" end="15" id="21" rel="obj1">
+              <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="22" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="23" infl="e" lcat="ap" lemma="gerenommeerd" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="gerenommeerd" sense="gerenommeerd" vform="adj" word="gerenommeerde"/>
+              <node aform="base" begin="13" buiging="met-e" end="14" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="24" infl="e" lcat="ap" lemma="Vlaams" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Vlaams" sense="Vlaams" vform="adj" word="Vlaamse"/>
+              <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="25" lcat="np" lemma="laken_industrie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="laken_industrie" sense="laken_industrie" word="lakenindustrie"/>
+            </node>
+          </node>
+        </node>
+        <node begin="16" conjtype="neven" end="17" frame="conj(en)" his="normal" his_1="normal" id="26" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="4" cat="np" end="20" id="27" rel="cnj">
+          <node begin="4" end="5" id="28" index="1" rel="mod"/>
+          <node begin="17" end="18" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="wijn" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="wijn" sense="wijn" word="wijnen"/>
+          <node begin="18" cat="pp" end="20" id="30" rel="mod">
+            <node begin="18" end="19" frame="preposition(uit,[vandaan])" his="normal" his_1="normal" id="31" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="uit"/>
+            <node begin="19" end="20" frame="proper_name(both,'LOC')" genus="onz" getal="ev" graad="basis" his="name" his_1="not_begin" id="32" lcat="np" lemma="Gascogne" naamval="stan" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Gascogne" sense="Gascogne" word="Gascogne"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="33" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="17">De stad importeerde aanvankelijk vooral wol uit Engeland , basisgrondstof voor de gerenommeerde Vlaamse lakenindustrie , en wijnen uit Gascogne .</sentence>
+  <comments>
+    <comment>Q#17|De stad importeerde aanvankelijk vooral wol uit Engeland , basisgrondstof voor de gerenommeerde Vlaamse lakenindustrie , en wijnen uit Gascogne .|1|1|0.7326910804800056</comment>
+  </comments>
+</alpino_ds>

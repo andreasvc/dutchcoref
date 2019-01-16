@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="9" end="10" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="15" id="2" rel="--">
+      <node begin="0" cat="smain" end="9" id="3" rel="dp">
+        <node begin="0" cat="np" end="4" id="4" index="1" rel="su">
+          <node begin="0" end="1" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="Het"/>
+          <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="verval" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="verval" sense="verval" word="verval"/>
+          <node begin="2" cat="pp" end="4" id="7" rel="mod">
+            <node begin="2" end="3" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="8" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="3" end="4" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="9" lcat="np" lemma="Brugge" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Brugge" sense="Brugge" word="Brugge"/>
+          </node>
+        </node>
+        <node begin="4" end="5" frame="verb(hebben,past(sg),norm_passive)" his="normal" his_1="normal" id="10" infl="sg" lcat="smain" lemma="staan" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="sta" sc="norm_passive" sense="sta" stype="declarative" tense="past" word="stond" wvorm="pv"/>
+        <node begin="0" cat="ppart" end="9" id="11" rel="vc">
+          <node begin="0" end="4" id="12" index="1" rel="obj1"/>
+          <node begin="5" cat="pp" end="8" id="13" rel="mod">
+            <node begin="5" end="6" frame="preposition(in,[])" his="normal" his_1="normal" id="14" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="6" cat="np" end="8" id="15" rel="obj1">
+              <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="7" end="8" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="ster" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="ster" sense="ster" word="sterren"/>
+            </node>
+          </node>
+          <node begin="8" buiging="zonder" end="9" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="18" infl="psp" lcat="ppart" lemma="schrijven" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="schrijf" sc="transitive" sense="schrijf" word="geschreven" wvorm="vd"/>
+        </node>
+      </node>
+      <node begin="10" cat="du" end="15" id="19" rel="dp">
+        <node begin="10" cat="np" end="14" id="20" rel="dp">
+          <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="11" end="12" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="glorie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="glorie" sense="glorie" word="glorie"/>
+          <node begin="12" cat="pp" end="14" id="23" rel="mod">
+            <node begin="12" end="13" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="13" end="14" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="25" lcat="np" lemma="Antwerpen" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Antwerpen" sense="Antwerpen" word="Antwerpen"/>
+          </node>
+        </node>
+        <node begin="14" end="15" frame="adverb" his="normal" his_1="normal" id="26" lcat="advp" lemma="eveneens" pos="adv" postag="BW()" pt="bw" rel="dp" root="eveneens" sense="eveneens" word="eveneens"/>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="27" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="136">Het verval van Brugge stond in de sterren geschreven , de glorie van Antwerpen eveneens .</sentence>
+  <comments>
+    <comment>Q#136|Het verval van Brugge stond in de sterren geschreven , de glorie van Antwerpen eveneens .|1|1|-0.6041607378599996</comment>
+  </comments>
+</alpino_ds>

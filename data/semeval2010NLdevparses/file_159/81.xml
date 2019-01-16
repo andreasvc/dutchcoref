@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="smain" end="11" id="1" rel="--">
+      <node begin="0" cat="np" end="8" id="2" rel="obj1">
+        <node aform="compar" begin="0" buiging="zonder" end="1" frame="adjective(meer)" graad="comp" his="normal" his_1="decap" his_1_1="normal" id="3" infl="meer" lcat="np" lemma="meer" naamval="stan" pdtype="grad" pos="adj" positie="vrij" postag="VNW(onbep,grad,stan,vrij,zonder,comp)" pt="vnw" rel="hd" rnum="sg" root="meer" sense="meer" vform="adj" vwtype="onbep" word="Meer"/>
+        <node begin="1" cat="cp" end="8" id="4" rel="obcomp">
+          <node begin="1" conjtype="onder" end="2" frame="comparative(dan)" his="normal" his_1="normal" id="5" lcat="comparative" lemma="dan" pos="comparative" postag="VG(onder)" pt="vg" rel="cmp" root="dan" sense="dan" word="dan"/>
+          <node begin="2" cat="np" end="8" id="6" rel="body">
+            <node begin="2" end="3" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="3" end="4" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="afschaffing" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="afschaffing" sense="afschaffing" word="afschaffing"/>
+            <node begin="4" cat="pp" end="8" id="9" rel="mod">
+              <node begin="4" end="5" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="10" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="5" cat="np" end="8" id="11" rel="obj1">
+                <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="12" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="6" end="7" frame="number(rang)" his="normal" his_1="normal" id="13" lcat="ap" lemma="eerste" naamval="stan" numtype="rang" pos="num" positie="prenom" postag="TW(rang,prenom,stan)" pt="tw" rel="mod" root="eerste" sense="eerste" special="rang" word="eerste"/>
+                <node begin="7" end="8" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="14" lcat="np" lemma="carenzdag" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="carenzdag" sense="carenzdag" word="carenzdag"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="verb(hebben,sg,transitive)" his="normal" his_1="normal" id="15" infl="sg" lcat="smain" lemma="bevatten" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="bevat" sc="transitive" sense="bevat" stype="declarative" tense="present" word="bevat" wvorm="pv"/>
+      <node begin="9" end="10" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" genus="onz" getal="ev" his="normal" his_1="normal" id="16" infl="het" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="det" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="su" rnum="sg" root="het" sense="het" status="red" vwtype="pers" wh="nwh" word="het"/>
+      <node begin="10" end="11" frame="adverb" his="normal" his_1="normal" id="17" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="18" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="81">Meer dan de afschaffing van de eerste carenzdag bevat het niet .</sentence>
+  <comments>
+    <comment>Q#81|Meer dan de afschaffing van de eerste carenzdag bevat het niet .|1|1|-1.3336850856200027</comment>
+  </comments>
+</alpino_ds>

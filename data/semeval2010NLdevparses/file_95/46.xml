@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="34" id="0" rel="top">
+    <node begin="3" end="4" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="7" end="8" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="33" id="3" rel="--">
+      <node begin="0" cat="np" end="7" id="4" rel="su">
+        <node begin="0" cat="mwu" end="3" his="name" his_1="begin" id="5" mwu_root="Margaretha van Constantinopel" mwu_sense="Margaretha van Constantinopel" rel="hd">
+          <node begin="0" end="1" frame="proper_name(sg,'PER')" id="6" lcat="np" lemma="Margaretha" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Margaretha" sense="Margaretha" spectype="deeleigen" word="Margaretha"/>
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="van" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="van" sense="van" spectype="deeleigen" word="van"/>
+          <node begin="2" end="3" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Constantinopel" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Constantinopel" sense="Constantinopel" spectype="deeleigen" word="Constantinopel"/>
+        </node>
+        <node begin="4" cat="np" end="7" id="9" rel="app">
+          <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="gravin" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="gravin" sense="gravin" word="gravin"/>
+          <node begin="5" cat="pp" end="7" id="11" rel="mod">
+            <node begin="5" end="6" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="12" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="6" end="7" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="13" lcat="np" lemma="Vlaanderen" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Vlaanderen" sense="Vlaanderen" word="Vlaanderen"/>
+          </node>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="verb(hebben,past(sg),np_sbar)" his="normal" his_1="normal" id="14" infl="sg" lcat="smain" lemma="verzekeren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="verzeker" sc="np_sbar" sense="verzeker" stype="declarative" tense="past" word="verzekerde" wvorm="pv"/>
+      <node begin="9" cat="np" end="11" id="15" rel="obj2">
+        <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="10" end="11" frame="proper_name(both,'LOC')" genus="onz" getal="ev" graad="basis" his="name" his_1="not_begin" id="17" lcat="np" lemma="Hanzeaten" naamval="stan" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="Hanzeaten" sense="Hanzeaten" word="Hanzeaten"/>
+      </node>
+      <node begin="11" cat="pp" end="13" id="18" rel="mod">
+        <node begin="11" end="12" frame="preposition(in,[])" his="normal" his_1="normal" id="19" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="12" end="13" frame="np(year)" his="normal" his_1="normal" id="20" lcat="np" lemma="1252" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="obj1" rnum="sg" root="1252" sense="1252" word="1252"/>
+      </node>
+      <node begin="13" cat="cp" end="33" id="21" rel="vc">
+        <node begin="13" conjtype="onder" end="14" frame="complementizer(dat)" his="normal" his_1="normal" id="22" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="14" cat="ssub" end="33" id="23" rel="body">
+          <node begin="14" case="both" def="def" end="15" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="24" index="1" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+          <node begin="18" end="19" frame="verb(hebben,past(pl),modifier(aux(inf)))" his="normal" his_1="normal" id="25" infl="pl" lcat="ssub" lemma="mogen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="mag" sc="modifier(aux(inf))" sense="mag" tense="past" word="mochten" wvorm="pv"/>
+          <node begin="14" cat="inf" end="33" id="26" rel="vc">
+            <node begin="14" end="15" id="27" index="1" rel="su"/>
+            <node begin="19" buiging="zonder" end="20" frame="verb(hebben,inf,aci_no_obj)" his="normal" his_1="normal" id="28" infl="inf" lcat="inf" lemma="laten" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="laat" sc="aci_no_obj" sense="laat" word="laten" wvorm="inf"/>
+            <node begin="15" cat="inf" end="24" id="29" rel="vc">
+              <node begin="15" case="dat_acc" def="def" end="16" frame="pronoun(nwh,thi,both,de,dat_acc,def,wkpro)" gen="de" getal="getal" his="normal" his_1="normal" id="30" lcat="np" lemma="zich" naamval="obl" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(refl,pron,obl,red,3,getal)" pt="vnw" rel="obj1" rnum="sg" root="zich" sense="zich" special="wkpro" status="red" vwtype="refl" wh="nwh" word="zich"/>
+              <node begin="16" cat="pp" end="18" id="31" rel="mod">
+                <node begin="16" end="17" frame="preposition(in,[])" his="normal" his_1="normal" id="32" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="17" end="18" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="recht_zaak" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="recht_zaak" sense="recht_zaak" word="rechtszaken"/>
+              </node>
+              <node begin="20" buiging="zonder" end="21" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="34" infl="inf" lcat="inf" lemma="vertegenwoordigen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="vertegenwoordig" sc="transitive" sense="vertegenwoordig" word="vertegenwoordigen" wvorm="inf"/>
+              <node begin="21" cat="pp" end="24" id="35" rel="mod">
+                <node begin="21" end="22" frame="preposition(door,[heen])" his="normal" his_1="normal" id="36" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+                <node begin="22" cat="np" end="24" id="37" rel="obj1">
+                  <node begin="22" end="23" frame="determiner(een)" his="normal" his_1="normal" id="38" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                  <node begin="23" end="24" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="39" lcat="np" lemma="handel_partner" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="handel_partner" sense="handel_partner" word="handelspartner"/>
+                </node>
+              </node>
+            </node>
+            <node begin="24" cat="cp" end="33" id="40" rel="mod">
+              <node begin="24" conjtype="onder" end="25" frame="complementizer" his="normal" his_1="normal" id="41" lcat="cp" lemma="wanneer" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="wanneer" sense="wanneer" word="wanneer"/>
+              <node begin="25" cat="conj" end="33" id="42" rel="body">
+                <node begin="25" cat="ssub" end="29" id="43" rel="cnj">
+                  <node begin="25" cat="np" end="27" id="44" index="2" rel="su">
+                    <node begin="25" end="26" frame="determiner(de)" his="normal" his_1="normal" id="45" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node begin="26" end="27" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="46" lcat="np" lemma="procedure" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="procedure" sense="procedure" word="procedure"/>
+                  </node>
+                  <node aform="base" begin="27" buiging="zonder" end="28" frame="adjective(no_e(tmpadv))" graad="basis" his="normal" his_1="normal" id="47" infl="no_e" lcat="ap" lemma="lang" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="lang" sense="lang" vform="adj" word="lang"/>
+                  <node begin="28" end="29" frame="verb(hebben,past(sg),ninv(intransitive,part_intransitive(aan)))" his="normal" his_1="part-V" id="48" infl="sg" lcat="ssub" lemma="aan_slepen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="sleep_aan" sc="part_intransitive(aan)" sense="sleep_aan" tense="past" word="aansleepte" wvorm="pv"/>
+                </node>
+                <node begin="29" conjtype="neven" end="30" frame="conj(en)" his="normal" his_1="normal" id="49" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+                <node begin="25" cat="ssub" end="33" id="50" rel="cnj">
+                  <node begin="25" end="27" id="51" index="2" rel="su"/>
+                  <node begin="30" cat="np" end="32" id="52" rel="obj1">
+                    <node begin="30" buiging="zonder" end="31" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="53" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                    <node begin="31" end="32" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="54" lcat="np" lemma="activiteit" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="activiteit" sense="activiteit" word="activiteiten"/>
+                  </node>
+                  <node begin="32" end="33" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="55" infl="sg" lcat="ssub" lemma="belemmeren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="belemmer" sc="transitive" sense="belemmer" tense="past" word="belemmerde" wvorm="pv"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="33" end="34" frame="punct(punt)" his="normal" his_1="normal" id="56" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="46">Margaretha van Constantinopel , gravin van Vlaanderen , verzekerde de Hanzeaten in 1252 dat ze zich in rechtszaken mochten laten vertegenwoordigen door een handelspartner wanneer de procedure lang aansleepte en hun activiteiten belemmerde .</sentence>
+  <comments>
+    <comment>Q#46|Margaretha van Constantinopel , gravin van Vlaanderen , verzekerde de Hanzeaten in 1252 dat ze zich in rechtszaken mochten laten vertegenwoordigen door een handelspartner wanneer de procedure lang aansleepte en hun activiteiten belemmerde .|1|1|-5.884559146480009</comment>
+  </comments>
+</alpino_ds>

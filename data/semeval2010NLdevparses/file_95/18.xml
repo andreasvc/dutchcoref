@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="conj" end="14" id="1" rel="--">
+      <node begin="0" cat="smain" end="8" id="2" rel="cnj">
+        <node aform="compar" begin="0" buiging="zonder" end="1" frame="adjective(er(tmpadv))" graad="comp" his="normal" his_1="decap" his_1_1="normal" id="3" index="1" infl="no_e" lcat="ap" lemma="laat" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="mod" root="laat" sense="laat" vform="adj" word="Later"/>
+        <node begin="1" end="2" frame="verb(unacc,past(sg),intransitive)" his="normal" his_1="normal" id="4" infl="sg" lcat="smain" lemma="verruimen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="verruim" sc="intransitive" sense="verruim" tense="past" word="verruimde" wvorm="pv"/>
+        <node begin="2" cat="np" end="7" id="5" rel="su">
+          <node begin="2" end="3" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="6" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+          <node begin="3" end="4" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="7" lcat="np" lemma="goed_aanbod" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="goed_aanbod" sense="goed_aanbod" word="goederenaanbod"/>
+          <node begin="4" cat="pp" end="7" id="8" rel="mod">
+            <node begin="4" end="5" frame="preposition(in,[])" his="normal" his_1="normal" id="9" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="5" cat="np" end="7" id="10" rel="obj1">
+              <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="6" end="7" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="stad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="stad" sense="stad" word="stad"/>
+            </node>
+          </node>
+        </node>
+        <node aform="base" begin="7" buiging="zonder" end="8" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="13" infl="no_e" lcat="ap" lemma="aanzienlijk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="aanzienlijk" sense="aanzienlijk" vform="adj" word="aanzienlijk"/>
+      </node>
+      <node begin="8" conjtype="neven" end="9" frame="conj(en)" his="normal" his_1="normal" id="14" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="0" cat="smain" end="14" id="15" rel="cnj">
+        <node begin="9" end="10" frame="verb(unacc,past(sg),passive)" his="normal" his_1="normal" id="16" infl="sg" lcat="smain" lemma="worden" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="word" sc="passive" sense="word" tense="past" word="werd" wvorm="pv"/>
+        <node begin="11" cat="np" end="13" id="17" index="2" rel="su">
+          <node begin="11" end="12" frame="determiner(een)" his="normal" his_1="normal" id="18" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="jaar_markt" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="jaar_markt" sense="jaar_markt" word="jaarmarkt"/>
+        </node>
+        <node begin="0" cat="ppart" end="14" id="20" rel="vc">
+          <node begin="0" end="1" id="21" index="1" rel="mod"/>
+          <node begin="10" end="11" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="22" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+          <node begin="11" end="13" id="23" index="2" rel="obj1"/>
+          <node begin="13" buiging="zonder" end="14" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="24" infl="psp" lcat="ppart" lemma="houden" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="houd" sc="transitive" sense="houd" word="gehouden" wvorm="vd"/>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="25" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="18">Later verruimde het goederenaanbod in de stad aanzienlijk en werd er een jaarmarkt gehouden .</sentence>
+  <comments>
+    <comment>Q#18|Later verruimde het goederenaanbod in de stad aanzienlijk en werd er een jaarmarkt gehouden .|1|1|-2.983709471600001</comment>
+  </comments>
+</alpino_ds>

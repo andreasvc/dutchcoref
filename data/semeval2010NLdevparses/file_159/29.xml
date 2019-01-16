@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="9" id="0" rel="top">
+    <node begin="0" cat="smain" end="8" id="1" rel="--">
+      <node begin="0" case="both" def="def" end="1" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="decap" his_1_1="normal" id="2" index="1" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="Ze"/>
+      <node begin="1" end="2" frame="verb(unacc,pl,te_passive)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="vallen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="val" sc="te_passive" sense="val" stype="declarative" tense="present" word="vallen" wvorm="pv"/>
+      <node begin="0" cat="ti" end="8" id="4" rel="vc">
+        <node begin="6" end="7" frame="complementizer(te)" his="normal" his_1="normal" id="5" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+        <node begin="0" cat="inf" end="8" id="6" rel="body">
+          <node begin="0" end="1" id="7" index="1" rel="obj1"/>
+          <node begin="2" end="3" frame="adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+          <node begin="3" cat="pp" end="5" id="9" rel="mod">
+            <node begin="3" end="4" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="10" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+            <node begin="4" end="5" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="11" lcat="np" lemma="leadership" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="leadership" sense="leadership" word="leadership"/>
+          </node>
+          <node begin="5" end="6" frame="particle(op)" his="normal" his_1="normal" id="12" lcat="part" lemma="op" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="op" sense="op" vztype="fin" word="op"/>
+          <node begin="7" buiging="zonder" end="8" frame="verb(hebben,inf,part_transitive(op))" his="normal" his_1="normal" id="13" infl="inf" lcat="inf" lemma="op_lossen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="los_op" sc="part_transitive(op)" sense="los_op" word="lossen" wvorm="inf"/>
+        </node>
+      </node>
+    </node>
+    <node begin="8" end="9" frame="punct(punt)" his="normal" his_1="normal" id="14" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="29">Ze vallen niet met leadership op te lossen .</sentence>
+  <comments>
+    <comment>Q#29|Ze vallen niet met leadership op te lossen .|1|1|-2.2340563461000005</comment>
+  </comments>
+</alpino_ds>

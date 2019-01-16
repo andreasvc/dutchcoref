@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="28" id="0" rel="top">
+    <node begin="14" end="15" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="20" end="21" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="0" cat="smain" end="27" id="3" rel="--">
+      <node begin="0" cat="np" end="6" id="4" rel="su">
+        <node begin="0" cat="mwu" end="2" his="name" his_1="begin" id="5" mwu_root="Jo Riskin" mwu_sense="Jo Riskin" rel="hd">
+          <node begin="0" end="1" frame="proper_name(sg,'PER')" id="6" lcat="np" lemma="Jo" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Jo" sense="Jo" spectype="deeleigen" word="Jo"/>
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="Riskin" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Riskin" sense="Riskin" spectype="deeleigen" word="Riskin"/>
+        </node>
+        <node begin="2" cat="pp" end="6" id="8" rel="mod">
+          <node begin="2" end="3" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="9" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="3" cat="np" end="6" id="10" rel="obj1">
+            <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="name_adj" his_1="not_begin" id="12" infl="e" lcat="ap" lemma="Tongerse" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Tongerse" sense="Tongerse" vform="adj" word="Tongerse"/>
+            <node begin="5" end="6" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="milieu_dienst" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="milieu_dienst" sense="milieu_dienst" word="milieudienst"/>
+          </node>
+        </node>
+      </node>
+      <node begin="6" end="7" frame="verb(hebben,past(sg),sbar)" his="normal" his_1="normal" id="14" infl="sg" lcat="smain" lemma="melden" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="meld" sc="sbar" sense="meld" stype="declarative" tense="past" word="meldde" wvorm="pv"/>
+      <node begin="7" cat="pp" end="20" id="15" rel="mod">
+        <node begin="7" end="8" frame="preposition(in,[])" his="normal" his_1="normal" id="16" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="8" cat="np" end="20" id="17" rel="obj1">
+          <node begin="8" end="9" frame="determiner(de)" his="normal" his_1="normal" id="18" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="decap" his_1="not_begin" id="19" lcat="np" lemma="nieuwsbrief" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="nieuwsbrief" sense="nieuwsbrief" word="Nieuwsbrief"/>
+          <node begin="10" cat="pp" end="20" id="20" rel="mod">
+            <node begin="10" end="11" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="21" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="11" cat="np" end="20" id="22" rel="obj1">
+              <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="23" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="12" cat="mwu" end="14" his="name" his_1="not_begin" id="24" mwu_root="Afdeling Natuur" mwu_sense="Afdeling Natuur" rel="hd">
+                <node begin="12" end="13" frame="proper_name(both)" id="25" lcat="np" lemma="Afdeling" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Afdeling" sense="Afdeling" spectype="deeleigen" word="Afdeling"/>
+                <node begin="13" end="14" frame="proper_name(both)" id="26" lcat="np" lemma="Natuur" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Natuur" sense="Natuur" spectype="deeleigen" word="Natuur"/>
+              </node>
+              <node begin="15" cat="np" end="20" id="27" rel="mod">
+                <node begin="15" end="16" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="ministerie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="ministerie" sense="ministerie" word="ministerie"/>
+                <node begin="16" cat="pp" end="20" id="29" rel="mod">
+                  <node begin="16" end="17" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="30" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="17" cat="np" end="20" id="31" rel="obj1">
+                    <node begin="17" end="18" frame="determiner(de)" his="normal" his_1="normal" id="32" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node begin="18" cat="mwu" end="20" his="normal" his_1="names_dictionary" id="33" mwu_root="Vlaamse Gemeenschap" mwu_sense="Vlaamse Gemeenschap" rel="hd">
+                      <node begin="18" end="19" frame="proper_name(sg,'ORG')" id="34" lcat="np" lemma="Vlaamse" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Vlaamse" sense="Vlaamse" spectype="deeleigen" word="Vlaamse"/>
+                      <node begin="19" end="20" frame="proper_name(sg,'ORG')" id="35" lcat="np" lemma="Gemeenschap" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Gemeenschap" sense="Gemeenschap" spectype="deeleigen" word="Gemeenschap"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="21" cat="cp" end="27" id="36" rel="vc">
+        <node begin="21" conjtype="onder" end="22" frame="complementizer(dat)" his="normal" his_1="normal" id="37" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="22" cat="ssub" end="27" id="38" rel="body">
+          <node begin="22" cat="np" end="24" id="39" index="1" rel="su">
+            <node begin="22" end="23" frame="determiner(de)" his="normal" his_1="normal" id="40" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="23" end="24" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="41" lcat="np" lemma="burcht" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="burcht" sense="burcht" word="burchten"/>
+          </node>
+          <node begin="22" cat="ppart" end="26" id="42" rel="vc">
+            <node begin="22" end="24" id="43" index="1" rel="obj1"/>
+            <node aform="compar" begin="24" buiging="zonder" end="25" frame="adjective(er(adv))" graad="comp" his="normal" his_1="normal" id="44" infl="no_e" lcat="ap" lemma="goed" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="mod" root="goed" sense="goed" vform="adj" word="beter"/>
+            <node begin="25" buiging="zonder" end="26" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="45" infl="psp" lcat="ppart" lemma="beschermen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="bescherm" sc="transitive" sense="bescherm" word="beschermd" wvorm="vd"/>
+          </node>
+          <node begin="26" end="27" frame="verb(unacc,past(pl),passive)" his="normal" his_1="normal" id="46" infl="pl" lcat="ssub" lemma="worden" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="word" sc="passive" sense="word" tense="past" word="werden" wvorm="pv"/>
+        </node>
+      </node>
+    </node>
+    <node begin="27" end="28" frame="punct(punt)" his="normal" his_1="normal" id="47" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="9">Jo Riskin van de Tongerse milieudienst meldde in de Nieuwsbrief van de Afdeling Natuur ( ministerie van de Vlaamse Gemeenschap ) dat de burchten beter beschermd werden .</sentence>
+  <comments>
+    <comment>Q#9|Jo Riskin van de Tongerse milieudienst meldde in de Nieuwsbrief van de Afdeling Natuur ( ministerie van de Vlaamse Gemeenschap ) dat de burchten beter beschermd werden .|1|1|-3.635828789259999</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="32" id="0" rel="top">
+    <node begin="26" end="27" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="conj" end="31" id="2" rel="--">
+      <node begin="0" cat="smain" end="9" id="3" rel="cnj">
+        <node begin="0" cat="np" end="3" id="4" index="1" rel="su">
+          <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="president" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="president" sense="president" word="President"/>
+          <node begin="1" cat="mwu" end="3" his="normal" his_1="names_dictionary" id="6" mwu_root="Andres Pastrana" mwu_sense="Andres Pastrana" rel="app">
+            <node begin="1" end="2" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="Andres" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Andres" sense="Andres" spectype="deeleigen" word="Andres"/>
+            <node begin="2" end="3" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Pastrana" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Pastrana" sense="Pastrana" spectype="deeleigen" word="Pastrana"/>
+          </node>
+        </node>
+        <node begin="3" end="4" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="9" infl="sg" lcat="smain" lemma="verbreken" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="verbreek" sc="transitive" sense="verbreek" tense="past" word="verbrak" wvorm="pv"/>
+        <node begin="4" cat="np" end="9" id="10" rel="obj1">
+          <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="onderhandeling" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="onderhandeling" sense="onderhandeling" word="onderhandelingen"/>
+          <node begin="6" cat="pp" end="9" id="13" rel="mod">
+            <node begin="6" end="7" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="14" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+            <node begin="7" cat="np" end="9" id="15" rel="obj1">
+              <node begin="7" end="8" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="rebel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="rebel" sense="rebel" word="rebellen"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="9" conjtype="neven" end="10" frame="conj(en)" his="normal" his_1="normal" id="18" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="0" cat="smain" end="31" id="19" rel="cnj">
+        <node begin="0" end="3" id="20" index="1" rel="su"/>
+        <node begin="10" end="11" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="21" infl="sg" lcat="smain" lemma="geven" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="geef" sc="transitive" sense="geef" tense="past" word="gaf" wvorm="pv"/>
+        <node begin="11" cat="np" end="23" id="22" rel="obj1">
+          <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="23" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="opdracht" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="opdracht" sense="opdracht" word="opdracht"/>
+          <node begin="13" cat="pp" end="23" id="25" rel="mod">
+            <node begin="13" end="14" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="26" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+            <node begin="14" cat="np" end="23" id="27" rel="obj1">
+              <node begin="14" end="15" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="28" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node begin="15" end="16" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="offensief" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="offensief" sense="offensief" word="offensief"/>
+              <node begin="16" cat="pp" end="23" id="30" rel="mod">
+                <node begin="16" end="17" frame="preposition(na,[])" his="normal" his_1="normal" id="31" lcat="pp" lemma="na" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="na" sense="na" vztype="init" word="na"/>
+                <node begin="17" cat="np" end="23" id="32" rel="obj1">
+                  <node begin="17" end="18" frame="determiner(de)" his="normal" his_1="normal" id="33" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="18" end="19" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="34" lcat="np" lemma="ontvoering" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="ontvoering" sense="ontvoering" word="ontvoering"/>
+                  <node begin="19" cat="pp" end="23" id="35" rel="mod">
+                    <node begin="19" end="20" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="36" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                    <node begin="20" cat="np" end="23" id="37" rel="obj1">
+                      <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="38" lcat="np" lemma="senator" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="senator" sense="senator" word="senator"/>
+                      <node begin="21" cat="mwu" end="23" his="name" his_1="not_begin" id="39" mwu_root="Jorge Gechem" mwu_sense="Jorge Gechem" rel="app">
+                        <node begin="21" end="22" frame="proper_name(sg,'PER')" id="40" lcat="np" lemma="Jorge" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Jorge" sense="Jorge" spectype="deeleigen" word="Jorge"/>
+                        <node begin="22" end="23" frame="proper_name(sg,'PER')" id="41" lcat="np" lemma="Gechem" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Gechem" sense="Gechem" spectype="deeleigen" word="Gechem"/>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="23" cat="pp" end="28" id="42" rel="mod">
+          <node begin="23" end="24" frame="preposition(door,[heen])" his="normal" his_1="normal" id="43" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+          <node begin="24" cat="np" end="28" id="44" rel="obj1">
+            <node begin="24" end="25" frame="determiner(de)" his="normal" his_1="normal" id="45" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="25" end="26" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="46" lcat="np" lemma="FARC" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="FARC" sense="FARC" word="FARC"/>
+            <node aform="compar" begin="27" buiging="zonder" end="28" frame="adjective(er(adv))" graad="basis" his="normal" his_1="normal" id="47" infl="no_e" lcat="ap" lemma="eerder" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="eerder" sense="eerder" vform="adj" word="eerder"/>
+          </node>
+        </node>
+        <node begin="28" cat="pp" end="31" id="48" rel="mod">
+          <node begin="28" end="29" frame="preposition(in,[])" his="normal" his_1="normal" id="49" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="29" cat="np" end="31" id="50" rel="obj1">
+            <node begin="29" end="30" frame="determiner(de)" his="normal" his_1="normal" id="51" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="30" end="31" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="52" lcat="np" lemma="week" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="week" sense="week" special="tmp" word="week"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="31" end="32" frame="punct(punt)" his="normal" his_1="normal" id="53" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="5">President Andres Pastrana verbrak de onderhandelingen met de rebellen en gaf de opdracht tot het offensief na de ontvoering van senator Jorge Gechem door de FARC , eerder in de week .</sentence>
+  <comments>
+    <comment>Q#5|President Andres Pastrana verbrak de onderhandelingen met de rebellen en gaf de opdracht tot het offensief na de ontvoering van senator Jorge Gechem door de FARC , eerder in de week .|1|1|-2.8401573639999906</comment>
+  </comments>
+</alpino_ds>

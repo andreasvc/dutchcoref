@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="2" id="0" rel="top">
+    <node begin="0" cat="np" end="2" id="1" rel="--">
+      <node begin="0" end="1" frame="name_determiner(pron,'PER')" getal="ev" graad="basis" his="name_gen" his_1="begin" id="2" infl="pron" lcat="detp" lemma="Kankers" naamval="gen" neclass="PER" ntype="eigen" pos="det" postag="N(eigen,ev,basis,gen)" pt="n" rel="det" root="Kankers" sense="Kankers" special="name" word="Kankers"/>
+      <node begin="1" buiging="zonder" end="2" frame="v_noun(intransitive)" getal-n="zonder-n" his="normal" his_1="normal" id="3" lcat="np" lemma="eten" pos="verb" positie="nom" postag="WW(inf,nom,zonder,zonder-n)" pt="ww" rel="hd" rnum="sg" root="eet" sc="intransitive" sense="eet" special="v_noun" word="eten" wvorm="inf"/>
+    </node>
+  </node>
+  <sentence sentid="1">Kankers eten</sentence>
+  <comments>
+    <comment>Q#1|Kankers eten|1|1|-0.04856066936000005</comment>
+  </comments>
+</alpino_ds>

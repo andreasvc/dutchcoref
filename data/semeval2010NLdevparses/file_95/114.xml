@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="11" end="12" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="15" id="2" rel="--">
+      <node begin="0" cat="pp" end="4" id="3" rel="mod">
+        <node begin="0" end="1" frame="preposition(vanuit,[])" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="pp" lemma="vanuit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="vanuit" sense="vanuit" vztype="init" word="Vanuit"/>
+        <node begin="1" cat="np" end="4" id="5" rel="obj1">
+          <node begin="1" buiging="zonder" end="2" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="6" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+          <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="7" infl="e" lcat="ap" lemma="Italiaans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Italiaans" sense="Italiaans" vform="adj" word="Italiaanse"/>
+          <node begin="3" end="4" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="hoofd_zetel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="hoofd_zetel" sense="hoofd_zetel" word="hoofdzetel"/>
+        </node>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,past(pl),transitive)" his="normal" his_1="normal" id="9" infl="pl" lcat="smain" lemma="controleren" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="controleer" sc="transitive" sense="controleer" stype="declarative" tense="past" word="controleerden" wvorm="pv"/>
+      <node begin="5" case="both" def="def" end="6" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="10" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+      <node begin="6" cat="np" end="15" id="11" rel="obj1">
+        <node begin="6" end="7" frame="determiner(een)" his="normal" his_1="normal" id="12" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+        <node aform="base" begin="7" buiging="zonder" end="8" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="13" infl="no_e" lcat="ap" lemma="heel" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="heel" sense="heel" vform="adj" word="heel"/>
+        <node begin="8" end="9" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="netwerk" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="netwerk" sense="netwerk" word="netwerk"/>
+        <node begin="9" cat="pp" end="11" id="15" rel="mod">
+          <node begin="9" end="10" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="16" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="10" end="11" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="filiaal" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="filiaal" sense="filiaal" word="filialen"/>
+        </node>
+        <node begin="12" cat="ppart" end="15" id="18" rel="mod">
+          <node aform="base" begin="12" buiging="zonder" end="13" frame="adjective(ge_no_e(adv),pp(over))" his="normal" his_1="normal" id="19" infl="no_e" lcat="ppart" lemma="verspreid" pos="adj" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="verspreid" sc="pp(over)" sense="verspreid-over" vform="psp" word="verspreid" wvorm="vd"/>
+          <node begin="13" cat="pp" end="15" id="20" rel="pc">
+            <node begin="13" end="14" frame="preposition(over,[heen])" his="normal" his_1="normal" id="21" lcat="pp" lemma="over" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="over" sense="over" vztype="init" word="over"/>
+            <node begin="14" end="15" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="22" lcat="np" lemma="Europa" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Europa" sense="Europa" word="Europa"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="23" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="114">Vanuit hun Italiaanse hoofdzetel controleerden ze een heel netwerk van filialen , verspreid over Europa .</sentence>
+  <comments>
+    <comment>Q#114|Vanuit hun Italiaanse hoofdzetel controleerden ze een heel netwerk van filialen , verspreid over Europa .|1|1|-5.718222041539998</comment>
+  </comments>
+</alpino_ds>

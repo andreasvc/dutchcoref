@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="22" id="0" rel="top">
+    <node begin="11" end="12" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="21" id="2" rel="--">
+      <node begin="0" cat="cp" end="11" id="3" rel="mod">
+        <node begin="0" end="1" frame="modal_adverb" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="advp" lemma="zelfs" pos="adv" postag="BW()" pt="bw" rel="mod" root="zelfs" sc="modal" sense="zelfs" word="Zelfs"/>
+        <node begin="1" conjtype="onder" end="2" frame="complementizer" his="normal" his_1="normal" id="5" lcat="cp" lemma="toen" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="toen" sense="toen" word="toen"/>
+        <node begin="2" cat="ssub" end="11" id="6" rel="body">
+          <node begin="2" case="both" def="def" end="3" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" genus="fem" getal="ev" his="normal" his_1="normal" id="7" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,ev,fem)" pt="vnw" rel="su" rnum="sg" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+          <node begin="3" cat="ap" end="6" id="8" rel="mod">
+            <node begin="3" cat="np" end="5" id="9" rel="me">
+              <node begin="3" end="4" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="10" infl="pl_num" lcat="detp" lemma="tweeduizend" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="tweeduizend" sense="tweeduizend" special="hoofd" word="tweeduizend"/>
+              <node begin="4" end="5" frame="tmp_noun(het,count,bare_meas)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="jaar" naamval="stan" ntype="soort" num="bare_meas" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="pl" root="jaar" sense="jaar" special="tmp" word="jaar"/>
+            </node>
+            <node begin="5" end="6" frame="pred_np_me_adjective(tmpadv)" his="normal" his_1="normal" id="12" lcat="ap" lemma="geleden" pos="adj" postag="BW()" pt="bw" rel="hd" root="geleden" sc="pred_np_me" sense="geleden" word="geleden"/>
+          </node>
+          <node begin="6" end="7" frame="adverb" his="normal" his_1="normal" id="13" lcat="advp" lemma="nog" pos="adv" postag="BW()" pt="bw" rel="mod" root="nog" sense="nog" word="nog"/>
+          <node begin="7" cat="np" end="10" id="14" rel="predc">
+            <node begin="7" end="8" frame="determiner(een)" his="normal" his_1="normal" id="15" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node aform="base" begin="8" buiging="met-e" end="9" frame="adjective(e)" graad="basis" his="name_adj" his_1="not_begin" id="16" infl="e" lcat="ap" lemma="Gallo-Romeinse" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Gallo-Romeinse" sense="Gallo-Romeinse" vform="adj" word="Gallo-Romeinse"/>
+            <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="nederzetting" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="nederzetting" sense="nederzetting" word="nederzetting"/>
+          </node>
+          <node begin="10" end="11" frame="verb(unacc,past(sg),copula)" his="normal" his_1="normal" id="18" infl="sg" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="ben" sc="copula" sense="ben" tense="past" word="was" wvorm="pv"/>
+        </node>
+      </node>
+      <node begin="12" end="13" frame="verb(hebben,past(pl),transitive)" his="normal" his_1="normal" id="19" infl="pl" lcat="smain" lemma="voeren" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="voer" sc="transitive" sense="voer" stype="declarative" tense="past" word="voerden" wvorm="pv"/>
+      <node begin="13" cat="np" end="15" id="20" rel="su">
+        <node begin="13" end="14" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="14" end="15" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="bewoner" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bewoner" sense="bewoner" word="bewoners"/>
+      </node>
+      <node begin="15" end="16" frame="adverb" his="normal" his_1="normal" id="23" lcat="advp" lemma="al" pos="adv" postag="BW()" pt="bw" rel="mod" root="al" sense="al" word="al"/>
+      <node begin="16" cat="np" end="21" id="24" rel="obj1">
+        <node begin="16" end="17" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="handel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="handel" sense="handel" word="handel"/>
+        <node begin="17" cat="pp" end="21" id="26" rel="mod">
+          <node begin="17" end="18" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="27" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+          <node begin="18" cat="conj" end="21" id="28" rel="obj1">
+            <node begin="18" end="19" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="29" lcat="np" lemma="Gallië" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="cnj" rnum="sg" root="Gallië" sense="Gallië" word="Gallië"/>
+            <node begin="19" conjtype="neven" end="20" frame="conj(en)" his="normal" his_1="normal" id="30" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="20" end="21" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="31" lcat="np" lemma="Engeland" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="cnj" rnum="sg" root="Engeland" sense="Engeland" word="Engeland"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="21" end="22" frame="punct(punt)" his="normal" his_1="normal" id="32" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Zelfs toen ze tweeduizend jaar geleden nog een Gallo-Romeinse nederzetting was , voerden de bewoners al handel met Gallië en Engeland .</sentence>
+  <comments>
+    <comment>Q#7|Zelfs toen ze tweeduizend jaar geleden nog een Gallo-Romeinse nederzetting was , voerden de bewoners al handel met Gallië en Engeland .|1|1|-10.617544660259997</comment>
+  </comments>
+</alpino_ds>

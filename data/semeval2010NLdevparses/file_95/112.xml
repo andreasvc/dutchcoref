@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="30" id="0" rel="top">
+    <node begin="5" end="6" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="10" end="11" frame="punct(dubb_punt)" his="normal" his_1="normal" id="2" lcat="punct" lemma=":" pos="punct" postag="LET()" pt="let" rel="--" root=":" sense=":" special="dubb_punt" word=":"/>
+    <node begin="0" cat="du" end="29" id="3" rel="--">
+      <node begin="0" cat="smain" end="10" id="4" rel="nucl">
+        <node begin="0" cat="np" end="2" id="5" rel="su">
+          <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="6" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="Die"/>
+          <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="positie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="positie" sense="positie" word="positie"/>
+        </node>
+        <node begin="2" end="3" frame="verb(hebben,past(sg),pred_np)" his="normal" his_1="normal" id="8" infl="sg" lcat="smain" lemma="maken" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="maak" sc="pred_np" sense="maak" stype="declarative" tense="past" word="maakte" wvorm="pv"/>
+        <node begin="3" case="dat_acc" def="def" end="4" frame="pronoun(nwh,thi,pl,de,dat_acc,def)" gen="de" getal="mv" his="normal" his_1="normal" id="9" lcat="np" lemma="hen" naamval="obl" num="pl" pdtype="pron" per="thi" persoon="3p" pos="pron" postag="VNW(pers,pron,obl,vol,3p,mv)" pt="vnw" rel="obj1" rnum="pl" root="hen" sense="hen" status="vol" vwtype="pers" wh="nwh" word="hen"/>
+        <node begin="4" cat="conj" end="10" id="10" rel="predc">
+          <node aform="base" begin="4" buiging="zonder" end="5" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="11" infl="no_e" lcat="ap" lemma="rijk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="cnj" root="rijk" sense="rijk" vform="adj" word="rijk"/>
+          <node begin="6" conjtype="neven" end="7" frame="conj(maar)" his="normal" his_1="normal" id="12" lcat="vg" lemma="maar" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="maar" sense="maar" word="maar"/>
+          <node begin="7" cat="ap" end="10" id="13" rel="cnj">
+            <node begin="7" end="8" frame="sentence_adverb" his="normal" his_1="normal" id="14" lcat="advp" lemma="ook" pos="adv" postag="BW()" pt="bw" rel="mod" root="ook" sense="ook" special="sentence" word="ook"/>
+            <node begin="8" buiging="zonder" end="9" frame="intensifier" graad="basis" his="normal" his_1="normal" id="15" lcat="advp" lemma="heel" pos="adv" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="heel" sense="heel" special="intensifier" word="heel"/>
+            <node aform="base" begin="9" buiging="zonder" end="10" frame="adjective(no_e(padv))" graad="basis" his="normal" his_1="normal" id="16" infl="no_e" lcat="ap" lemma="kwetsbaar" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="kwetsbaar" sense="kwetsbaar" vform="adj" word="kwetsbaar"/>
+          </node>
+        </node>
+      </node>
+      <node begin="11" cat="conj" end="29" id="17" rel="sat">
+        <node begin="11" cat="smain" end="25" id="18" rel="cnj">
+          <node begin="11" cat="pp" end="16" id="19" rel="mod">
+            <node begin="11" end="12" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="20" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+            <node begin="12" cat="conj" end="16" id="21" rel="obj1">
+              <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="fraude" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="cnj" rnum="sg" root="fraude" sense="fraude" word="fraude"/>
+              <node begin="13" conjtype="neven" end="14" frame="conj(of)" his="normal" his_1="normal" id="23" lcat="vg" lemma="of" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="of" sense="of" word="of"/>
+              <node begin="14" cat="np" end="16" id="24" rel="cnj">
+                <node aform="base" begin="14" buiging="met-e" end="15" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="25" infl="e" lcat="ap" lemma="financieel" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="financieel" sense="financieel" vform="adj" word="financiële"/>
+                <node begin="15" end="16" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="probleem" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="probleem" sense="probleem" word="problemen"/>
+              </node>
+            </node>
+          </node>
+          <node begin="16" end="17" frame="verb(hebben,past(sg),aci)" his="normal" his_1="normal" id="27" infl="sg" lcat="smain" lemma="laten" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="laat" sc="aci" sense="laat" stype="declarative" tense="past" word="liet" wvorm="pv"/>
+          <node begin="17" cat="np" end="19" id="28" index="1" rel="su">
+            <node begin="17" end="18" frame="determiner(de)" his="normal" his_1="normal" id="29" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="18" end="19" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="vorst" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="vorst" sense="vorst" word="vorst"/>
+          </node>
+          <node begin="19" cat="np" end="24" id="31" index="2" rel="obj1">
+            <node begin="19" end="20" frame="determiner(de)" his="normal" his_1="normal" id="32" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="20" end="21" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="kop" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="kop" sense="kop" word="koppen"/>
+            <node begin="21" cat="pp" end="24" id="34" rel="mod">
+              <node begin="21" end="22" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="35" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="22" cat="np" end="24" id="36" rel="obj1">
+                <node begin="22" buiging="zonder" end="23" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="37" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+                <node begin="23" end="24" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="38" lcat="np" lemma="financier" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="financier" sense="financier" word="financiers"/>
+              </node>
+            </node>
+          </node>
+          <node begin="19" cat="inf" end="25" id="39" rel="vc">
+            <node begin="19" end="24" id="40" index="2" rel="su"/>
+            <node begin="24" buiging="zonder" end="25" frame="verb('hebben/zijn',inf,intransitive)" his="normal" his_1="normal" id="41" infl="inf" lcat="inf" lemma="rollen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="rol" sc="intransitive" sense="rol" word="rollen" wvorm="inf"/>
+          </node>
+        </node>
+        <node begin="25" conjtype="neven" end="26" frame="conj(en)" his="normal" his_1="normal" id="42" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="17" cat="smain" end="29" id="43" rel="cnj">
+          <node begin="17" end="19" id="44" index="1" rel="su"/>
+          <node begin="26" end="27" frame="verb(zijn,past(sg),ap_copula)" his="normal" his_1="normal" id="45" infl="sg" lcat="smain" lemma="gaan" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="ga" sc="ap_copula" sense="ga" tense="past" word="ging" wvorm="pv"/>
+          <node begin="27" end="28" frame="predm_adverb" his="normal" his_1="normal" id="46" lcat="advp" lemma="zelf" pos="adv" postag="BW()" pt="bw" rel="predm" root="zelf" sense="zelf" special="predm" word="zelf"/>
+          <node aform="base" begin="28" end="29" frame="adjective(pred(adv))" his="normal" his_1="normal" id="47" infl="pred" lcat="ap" lemma="vrijuit" pos="adj" postag="BW()" pt="bw" rel="predc" root="vrijuit" sense="vrijuit" vform="adj" word="vrijuit"/>
+        </node>
+      </node>
+    </node>
+    <node begin="29" end="30" frame="punct(punt)" his="normal" his_1="normal" id="48" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="112">Die positie maakte hen rijk , maar ook heel kwetsbaar : bij fraude of financiële problemen liet de vorst de koppen van zijn financiers rollen en ging zelf vrijuit .</sentence>
+  <comments>
+    <comment>Q#112|Die positie maakte hen rijk , maar ook heel kwetsbaar : bij fraude of financiële problemen liet de vorst de koppen van zijn financiers rollen en ging zelf vrijuit .|1|1|0.1813590466399952</comment>
+  </comments>
+</alpino_ds>

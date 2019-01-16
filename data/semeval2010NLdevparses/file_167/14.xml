@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="39" id="0" rel="top">
+    <node begin="11" end="12" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="30" end="31" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="38" id="3" rel="--">
+      <node begin="0" cat="np" end="6" id="4" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="6" infl="e" lcat="ap" lemma="Amerikaans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Amerikaans" sense="Amerikaans" vform="adj" word="Amerikaanse"/>
+        <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="president" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="president" sense="president" word="president"/>
+        <node begin="3" cat="mwu" end="6" his="normal" his_1="names_dictionary" id="8" mwu_root="George W. Bush" mwu_sense="George W. Bush" rel="app">
+          <node begin="3" end="4" frame="proper_name(sg,'PER')" id="9" lcat="np" lemma="George" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="George" sense="George" spectype="deeleigen" word="George"/>
+          <node begin="4" end="5" frame="proper_name(sg,'PER')" id="10" lcat="np" lemma="W." neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="W." sense="W." spectype="deeleigen" word="W."/>
+          <node begin="5" end="6" frame="proper_name(sg,'PER')" id="11" lcat="np" lemma="Bush" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Bush" sense="Bush" spectype="deeleigen" word="Bush"/>
+        </node>
+      </node>
+      <node begin="6" end="7" frame="verb(hebben,sg3,np_vp_obj1)" his="normal" his_1="normal" id="12" infl="sg3" lcat="smain" lemma="manen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="maan" sc="np_vp_obj1" sense="maan" stype="declarative" tense="present" word="maant" wvorm="pv"/>
+      <node begin="7" cat="np" end="11" id="13" index="1" rel="obj1">
+        <node begin="7" end="8" frame="number(rang)" his="normal" his_1="normal" id="14" lcat="ap" lemma="eerste" naamval="stan" numtype="rang" pos="num" positie="prenom" postag="TW(rang,prenom,stan)" pt="tw" rel="mod" root="eerste" sense="eerste" special="rang" word="eerste"/>
+        <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+        <node begin="9" cat="mwu" end="11" his="normal" his_1="names_dictionary" id="16" mwu_root="Junichiro Koizumi" mwu_sense="Junichiro Koizumi" rel="app">
+          <node begin="9" end="10" frame="proper_name(sg,'PER')" id="17" lcat="np" lemma="Junichiro" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Junichiro" sense="Junichiro" spectype="deeleigen" word="Junichiro"/>
+          <node begin="10" end="11" frame="proper_name(sg,'PER')" id="18" lcat="np" lemma="Koizumi" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Koizumi" sense="Koizumi" spectype="deeleigen" word="Koizumi"/>
+        </node>
+      </node>
+      <node begin="12" cat="pp" end="24" id="19" rel="mod">
+        <node begin="12" end="13" frame="preposition(naast,[])" his="normal" his_1="normal" id="20" lcat="pp" lemma="naast" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naast" sense="naast" vztype="init" word="naast"/>
+        <node begin="13" cat="conj" end="24" id="21" rel="obj1">
+          <node begin="13" cat="np" end="18" id="22" rel="cnj">
+            <node begin="13" end="14" frame="determiner(de)" his="normal" his_1="normal" id="23" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="14" buiging="met-e" end="15" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="24" infl="e" lcat="ap" lemma="Brits" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Brits" sense="Brits" vform="adj" word="Britse"/>
+            <node begin="15" end="16" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="premier" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="premier" sense="premier" word="premier"/>
+            <node begin="16" cat="mwu" end="18" his="normal" his_1="names_dictionary" id="26" mwu_root="Tony Blair" mwu_sense="Tony Blair" rel="app">
+              <node begin="16" end="17" frame="proper_name(sg,'PER')" id="27" lcat="np" lemma="Tony" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Tony" sense="Tony" spectype="deeleigen" word="Tony"/>
+              <node begin="17" end="18" frame="proper_name(sg,'PER')" id="28" lcat="np" lemma="Blair" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Blair" sense="Blair" spectype="deeleigen" word="Blair"/>
+            </node>
+          </node>
+          <node begin="18" conjtype="neven" end="19" frame="conj(en)" his="normal" his_1="normal" id="29" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="19" cat="np" end="24" id="30" rel="cnj">
+            <node begin="19" end="20" frame="determiner(de)" his="normal" his_1="normal" id="31" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="20" buiging="met-e" end="21" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="32" infl="e" lcat="ap" lemma="Russisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Russisch" sense="Russisch" vform="adj" word="Russische"/>
+            <node begin="21" end="22" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="president" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="president" sense="president" word="president"/>
+            <node begin="22" cat="mwu" end="24" his="normal" his_1="names_dictionary" id="34" mwu_root="Vladimir Poetin" mwu_sense="Vladimir Poetin" rel="app">
+              <node begin="22" end="23" frame="proper_name(sg,'PER')" id="35" lcat="np" lemma="Vladimir" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Vladimir" sense="Vladimir" spectype="deeleigen" word="Vladimir"/>
+              <node begin="23" end="24" frame="proper_name(sg,'PER')" id="36" lcat="np" lemma="Poetin" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Poetin" sense="Poetin" spectype="deeleigen" word="Poetin"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="7" cat="ti" end="38" id="37" rel="vc">
+        <node begin="36" end="37" frame="complementizer(te)" his="normal" his_1="normal" id="38" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+        <node begin="7" cat="inf" end="38" id="39" rel="body">
+          <node begin="7" end="11" id="40" index="1" rel="su"/>
+          <node begin="24" cat="np" end="34" id="41" rel="obj1">
+            <node begin="24" case="both" def="indef" end="25" frame="pronoun(nwh,thi,sg,both,both,indef,strpro)" gen="both" getal-n="zonder-n" graad="basis" his="normal" his_1="normal" id="42" lcat="np" lemma="één" num="sg" numtype="hoofd" per="thi" pos="pron" positie="nom" postag="TW(hoofd,nom,zonder-n,basis)" pt="tw" rel="hd" rnum="sg" root="één" sense="één" special="strpro" wh="nwh" word="een"/>
+            <node begin="25" cat="pp" end="30" id="43" rel="mod">
+              <node begin="25" end="26" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="44" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="26" cat="np" end="30" id="45" rel="obj1">
+                <node begin="26" buiging="zonder" end="27" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="46" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+                <node aform="super" begin="27" buiging="met-e" end="28" frame="adjective(ste)" graad="sup" his="normal" his_1="normal" id="47" infl="e" lcat="ap" lemma="goed" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,sup,met-e,stan)" pt="adj" rel="mod" root="goed" sense="goed" vform="adj" word="beste"/>
+                <node aform="base" begin="28" buiging="met-e" end="29" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="48" infl="e" lcat="ap" lemma="politiek" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="politiek" sense="politiek" vform="adj" word="politieke"/>
+                <node begin="29" end="30" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="49" lcat="np" lemma="vriend" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vriend" sense="vriend" word="vrienden"/>
+              </node>
+            </node>
+            <node begin="31" cat="pp" end="34" id="50" rel="mod">
+              <node begin="31" end="32" frame="preposition(aan,[vooraf])" his="normal" his_1="normal" id="51" lcat="pp" lemma="aan" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="aan" sense="aan" vztype="init" word="aan"/>
+              <node begin="32" cat="np" end="34" id="52" rel="obj1">
+                <node aform="base" begin="32" buiging="zonder" end="33" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="53" infl="no_e" lcat="ap" lemma="snel" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="snel" sense="snel" vform="adj" word="snel"/>
+                <node begin="33" end="34" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="54" lcat="np" lemma="orde" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="orde" sense="orde" word="orde"/>
+              </node>
+            </node>
+          </node>
+          <node begin="34" cat="pp" end="36" id="55" rel="ld">
+            <node begin="34" end="35" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="56" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+            <node begin="35" end="36" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="57" lcat="np" lemma="zaak" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="zaak" sense="zaak" word="zaken"/>
+          </node>
+          <node begin="37" buiging="zonder" end="38" frame="verb(hebben,inf,np_ld_pp)" his="normal" his_1="normal" id="58" infl="inf" lcat="inf" lemma="stellen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="stel" sc="np_ld_pp" sense="stel" word="stellen" wvorm="inf"/>
+        </node>
+      </node>
+    </node>
+    <node begin="38" end="39" frame="punct(punt)" his="normal" his_1="normal" id="59" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="14">De Amerikaanse president George W. Bush maant eerste minister Junichiro Koizumi , naast de Britse premier Tony Blair en de Russische president Vladimir Poetin een van zijn beste politieke vrienden , aan snel orde op zaken te stellen .</sentence>
+  <comments>
+    <comment>Q#14|De Amerikaanse president George W. Bush maant eerste minister Junichiro Koizumi , naast de Britse premier Tony Blair en de Russische president Vladimir Poetin een van zijn beste politieke vrienden , aan snel orde op zaken te stellen .|1|1|-16.126671507259996</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="10" id="0" rel="top">
+    <node begin="0" cat="smain" end="9" id="1" rel="--">
+      <node begin="0" cat="np" end="4" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="Het"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="4" infl="e" lcat="ap" lemma="Japans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Japans" sense="Japans" vform="adj" word="Japanse"/>
+        <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="5" infl="e" lcat="ap" lemma="industrieel" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="industrieel" sense="industrieel" vform="adj" word="industriële"/>
+        <node begin="3" end="4" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="model" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="model" sense="model" word="model"/>
+      </node>
+      <node begin="4" end="5" frame="verb(zijn,sg3,ld_pp)" his="normal" his_1="normal" id="7" infl="sg3" lcat="smain" lemma="gaan" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="ga" sc="ld_pp" sense="ga" stype="declarative" tense="present" word="gaat" wvorm="pv"/>
+      <node begin="5" end="6" frame="er_adverb(door)" his="normal" his_1="normal" id="8" lcat="pp" lemma="daardoor" pos="pp" postag="BW()" pt="bw" rel="mod" root="daardoor" sense="daardoor" special="er" word="daardoor"/>
+      <node begin="6" cat="pp" end="9" id="9" rel="ld">
+        <node begin="6" end="7" frame="preposition(aan,[vooraf])" his="normal" his_1="normal" id="10" lcat="pp" lemma="aan" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="aan" sense="aan" vztype="init" word="aan"/>
+        <node begin="7" cat="np" end="9" id="11" rel="obj1">
+          <node begin="7" end="8" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="12" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+          <node begin="8" buiging="zonder" end="9" frame="v_noun(intransitive)" getal-n="zonder-n" his="normal" his_1="normal" id="13" lcat="np" lemma="kraken" pos="verb" positie="nom" postag="WW(inf,nom,zonder,zonder-n)" pt="ww" rel="hd" rnum="sg" root="kraak" sc="intransitive" sense="kraak" special="v_noun" word="kraken" wvorm="inf"/>
+        </node>
+      </node>
+    </node>
+    <node begin="9" end="10" frame="punct(punt)" his="normal" his_1="normal" id="14" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="49">Het Japanse industriële model gaat daardoor aan het kraken .</sentence>
+  <comments>
+    <comment>Q#49|Het Japanse industriële model gaat daardoor aan het kraken .|1|1|1.0315232206199996</comment>
+  </comments>
+</alpino_ds>

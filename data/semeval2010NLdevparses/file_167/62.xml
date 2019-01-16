@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="14" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="1" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="4" end="5" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="2" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="0" cat="smain" end="13" id="3" rel="--">
+      <node begin="0" cat="pp" end="4" id="4" rel="mod">
+        <node begin="0" end="1" frame="preposition(dankzij,[])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="dankzij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="dankzij" sense="dankzij" vztype="init" word="Dankzij"/>
+        <node begin="1" cat="np" end="4" id="6" rel="obj1">
+          <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="3" end="4" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="8" lcat="np" lemma="yen-light" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="yen-light" sense="yen-light" word="yen-light"/>
+        </node>
+      </node>
+      <node begin="5" end="6" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="9" infl="sg3" lcat="smain" lemma="versterken" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="versterk" sc="transitive" sense="versterk" stype="declarative" tense="present" word="versterkt" wvorm="pv"/>
+      <node begin="6" cat="np" end="8" id="10" rel="su">
+        <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="7" end="8" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="hyphen" id="12" lcat="np" lemma="Nippon_economie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Nippon_economie" sense="Nippon_economie" word="Nippon-economie"/>
+      </node>
+      <node begin="8" cat="np" end="13" id="13" rel="obj1">
+        <node begin="8" buiging="zonder" end="9" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="14" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+        <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="concurrentie_kracht" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="concurrentie_kracht" sense="concurrentie_kracht" word="concurrentiekracht"/>
+        <node begin="10" cat="pp" end="13" id="16" rel="mod">
+          <node begin="10" end="11" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="17" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+          <node begin="11" cat="np" end="13" id="18" rel="obj1">
+            <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="20" lcat="np" lemma="export_markt" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="export_markt" sense="export_markt" word="exportmarkten"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="13" end="14" frame="punct(punt)" his="normal" his_1="normal" id="21" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="62">Dankzij de &apos; yen-light &apos; versterkt de Nippon-economie zijn concurrentiekracht op de exportmarkten .</sentence>
+  <comments>
+    <comment>Q#62|Dankzij de &apos; yen-light &apos; versterkt de Nippon-economie zijn concurrentiekracht op de exportmarkten .|1|1|-5.0541137577000015</comment>
+  </comments>
+</alpino_ds>

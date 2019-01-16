@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="35" id="0" rel="top">
+    <node begin="3" end="4" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="8" end="9" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="24" end="25" frame="punct(komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="34" id="4" rel="--">
+      <node begin="0" cat="np" end="8" id="5" rel="su">
+        <node begin="0" cat="mwu" end="2" his="name" his_1="begin" id="6" mwu_root="Wouter Ameide" mwu_sense="Wouter Ameide" rel="hd">
+          <node begin="0" end="1" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="Wouter" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Wouter" sense="Wouter" spectype="deeleigen" word="Wouter"/>
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Ameide" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Ameide" sense="Ameide" spectype="deeleigen" word="Ameide"/>
+        </node>
+        <node begin="2" end="3" frame="postnp_adverb" his="normal" his_1="normal" id="9" lcat="advp" lemma="bijvoorbeeld" pos="adv" postag="BW()" pt="bw" rel="mod" root="bijvoorbeeld" sense="bijvoorbeeld" special="postnp" word="bijvoorbeeld"/>
+        <node begin="4" cat="np" end="8" id="10" rel="app">
+          <node begin="4" end="5" frame="determiner(een)" his="normal" his_1="normal" id="11" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="5" buiging="zonder" end="6" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="12" infl="no_e" lcat="ap" lemma="groot" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="groot" sense="groot" vform="adj" word="groot"/>
+          <node aform="base" begin="6" buiging="zonder" end="7" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="13" infl="no_e" lcat="ap" lemma="Brugs" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="Brugs" sense="Brugs" vform="adj" word="Brugs"/>
+          <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="hyphen" id="14" lcat="np" lemma="handelaar_bankier" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="handelaar_bankier" sense="handelaar_bankier" word="handelaar-bankier"/>
+        </node>
+      </node>
+      <node begin="9" end="10" frame="verb(hebben,past(sg),intransitive)" his="normal" his_1="normal" id="15" infl="sg" lcat="smain" lemma="lenen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="leen" sc="intransitive" sense="leen" stype="declarative" tense="past" word="leende" wvorm="pv"/>
+      <node begin="10" cat="pp" end="16" id="16" rel="mod">
+        <node begin="10" end="11" frame="preposition(in,[])" his="normal" his_1="normal" id="17" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="11" cat="np" end="16" id="18" rel="obj1">
+          <node begin="11" end="12" frame="np(year)" his="normal" his_1="normal" id="19" lcat="np" lemma="1500" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="mod" rnum="sg" root="1500" sense="1500" word="1500"/>
+          <node begin="12" end="13" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="geld" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="geld" sense="geld" word="geld"/>
+          <node begin="13" cat="pp" end="16" id="21" rel="mod">
+            <node begin="13" end="14" frame="preposition(aan,[vooraf])" his="normal" his_1="normal" id="22" lcat="pp" lemma="aan" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="aan" sense="aan" vztype="init" word="aan"/>
+            <node begin="14" cat="np" end="16" id="23" rel="obj1">
+              <node aform="base" begin="14" buiging="met-e" end="15" frame="adjective(ende(padv))" graad="basis" his="normal" his_1="V-de" his_1_1="normal" id="24" infl="e" lcat="ppres" lemma="verschillen" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="verschil" sense="verschil" vform="gerund" word="verschillende"/>
+              <node begin="15" end="16" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="klant" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="klant" sense="klant" word="klanten"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="16" cat="pp" end="24" id="26" rel="mod">
+        <node begin="16" end="17" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="27" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+        <node begin="17" cat="np" end="24" id="28" rel="obj1">
+          <node begin="17" end="18" frame="determiner(een)" his="normal" his_1="normal" id="29" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="18" buiging="zonder" end="19" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="30" infl="no_e" lcat="ap" lemma="totaal" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="totaal" sense="totaal" vform="adj" word="totaal"/>
+          <node begin="19" end="20" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="31" lcat="np" lemma="bedrag" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="bedrag" sense="bedrag" word="bedrag"/>
+          <node begin="20" cat="pp" end="24" id="32" rel="mod">
+            <node begin="20" end="21" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="33" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="21" cat="np" end="24" id="34" rel="obj1">
+              <node begin="21" end="22" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="35" infl="pl_num" lcat="detp" lemma="15.000" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="15.000" sense="15.000" special="hoofd" word="15.000"/>
+              <node aform="base" begin="22" buiging="met-e" end="23" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="36" infl="e" lcat="ap" lemma="Vlaams" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Vlaams" sense="Vlaams" vform="adj" word="Vlaamse"/>
+              <node aform="base" begin="23" buiging="met-e" end="24" frame="nominalized_adjective" getal-n="mv-n" graad="basis" his="decap" his_1="not_begin" id="37" lcat="np" lemma="groot" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="hd" rnum="pl" root="groot" sense="groot" special="a_noun" word="Groten"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="25" cat="whrel" end="34" id="38" rel="mod">
+        <node begin="25" case="both" def="indef" end="26" frame="pronoun(ywh,thi,sg,het,both,indef,nparg)" gen="het" getal="ev" his="normal" his_1="normal" id="39" index="1" lcat="np" lemma="wat" naamval="stan" num="sg" pdtype="pron" per="thi" persoon="3o" pos="pron" postag="VNW(vb,pron,stan,vol,3o,ev)" pt="vnw" rel="rhd" rnum="sg" root="wat" sense="wat" special="nparg" status="vol" vwtype="vb" wh="ywh" word="wat"/>
+        <node begin="25" cat="ssub" end="34" id="40" rel="body">
+          <node begin="25" end="26" id="41" index="1" rel="su"/>
+          <node begin="26" end="27" frame="verb(zijn,sg3,ninv(pc_pp(met),part_pc_pp(overeen,met)))" his="normal" his_1="part-V" id="42" infl="sg3" lcat="ssub" lemma="overeen_komen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="kom_overeen" sc="part_pc_pp(overeen,met)" sense="kom_overeen-met" tense="present" word="overeenkomt" wvorm="pv"/>
+          <node begin="27" cat="pp" end="34" id="43" rel="pc">
+            <node begin="27" end="28" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="44" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+            <node begin="28" cat="np" end="34" id="45" rel="obj1">
+              <node begin="28" end="29" frame="modal_adverb(noun_prep)" his="normal" his_1="normal" id="46" lcat="advp" lemma="ongeveer" pos="adv" postag="BW()" pt="bw" rel="mod" root="ongeveer" sc="noun_prep" sense="ongeveer" word="ongeveer"/>
+              <node begin="29" end="30" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="47" infl="pl_num" lcat="detp" lemma="360.000" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="360.000" sense="360.000" special="hoofd" word="360.000"/>
+              <node begin="30" end="31" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="48" lcat="np" lemma="dag_loon" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="dag_loon" sense="dag_loon" word="daglonen"/>
+              <node begin="31" cat="pp" end="34" id="49" rel="mod">
+                <node begin="31" end="32" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="50" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="32" cat="np" end="34" id="51" rel="obj1">
+                  <node begin="32" end="33" frame="determiner(een)" his="normal" his_1="normal" id="52" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                  <node begin="33" end="34" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="53" lcat="np" lemma="ambachtsman" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="ambachtsman" sense="ambachtsman" word="ambachtsman"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="34" end="35" frame="punct(punt)" his="normal" his_1="normal" id="54" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="24">Wouter Ameide bijvoorbeeld , een groot Brugs handelaar-bankier , leende in 1500 geld aan verschillende klanten voor een totaal bedrag van 15.000 Vlaamse Groten , wat overeenkomt met ongeveer 360.000 daglonen van een ambachtsman .</sentence>
+  <comments>
+    <comment>Q#24|Wouter Ameide bijvoorbeeld , een groot Brugs handelaar-bankier , leende in 1500 geld aan verschillende klanten voor een totaal bedrag van 15.000 Vlaamse Groten , wat overeenkomt met ongeveer 360.000 daglonen van een ambachtsman .|1|1|5.497939860359999</comment>
+  </comments>
+</alpino_ds>

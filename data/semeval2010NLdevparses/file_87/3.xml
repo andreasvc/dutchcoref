@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="5" end="6" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="11" id="2" rel="--">
+      <node begin="0" cat="smain" end="5" id="3" rel="dp">
+        <node begin="0" cat="np" end="3" id="4" rel="su">
+          <node begin="0" end="1" frame="number(hoofd(pl_num))" his="normal" his_1="decap" his_1_1="normal" id="5" infl="pl_num" lcat="detp" lemma="vijf" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="vijf" sense="vijf" special="hoofd" word="Vijf"/>
+          <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="6" infl="e" lcat="ap" lemma="Indiaas" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Indiaas" sense="Indiaas" vform="adj" word="Indiase"/>
+          <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="bewaker" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bewaker" sense="bewaker" word="bewakers"/>
+        </node>
+        <node begin="3" end="4" frame="verb(zijn,pl,part_intransitive(om))" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="om_komen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kom_om" sc="part_intransitive(om)" sense="kom_om" stype="declarative" tense="present" word="komen" wvorm="pv"/>
+        <node begin="4" end="5" frame="particle(om)" his="normal" his_1="normal" id="9" lcat="part" lemma="om" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="om" sense="om" vztype="fin" word="om"/>
+      </node>
+      <node begin="6" cat="smain" end="11" id="10" rel="dp">
+        <node begin="6" cat="np" end="9" id="11" rel="su">
+          <node begin="6" cat="np" end="8" his="normal" his_1="normal" id="12" rel="det">
+            <node begin="6" end="7" frame="determiner(een)" id="13" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="7" end="8" frame="noun(both,both,sg)" gen="both" genus="zijd" getal="ev" graad="basis" id="14" lcat="np" lemma="twintigtal" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" root="twintigtal" sense="twintigtal" word="twintigtal"/>
+          </node>
+          <node aform="compar" begin="8" buiging="met-e" end="9" frame="nominalized_compar_adjective" getal-n="mv-n" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="ander" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="hd" rnum="pl" root="ander" sense="ander" special="a_noun" word="anderen"/>
+        </node>
+        <node begin="9" end="10" frame="verb(unacc,pl,nonp_copula)" his="normal" his_1="normal" id="16" infl="pl" lcat="smain" lemma="raken" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="raak" sc="nonp_copula" sense="raak" stype="declarative" tense="present" word="raken" wvorm="pv"/>
+        <node aform="base" begin="10" buiging="zonder" end="11" frame="adjective(ge_no_e(padv))" graad="basis" his="normal" his_1="normal" id="17" infl="no_e" lcat="ppart" lemma="gewond" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="gewond" sense="gewond" vform="psp" word="gewond"/>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="18" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">Vijf Indiase bewakers komen om , een twintigtal anderen raken gewond .</sentence>
+  <comments>
+    <comment>Q#3|Vijf Indiase bewakers komen om , een twintigtal anderen raken gewond .|1|1|-3.7991721233400018</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="10" end="11" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="20" id="2" rel="--">
+      <node begin="0" case="both" def="def" end="1" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="Ze"/>
+      <node begin="1" end="2" frame="verb(hebben,past(pl),aci_no_obj)" his="normal" his_1="normal" id="4" infl="pl" lcat="smain" lemma="laten" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="laat" sc="aci_no_obj" sense="laat" stype="declarative" tense="past" word="lieten" wvorm="pv"/>
+      <node begin="2" cat="inf" end="10" id="5" rel="vc">
+        <node begin="2" cat="conj" end="6" id="6" rel="obj1">
+          <node begin="2" cat="np" end="4" id="7" rel="cnj">
+            <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="8" infl="e" lcat="ap" lemma="luxueus" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="luxueus" sense="luxueus" vform="adj" word="luxueuze"/>
+            <node begin="3" end="4" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="huis" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="huis" sense="huis" word="huizen"/>
+          </node>
+          <node begin="4" conjtype="neven" end="5" frame="conj(en)" his="normal" his_1="normal" id="10" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="5" end="6" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="consulaat" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="cnj" rnum="pl" root="consulaat" sense="consulaat" word="consulaten"/>
+        </node>
+        <node begin="6" cat="pp" end="9" id="12" rel="mod">
+          <node begin="6" end="7" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="13" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+          <node begin="7" cat="np" end="9" id="14" rel="obj1">
+            <node aform="base" begin="7" buiging="met-e" end="8" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="15" infl="e" lcat="ap" lemma="weelderig" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="weelderig" sense="weelderig" vform="adj" word="weelderige"/>
+            <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="tuin" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="tuin" sense="tuin" word="tuinen"/>
+          </node>
+        </node>
+        <node begin="9" buiging="zonder" end="10" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="17" infl="inf" lcat="inf" lemma="bouwen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="bouw" sc="transitive" sense="bouw" word="bouwen" wvorm="inf"/>
+      </node>
+      <node begin="11" cat="whrel" end="20" id="18" rel="mod">
+        <node begin="11" end="12" frame="waar_adverb(door)" his="normal" his_1="normal" id="19" index="1" lcat="pp" lemma="waardoor" pos="pp" postag="BW()" pt="bw" rel="rhd" root="waardoor" sense="waardoor" special="waar" word="waardoor"/>
+        <node begin="11" cat="ssub" end="20" id="20" rel="body">
+          <node begin="11" end="12" id="21" index="1" rel="mod"/>
+          <node begin="12" case="both" def="def" end="13" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="22" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+          <node begin="13" cat="np" end="16" id="23" rel="obj2">
+            <node begin="13" end="14" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="24" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+            <node aform="base" begin="14" buiging="met-e" end="15" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="25" infl="e" lcat="ap" lemma="middeleeuws" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="middeleeuws" sense="middeleeuws" vform="adj" word="middeleeuwse"/>
+            <node begin="15" end="16" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="26" lcat="np" lemma="Brugge" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="Brugge" sense="Brugge" word="Brugge"/>
+          </node>
+          <node begin="16" end="17" frame="loc_adverb" his="normal" his_1="normal" id="27" lcat="advp" lemma="mee" pos="adv" postag="BW()" pt="bw" rel="mod" root="mee" sense="mee" special="loc" word="mee"/>
+          <node begin="17" cat="np" end="19" id="28" rel="obj1">
+            <node begin="17" buiging="zonder" end="18" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="29" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+            <node begin="18" end="19" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="grandeur" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="grandeur" sense="grandeur" word="grandeur"/>
+          </node>
+          <node begin="19" end="20" frame="verb(hebben,past(pl),np_np)" his="normal" his_1="normal" id="31" infl="pl" lcat="ssub" lemma="geven" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="geef" sc="np_np" sense="geef" tense="past" word="gaven" wvorm="pv"/>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="32" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="38">Ze lieten luxueuze huizen en consulaten met weelderige tuinen bouwen , waardoor ze het middeleeuwse Brugge mee zijn grandeur gaven .</sentence>
+  <comments>
+    <comment>Q#38|Ze lieten luxueuze huizen en consulaten met weelderige tuinen bouwen , waardoor ze het middeleeuwse Brugge mee zijn grandeur gaven .|1|1|-5.035759284560002</comment>
+  </comments>
+</alpino_ds>

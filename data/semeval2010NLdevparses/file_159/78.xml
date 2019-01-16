@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="3" end="4" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="11" id="2" rel="--">
+      <node begin="0" cat="conj" end="8" id="3" rel="su">
+        <node begin="0" cat="np" end="3" id="4" rel="cnj">
+          <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(odet_adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" index="1" infl="no_e" lcat="ap" lemma="veel" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,basis)" pt="vnw" rel="det" root="veel" sense="veel" vform="adj" vwtype="onbep" word="Veel"/>
+          <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(ge_e)" his="normal" his_1="normal" id="6" index="2" infl="e" lcat="ppart" lemma="gevestigd" pos="adj" positie="prenom" postag="WW(vd,prenom,met-e)" pt="ww" rel="mod" root="gevestigd" sense="gevestigd" vform="psp" word="gevestigde" wvorm="vd"/>
+          <node begin="2" end="3" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="belang" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="belang" sense="belang" word="belangen"/>
+        </node>
+        <node begin="0" cat="np" end="6" id="8" rel="cnj">
+          <node begin="0" end="1" id="9" index="1" rel="det"/>
+          <node begin="1" end="2" id="10" index="2" rel="mod"/>
+          <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(ge_e)" his="normal" his_1="normal" id="11" infl="e" lcat="ppart" lemma="bereikt" pos="adj" positie="prenom" postag="WW(vd,prenom,met-e)" pt="ww" rel="mod" root="bereikt" sense="bereikt" vform="psp" word="bereikte" wvorm="vd"/>
+          <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="positie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="positie" sense="positie" word="posities"/>
+        </node>
+        <node begin="6" conjtype="neven" end="7" frame="conj(en)" his="normal" his_1="normal" id="13" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="0" cat="np" end="8" id="14" rel="cnj">
+          <node begin="0" end="1" id="15" index="1" rel="det"/>
+          <node begin="1" end="2" id="16" index="2" rel="mod"/>
+          <node begin="7" end="8" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="bankrekening" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bankrekening" sense="bankrekening" word="bankrekeningen"/>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="verb(zijn,pl,pp_copula)" his="normal" his_1="normal" id="18" infl="pl" lcat="smain" lemma="komen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kom" sc="pp_copula" sense="kom" stype="declarative" tense="present" word="komen" wvorm="pv"/>
+      <node begin="9" cat="pp" end="11" id="19" rel="predc">
+        <node begin="9" end="10" frame="preposition(in,[])" his="normal" his_1="normal" id="20" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="10" end="11" frame="noun(het,count,sg,pred_pp(in))" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="21" lcat="np" lemma="gevaar" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="gevaar" sc="pred_pp(in)" sense="gevaar" word="gevaar"/>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="22" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="78">Veel gevestigde belangen , bereikte posities en bankrekeningen komen in gevaar .</sentence>
+  <comments>
+    <comment>Q#78|Veel gevestigde belangen , bereikte posities en bankrekeningen komen in gevaar .|1|1|-1.921722258560001</comment>
+  </comments>
+</alpino_ds>

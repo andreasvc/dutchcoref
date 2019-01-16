@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="22" id="0" rel="top">
+    <node begin="7" end="8" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="21" id="2" rel="--">
+      <node begin="0" cat="smain" end="7" id="3" rel="dp">
+        <node begin="0" cat="pp" end="4" id="4" rel="mod">
+          <node begin="0" end="1" frame="preposition(in,[])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="In"/>
+          <node begin="1" cat="np" end="4" id="6" rel="obj1">
+            <node begin="1" end="2" frame="determiner(een)" his="normal" his_1="normal" id="7" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="2" end="3" frame="number(rang)" his="normal" his_1="normal" id="8" lcat="ap" lemma="eerste" naamval="stan" numtype="rang" pos="num" positie="prenom" postag="TW(rang,prenom,stan)" pt="tw" rel="mod" root="eerste" sense="eerste" special="rang" word="eerste"/>
+            <node begin="3" end="4" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="fase" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="fase" sense="fase" special="tmp" word="fase"/>
+          </node>
+        </node>
+        <node begin="4" end="5" frame="verb(zijn,pl,intransitive)" his="normal" his_1="normal" id="10" infl="pl" lcat="smain" lemma="komen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kom" sc="intransitive" sense="kom" stype="declarative" tense="present" word="komen" wvorm="pv"/>
+        <node begin="5" end="6" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="11" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+        <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="12" lcat="np" lemma="wonen_container" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="su" rnum="pl" root="woon_container" sense="woon_container" word="wooncontainers"/>
+      </node>
+      <node begin="8" cat="smain" end="21" id="13" rel="dp">
+        <node begin="9" end="10" frame="verb(hebben,modal_not_u,aux(inf))" his="normal" his_1="normal" id="14" infl="modal_not_u" lcat="smain" lemma="zullen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="zal" sc="aux(inf)" sense="zal" stype="declarative" tense="present" word="zal" wvorm="pv"/>
+        <node begin="10" cat="np" end="17" id="15" index="1" rel="su">
+          <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="11" cat="conj" end="14" id="17" rel="mod">
+            <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" infl="e" lcat="ap" lemma="oud" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="cnj" root="oud" sense="oud" vform="adj" word="oude"/>
+            <node begin="12" conjtype="neven" end="13" frame="conj(en)" his="normal" his_1="normal" id="19" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node aform="base" begin="13" buiging="zonder" end="14" frame="adjective(ge_both(adv))" his="normal" his_1="normal" id="20" infl="both" lcat="ppart" lemma="vervallen" pos="adj" positie="prenom" postag="WW(vd,prenom,zonder)" pt="ww" rel="cnj" root="vervallen" sense="vervallen" vform="psp" word="vervallen" wvorm="vd"/>
+          </node>
+          <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="hyphen" id="21" lcat="np" lemma="para_kazerne" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="para_kazerne" sense="para_kazerne" word="para-kazerne"/>
+          <node begin="15" cat="pp" end="17" id="22" rel="mod">
+            <node begin="15" end="16" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="23" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="16" end="17" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="24" lcat="np" lemma="Everberg" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Everberg" sense="Everberg" word="Everberg"/>
+          </node>
+        </node>
+        <node begin="8" cat="inf" end="21" id="25" rel="vc">
+          <node begin="8" end="9" frame="er_adverb(na)" his="normal" his_1="normal" id="26" lcat="pp" lemma="daarna" pos="pp" postag="BW()" pt="bw" rel="mod" root="daarna" sense="daarna" special="er" word="daarna"/>
+          <node begin="10" end="17" id="27" index="1" rel="su"/>
+          <node begin="17" end="18" frame="particle(dienst)" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="part" lemma="dienst" naamval="stan" ntype="soort" pos="part" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="svp" root="dienst" sense="dienst" word="dienst"/>
+          <node begin="18" buiging="zonder" end="19" frame="verb(hebben,inf(no_e),part_als_copula(dienst))" his="normal" his_1="normal" id="29" infl="inf(no_e)" lcat="inf" lemma="dienst_doen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="doe_dienst" sc="part_als_copula(dienst)" sense="doe_dienst" word="doen" wvorm="inf"/>
+          <node begin="19" cat="cp" end="21" id="30" rel="predc">
+            <node begin="19" end="20" frame="complementizer(als)" his="normal" his_1="normal" id="31" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+            <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="32" lcat="np" lemma="jeugd_gevangenis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="body" rnum="sg" root="jeugd_gevangenis" sense="jeugd_gevangenis" word="jeugdgevangenis"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="21" end="22" frame="punct(punt)" his="normal" his_1="normal" id="33" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">In een eerste fase komen er wooncontainers , daarna zal de oude en vervallen para-kazerne van Everberg dienst doen als jeugdgevangenis .</sentence>
+  <comments>
+    <comment>Q#3|In een eerste fase komen er wooncontainers , daarna zal de oude en vervallen para-kazerne van Everberg dienst doen als jeugdgevangenis .|1|1|-9.649097402219994</comment>
+  </comments>
+</alpino_ds>

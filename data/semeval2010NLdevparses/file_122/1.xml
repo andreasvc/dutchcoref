@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="2" id="0" rel="top">
+    <node begin="0" cat="ppart" end="2" id="1" rel="--">
+      <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="decap_and_compound" his_1="2" id="2" lcat="np" lemma="genocide_wet" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="genocide_wet" sense="genocide_wet" word="Genocidewet"/>
+      <node begin="1" buiging="zonder" end="2" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="3" infl="psp" lcat="ppart" lemma="ondermijnen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="ondermijn" sc="transitive" sense="ondermijn" word="ondermijnd" wvorm="vd"/>
+    </node>
+  </node>
+  <sentence sentid="1">Genocidewet ondermijnd</sentence>
+  <comments>
+    <comment>Q#1|Genocidewet ondermijnd|1|1|2.3800492091600005</comment>
+  </comments>
+</alpino_ds>

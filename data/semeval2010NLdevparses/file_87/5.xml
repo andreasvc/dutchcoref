@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="14" id="0" rel="top">
+    <node begin="0" cat="smain" end="13" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="mod">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,mod,pro,yparg)" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="diezelfde" pos="det" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="det" root="diezelfde" sense="diezelfde" wh="nwh" word="Diezelfde"/>
+        <node begin="1" end="2" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="dag" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="dag" sense="dag" special="tmp" word="dag"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,pl,transitive)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="vermoorden" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="vermoord" sc="transitive" sense="vermoord" stype="declarative" tense="present" word="vermoorden" wvorm="pv"/>
+      <node begin="3" cat="np" end="9" id="6" rel="su">
+        <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="7" infl="e" lcat="ap" lemma="separatistisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="separatistisch" sense="separatistisch" vform="adj" word="separatistische"/>
+        <node begin="4" end="5" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="rebel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="rebel" sense="rebel" word="rebellen"/>
+        <node begin="5" cat="pp" end="9" id="9" rel="mod">
+          <node begin="5" end="6" frame="preposition(in,[])" his="normal" his_1="normal" id="10" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="6" cat="np" end="9" id="11" rel="obj1">
+            <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="12" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="deelstaat" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="deelstaat" sense="deelstaat" word="deelstaat"/>
+            <node begin="8" end="9" frame="proper_name(both,'LOC')" genus="onz" getal="ev" graad="basis" his="name" his_1="not_begin" id="14" lcat="np" lemma="Assam" naamval="stan" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="app" root="Assam" sense="Assam" word="Assam"/>
+          </node>
+        </node>
+      </node>
+      <node begin="9" end="10" frame="adverb" his="normal" his_1="normal" id="15" lcat="advp" lemma="minstens" pos="adv" postag="BW()" pt="bw" rel="mod" root="minstens" sense="minstens" word="minstens"/>
+      <node begin="10" cat="np" end="13" id="16" rel="obj1">
+        <node begin="10" end="11" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="17" infl="pl_num" lcat="detp" lemma="zestien" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="zestien" sense="zestien" special="hoofd" word="zestien"/>
+        <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(ende(padv))" his="compound" his_1="hyphen" id="18" infl="e" lcat="ppres" lemma="Hindi_sprekend" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="mod" root="Hindi_sprekend" sense="Hindi_sprekend" vform="gerund" word="Hindi-sprekende" wvorm="od"/>
+        <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="migrant" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="migrant" sense="migrant" word="migranten"/>
+      </node>
+    </node>
+    <node begin="13" end="14" frame="punct(punt)" his="normal" his_1="normal" id="20" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="5">Diezelfde dag vermoorden separatistische rebellen in de deelstaat Assam minstens zestien Hindi-sprekende migranten .</sentence>
+  <comments>
+    <comment>Q#5|Diezelfde dag vermoorden separatistische rebellen in de deelstaat Assam minstens zestien Hindi-sprekende migranten .|1|1|-2.8210136122599985</comment>
+  </comments>
+</alpino_ds>

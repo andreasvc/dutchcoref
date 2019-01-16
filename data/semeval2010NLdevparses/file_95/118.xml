@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="11" id="0" rel="top">
+    <node begin="0" cat="smain" end="10" id="1" rel="--">
+      <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="2" infl="no_e" lcat="ap" lemma="waarschijnlijk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="waarschijnlijk" sense="waarschijnlijk" vform="adj" word="Waarschijnlijk"/>
+      <node begin="1" end="2" frame="verb(hebben,past(pl),nonp_pred_np_ndev)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="heb" sc="nonp_pred_np_ndev" sense="heb" stype="declarative" tense="past" word="hadden" wvorm="pv"/>
+      <node begin="2" cat="np" end="6" id="4" rel="su">
+        <node begin="2" end="3" frame="modal_adverb" his="normal" his_1="normal" id="5" lcat="advp" lemma="alleen" pos="adv" postag="BW()" pt="bw" rel="mod" root="alleen" sc="modal" sense="alleen" word="alleen"/>
+        <node begin="3" buiging="met-e" end="4" frame="determiner(pl_num,nwh,nmod,pro,yparg)" his="normal" his_1="normal" id="6" infl="pl_num" lcat="detp" lemma="sommige" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="sommige" sense="sommige" vwtype="onbep" wh="nwh" word="sommige"/>
+        <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="7" infl="e" lcat="ap" lemma="vorstelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="vorstelijk" sense="vorstelijk" vform="adj" word="vorstelijke"/>
+        <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="administratie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="administratie" sense="administratie" word="administraties"/>
+      </node>
+      <node begin="6" cat="np" end="8" id="9" rel="obj1">
+        <node aform="compar" begin="6" buiging="zonder" end="7" frame="adjective(meer)" graad="comp" his="w_dia" id="10" infl="meer" lcat="ap" lemma="meer" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,comp)" pt="vnw" rel="det" root="meer" sense="meer" vform="adj" vwtype="onbep" word="méér"/>
+        <node begin="7" end="8" frame="noun(both,count,pl)" gen="both" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="mens" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="mens" sense="mens" word="mensen"/>
+      </node>
+      <node begin="8" cat="pp" end="10" id="12" rel="predc">
+        <node begin="8" end="9" frame="preposition(in,[])" his="normal" his_1="normal" id="13" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="9" end="10" frame="noun(de,count,sg,pred_pp(in))" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="dienst" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="dienst" sc="pred_pp(in)" sense="dienst" word="dienst"/>
+      </node>
+    </node>
+    <node begin="10" end="11" frame="punct(punt)" his="normal" his_1="normal" id="15" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="118">Waarschijnlijk hadden alleen sommige vorstelijke administraties méér mensen in dienst .</sentence>
+  <comments>
+    <comment>Q#118|Waarschijnlijk hadden alleen sommige vorstelijke administraties méér mensen in dienst .|1|1|-0.06396264636000015</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="47" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(dubb_punt)" his="normal" his_1="normal" id="1" lcat="punct" lemma=":" pos="punct" postag="LET()" pt="let" rel="--" root=":" sense=":" special="dubb_punt" word=":"/>
+    <node begin="13" end="14" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="20" end="21" frame="punct(punt_komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma=";" pos="punct" postag="LET()" pt="let" rel="--" root=";" sense=";" special="punt_komma" word=";"/>
+    <node begin="35" end="36" frame="punct(punt_komma)" his="normal" his_1="normal" id="4" lcat="punct" lemma=";" pos="punct" postag="LET()" pt="let" rel="--" root=";" sense=";" special="punt_komma" word=";"/>
+    <node begin="0" cat="du" end="46" id="5" rel="--">
+      <node begin="0" cat="smain" end="6" id="6" rel="nucl">
+        <node begin="0" cat="mwu" end="2" his="normal" his_1="names_dictionary" id="7" mwu_root="Guy Verhofstadt" mwu_sense="Guy Verhofstadt" rel="su">
+          <node begin="0" end="1" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Guy" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Guy" sense="Guy" spectype="deeleigen" word="Guy"/>
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="9" lcat="np" lemma="Verhofstadt" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Verhofstadt" sense="Verhofstadt" spectype="deeleigen" word="Verhofstadt"/>
+        </node>
+        <node begin="2" end="3" frame="verb(hebben,sg3,transitive_ndev)" his="normal" his_1="normal" id="10" infl="sg3" lcat="smain" lemma="doen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="doe" sc="transitive_ndev" sense="doe" stype="declarative" tense="present" word="doet" wvorm="pv"/>
+        <node begin="3" end="4" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" genus="onz" getal="ev" his="normal" his_1="normal" id="11" infl="het" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="det" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="obj1" rnum="sg" root="het" sense="het" status="red" vwtype="pers" wh="nwh" word="het"/>
+        <node begin="4" end="5" frame="adverb" his="normal" his_1="normal" id="12" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+        <node aform="base" begin="5" buiging="zonder" end="6" frame="adjective(no_e(adv))" graad="basis" his="form_of_suffix" his_1="aans" id="13" infl="no_e" lcat="ap" lemma="thatcheriaans" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="thatcheriaans" sense="thatcheriaans" vform="adj" word="Thatcheriaans"/>
+      </node>
+      <node begin="7" cat="du" end="46" id="14" rel="sat">
+        <node begin="7" cat="smain" end="20" id="15" rel="dp">
+          <node begin="7" cat="pp" end="10" id="16" rel="ld">
+            <node begin="7" end="8" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="17" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+            <node begin="8" cat="np" end="10" id="18" rel="obj1">
+              <node aform="base" begin="8" buiging="met-e" end="9" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="19" infl="e" lcat="ap" lemma="sociaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="sociaal" sense="sociaal" vform="adj" word="sociale"/>
+              <node begin="9" end="10" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="conflict" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="conflict" sense="conflict" word="conflicten"/>
+            </node>
+          </node>
+          <node begin="10" end="11" frame="verb(hebben,sg3,ld_pp)" his="normal" his_1="normal" id="21" infl="sg3" lcat="smain" lemma="horen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="hoor" sc="ld_pp" sense="hoor" stype="declarative" tense="present" word="hoort" wvorm="pv"/>
+          <node begin="11" cat="np" end="16" id="22" rel="su">
+            <node aform="base" begin="11" buiging="zonder" end="12" frame="adjective(ge_no_e(adv))" graad="basis" his="normal" his_1="normal" id="23" infl="no_e" lcat="ppart" lemma="verplicht" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="verplicht" sense="verplicht" vform="psp" word="verplicht"/>
+            <node begin="12" end="13" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="overleg" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="overleg" sense="overleg" word="overleg"/>
+            <node begin="14" cat="ap" end="16" id="25" rel="mod">
+              <node begin="14" end="15" frame="adverb" his="normal" his_1="normal" id="26" lcat="advp" lemma="zo" pos="adv" postag="BW()" pt="bw" rel="mod" root="zo" sense="zo" word="zo"/>
+              <node aform="base" begin="15" buiging="zonder" end="16" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="27" infl="no_e" lcat="ap" lemma="nodig" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="nodig" sense="nodig" vform="adj" word="nodig"/>
+            </node>
+          </node>
+          <node begin="16" cat="pp" end="20" id="28" rel="mod">
+            <node begin="16" end="17" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="29" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+            <node begin="17" cat="np" end="20" id="30" rel="obj1">
+              <node begin="17" end="18" frame="determiner(een)" his="normal" his_1="normal" id="31" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node aform="base" begin="18" buiging="zonder" end="19" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="32" infl="no_e" lcat="ap" lemma="sociaal" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="sociaal" sense="sociaal" vform="adj" word="sociaal"/>
+              <node begin="19" end="20" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="bemiddelaar" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bemiddelaar" sense="bemiddelaar" word="bemiddelaar"/>
+            </node>
+          </node>
+        </node>
+        <node begin="21" cat="du" end="46" id="34" rel="dp">
+          <node begin="21" cat="smain" end="35" id="35" rel="dp">
+            <node begin="21" cat="np" end="23" id="36" index="1" rel="su">
+              <node begin="21" end="22" frame="determiner(de)" his="normal" his_1="normal" id="37" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="22" end="23" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="38" lcat="np" lemma="werkgever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="werkgever" sense="werkgever" word="werkgevers"/>
+            </node>
+            <node begin="23" end="24" frame="verb(hebben,pl,modifier(aux(inf)))" his="normal" his_1="normal" id="39" infl="pl" lcat="smain" lemma="mogen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="mag" sc="modifier(aux(inf))" sense="mag" stype="declarative" tense="present" word="mogen" wvorm="pv"/>
+            <node begin="21" cat="inf" end="35" id="40" rel="vc">
+              <node begin="21" end="23" id="41" index="1" rel="su"/>
+              <node begin="24" cat="advp" end="26" his="normal" his_1="normal" id="42" rel="mod">
+                <node begin="24" end="25" frame="adverb" id="43" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="hd" root="niet" sense="niet" word="niet"/>
+                <node aform="compar" begin="25" buiging="zonder" end="26" frame="adjective(er(tmpadv))" graad="comp" id="44" infl="no_e" lcat="ap" lemma="langer" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="mod" root="langer" sense="langer" vform="adj" word="langer"/>
+              </node>
+              <node begin="26" cat="pp" end="32" id="45" rel="mod">
+                <node begin="26" end="27" frame="preposition(achter,[aan,door,langs,om,uit,vandaan])" his="normal" his_1="normal" id="46" lcat="pp" lemma="achter" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="achter" sense="achter" vztype="init" word="achter"/>
+                <node begin="27" cat="np" end="32" id="47" rel="obj1">
+                  <node begin="27" end="28" frame="determiner(de)" his="normal" his_1="normal" id="48" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="28" end="29" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="49" lcat="np" lemma="rug" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rug" sense="rug" word="rug"/>
+                  <node begin="29" cat="pp" end="32" id="50" rel="mod">
+                    <node begin="29" end="30" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="51" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                    <node begin="30" cat="np" end="32" id="52" rel="obj1">
+                      <node begin="30" end="31" frame="determiner(de)" his="normal" his_1="normal" id="53" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                      <node begin="31" end="32" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="54" lcat="np" lemma="bond" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bond" sense="bond" word="bonden"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node begin="32" cat="np" end="34" id="55" rel="obj1">
+                <node begin="32" end="33" frame="determiner(de)" his="normal" his_1="normal" id="56" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="33" end="34" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="57" lcat="np" lemma="rechter" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rechter" sense="rechter" word="rechter"/>
+              </node>
+              <node begin="34" buiging="zonder" end="35" frame="verb(hebben,inf,ninv(transitive,part_transitive(in)))" his="normal" his_1="part-V" id="58" infl="inf" lcat="inf" lemma="in_schakelen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="schakel_in" sc="part_transitive(in)" sense="schakel_in" word="inschakelen" wvorm="inf"/>
+            </node>
+          </node>
+          <node begin="36" cat="smain" end="46" id="59" rel="dp">
+            <node begin="36" cat="np" end="38" id="60" rel="su">
+              <node aform="base" begin="36" buiging="met-e" end="37" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="61" infl="e" lcat="ap" lemma="collectief" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="collectief" sense="collectief" vform="adj" word="collectieve"/>
+              <node begin="37" end="38" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="62" lcat="np" lemma="conflict" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="conflict" sense="conflict" word="conflicten"/>
+            </node>
+            <node begin="38" end="39" frame="verb(zijn,pl,ld_pp)" his="normal" his_1="normal" id="63" infl="pl" lcat="smain" lemma="verhuizen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="verhuis" sc="ld_pp" sense="verhuis" stype="declarative" tense="present" word="verhuizen" wvorm="pv"/>
+            <node begin="39" cat="pp" end="43" id="64" rel="mod">
+              <node begin="39" end="40" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="65" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="40" cat="np" end="43" id="66" rel="obj1">
+                <node begin="40" end="41" frame="determiner(de)" his="normal" his_1="normal" id="67" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node aform="base" begin="41" buiging="met-e" end="42" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="68" infl="e" lcat="ap" lemma="burgerlijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="burgerlijk" sense="burgerlijk" vform="adj" word="burgerlijke"/>
+                <node begin="42" end="43" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="69" lcat="np" lemma="rechtbank" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rechtbank" sense="rechtbank" word="rechtbank"/>
+              </node>
+            </node>
+            <node begin="43" cat="pp" end="46" id="70" rel="ld">
+              <node begin="43" end="44" frame="preposition(naar,[toe])" his="normal" his_1="normal" id="71" lcat="pp" lemma="naar" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naar" sense="naar" vztype="init" word="naar"/>
+              <node begin="44" cat="np" end="46" id="72" rel="obj1">
+                <node begin="44" end="45" frame="determiner(de)" his="normal" his_1="normal" id="73" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="45" end="46" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="74" lcat="np" lemma="arbeid_rechtbank" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="arbeid_rechtbank" sense="arbeid_rechtbank" word="arbeidsrechtbank"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="46" end="47" frame="punct(punt)" his="normal" his_1="normal" id="75" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="64">Guy Verhofstadt doet het niet Thatcheriaans : bij sociale conflicten hoort verplicht overleg , zo nodig met een sociaal bemiddelaar ; de werkgevers mogen niet langer achter de rug van de bonden de rechter inschakelen ; collectieve conflicten verhuizen van de burgerlijke rechtbank naar de arbeidsrechtbank .</sentence>
+  <comments>
+    <comment>Q#64|Guy Verhofstadt doet het niet Thatcheriaans : bij sociale conflicten hoort verplicht overleg , zo nodig met een sociaal bemiddelaar ; de werkgevers mogen niet langer achter de rug van de bonden de rechter inschakelen ; collectieve conflicten verhuizen van de burgerlijke rechtbank naar de arbeidsrechtbank .|1|1|-3.701732902080003</comment>
+  </comments>
+</alpino_ds>

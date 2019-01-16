@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="10" id="0" rel="top">
+    <node begin="0" cat="du" end="9" id="1" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="du" lemma="maar" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="maar" sc="root" sense="maar" word="Maar"/>
+      <node begin="1" cat="smain" end="9" id="3" rel="nucl">
+        <node begin="1" cat="np" end="3" id="4" index="1" rel="su">
+          <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="premier" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="premier" sense="premier" word="premier"/>
+        </node>
+        <node begin="3" end="4" frame="verb(unacc,sg_heeft,passive)" his="normal" his_1="normal" id="7" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="passive" sense="ben" stype="declarative" tense="present" word="is" wvorm="pv"/>
+        <node begin="1" cat="ppart" end="9" id="8" rel="vc">
+          <node begin="1" end="3" id="9" index="1" rel="obj1"/>
+          <node begin="4" buiging="zonder" end="5" frame="verb(hebben,psp,ninv(transitive,part_transitive(op)))" his="normal" his_1="part-V" id="10" infl="psp" lcat="ppart" lemma="op_jutten" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="jut_op" sc="part_transitive(op)" sense="jut_op" word="opgejut" wvorm="vd"/>
+          <node begin="5" cat="pp" end="9" id="11" rel="mod">
+            <node begin="5" end="6" frame="preposition(door,[heen])" his="normal" his_1="normal" id="12" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+            <node begin="6" cat="mwu" end="9" his="normal" his_1="names_dictionary" id="13" mwu_root="Karel De Gucht" mwu_sense="Karel De Gucht" rel="obj1">
+              <node begin="6" end="7" frame="proper_name(sg,'PER')" id="14" lcat="np" lemma="Karel" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Karel" sense="Karel" spectype="deeleigen" word="Karel"/>
+              <node begin="7" end="8" frame="proper_name(sg,'PER')" id="15" lcat="np" lemma="De" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="De" sense="De" spectype="deeleigen" word="De"/>
+              <node begin="8" end="9" frame="proper_name(sg,'PER')" id="16" lcat="np" lemma="Gucht" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Gucht" sense="Gucht" spectype="deeleigen" word="Gucht"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="9" end="10" frame="punct(punt)" his="normal" his_1="normal" id="17" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="61">Maar de premier is opgejut door Karel De Gucht .</sentence>
+  <comments>
+    <comment>Q#61|Maar de premier is opgejut door Karel De Gucht .|1|1|-4.606736151320001</comment>
+  </comments>
+</alpino_ds>

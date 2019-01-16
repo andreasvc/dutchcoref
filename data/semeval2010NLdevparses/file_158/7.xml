@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="22" id="0" rel="top">
+    <node begin="0" cat="smain" end="21" id="1" rel="--">
+      <node begin="0" cat="np" end="4" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="Het"/>
+        <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="vak_blad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="vak_blad" sense="vak_blad" word="vakblad"/>
+        <node begin="2" cat="mwu" end="4" his="name" his_1="not_begin" id="5" mwu_root="Science News" mwu_sense="Science News" rel="app">
+          <node begin="2" end="3" frame="proper_name(both,'ORG')" id="6" lcat="np" lemma="Science" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="Science" sense="Science" spectype="deeleigen" word="Science"/>
+          <node begin="3" end="4" frame="proper_name(both,'ORG')" id="7" lcat="np" lemma="News" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="News" sense="News" spectype="deeleigen" word="News"/>
+        </node>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,past(sg),sbar)" his="normal" his_1="normal" id="8" infl="sg" lcat="smain" lemma="rapporteren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="rapporteer" sc="sbar" sense="rapporteer" stype="declarative" tense="past" word="rapporteerde" wvorm="pv"/>
+      <node begin="5" cat="cp" end="21" id="9" rel="vc">
+        <node begin="5" conjtype="onder" end="6" frame="complementizer(dat)" his="normal" his_1="normal" id="10" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="6" cat="ssub" end="21" id="11" rel="body">
+          <node begin="10" end="11" frame="verb(hebben,pl,aux(te))" his="normal" his_1="normal" id="12" infl="pl" lcat="ssub" lemma="lijken" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="lijk" sc="aux(te)" sense="lijk" tense="present" word="lijken" wvorm="pv"/>
+          <node begin="6" cat="ti" end="21" id="13" rel="vc">
+            <node begin="11" end="12" frame="complementizer(te)" his="normal" his_1="normal" id="14" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+            <node begin="6" cat="inf" end="21" id="15" rel="body">
+              <node begin="12" buiging="zonder" end="13" frame="verb(unacc,inf,passive)" his="normal" his_1="normal" id="16" infl="inf" lcat="inf" lemma="worden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="word" sc="passive" sense="word" word="worden" wvorm="inf"/>
+              <node begin="6" cat="ppart" end="21" id="17" rel="vc">
+                <node begin="8" end="9" frame="adverb" his="normal" his_1="normal" id="18" lcat="advp" lemma="vooral" pos="adv" postag="BW()" pt="bw" rel="mod" root="vooral" sense="vooral" word="vooral"/>
+                <node begin="9" buiging="zonder" end="10" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="19" infl="psp" lcat="ppart" lemma="produceren" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="produceer" sc="transitive" sense="produceer" word="geproduceerd" wvorm="vd"/>
+                <node begin="13" cat="pp" end="15" id="20" rel="mod">
+                  <node begin="13" end="14" frame="preposition(door,[heen])" his="normal" his_1="normal" id="21" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+                  <node begin="14" end="15" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="22" lcat="np" lemma="bodem_schimmel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="bodem_schimmel" sense="bodem_schimmel" word="bodemschimmels"/>
+                </node>
+                <node begin="6" cat="np" end="21" id="23" index="1" rel="obj1">
+                  <node aform="base" begin="6" buiging="met-e" end="7" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="24" infl="e" lcat="ap" lemma="schadelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="schadelijk" sense="schadelijk" vform="adj" word="schadelijke"/>
+                  <node begin="7" end="8" frame="noun(both,both,both)" gen="both" getal="mv" graad="basis" his="noun" id="25" lcat="np" lemma="methylhalides" ntype="soort" num="both" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="methylhalides" sense="methylhalides" word="methylhalides"/>
+                  <node begin="15" cat="rel" end="21" id="26" rel="mod">
+                    <node begin="15" case="no_obl" end="16" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="27" index="2" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="pl" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+                    <node begin="15" cat="ssub" end="21" id="28" rel="body">
+                      <node begin="15" end="16" id="29" index="2" rel="su"/>
+                      <node begin="16" cat="np" end="18" id="30" rel="obj1">
+                        <node aform="base" begin="16" buiging="met-e" end="17" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="31" infl="e" lcat="ap" lemma="symbiotisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="symbiotisch" sense="symbiotisch" vform="adj" word="symbiotische"/>
+                        <node begin="17" end="18" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="32" lcat="np" lemma="relatie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="relatie" sense="relatie" word="relaties"/>
+                      </node>
+                      <node begin="18" cat="pp" end="20" id="33" rel="pc">
+                        <node begin="18" end="19" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="34" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+                        <node begin="19" end="20" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="35" lcat="np" lemma="boom_wortel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="boom_wortel" sense="boom_wortel" word="boomwortels"/>
+                      </node>
+                      <node begin="20" end="21" frame="verb(zijn,pl,ninv(np_pc_pp(met),part_np_pc_pp(aan,met)))" his="normal" his_1="part-V" id="36" infl="pl" lcat="ssub" lemma="aan_gaan" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ga_aan" sc="part_np_pc_pp(aan,met)" sense="ga_aan-met" tense="present" word="aangaan" wvorm="pv"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+              <node begin="6" end="21" id="37" index="1" rel="su"/>
+            </node>
+          </node>
+          <node begin="6" end="21" id="38" index="1" rel="su"/>
+        </node>
+      </node>
+    </node>
+    <node begin="21" end="22" frame="punct(punt)" his="normal" his_1="normal" id="39" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Het vakblad Science News rapporteerde dat schadelijke methylhalides vooral geproduceerd lijken te worden door bodemschimmels die symbiotische relaties met boomwortels aangaan .</sentence>
+  <comments>
+    <comment>Q#7|Het vakblad Science News rapporteerde dat schadelijke methylhalides vooral geproduceerd lijken te worden door bodemschimmels die symbiotische relaties met boomwortels aangaan .|1|1|-11.371481969419998</comment>
+  </comments>
+</alpino_ds>

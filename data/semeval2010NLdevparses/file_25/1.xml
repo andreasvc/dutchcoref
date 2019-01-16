@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="2" id="0" rel="top">
+    <node begin="0" cat="np" end="2" id="1" rel="--">
+      <node aform="base" begin="0" buiging="met-e" end="1" frame="adjective(e)" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="2" infl="e" lcat="ap" lemma="rustig" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="rustig" sense="rustig" vform="adj" word="Rustige"/>
+      <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="3" lcat="np" lemma="overgang" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="overgang" sense="overgang" word="overgang"/>
+    </node>
+  </node>
+  <sentence sentid="1">Rustige overgang</sentence>
+  <comments>
+    <comment>Q#1|Rustige overgang|1|1|0.23460482019999992</comment>
+  </comments>
+</alpino_ds>

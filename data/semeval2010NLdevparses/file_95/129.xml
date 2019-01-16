@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="3" skips="2" />
+  <node begin="0" cat="top" end="39" id="0" rel="top">
+    <node begin="11" end="12" frame="punct(dubb_punt)" his="normal" his_1="normal" id="1" lcat="punct" lemma=":" pos="punct" postag="LET()" pt="let" rel="--" root=":" sense=":" special="dubb_punt" word=":"/>
+    <node begin="12" end="13" frame="punct(aanhaal_both)" his="skip" id="2" lcat="--" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="13" end="14" frame="het_noun" genus="onz" getal="ev" his="robust_skip" id="3" lcat="--" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="noun" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="--" root="het" sense="het" special="het" status="red" vwtype="pers" word="Et"/>
+    <node begin="14" conjtype="neven" end="15" frame="conj(en)" his="robust_skip" id="4" lcat="--" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="--" root="en" sense="en" word="en"/>
+    <node begin="17" end="18" frame="punct(komma)" his="normal" his_1="normal" id="5" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="22" end="23" frame="punct(komma)" his="normal" his_1="normal" id="6" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="37" id="7" rel="--">
+      <node begin="0" cat="mwu" end="4" his="name" his_1="begin" id="8" mwu_root="Hofchroniqueur Philippe de Commines" mwu_sense="Hofchroniqueur Philippe de Commines" rel="dp">
+        <node begin="0" end="1" frame="proper_name(both,'ORG')" id="9" lcat="np" lemma="Hofchroniqueur" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Hofchroniqueur" sense="Hofchroniqueur" spectype="deeleigen" word="Hofchroniqueur"/>
+        <node begin="1" end="2" frame="proper_name(both,'ORG')" id="10" lcat="np" lemma="Philippe" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Philippe" sense="Philippe" spectype="deeleigen" word="Philippe"/>
+        <node begin="2" end="3" frame="proper_name(both,'ORG')" id="11" lcat="np" lemma="de" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="de" sense="de" spectype="deeleigen" word="de"/>
+        <node begin="3" end="4" frame="proper_name(both,'ORG')" id="12" lcat="np" lemma="Commines" neclass="ORG" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Commines" sense="Commines" spectype="deeleigen" word="Commines"/>
+      </node>
+      <node begin="4" cat="sv1" end="11" id="13" rel="dp">
+        <node begin="4" end="5" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="14" infl="sg" lcat="sv1" lemma="roemen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="roem" sc="transitive" sense="roem" stype="ynquestion" tense="past" word="roemde" wvorm="pv"/>
+        <node begin="5" cat="np" end="10" id="15" rel="su">
+          <node begin="5" end="6" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="16" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+          <node begin="6" end="7" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="handelshuis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="handelshuis" sense="handelshuis" word="handelshuis"/>
+          <node begin="7" cat="cp" end="10" id="18" rel="mod">
+            <node begin="7" end="8" frame="complementizer(als)" his="normal" his_1="normal" id="19" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+            <node begin="8" cat="mwu" end="10" his="normal" his_1="het Asuper" his_1_1="normal" id="20" mwu_root="groot" mwu_sense="groot" rel="body">
+              <node aform="super" begin="8" end="9" frame="adjective(het_st(adv))" id="21" infl="pred" lcat="ap" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="adj" postag="LID(bep,stan,evon)" pt="lid" rel="mwp" root="het" sense="het" vform="adj" word="het"/>
+              <node aform="super" begin="9" buiging="met-e" end="10" frame="adjective(het_st(adv))" getal-n="zonder-n" graad="sup" id="22" infl="pred" lcat="ap" lemma="grootste" naamval="stan" pos="adj" positie="nom" postag="ADJ(nom,sup,met-e,zonder-n,stan)" pt="adj" rel="mwp" root="grootste" sense="grootste" vform="adj" word="grootste"/>
+            </node>
+          </node>
+        </node>
+        <node begin="10" end="11" frame="tmp_adverb" his="normal" his_1="normal" id="23" lcat="advp" lemma="ooit" pos="adv" postag="BW()" pt="bw" rel="mod" root="ooit" sense="ooit" special="tmp" word="ooit"/>
+      </node>
+      <node begin="15" cat="np" end="37" id="24" rel="dp">
+        <node begin="15" cat="mwu" end="17" his="name" his_1="not_begin" id="25" mwu_root="son cas" mwu_sense="son cas" rel="hd">
+          <node begin="15" end="16" frame="proper_name(both)" id="26" lcat="np" lemma="son" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="son" sense="son" spectype="deeleigen" word="son"/>
+          <node begin="16" end="17" frame="proper_name(both)" id="27" lcat="np" lemma="cas" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="cas" sense="cas" spectype="deeleigen" word="cas"/>
+        </node>
+        <node begin="18" cat="mwu" end="22" his="name" his_1="not_begin" id="28" mwu_root="qui estoit de marchandise" mwu_sense="qui estoit de marchandise" rel="app">
+          <node begin="18" end="19" frame="proper_name(both)" id="29" lcat="np" lemma="qui" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="qui" sense="qui" spectype="deeleigen" word="qui"/>
+          <node begin="19" end="20" frame="proper_name(both)" id="30" lcat="np" lemma="estoit" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="estoit" sense="estoit" spectype="deeleigen" word="estoit"/>
+          <node begin="20" end="21" frame="proper_name(both)" id="31" lcat="np" lemma="de" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="de" sense="de" spectype="deeleigen" word="de"/>
+          <node begin="21" end="22" frame="proper_name(both)" id="32" lcat="np" lemma="marchandise" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="marchandise" sense="marchandise" spectype="deeleigen" word="marchandise"/>
+        </node>
+        <node begin="23" cat="np" end="37" id="33" rel="app">
+          <node begin="23" cat="mwu" end="25" his="normal" his_1="english_compound" id="34" mwu_root="estoit_la" mwu_sense="estoit_la" rel="hd">
+            <node begin="23" end="24" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" id="35" lcat="np" lemma="estoit" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" rnum="sg" root="estoit" sense="estoit" word="estoit"/>
+            <node begin="24" end="25" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" id="36" lcat="np" lemma="la" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" rnum="sg" root="la" sense="la" word="la"/>
+          </node>
+          <node begin="25" cat="pp" end="37" id="37" rel="mod">
+            <node begin="25" end="26" frame="preposition(plus,[])" his="normal" his_1="normal" id="38" lcat="pp" lemma="plus" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="plus" sense="plus" vztype="init" word="plus"/>
+            <node begin="26" cat="np" end="37" id="39" rel="obj1">
+              <node begin="26" end="27" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="40" lcat="np" lemma="grant" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="grant" sense="grant" word="grant"/>
+              <node begin="27" cat="np" end="37" id="41" rel="app">
+                <node begin="27" end="28" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="42" lcat="np" lemma="maison" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="maison" sense="maison" word="maison"/>
+                <node begin="28" cat="mwu" end="37" his="name" his_1="not_begin" id="43" mwu_root="que je croy qui jamais ait esté au monde" mwu_sense="que je croy qui jamais ait esté au monde" rel="app">
+                  <node begin="28" end="29" frame="proper_name(both)" id="44" lcat="np" lemma="que" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="que" sense="que" spectype="deeleigen" word="que"/>
+                  <node begin="29" end="30" frame="proper_name(both)" id="45" lcat="np" lemma="je" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="je" sense="je" spectype="deeleigen" word="je"/>
+                  <node begin="30" end="31" frame="proper_name(both)" id="46" lcat="np" lemma="croy" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="croy" sense="croy" spectype="deeleigen" word="croy"/>
+                  <node begin="31" end="32" frame="proper_name(both)" id="47" lcat="np" lemma="qui" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="qui" sense="qui" spectype="deeleigen" word="qui"/>
+                  <node begin="32" end="33" frame="proper_name(both)" id="48" lcat="np" lemma="jamais" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="jamais" sense="jamais" spectype="deeleigen" word="jamais"/>
+                  <node begin="33" end="34" frame="proper_name(both)" id="49" lcat="np" lemma="ait" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="ait" sense="ait" spectype="deeleigen" word="ait"/>
+                  <node begin="34" end="35" frame="proper_name(both)" id="50" lcat="np" lemma="esté" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="esté" sense="esté" spectype="deeleigen" word="esté"/>
+                  <node begin="35" end="36" frame="proper_name(both)" id="51" lcat="np" lemma="au" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="au" sense="au" spectype="deeleigen" word="au"/>
+                  <node begin="36" end="37" frame="proper_name(both)" id="52" lcat="np" lemma="monde" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" root="monde" sense="monde" spectype="deeleigen" word="monde"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="37" end="38" frame="punct(aanhaal_both)" his="robust_skip" id="53" lcat="--" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="38" end="39" frame="punct(punt)" his="robust_skip" id="54" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="129">Hofchroniqueur Philippe de Commines roemde het handelshuis als het grootste ooit : &apos; Et en son cas , qui estoit de marchandise , estoit la plus grant maison que je croy qui jamais ait esté au monde &apos; .</sentence>
+  <comments>
+    <comment>Q#129|Hofchroniqueur Philippe de Commines roemde het handelshuis als het grootste ooit : &apos; Et en son cas , qui estoit de marchandise , estoit la plus grant maison que je croy qui jamais ait esté au monde &apos; .|1|5|19.486270233079992</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="3" id="0" rel="top">
+    <node begin="0" cat="pp" end="3" id="1" rel="--">
+      <node begin="0" end="1" frame="preposition(uit,[vandaan])" his="special" his_1="decap" his_1_1="normal" id="2" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="UIT"/>
+      <node begin="1" cat="np" end="3" id="3" rel="obj1">
+        <node begin="1" end="2" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="special" his_1="decap" his_1_1="normal" id="4" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="HET"/>
+        <node begin="2" end="3" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="special" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="nieuws" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="nieuws" sense="nieuws" word="NIEUWS"/>
+      </node>
+    </node>
+  </node>
+  <sentence sentid="1">UIT HET NIEUWS</sentence>
+  <comments>
+    <comment>Q#1|UIT HET NIEUWS|1|1|-1.37139935304</comment>
+  </comments>
+</alpino_ds>

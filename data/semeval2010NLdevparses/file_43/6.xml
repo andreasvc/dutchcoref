@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="smain" end="14" id="1" rel="--">
+      <node begin="0" cat="pp" end="4" id="2" rel="mod">
+        <node begin="0" end="1" frame="preposition(volgens,[])" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="pp" lemma="volgens" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="volgens" sense="volgens" vztype="init" word="Volgens"/>
+        <node begin="1" cat="np" end="4" id="4" rel="obj1">
+          <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node aform="compar" begin="2" buiging="met-e" end="3" frame="adjective(ere)" graad="comp" his="normal" his_1="normal" id="6" infl="e" lcat="ap" lemma="hoog" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,comp,met-e,stan)" pt="adj" rel="mod" root="hoog" sense="hoog" vform="adj" word="hogere"/>
+          <node begin="3" end="4" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="overheid" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="overheid" sense="overheid" word="overheden"/>
+        </node>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,pl,transitive)" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="bezitten" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="bezit" sc="transitive" sense="bezit" stype="declarative" tense="present" word="bezitten" wvorm="pv"/>
+      <node begin="5" cat="np" end="7" id="9" rel="su">
+        <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="10" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="gemeente" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="gemeente" sense="gemeente" word="gemeenten"/>
+      </node>
+      <node begin="7" end="8" frame="adverb" his="normal" his_1="normal" id="12" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+      <node begin="8" cat="np" end="14" id="13" rel="obj1">
+        <node begin="8" end="9" frame="determiner(de)" his="normal" his_1="normal" id="14" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="9" end="10" frame="noun(de,count,sg,vp)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="bevoegdheid" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bevoegdheid" sc="vp" sense="bevoegdheid" word="bevoegdheid"/>
+        <node begin="10" cat="oti" end="14" id="16" rel="vc">
+          <node begin="10" end="11" frame="complementizer(om)" his="normal" his_1="normal" id="17" lcat="oti" lemma="om" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="om" sc="om" sense="om" vztype="init" word="om"/>
+          <node begin="11" cat="ti" end="14" id="18" rel="body">
+            <node begin="12" end="13" frame="complementizer(te)" his="normal" his_1="normal" id="19" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+            <node begin="11" cat="inf" end="14" id="20" rel="body">
+              <node begin="11" end="12" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="21" lcat="np" lemma="product" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="product" sense="product" word="producten"/>
+              <node begin="13" buiging="zonder" end="14" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="22" infl="inf" lcat="inf" lemma="verbieden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="verbied" sc="transitive" sense="verbied" word="verbieden" wvorm="inf"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="23" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="6">Volgens de hogere overheden bezitten de gemeenten niet de bevoegdheid om producten te verbieden .</sentence>
+  <comments>
+    <comment>Q#6|Volgens de hogere overheden bezitten de gemeenten niet de bevoegdheid om producten te verbieden .|1|1|-8.35309944374</comment>
+  </comments>
+</alpino_ds>

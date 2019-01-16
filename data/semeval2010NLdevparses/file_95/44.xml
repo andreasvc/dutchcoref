@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="18" id="0" rel="top">
+    <node begin="0" cat="smain" end="17" id="1" rel="--">
+      <node begin="0" cat="np" end="3" id="2" index="1" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="4" infl="e" lcat="ap" lemma="Vlaams" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Vlaams" sense="Vlaams" vform="adj" word="Vlaamse"/>
+        <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="vorst" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vorst" sense="vorst" word="vorsten"/>
+      </node>
+      <node begin="3" end="4" frame="verb(hebben,past(pl),aux_psp_hebben)" his="normal" his_1="normal" id="6" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="heb" sc="aux_psp_hebben" sense="heb" stype="declarative" tense="past" word="hadden" wvorm="pv"/>
+      <node begin="0" cat="ppart" end="17" id="7" rel="vc">
+        <node begin="0" end="3" id="8" index="1" rel="su"/>
+        <node begin="4" cat="np" end="6" id="9" rel="obj2">
+          <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="10" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="koopman" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="koopman" sense="koopman" word="kooplui"/>
+        </node>
+        <node begin="6" cat="np" end="9" id="12" rel="obj1">
+          <node begin="6" cat="detp" end="8" his="normal" his_1="normal" id="13" rel="det">
+            <node begin="6" buiging="zonder" end="7" frame="intensifier" graad="basis" id="14" lcat="advp" lemma="heel" pos="adv" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="heel" sense="heel" special="intensifier" word="heel"/>
+            <node begin="7" end="8" frame="determiner(wat,nwh,mod,pro,nparg,ntopicpro)" getal="ev" id="15" infl="wat" lcat="detp" lemma="wat" naamval="stan" pdtype="pron" persoon="3o" pos="det" postag="VNW(onbep,pron,stan,vol,3o,ev)" pt="vnw" rel="hd" root="wat" sense="wat" status="vol" vwtype="onbep" wh="nwh" word="wat"/>
+          </node>
+          <node begin="8" end="9" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="voorrecht" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="voorrecht" sense="voorrecht" word="voorrechten"/>
+        </node>
+        <node begin="9" buiging="zonder" end="10" frame="verb(hebben,psp,np_np)" his="normal" his_1="normal" id="17" infl="psp" lcat="ppart" lemma="schenken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="schenk" sc="np_np" sense="schenk" word="geschonken" wvorm="vd"/>
+        <node begin="10" cat="cp" end="17" id="18" rel="mod">
+          <node begin="10" conjtype="onder" end="11" frame="complementizer" his="normal" his_1="normal" id="19" lcat="cp" lemma="opdat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="opdat" sense="opdat" word="opdat"/>
+          <node begin="11" cat="ssub" end="17" id="20" rel="body">
+            <node begin="11" case="both" def="def" end="12" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="21" index="2" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+            <node begin="15" end="16" frame="verb(hebben,past(pl),aux(inf))" his="normal" his_1="normal" id="22" infl="pl" lcat="ssub" lemma="zullen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="zal" sc="aux(inf)" sense="zal" tense="past" word="zouden" wvorm="pv"/>
+            <node begin="11" cat="inf" end="17" id="23" rel="vc">
+              <node begin="11" end="12" id="24" index="2" rel="su"/>
+              <node begin="12" cat="pp" end="15" id="25" rel="ld">
+                <node begin="12" end="13" frame="preposition(in,[])" his="normal" his_1="normal" id="26" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="13" cat="np" end="15" id="27" rel="obj1">
+                  <node begin="13" end="14" frame="determiner(de)" his="normal" his_1="normal" id="28" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="14" end="15" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="stad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="stad" sense="stad" word="stad"/>
+                </node>
+              </node>
+              <node begin="16" buiging="zonder" end="17" frame="verb(unacc,inf,ld_pp)" his="normal" his_1="normal" id="30" infl="inf" lcat="inf" lemma="blijven" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="blijf" sc="ld_pp" sense="blijf" word="blijven" wvorm="inf"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="17" end="18" frame="punct(punt)" his="normal" his_1="normal" id="31" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="44">De Vlaamse vorsten hadden de kooplui heel wat voorrechten geschonken opdat ze in de stad zouden blijven .</sentence>
+  <comments>
+    <comment>Q#44|De Vlaamse vorsten hadden de kooplui heel wat voorrechten geschonken opdat ze in de stad zouden blijven .|1|1|-10.632553377739999</comment>
+  </comments>
+</alpino_ds>

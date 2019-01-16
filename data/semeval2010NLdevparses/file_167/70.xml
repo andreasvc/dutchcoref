@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="10" id="0" rel="top">
+    <node begin="0" cat="smain" end="9" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="su">
+        <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(odet_adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="3" infl="no_e" lcat="ap" lemma="veel" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,basis)" pt="vnw" rel="det" root="veel" sense="veel" vform="adj" vwtype="onbep" word="Veel"/>
+        <node begin="1" end="2" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="tijd" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="tijd" sense="tijd" special="tmp" word="tijd"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,sg,so_np)" his="normal" his_1="normal" id="5" infl="sg" lcat="smain" lemma="resten" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="rest" sc="so_np" sense="rest" stype="declarative" tense="present" word="rest" wvorm="pv"/>
+      <node begin="3" cat="np" end="7" id="6" rel="obj2">
+        <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(ende(padv))" his="form_of_suffix" his_1="ende" id="8" infl="e" lcat="ppres" lemma="goedogend" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="mod" root="goedogend" sense="goedogend" vform="gerund" word="goedogende" wvorm="od"/>
+        <node aform="base" begin="5" buiging="met-e" end="6" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="9" infl="e" lcat="ap" lemma="politiek" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="politiek" sense="politiek" vform="adj" word="politieke"/>
+        <node begin="6" end="7" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="hoofd_rol_speler" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="hoofd_rol_speler" sense="hoofd_rol_speler" word="hoofdrolspeler"/>
+      </node>
+      <node begin="7" end="8" frame="sentence_adverb" his="normal" his_1="normal" id="11" lcat="advp" lemma="evenwel" pos="adv" postag="BW()" pt="bw" rel="mod" root="evenwel" sense="evenwel" special="sentence" word="evenwel"/>
+      <node begin="8" end="9" frame="adverb" his="normal" his_1="normal" id="12" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+    </node>
+    <node begin="9" end="10" frame="punct(punt)" his="normal" his_1="normal" id="13" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="70">Veel tijd rest de goedogende politieke hoofdrolspeler evenwel niet .</sentence>
+  <comments>
+    <comment>Q#70|Veel tijd rest de goedogende politieke hoofdrolspeler evenwel niet .|1|1|-0.618765255959999</comment>
+  </comments>
+</alpino_ds>

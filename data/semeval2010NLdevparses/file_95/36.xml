@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="1" />
+  <node begin="0" cat="top" end="19" id="0" rel="top">
+    <node begin="0" end="1" frame="het_noun" his="robust_skip" id="1" lcat="--" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="noun" postag="LID(bep,stan,evon)" pt="lid" rel="--" root="het" sense="het" special="het" word="Het"/>
+    <node begin="12" end="13" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="2" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="14" end="15" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="3" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="1" cat="smain" end="18" id="4" rel="--">
+      <node begin="1" cat="np" end="6" id="5" rel="su">
+        <node begin="1" end="2" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="6" lcat="np" lemma="Babel" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Babel" sense="Babel" word="Babel"/>
+        <node begin="2" cat="pp" end="6" id="7" rel="mod">
+          <node begin="2" end="3" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="8" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="3" cat="np" end="6" id="9" rel="obj1">
+            <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="10" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="laag" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="laag" sense="laag" vform="adj" word="lage"/>
+            <node begin="5" end="6" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="land" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="land" sense="land" word="landen"/>
+          </node>
+        </node>
+      </node>
+      <node begin="6" end="7" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="13" infl="sg" lcat="smain" lemma="tellen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="tel" sc="transitive" sense="tel" stype="declarative" tense="past" word="telde" wvorm="pv"/>
+      <node begin="7" cat="np" end="14" id="14" rel="obj1">
+        <node begin="7" cat="detp" end="11" id="15" rel="det">
+          <node begin="7" cat="mwu" end="10" his="normal" his_1="normal" id="16" mwu_root="niet minder dan" mwu_sense="niet minder dan" rel="mod">
+            <node begin="7" end="8" frame="pre_num_adv(both)" id="17" infl="both" lcat="advp" lemma="niet" pos="det" postag="BW()" pt="bw" rel="mwp" root="niet" sense="niet" special="pre_num_adv" word="niet"/>
+            <node begin="8" buiging="zonder" end="9" frame="pre_num_adv(both)" graad="comp" id="18" infl="both" lcat="advp" lemma="minder" naamval="stan" pdtype="grad" pos="det" positie="vrij" postag="VNW(onbep,grad,stan,vrij,zonder,comp)" pt="vnw" rel="mwp" root="minder" sense="minder" special="pre_num_adv" vwtype="onbep" word="minder"/>
+            <node begin="9" conjtype="onder" end="10" frame="pre_num_adv(both)" id="19" infl="both" lcat="advp" lemma="dan" pos="det" postag="VG(onder)" pt="vg" rel="mwp" root="dan" sense="dan" special="pre_num_adv" word="dan"/>
+          </node>
+          <node begin="10" end="11" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="20" infl="pl_num" lcat="detp" lemma="zeventien" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="hd" root="zeventien" sense="zeventien" special="hoofd" word="zeventien"/>
+        </node>
+        <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(ende(padv))" graad="basis" his="normal" his_1="V-de" his_1_1="normal" id="21" infl="e" lcat="ppres" lemma="verschillen" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="verschil" sense="verschil" vform="gerund" word="verschillende"/>
+        <node begin="13" end="14" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="natie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="natie" sense="natie" word="naties"/>
+      </node>
+      <node begin="15" cat="pp" end="18" id="23" rel="mod">
+        <node begin="15" end="16" frame="preposition(onder,[door,vandaan])" his="normal" his_1="normal" id="24" lcat="pp" lemma="onder" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="onder" sense="onder" vztype="init" word="onder"/>
+        <node begin="16" cat="np" end="18" id="25" rel="obj1">
+          <node begin="16" buiging="zonder" end="17" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="26" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+          <node begin="17" end="18" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="27" lcat="np" lemma="inwoner" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="inwoner" sense="inwoner" word="inwoners"/>
+        </node>
+      </node>
+    </node>
+    <node begin="18" end="19" frame="punct(punt)" his="robust_skip" id="28" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="36">Het Babel van de lage landen telde niet minder dan zeventien verschillende &apos; naties &apos; onder zijn inwoners .</sentence>
+  <comments>
+    <comment>Q#36|Het Babel van de lage landen telde niet minder dan zeventien verschillende &apos; naties &apos; onder zijn inwoners .|1|2|1.5449832606799996</comment>
+  </comments>
+</alpino_ds>

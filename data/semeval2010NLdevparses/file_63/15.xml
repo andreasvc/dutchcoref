@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="26" id="0" rel="top">
+    <node begin="0" cat="smain" end="25" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" index="1" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" end="2" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="onderzoeker" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="onderzoeker" sense="onderzoeker" word="onderzoekers"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,pl,vp)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="proberen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="probeer" sc="vp" sense="probeer" stype="declarative" tense="present" word="proberen" wvorm="pv"/>
+      <node begin="0" cat="ti" end="25" id="6" rel="vc">
+        <node begin="5" end="6" frame="complementizer(te)" his="normal" his_1="normal" id="7" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+        <node begin="0" cat="inf" end="25" id="8" rel="body">
+          <node begin="0" end="2" id="9" index="1" rel="su"/>
+          <node begin="3" cat="np" end="5" id="10" rel="obj1">
+            <node begin="3" buiging="zonder" end="4" frame="determiner(het,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="11" infl="het" lcat="detp" lemma="dat" naamval="stan" npagr="evon" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,evon)" pt="vnw" rel="det" root="dat" sense="dat" vwtype="aanw" wh="nwh" word="dat"/>
+            <node begin="4" end="5" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="probleem" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="probleem" sense="probleem" word="probleem"/>
+          </node>
+          <node begin="6" buiging="zonder" end="7" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="13" infl="inf" lcat="inf" lemma="counteren" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="counter" sc="transitive" sense="counter" word="counteren" wvorm="inf"/>
+          <node begin="7" cat="cp" end="25" id="14" rel="mod">
+            <node begin="7" end="8" frame="complementizer(inf)" his="normal" his_1="normal" id="15" lcat="cp" lemma="door" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="door" sc="inf" sense="door" vztype="init" word="door"/>
+            <node begin="8" cat="ti" end="25" id="16" rel="body">
+              <node begin="9" end="10" frame="complementizer(te)" his="normal" his_1="normal" id="17" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+              <node begin="8" cat="inf" end="25" id="18" rel="body">
+                <node begin="10" buiging="zonder" end="11" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="19" infl="inf" lcat="inf" lemma="gebruiken" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="gebruik" sc="transitive" sense="gebruik" word="gebruiken" wvorm="inf"/>
+                <node begin="8" cat="np" end="25" id="20" rel="obj1">
+                  <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="21" lcat="np" lemma="stam" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="stam" sense="stam" word="stammen"/>
+                  <node begin="11" cat="rel" end="25" id="22" rel="mod">
+                    <node begin="11" case="no_obl" end="12" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="23" index="2" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="pl" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+                    <node begin="11" cat="ssub" end="25" id="24" rel="body">
+                      <node begin="11" end="12" id="25" index="2" rel="su"/>
+                      <node aform="base" begin="12" end="13" frame="adjective(pred(both))" his="normal" his_1="normal" id="26" infl="pred" lcat="ap" lemma="alleen" pos="adj" postag="BW()" pt="bw" rel="mod" root="alleen" sense="alleen" vform="adj" word="alleen"/>
+                      <node begin="13" end="14" frame="verb(hebben,pl,intransitive)" his="normal" his_1="normal" id="27" infl="pl" lcat="ssub" lemma="floreren" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="floreer" sc="intransitive" sense="floreer" tense="present" word="floreren" wvorm="pv"/>
+                      <node begin="14" cat="pp" end="25" id="28" rel="mod">
+                        <node begin="14" end="15" frame="preposition(in,[])" his="normal" his_1="normal" id="29" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                        <node begin="15" cat="np" end="25" id="30" rel="obj1">
+                          <node begin="15" end="16" frame="determiner(de)" his="normal" his_1="normal" id="31" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                          <node begin="16" cat="ap" end="18" id="32" rel="mod">
+                            <node aform="base" begin="16" buiging="zonder" end="17" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="33" infl="no_e" lcat="ap" lemma="uiterst" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="uiterst" sense="uiterst" vform="adj" word="uiterst"/>
+                            <node aform="base" begin="17" buiging="met-e" end="18" frame="adjective(e)" graad="basis" his="compound" his_1="2" id="34" infl="e" lcat="ap" lemma="zuurstof_arm" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="hd" root="zuurstof_arm" sense="zuurstof_arm" vform="adj" word="zuurstofarme"/>
+                          </node>
+                          <node begin="18" end="19" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="35" lcat="np" lemma="conditie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="conditie" sense="conditie" word="condities"/>
+                          <node begin="19" cat="pp" end="25" id="36" rel="mod">
+                            <node begin="19" end="20" frame="preposition(uit,[vandaan])" his="normal" his_1="normal" id="37" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="uit"/>
+                            <node begin="20" cat="np" end="25" id="38" rel="obj1">
+                              <node begin="20" end="21" frame="determiner(de)" his="normal" his_1="normal" id="39" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                              <node begin="21" end="22" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="40" lcat="np" lemma="kern" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="kern" sense="kern" word="kern"/>
+                              <node begin="22" cat="pp" end="25" id="41" rel="mod">
+                                <node begin="22" end="23" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="42" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                                <node begin="23" cat="np" end="25" id="43" rel="obj1">
+                                  <node begin="23" end="24" frame="determiner(een)" his="normal" his_1="normal" id="44" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                                  <node begin="24" end="25" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="45" lcat="np" lemma="kanker_gezwel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="kanker_gezwel" sense="kanker_gezwel" word="kankergezwel"/>
+                                </node>
+                              </node>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="25" end="26" frame="punct(punt)" his="normal" his_1="normal" id="46" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="15">De onderzoekers proberen dat probleem te counteren door stammen te gebruiken die alleen floreren in de uiterst zuurstofarme condities uit de kern van een kankergezwel .</sentence>
+  <comments>
+    <comment>Q#15|De onderzoekers proberen dat probleem te counteren door stammen te gebruiken die alleen floreren in de uiterst zuurstofarme condities uit de kern van een kankergezwel .|1|1|-1.0417309037999938</comment>
+  </comments>
+</alpino_ds>

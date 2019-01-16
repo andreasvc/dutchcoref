@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="25" id="0" rel="top">
+    <node begin="4" end="5" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="11" end="12" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="24" id="3" rel="--">
+      <node begin="0" cat="np" end="11" id="4" rel="su">
+        <node begin="0" end="1" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="Het"/>
+        <node begin="1" end="2" frame="proper_name(both,'LOC')" genus="onz" getal="ev" graad="basis" his="name" his_1="not_begin" id="6" lcat="np" lemma="Victoriameer" naamval="stan" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="Victoriameer" sense="Victoriameer" word="Victoriameer"/>
+        <node begin="2" cat="pp" end="4" id="7" rel="mod">
+          <node begin="2" end="3" frame="preposition(in,[])" his="normal" his_1="normal" id="8" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="3" end="4" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="9" lcat="np" lemma="Oost-Afrika" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Oost-Afrika" sense="Oost-Afrika" word="Oost-Afrika"/>
+        </node>
+        <node begin="5" cat="np" end="11" id="10" rel="mod">
+          <node begin="5" end="6" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="11" infl="pl_num" lcat="detp" lemma="twee" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="twee" sense="twee" special="hoofd" word="twee"/>
+          <node begin="6" end="7" frame="tmp_noun(de,count,meas)" gen="de" genus="genus" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="keer" naamval="stan" ntype="soort" num="meas" pos="noun" postag="N(soort,ev,basis,genus,stan)" pt="n" rel="hd" rnum="pl" root="keer" sense="keer" special="tmp" word="keer"/>
+          <node begin="7" cat="ap" end="11" id="13" rel="mod">
+            <node aform="base" begin="8" buiging="zonder" end="9" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="14" infl="no_e" lcat="ap" lemma="groot" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="groot" sense="groot" vform="adj" word="groot"/>
+            <node begin="7" cat="advp" end="11" id="15" rel="mod">
+              <node begin="7" comparative="als" end="8" frame="comp_adverb(als)" his="normal" his_1="normal" id="16" lcat="advp" lemma="zo" pos="adv" postag="BW()" pt="bw" rel="hd" root="zo" sense="zo" special="comp" word="zo"/>
+              <node begin="9" cat="cp" end="11" id="17" rel="obcomp">
+                <node begin="9" conjtype="onder" end="10" frame="comparative(als)" his="normal" his_1="normal" id="18" lcat="comparative" lemma="als" pos="comparative" postag="VG(onder)" pt="vg" rel="cmp" root="als" sense="als" word="als"/>
+                <node begin="10" end="11" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="19" lcat="np" lemma="België" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="body" rnum="sg" root="België" sense="België" word="België"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="12" end="13" frame="verb(hebben,sg3,intransitive)" his="normal" his_1="normal" id="20" infl="sg3" lcat="smain" lemma="kreunen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="kreun" sc="intransitive" sense="kreun" stype="declarative" tense="present" word="kreunt" wvorm="pv"/>
+      <node begin="13" cat="pp" end="24" id="21" rel="mod">
+        <node begin="13" end="14" frame="preposition(onder,[door,vandaan])" his="normal" his_1="normal" id="22" lcat="pp" lemma="onder" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="onder" sense="onder" vztype="init" word="onder"/>
+        <node begin="14" cat="np" end="24" id="23" rel="obj1">
+          <node begin="14" end="15" frame="determiner(de)" his="normal" his_1="normal" id="24" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="15" end="16" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="druk" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="druk" sense="druk" word="druk"/>
+          <node begin="16" cat="pp" end="21" id="26" rel="mod">
+            <node begin="16" end="17" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="27" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="17" cat="np" end="21" id="28" rel="obj1">
+              <node begin="17" end="18" frame="determiner(een)" his="normal" his_1="normal" id="29" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node begin="18" cat="ppres" end="20" id="30" rel="mod">
+                <node aform="base" begin="18" buiging="zonder" end="19" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="31" infl="no_e" lcat="ap" lemma="sterk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="sterk" sense="sterk" vform="adj" word="sterk"/>
+                <node aform="base" begin="19" buiging="met-e" end="20" frame="adjective(ende(padv))" his="normal" his_1="V-de" his_1_1="normal" id="32" infl="e" lcat="ppres" lemma="groeien" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="hd" root="groei" sense="groei" vform="gerund" word="groeiende" wvorm="od"/>
+              </node>
+              <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="bevolking" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bevolking" sense="bevolking" word="bevolking"/>
+            </node>
+          </node>
+          <node begin="21" cat="pp" end="24" id="34" rel="mod">
+            <node begin="21" end="22" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="35" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+            <node begin="22" cat="np" end="24" id="36" rel="obj1">
+              <node begin="22" buiging="zonder" end="23" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="37" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+              <node begin="23" end="24" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="38" lcat="np" lemma="oever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="oever" sense="oever" word="oevers"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="24" end="25" frame="punct(punt)" his="normal" his_1="normal" id="39" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">Het Victoriameer in Oost-Afrika , twee keer zo groot als België , kreunt onder de druk van een sterk groeiende bevolking op zijn oevers .</sentence>
+  <comments>
+    <comment>Q#2|Het Victoriameer in Oost-Afrika , twee keer zo groot als België , kreunt onder de druk van een sterk groeiende bevolking op zijn oevers .|1|1|-5.799901270720004</comment>
+  </comments>
+</alpino_ds>

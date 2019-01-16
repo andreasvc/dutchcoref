@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="du" end="11" id="1" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="du" lemma="maar" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="maar" sc="root" sense="maar" word="Maar"/>
+      <node begin="1" cat="smain" end="11" id="3" rel="nucl">
+        <node begin="1" cat="np" end="4" id="4" rel="su">
+          <node begin="1" end="2" frame="determiner(een)" his="normal" his_1="normal" id="5" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(ge_e)" his="normal" his_1="normal" id="6" infl="e" lcat="ppart" lemma="bepaald" pos="adj" positie="prenom" postag="WW(vd,prenom,met-e)" pt="ww" rel="mod" root="bepaald" sense="bepaald" vform="psp" word="bepaalde" wvorm="vd"/>
+          <node begin="3" end="4" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="7" lcat="np" lemma="bodem_bacterie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bodem_bacterie" sense="bodem_bacterie" word="bodembacterie"/>
+        </node>
+        <node begin="4" end="5" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="8" infl="sg" lcat="smain" lemma="elimineren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="elimineer" sc="transitive" sense="elimineer" stype="declarative" tense="past" word="elimineerde" wvorm="pv"/>
+        <node begin="5" end="6" frame="adverb" his="normal" his_1="normal" id="9" lcat="advp" lemma="alvast" pos="adv" postag="BW()" pt="bw" rel="mod" root="alvast" sense="alvast" word="alvast"/>
+        <node begin="6" cat="pp" end="8" id="10" rel="mod">
+          <node begin="6" end="7" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="11" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+          <node begin="7" end="8" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="muis" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="muis" sense="muis" word="muizen"/>
+        </node>
+        <node begin="8" cat="ap" end="10" id="13" rel="mod">
+          <node begin="8" buiging="zonder" end="9" frame="intensifier" graad="basis" his="normal" his_1="normal" id="14" lcat="advp" lemma="heel" pos="adv" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="heel" sense="heel" special="intensifier" word="heel"/>
+          <node aform="base" begin="9" buiging="zonder" end="10" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="15" infl="no_e" lcat="ap" lemma="efficiënt" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="efficiënt" sense="efficiënt" vform="adj" word="efficiënt"/>
+        </node>
+        <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="tumor" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="tumor" sense="tumor" word="tumoren"/>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="17" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="8">Maar een bepaalde bodembacterie elimineerde alvast bij muizen heel efficiënt tumoren .</sentence>
+  <comments>
+    <comment>Q#8|Maar een bepaalde bodembacterie elimineerde alvast bij muizen heel efficiënt tumoren .|1|1|0.6436353778599992</comment>
+  </comments>
+</alpino_ds>

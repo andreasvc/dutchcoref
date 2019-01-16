@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="7" end="8" frame="punct(ligg_streep)" his="normal" his_1="normal" id="1" lcat="punct" lemma="-" pos="punct" postag="LET()" pt="let" rel="--" root="-" sense="-" special="ligg_streep" word="-"/>
+    <node begin="18" end="19" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="22" id="3" rel="--">
+      <node begin="0" cat="smain" end="7" id="4" rel="dp">
+        <node begin="0" cat="pp" end="2" id="5" rel="mod">
+          <node begin="0" end="1" frame="preposition(rond,[heen])" his="normal" his_1="decap" his_1_1="normal" id="6" lcat="pp" lemma="rond" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="rond" sense="rond" vztype="init" word="Rond"/>
+          <node begin="1" end="2" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="7" infl="pl_num" lcat="np" lemma="750" numtype="hoofd" pos="num" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="obj1" rnum="pl" root="750" sense="750" special="hoofd" word="750"/>
+        </node>
+        <node begin="2" end="3" frame="verb(unacc,past(pl),intransitive)" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="groeien" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="groei" sc="intransitive" sense="groei" stype="declarative" tense="past" word="groeiden" wvorm="pv"/>
+        <node begin="3" cat="np" end="7" id="9" rel="su">
+          <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="10" infl="e" lcat="ap" lemma="commercieel" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="commercieel" sense="commercieel" vform="adj" word="commerciële"/>
+          <node begin="4" end="5" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="band" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="band" sense="band" word="banden"/>
+          <node begin="5" cat="pp" end="7" id="12" rel="mod">
+            <node begin="5" end="6" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="13" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+            <node begin="6" end="7" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="14" lcat="np" lemma="Scandinavië" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Scandinavië" sense="Scandinavië" word="Scandinavië"/>
+          </node>
+        </node>
+      </node>
+      <node begin="8" cat="smain" end="22" id="15" rel="dp">
+        <node begin="8" cat="np" end="11" id="16" index="1" rel="su">
+          <node begin="8" end="9" frame="determiner(de)" his="normal" his_1="normal" id="17" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="naam" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="naam" sense="naam" word="naam"/>
+          <node begin="10" end="11" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="19" lcat="np" lemma="Brugge" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="app" rnum="sg" root="Brugge" sense="Brugge" word="Brugge"/>
+        </node>
+        <node begin="11" end="12" frame="verb(unacc,sg_heeft,passive)" his="normal" his_1="normal" id="20" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="passive" sense="ben" stype="declarative" tense="present" word="is" wvorm="pv"/>
+        <node begin="8" cat="ppart" end="22" id="21" rel="vc">
+          <node begin="8" end="11" id="22" index="1" rel="obj1"/>
+          <node begin="12" buiging="zonder" end="13" frame="verb(hebben,psp,ninv(np_pc_pp(van),part_np_pc_pp(af,van)))" his="normal" his_1="part-V" id="23" infl="psp" lcat="ppart" lemma="af_leiden" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="leid_af" sc="part_np_pc_pp(af,van)" sense="leid_af-van" word="afgeleid" wvorm="vd"/>
+          <node begin="13" cat="pp" end="22" id="24" rel="pc">
+            <node begin="13" end="14" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="25" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="14" cat="np" end="22" id="26" rel="obj1">
+              <node begin="14" end="15" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="27" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node aform="base" begin="15" buiging="met-e" end="16" frame="adjective(e)" graad="basis" his="name_adj" his_1="not_begin" id="28" infl="e" lcat="ap" lemma="Oudnoorse" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Oudnoorse" sense="Oudnoorse" vform="adj" word="Oudnoorse"/>
+              <node begin="16" end="17" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="woord" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="woord" sense="woord" word="woord"/>
+              <node begin="17" end="18" frame="proper_name(both)" genus="genus" getal="ev" graad="basis" his="name" his_1="not_begin" id="30" lcat="np" lemma="Bryggja" naamval="stan" neclass="MISC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,genus,stan)" pt="n" rel="app" root="Bryggja" sense="Bryggja" word="Bryggja"/>
+              <node begin="19" cat="rel" end="22" id="31" rel="mod">
+                <node begin="19" case="both" end="20" frame="rel_pronoun(het,both)" gen="het" getal="ev" his="normal" his_1="normal" id="32" index="2" lcat="np" lemma="wat" naamval="stan" pdtype="pron" persoon="3o" pos="pron" postag="VNW(vb,pron,stan,vol,3o,ev)" pt="vnw" rel="rhd" rnum="sg" root="wat" sense="wat" status="vol" vwtype="vb" wh="rel" word="wat"/>
+                <node begin="19" cat="ssub" end="22" id="33" rel="body">
+                  <node begin="19" end="20" id="34" index="2" rel="su"/>
+                  <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="35" lcat="np" lemma="aanlegsteiger" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="aanlegsteiger" sense="aanlegsteiger" word="aanlegsteiger"/>
+                  <node begin="21" end="22" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="36" infl="sg3" lcat="ssub" lemma="betekenen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="beteken" sc="transitive" sense="beteken" tense="present" word="betekent" wvorm="pv"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="37" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="8">Rond 750 groeiden commerciële banden met Scandinavië - de naam Brugge is afgeleid van het Oudnoorse woord Bryggja , wat aanlegsteiger betekent .</sentence>
+  <comments>
+    <comment>Q#8|Rond 750 groeiden commerciële banden met Scandinavië - de naam Brugge is afgeleid van het Oudnoorse woord Bryggja , wat aanlegsteiger betekent .|1|1|-5.889364488679992</comment>
+  </comments>
+</alpino_ds>

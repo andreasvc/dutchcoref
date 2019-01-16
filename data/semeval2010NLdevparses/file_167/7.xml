@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="13" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="12" id="2" rel="--">
+      <node begin="0" cat="ap" end="2" id="3" rel="dp">
+        <node aform="compar" begin="0" buiging="zonder" end="1" frame="adjective(er(adv))" graad="comp" his="normal" his_1="decap" his_1_1="normal" id="4" infl="no_e" lcat="ap" lemma="erg" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="hd" root="erg" sense="erg" vform="adj" word="Erger"/>
+        <node begin="1" end="2" frame="postadj_adverb" his="normal" his_1="normal" id="5" lcat="advp" lemma="nog" pos="adv" postag="BW()" pt="bw" rel="mod" root="nog" sense="nog" special="postadj" word="nog"/>
+      </node>
+      <node begin="3" cat="smain" end="12" id="6" rel="dp">
+        <node begin="3" cat="pp" end="5" id="7" rel="mod">
+          <node begin="3" end="4" frame="preposition(in,[])" his="normal" his_1="normal" id="8" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="4" end="5" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="9" lcat="np" lemma="Tokio" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Tokio" sense="Tokio" word="Tokio"/>
+        </node>
+        <node begin="5" end="6" frame="verb(unacc,sg_heeft,copula)" his="normal" his_1="normal" id="10" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="present" word="is" wvorm="pv"/>
+        <node begin="6" cat="np" end="9" id="11" rel="su">
+          <node begin="6" end="7" frame="determiner(een)" his="normal" his_1="normal" id="12" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="7" buiging="met-e" end="8" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="13" infl="e" lcat="ap" lemma="heus" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="heus" sense="heus" vform="adj" word="heuse"/>
+          <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="14" lcat="np" lemma="bank_crisis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bank_crisis" sense="bank_crisis" word="bankcrisis"/>
+        </node>
+        <node begin="9" cat="mwu" end="12" his="normal" his_1="normal" id="15" mwu_root="in de maak" mwu_sense="in de maak" rel="predc">
+          <node aform="base" begin="9" buiging="zonder" end="10" frame="adjective(pred(nonadv))" graad="basis" id="16" infl="pred" lcat="ap" lemma="in" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mwp" root="in" sense="in" vform="adj" word="in"/>
+          <node aform="base" begin="10" buiging="zonder" end="11" frame="adjective(pred(nonadv))" graad="basis" id="17" infl="pred" lcat="ap" lemma="de" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mwp" root="de" sense="de" vform="adj" word="de"/>
+          <node aform="base" begin="11" buiging="zonder" end="12" frame="adjective(pred(nonadv))" graad="basis" id="18" infl="pred" lcat="ap" lemma="maak" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mwp" root="maak" sense="maak" vform="adj" word="maak"/>
+        </node>
+      </node>
+    </node>
+    <node begin="12" end="13" frame="punct(punt)" his="normal" his_1="normal" id="19" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Erger nog , in Tokio is een heuse bankcrisis in de maak .</sentence>
+  <comments>
+    <comment>Q#7|Erger nog , in Tokio is een heuse bankcrisis in de maak .|1|1|-1.8618614436800012</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="7" id="0" rel="top">
+    <node begin="0" cat="du" end="6" id="1" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="du" lemma="en" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="en" sc="root" sense="en" word="En"/>
+      <node begin="1" cat="smain" end="6" id="3" rel="nucl">
+        <node begin="1" case="nom" def="def" end="2" frame="pronoun(nwh,je,sg,de,nom,def)" gen="de" getal="ev" his="normal" his_1="normal" id="4" index="1" lcat="np" lemma="jij" naamval="nomin" num="sg" pdtype="pron" per="je" persoon="2v" pos="pron" postag="VNW(pers,pron,nomin,vol,2v,ev)" pt="vnw" rel="su" rnum="sg" root="jij" sense="jij" status="vol" vwtype="pers" wh="nwh" word="jij"/>
+        <node begin="2" end="3" frame="verb(hebben,sg_hebt,aux_psp_hebben)" his="normal" his_1="normal" id="5" infl="sg_hebt" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="heb" sc="aux_psp_hebben" sense="heb" stype="declarative" tense="present" word="hebt" wvorm="pv"/>
+        <node begin="1" cat="ppart" end="6" id="6" rel="vc">
+          <node begin="1" end="2" id="7" index="1" rel="su"/>
+          <node begin="3" end="4" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" genus="onz" getal="ev" his="normal" his_1="normal" id="8" infl="het" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="det" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="obj1" rnum="sg" root="het" sense="het" status="red" vwtype="pers" wh="nwh" word="het"/>
+          <node begin="4" end="5" frame="sentence_adverb" his="normal" his_1="normal" id="9" lcat="advp" lemma="altijd" pos="adv" postag="BW()" pt="bw" rel="mod" root="altijd" sense="altijd" special="sentence" word="altijd"/>
+          <node begin="5" buiging="zonder" end="6" frame="verb(hebben,psp,transitive_ndev)" his="normal" his_1="normal" id="10" infl="psp" lcat="ppart" lemma="doen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="doe" sc="transitive_ndev" sense="doe" word="gedaan" wvorm="vd"/>
+        </node>
+      </node>
+    </node>
+    <node begin="6" end="7" frame="punct(uitroep)" his="normal" his_1="normal" id="11" lcat="punct" lemma="!" pos="punct" postag="LET()" pt="let" rel="--" root="!" sense="!" special="uitroep" word="!"/>
+  </node>
+  <sentence sentid="5">En jij hebt het altijd gedaan !</sentence>
+  <comments>
+    <comment>Q#5|En jij hebt het altijd gedaan !|1|1|-9.468093637400003</comment>
+  </comments>
+</alpino_ds>

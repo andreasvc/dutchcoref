@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="0" cat="smain" end="15" id="1" rel="--">
+      <node begin="0" cat="np" end="3" id="2" index="1" rel="su">
+        <node begin="0" cat="detp" end="2" id="3" rel="det">
+          <node begin="0" buiging="zonder" end="1" frame="pre_num_adv(pl_indef)" his="normal" his_1="decap" his_1_1="normal" id="4" infl="pl_indef" lcat="advp" lemma="zo&apos;n" naamval="stan" npagr="agr" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,agr)" pt="vnw" rel="mod" root="zo&apos;n" sense="zo&apos;n" special="pre_num_adv" vwtype="aanw" word="Zo&apos;n"/>
+          <node begin="1" end="2" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="5" infl="pl_num" lcat="detp" lemma="twintig" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="hd" root="twintig" sense="twintig" special="hoofd" word="twintig"/>
+        </node>
+        <node begin="2" buiging="met-e" end="3" frame="noun(de,count,pl)" gen="de" getal-n="mv-n" graad="comp" his="normal" his_1="normal" id="6" lcat="np" lemma="jongere" num="pl" pos="noun" positie="nom" postag="ADJ(nom,comp,met-e,mv-n)" pt="adj" rel="hd" rnum="pl" root="jongere" sense="jongere" word="jongeren"/>
+      </node>
+      <node begin="3" end="4" frame="verb(unacc,pl,passive)" his="normal" his_1="normal" id="7" infl="pl" lcat="smain" lemma="worden" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" stype="declarative" tense="present" word="worden" wvorm="pv"/>
+      <node begin="0" cat="ppart" end="15" id="8" rel="vc">
+        <node begin="0" end="3" id="9" index="1" rel="obj1"/>
+        <node begin="4" cat="pp" end="11" id="10" rel="mod">
+          <node begin="4" end="5" frame="preposition(tijdens,[])" his="normal" his_1="normal" id="11" lcat="pp" lemma="tijdens" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tijdens" sense="tijdens" vztype="init" word="tijdens"/>
+          <node begin="5" cat="np" end="11" id="12" rel="obj1">
+            <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="13" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="6" end="7" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="overgang" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="overgang" sense="overgang" word="overgang"/>
+            <node begin="7" cat="pp" end="11" id="15" rel="mod">
+              <node begin="7" end="8" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="16" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="8" cat="np" end="11" id="17" rel="obj1">
+                <node aform="base" begin="8" buiging="zonder" end="9" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="18" infl="no_e" lcat="ap" lemma="oud" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="oud" sense="oud" vform="adj" word="oud"/>
+                <node aform="base" begin="9" buiging="zonder" end="10" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="19" infl="no_e" lcat="ap" lemma="naar" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="naar" sense="naar" vform="adj" word="naar"/>
+                <node begin="10" end="11" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="nieuw" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="nieuw" sense="nieuw" word="nieuw"/>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="11" buiging="zonder" end="12" frame="verb(hebben,psp,ninv(np_pc_pp(met),part_np_pc_pp(op,met)))" his="normal" his_1="part-V" id="21" infl="psp" lcat="ppart" lemma="op_nemen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="neem_op" sc="part_np_pc_pp(op,met)" sense="neem_op-met" word="opgenomen" wvorm="vd"/>
+        <node begin="12" cat="pp" end="15" id="22" rel="pc">
+          <node begin="12" end="13" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="23" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+          <node begin="13" cat="np" end="15" id="24" rel="obj1">
+            <node begin="13" end="14" frame="determiner(een)" his="normal" his_1="normal" id="25" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="26" lcat="np" lemma="alcohol_vergiftiging" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="alcohol_vergiftiging" sense="alcohol_vergiftiging" word="alcoholvergiftiging"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="27" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">Zo&apos;n twintig jongeren worden tijdens de overgang van oud naar nieuw opgenomen met een alcoholvergiftiging .</sentence>
+  <comments>
+    <comment>Q#2|Zo&apos;n twintig jongeren worden tijdens de overgang van oud naar nieuw opgenomen met een alcoholvergiftiging .|1|1|-10.29130529442</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="8" end="9" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="14" id="2" rel="--">
+      <node begin="0" cat="smain" end="8" id="3" rel="dp">
+        <node begin="0" cat="pp" end="3" id="4" rel="mod">
+          <node begin="0" end="1" frame="preposition(op,[af,na])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="Op"/>
+          <node begin="1" cat="np" end="3" id="6" rel="obj1">
+            <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="7" infl="e" lcat="ap" lemma="kort" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="kort" sense="kort" vform="adj" word="korte"/>
+            <node begin="2" end="3" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="termijn" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="termijn" sense="termijn" special="tmp" word="termijn"/>
+          </node>
+        </node>
+        <node begin="3" end="4" frame="verb(hebben,pl,part_intransitive(terecht))" his="normal" his_1="normal" id="9" infl="pl" lcat="smain" lemma="terecht_kunnen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kan_terecht" sc="part_intransitive(terecht)" sense="kan_terecht" stype="declarative" tense="present" word="kunnen" wvorm="pv"/>
+        <node begin="4" end="5" frame="er_loc_adverb" getal="getal" his="normal" his_1="normal" id="10" lcat="advp" lemma="daar" naamval="obl" pdtype="adv-pron" persoon="3o" pos="adv" postag="VNW(aanw,adv-pron,obl,vol,3o,getal)" pt="vnw" rel="mod" root="daar" sense="daar" special="er_loc" status="vol" vwtype="aanw" word="daar"/>
+        <node begin="5" cat="np" end="7" id="11" rel="su">
+          <node begin="5" end="6" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="12" infl="pl_num" lcat="detp" lemma="65" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="65" sense="65" special="hoofd" word="65"/>
+          <node begin="6" buiging="met-e" end="7" frame="noun(de,count,pl)" gen="de" getal-n="mv-n" graad="comp" his="normal" his_1="normal" id="13" lcat="np" lemma="jongere" num="pl" pos="noun" positie="nom" postag="ADJ(nom,comp,met-e,mv-n)" pt="adj" rel="hd" rnum="pl" root="jongere" sense="jongere" word="jongeren"/>
+        </node>
+        <node begin="7" buiging="zonder" end="8" frame="particle(terecht)" graad="basis" his="normal" his_1="normal" id="14" lcat="part" lemma="terecht" pos="part" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="svp" root="terecht" sense="terecht" word="terecht"/>
+      </node>
+      <node begin="9" cat="smain" end="14" id="15" rel="dp">
+        <node begin="9" cat="np" end="11" id="16" rel="mod">
+          <node begin="9" end="10" frame="tmp_noun(het,count,sg,measure)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="eind" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="eind" sc="measure" sense="eind" special="tmp" word="eind"/>
+          <node begin="10" end="11" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="februari" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="februari" sense="februari" special="tmp" word="februari"/>
+        </node>
+        <node begin="11" end="12" frame="verb(unacc,pl,intransitive)" his="normal" his_1="normal" id="19" infl="pl" lcat="smain" lemma="arriveren" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="arriveer" sc="intransitive" sense="arriveer" stype="declarative" tense="present" word="arriveren" wvorm="pv"/>
+        <node begin="12" cat="np" end="14" id="20" rel="su">
+          <node begin="12" end="13" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="13" end="14" frame="noun(both,count,pl)" gen="both" getal-n="mv-n" his="normal" his_1="normal" id="22" lcat="np" lemma="eersten" num="pl" numtype="rang" pos="noun" positie="nom" postag="TW(rang,nom,mv-n)" pt="tw" rel="hd" rnum="pl" root="eersten" sense="eersten" word="eersten"/>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="23" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">Op korte termijn kunnen daar 65 jongeren terecht , eind februari arriveren de eersten .</sentence>
+  <comments>
+    <comment>Q#3|Op korte termijn kunnen daar 65 jongeren terecht , eind februari arriveren de eersten .|1|1|-7.462301779959998</comment>
+  </comments>
+</alpino_ds>

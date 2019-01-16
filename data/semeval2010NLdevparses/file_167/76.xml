@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="20" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="13" end="14" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="19" id="3" rel="--">
+      <node begin="0" cat="np" end="13" id="4" index="1" rel="su">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="Die"/>
+        <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="bescherming" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bescherming" sense="bescherming" word="bescherming"/>
+        <node begin="3" cat="rel" end="13" id="7" rel="mod">
+          <node begin="3" case="no_obl" end="4" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="8" index="2" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="sg" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+          <node begin="3" cat="ssub" end="13" id="9" rel="body">
+            <node begin="3" end="4" id="10" index="2" rel="su"/>
+            <node begin="4" end="5" frame="verb('hebben/zijn',sg3,pc_pp(uit))" his="normal" his_1="normal" id="11" infl="sg3" lcat="ssub" lemma="dateren" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="dateer" sc="pc_pp(uit)" sense="dateer-uit" tense="present" word="dateert" wvorm="pv"/>
+            <node begin="5" cat="pp" end="13" id="12" rel="pc">
+              <node begin="5" end="6" frame="preposition(uit,[vandaan])" his="normal" his_1="normal" id="13" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="uit"/>
+              <node begin="6" cat="np" end="13" id="14" rel="obj1">
+                <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="15" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="16" lcat="np" lemma="bank_crisis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bank_crisis" sense="bank_crisis" word="bankcrisis"/>
+                <node begin="8" cat="pp" end="13" id="17" rel="mod">
+                  <node begin="8" end="9" frame="preposition(van,[],me_adj)" his="normal" his_1="normal" id="18" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sc="me_adj" sense="van" vztype="init" word="van"/>
+                  <node begin="9" cat="ap" end="13" id="19" rel="obj1">
+                    <node begin="9" cat="np" end="12" id="20" rel="me">
+                      <node begin="9" cat="np" end="11" his="normal" his_1="normal" id="21" rel="det">
+                        <node begin="9" end="10" frame="determiner(een)" id="22" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                        <node begin="10" end="11" frame="noun(both,both,sg)" gen="both" genus="zijd" getal="ev" graad="basis" id="23" lcat="np" lemma="vijftal" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" root="vijftal" sense="vijftal" word="vijftal"/>
+                      </node>
+                      <node begin="11" end="12" frame="tmp_noun(het,count,bare_meas)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="jaar" naamval="stan" ntype="soort" num="bare_meas" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="pl" root="jaar" sense="jaar" special="tmp" word="jaar"/>
+                    </node>
+                    <node begin="12" end="13" frame="pred_np_me_adjective(tmpadv)" his="normal" his_1="normal" id="25" lcat="ap" lemma="geleden" pos="adj" postag="BW()" pt="bw" rel="hd" root="geleden" sc="pred_np_me" sense="geleden" word="geleden"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="14" end="15" frame="verb(unacc,sg3,passive)" his="normal" his_1="normal" id="26" infl="sg3" lcat="smain" lemma="worden" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" stype="declarative" tense="present" word="wordt" wvorm="pv"/>
+      <node begin="0" cat="ppart" end="19" id="27" rel="vc">
+        <node begin="0" end="13" id="28" index="1" rel="obj1"/>
+        <node begin="15" buiging="zonder" end="16" frame="verb(hebben,psp,np_pc_pp(tot))" his="normal" his_1="normal" id="29" infl="psp" lcat="ppart" lemma="beperken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="beperk" sc="np_pc_pp(tot)" sense="beperk-tot" word="beperkt" wvorm="vd"/>
+        <node begin="16" cat="pp" end="19" id="30" rel="pc">
+          <node begin="16" end="17" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="31" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+          <node begin="17" cat="np" end="19" id="32" rel="obj1">
+            <node begin="17" end="18" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="33" infl="pl_num" lcat="detp" lemma="84.000" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="84.000" sense="84.000" special="hoofd" word="84.000"/>
+            <node begin="18" end="19" frame="meas_mod_noun(de,count,bare_meas)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="34" lcat="np" lemma="euro" naamval="stan" ntype="soort" num="bare_meas" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="pl" root="euro" sense="euro" special="meas_mod" word="euro"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="19" end="20" frame="punct(punt)" his="normal" his_1="normal" id="35" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="76">Die bescherming , die dateert uit de bankcrisis van een vijftal jaar geleden , wordt beperkt tot 84.000 euro .</sentence>
+  <comments>
+    <comment>Q#76|Die bescherming , die dateert uit de bankcrisis van een vijftal jaar geleden , wordt beperkt tot 84.000 euro .|1|1|-12.533960881940002</comment>
+  </comments>
+</alpino_ds>

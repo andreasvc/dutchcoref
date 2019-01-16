@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="13" id="0" rel="top">
+    <node begin="0" cat="smain" end="12" id="1" rel="--">
+      <node begin="0" cat="conj" end="6" id="2" rel="su">
+        <node begin="0" cat="np" end="3" id="3" rel="cnj">
+          <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="4" index="1" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+          <node aform="super" begin="1" buiging="met-e" end="2" frame="adjective(ste)" graad="sup" his="normal" his_1="normal" id="5" index="2" infl="e" lcat="ap" lemma="oud" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,sup,met-e,stan)" pt="adj" rel="mod" root="oud" sense="oud" vform="adj" word="oudste"/>
+          <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="6" lcat="np" lemma="handel_nederzetting" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="handel_nederzetting" sense="handel_nederzetting" word="handelsnederzetting"/>
+        </node>
+        <node begin="3" conjtype="neven" end="4" frame="conj(en)" his="normal" his_1="normal" id="7" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="0" cat="np" end="6" id="8" rel="cnj">
+          <node begin="0" end="1" id="9" index="1" rel="det"/>
+          <node begin="1" end="2" id="10" index="2" rel="mod"/>
+          <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="compound" his_1="2" id="11" infl="e" lcat="ap" lemma="vroeg_middeleeuws" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="vroeg_middeleeuws" sense="vroeg_middeleeuws" vform="adj" word="vroegmiddeleeuwse"/>
+          <node begin="5" end="6" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="haven" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="haven" sense="haven" word="haven"/>
+        </node>
+      </node>
+      <node begin="6" end="7" frame="verb(unacc,past(sg),copula)" his="normal" his_1="normal" id="13" infl="sg" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="past" word="was" wvorm="pv"/>
+      <node begin="7" cat="pp" end="9" id="14" rel="mod">
+        <node begin="7" end="8" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="15" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+        <node begin="8" end="9" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="16" infl="pl_num" lcat="np" lemma="1050" numtype="hoofd" pos="num" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="obj1" rnum="pl" root="1050" sense="1050" special="hoofd" word="1050"/>
+      </node>
+      <node begin="9" cat="pp" end="11" id="17" rel="mod">
+        <node begin="9" end="10" frame="preposition(vanuit,[])" his="normal" his_1="normal" id="18" lcat="pp" lemma="vanuit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="vanuit" sense="vanuit" vztype="init" word="vanuit"/>
+        <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="zee" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="zee" sense="zee" word="zee"/>
+      </node>
+      <node aform="base" begin="11" buiging="zonder" end="12" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="20" infl="no_e" lcat="ap" lemma="bereikbaar" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="bereikbaar" sense="bereikbaar" vform="adj" word="bereikbaar"/>
+    </node>
+    <node begin="12" end="13" frame="punct(punt)" his="normal" his_1="normal" id="21" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="9">De oudste handelsnederzetting en vroegmiddeleeuwse haven was tot 1050 vanuit zee bereikbaar .</sentence>
+  <comments>
+    <comment>Q#9|De oudste handelsnederzetting en vroegmiddeleeuwse haven was tot 1050 vanuit zee bereikbaar .|1|1|-0.007699690279998728</comment>
+  </comments>
+</alpino_ds>

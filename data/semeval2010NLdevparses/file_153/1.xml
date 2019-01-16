@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="2" id="0" rel="top">
+    <node begin="0" cat="smain" end="2" id="1" rel="--">
+      <node begin="0" end="1" frame="proper_name(both,'LOC')" getal="mv" graad="basis" his="name" his_1="begin" id="2" lcat="np" lemma="Kinesisten" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,mv,basis)" pt="n" rel="su" rnum="pl" root="Kinesisten" sense="Kinesisten" word="Kinesisten"/>
+      <node begin="1" end="2" frame="verb(hebben,pl,intransitive)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="protesteren" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="protesteer" sc="intransitive" sense="protesteer" stype="declarative" tense="present" word="protesteren" wvorm="pv"/>
+    </node>
+  </node>
+  <sentence sentid="1">Kinesisten protesteren</sentence>
+  <comments>
+    <comment>Q#1|Kinesisten protesteren|1|1|0.7882546126800002</comment>
+  </comments>
+</alpino_ds>

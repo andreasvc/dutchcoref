@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="34" id="0" rel="top">
+    <node begin="16" end="17" frame="punct(ligg_streep)" his="normal" his_1="normal" id="1" lcat="punct" lemma="-" pos="punct" postag="LET()" pt="let" rel="--" root="-" sense="-" special="ligg_streep" word="-"/>
+    <node begin="26" end="27" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="33" id="3" rel="--">
+      <node begin="0" cat="du" end="16" id="4" rel="dp">
+        <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="du" lemma="en" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="en" sc="root" sense="en" word="En"/>
+        <node begin="1" cat="smain" end="16" id="6" rel="nucl">
+          <node begin="1" cat="np" end="4" id="7" index="1" rel="su">
+            <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="8" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="9" infl="e" lcat="ap" lemma="Japans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Japans" sense="Japans" vform="adj" word="Japanse"/>
+            <node begin="3" end="4" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="eer" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="eer" sense="eer" word="eer"/>
+          </node>
+          <node begin="4" end="5" frame="verb(hebben,past(sg),aux(inf))" his="normal" his_1="normal" id="11" infl="sg" lcat="smain" lemma="zullen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="zal" sc="aux(inf)" sense="zal" stype="declarative" tense="past" word="zou" wvorm="pv"/>
+          <node begin="1" cat="inf" end="16" id="12" rel="vc">
+            <node begin="1" end="4" id="13" index="1" rel="su"/>
+            <node begin="8" buiging="zonder" end="9" frame="verb(unacc,inf,passive)" his="normal" his_1="normal" id="14" infl="inf" lcat="inf" lemma="worden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="word" sc="passive" sense="word" word="worden" wvorm="inf"/>
+            <node begin="1" cat="ppart" end="16" id="15" rel="vc">
+              <node begin="1" end="4" id="16" index="1" rel="obj1"/>
+              <node aform="base" begin="5" end="6" frame="adjective(pred(adv))" his="normal" his_1="normal" id="17" infl="pred" lcat="ap" lemma="wel" pos="adj" postag="BW()" pt="bw" rel="mod" root="wel" sense="wel" vform="adj" word="wel"/>
+              <node aform="base" begin="6" buiging="zonder" end="7" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="18" infl="no_e" lcat="ap" lemma="erg" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="erg" sense="erg" vform="adj" word="erg"/>
+              <node begin="7" buiging="zonder" end="8" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="19" infl="psp" lcat="ppart" lemma="krenken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="krenk" sc="transitive" sense="krenk" word="gekrenkt" wvorm="vd"/>
+              <node begin="9" cat="cp" end="16" id="20" rel="mod">
+                <node begin="9" conjtype="onder" end="10" frame="complementizer(als)" his="normal" his_1="normal" id="21" lcat="cp" lemma="als" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="als" sc="als" sense="als" word="als"/>
+                <node begin="10" cat="ssub" end="16" id="22" rel="body">
+                  <node begin="10" cat="np" end="14" id="23" index="2" rel="su">
+                    <node begin="10" end="11" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="24" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                    <node begin="11" cat="mwu" end="14" his="normal" his_1="names_dictionary" id="25" mwu_root="Internationaal Monetair Fonds" mwu_sense="Internationaal Monetair Fonds" rel="hd">
+                      <node begin="11" end="12" frame="proper_name(sg,'ORG')" id="26" lcat="np" lemma="Internationaal" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Internationaal" sense="Internationaal" spectype="deeleigen" word="Internationaal"/>
+                      <node begin="12" end="13" frame="proper_name(sg,'ORG')" id="27" lcat="np" lemma="Monetair" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Monetair" sense="Monetair" spectype="deeleigen" word="Monetair"/>
+                      <node begin="13" end="14" frame="proper_name(sg,'ORG')" id="28" lcat="np" lemma="Fonds" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Fonds" sense="Fonds" spectype="deeleigen" word="Fonds"/>
+                    </node>
+                  </node>
+                  <node begin="14" end="15" frame="verb('hebben/zijn',past(sg),modifier(aux(inf)))" his="normal" his_1="normal" id="29" infl="sg" lcat="ssub" lemma="moeten" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="moet" sc="modifier(aux(inf))" sense="moet" tense="past" word="moest" wvorm="pv"/>
+                  <node begin="10" cat="inf" end="16" id="30" rel="vc">
+                    <node begin="10" end="14" id="31" index="2" rel="su"/>
+                    <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,ninv(intransitive,part_intransitive(bij)))" his="normal" his_1="part-V" id="32" infl="inf" lcat="inf" lemma="bij_springen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="spring_bij" sc="part_intransitive(bij)" sense="spring_bij" word="bijspringen" wvorm="inf"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="17" cat="smain" end="33" id="33" rel="dp">
+        <node begin="17" end="18" frame="determiner(het,nwh,nmod,pro,nparg)" getal="ev" his="normal" his_1="normal" id="34" infl="het" lcat="np" lemma="dat" naamval="stan" pdtype="pron" persoon="3o" pos="det" postag="VNW(aanw,pron,stan,vol,3o,ev)" pt="vnw" rel="su" rnum="sg" root="dat" sense="dat" status="vol" vwtype="aanw" wh="nwh" word="dat"/>
+        <node begin="18" end="19" frame="verb(unacc,sg_heeft,copula)" his="normal" his_1="normal" id="35" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="present" word="is" wvorm="pv"/>
+        <node begin="19" cat="conj" end="33" id="36" rel="predc">
+          <node begin="19" cat="ap" end="26" id="37" rel="cnj">
+            <node aform="base" begin="19" buiging="zonder" end="20" frame="adjective(no_e(adv),pp(voor))" graad="basis" his="normal" his_1="normal" id="38" infl="no_e" lcat="ap" lemma="goed" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="goed" sc="pp(voor)" sense="goed-voor" vform="adj" word="goed"/>
+            <node begin="20" cat="pp" end="26" id="39" rel="pc">
+              <node begin="20" end="21" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="40" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+              <node begin="21" cat="np" end="26" id="41" rel="obj1">
+                <node begin="21" end="22" frame="determiner(een)" his="normal" his_1="normal" id="42" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                <node aform="base" begin="22" buiging="zonder" end="23" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="43" infl="no_e" lcat="ap" lemma="Latijns-Amerikaans" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="Latijns-Amerikaans" sense="Latijns-Amerikaans" vform="adj" word="Latijns-Amerikaans"/>
+                <node begin="23" end="24" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="44" lcat="np" lemma="land" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="land" sense="land" word="land"/>
+                <node begin="24" cat="cp" end="26" id="45" rel="mod">
+                  <node begin="24" end="25" frame="complementizer(als)" his="normal" his_1="normal" id="46" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+                  <node begin="25" end="26" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="47" lcat="np" lemma="Argentinië" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="body" rnum="sg" root="Argentinië" sense="Argentinië" word="Argentinië"/>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node begin="27" conjtype="neven" end="28" frame="conj(maar)" his="normal" his_1="normal" id="48" lcat="vg" lemma="maar" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="maar" sense="maar" word="maar"/>
+          <node begin="28" cat="ap" end="33" id="49" rel="cnj">
+            <node aform="base" begin="28" buiging="zonder" end="29" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="50" infl="no_e" lcat="ap" lemma="onverteerbaar" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="onverteerbaar" sense="onverteerbaar" vform="adj" word="onverteerbaar"/>
+            <node begin="29" cat="pp" end="33" id="51" rel="mod">
+              <node begin="29" end="30" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="52" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+              <node begin="30" cat="np" end="33" id="53" rel="obj1">
+                <node begin="30" end="31" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="54" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                <node aform="base" begin="31" buiging="met-e" end="32" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="55" infl="e" lcat="ap" lemma="modern" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="modern" sense="modern" vform="adj" word="moderne"/>
+                <node begin="32" end="33" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="56" lcat="np" lemma="keizerrijk" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="keizerrijk" sense="keizerrijk" word="keizerrijk"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="33" end="34" frame="punct(punt)" his="normal" his_1="normal" id="57" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="84">En de Japanse eer zou wel erg gekrenkt worden als het Internationaal Monetair Fonds moest bijspringen - dat is goed voor een Latijns-Amerikaans land als Argentinië , maar onverteerbaar voor het moderne keizerrijk .</sentence>
+  <comments>
+    <comment>Q#84|En de Japanse eer zou wel erg gekrenkt worden als het Internationaal Monetair Fonds moest bijspringen - dat is goed voor een Latijns-Amerikaans land als Argentinië , maar onverteerbaar voor het moderne keizerrijk .|1|1|-10.450108612120008</comment>
+  </comments>
+</alpino_ds>

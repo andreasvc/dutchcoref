@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="20" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="10" end="11" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="19" id="3" rel="--">
+      <node begin="0" cat="pp" end="7" id="4" rel="mod">
+        <node begin="0" end="1" frame="preposition(in,[])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="In"/>
+        <node begin="1" cat="np" end="7" id="6" rel="obj1">
+          <node begin="1" cat="conj" end="6" id="7" rel="mod">
+            <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="8" infl="e" lcat="ap" lemma="groen" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="cnj" root="groen" sense="groen" vform="adj" word="groene"/>
+            <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="9" infl="e" lcat="ap" lemma="rood" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="cnj" root="rood" sense="rood" vform="adj" word="rode"/>
+            <node begin="4" conjtype="neven" end="5" frame="conj(en)" his="normal" his_1="normal" id="10" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node aform="base" begin="5" buiging="met-e" end="6" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="blauw" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="cnj" root="blauw" sense="blauw" vform="adj" word="blauwe"/>
+          </node>
+          <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="bewoording" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bewoording" sense="bewoording" word="bewoordingen"/>
+        </node>
+      </node>
+      <node begin="7" end="8" frame="verb(hebben,pl,part_transitive(af))" his="normal" his_1="normal" id="13" infl="pl" lcat="smain" lemma="af_wijzen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="wijs_af" sc="part_transitive(af)" sense="wijs_af" stype="declarative" tense="present" word="wijzen" wvorm="pv"/>
+      <node begin="8" cat="conj" end="16" id="14" rel="su">
+        <node begin="8" cat="mwu" end="10" his="normal" his_1="names_dictionary" id="15" mwu_root="Luc Cortebeeck" mwu_sense="Luc Cortebeeck" rel="cnj">
+          <node begin="8" end="9" frame="proper_name(sg,'PER')" id="16" lcat="np" lemma="Luc" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Luc" sense="Luc" spectype="deeleigen" word="Luc"/>
+          <node begin="9" end="10" frame="proper_name(sg,'PER')" id="17" lcat="np" lemma="Cortebeeck" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Cortebeeck" sense="Cortebeeck" spectype="deeleigen" word="Cortebeeck"/>
+        </node>
+        <node begin="11" cat="mwu" end="13" his="name" his_1="not_begin" id="18" mwu_root="Michel Nollet" mwu_sense="Michel Nollet" rel="cnj">
+          <node begin="11" end="12" frame="proper_name(sg,'PER')" id="19" lcat="np" lemma="Michel" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Michel" sense="Michel" spectype="deeleigen" word="Michel"/>
+          <node begin="12" end="13" frame="proper_name(sg,'PER')" id="20" lcat="np" lemma="Nollet" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Nollet" sense="Nollet" spectype="deeleigen" word="Nollet"/>
+        </node>
+        <node begin="13" conjtype="neven" end="14" frame="conj(en)" his="normal" his_1="normal" id="21" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="14" cat="mwu" end="16" his="name" his_1="not_begin" id="22" mwu_root="Guy Haaze" mwu_sense="Guy Haaze" rel="cnj">
+          <node begin="14" end="15" frame="proper_name(sg,'PER')" id="23" lcat="np" lemma="Guy" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Guy" sense="Guy" spectype="deeleigen" word="Guy"/>
+          <node begin="15" end="16" frame="proper_name(sg,'PER')" id="24" lcat="np" lemma="Haaze" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Haaze" sense="Haaze" spectype="deeleigen" word="Haaze"/>
+        </node>
+      </node>
+      <node begin="16" cat="np" end="18" id="25" rel="obj1">
+        <node begin="16" buiging="zonder" end="17" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="26" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="die"/>
+        <node begin="17" end="18" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="27" lcat="np" lemma="oekaze" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="oekaze" sense="oekaze" word="oekaze"/>
+      </node>
+      <node begin="18" end="19" frame="particle(af)" his="normal" his_1="normal" id="28" lcat="part" lemma="af" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="af" sense="af" vztype="fin" word="af"/>
+    </node>
+    <node begin="19" end="20" frame="punct(punt)" his="normal" his_1="normal" id="29" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="10">In groene , rode en blauwe bewoordingen wijzen Luc Cortebeeck , Michel Nollet en Guy Haaze die oekaze af .</sentence>
+  <comments>
+    <comment>Q#10|In groene , rode en blauwe bewoordingen wijzen Luc Cortebeeck , Michel Nollet en Guy Haaze die oekaze af .|1|1|-10.672363340319999</comment>
+  </comments>
+</alpino_ds>

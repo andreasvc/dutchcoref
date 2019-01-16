@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="smain" end="14" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" end="2" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="vakbond" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vakbond" sense="vakbond" word="vakbonden"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,pl,er_pp_sbar(over))" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="klagen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="klaag" sc="er_pp_sbar(over)" sense="klaag-over" stype="declarative" tense="present" word="klagen" wvorm="pv"/>
+      <node begin="4" end="5" frame="sentence_adverb" his="normal" his_1="normal" id="6" lcat="advp" lemma="weliswaar" pos="adv" postag="BW()" pt="bw" rel="mod" root="weliswaar" sense="weliswaar" special="sentence" word="weliswaar"/>
+      <node begin="5" cat="np" end="8" id="7" rel="mod">
+        <node begin="5" end="6" frame="modal_adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="al" pos="adv" postag="BW()" pt="bw" rel="mod" root="al" sc="modal" sense="al" word="al"/>
+        <node aform="base" begin="6" buiging="met-e" end="7" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="9" infl="e" lcat="ap" lemma="veel" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,met-e,agr,basis)" pt="vnw" rel="mod" root="veel" sense="veel" vform="adj" vwtype="onbep" word="vele"/>
+        <node begin="7" end="8" frame="tmp_noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="jaar" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="jaar" sense="jaar" special="tmp" word="jaren"/>
+      </node>
+      <node begin="3" cat="pp" end="14" id="11" rel="pc">
+        <node begin="3" end="4" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="12" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="pobj1" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+        <node begin="8" end="9" frame="preposition(over,[heen])" his="normal" his_1="normal" id="13" lcat="pp" lemma="over" pos="prep" postag="VZ(fin)" pt="vz" rel="hd" root="over" sense="over" vztype="fin" word="over"/>
+        <node begin="9" cat="cp" end="14" id="14" rel="vc">
+          <node begin="9" conjtype="onder" end="10" frame="complementizer(dat)" his="normal" his_1="normal" id="15" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+          <node begin="10" cat="ssub" end="14" id="16" rel="body">
+            <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="werkgever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="su" rnum="pl" root="werkgever" sense="werkgever" word="werkgevers"/>
+            <node begin="11" cat="np" end="13" id="18" rel="obj1">
+              <node begin="11" buiging="zonder" end="12" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="19" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+              <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="staking" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="staking" sense="staking" word="stakingen"/>
+            </node>
+            <node begin="13" end="14" frame="verb(hebben,pl,transitive)" his="normal" his_1="normal" id="21" infl="pl" lcat="ssub" lemma="breken" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="breek" sc="transitive" sense="breek" tense="present" word="breken" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="22" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="58">De vakbonden klagen er weliswaar al vele jaren over dat werkgevers hun stakingen breken .</sentence>
+  <comments>
+    <comment>Q#58|De vakbonden klagen er weliswaar al vele jaren over dat werkgevers hun stakingen breken .|1|1|-5.25876694378</comment>
+  </comments>
+</alpino_ds>

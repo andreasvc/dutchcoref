@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="30" id="0" rel="top">
+    <node begin="0" cat="smain" end="29" id="1" rel="--">
+      <node begin="0" cat="np" end="8" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="4" infl="e" lcat="ap" lemma="Pools" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Pools" sense="Pools" vform="adj" word="Poolse"/>
+        <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+        <node begin="3" cat="pp" end="6" id="6" rel="mod">
+          <node begin="3" end="4" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="7" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="4" cat="np" end="6" id="8" rel="obj1">
+            <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="9" infl="e" lcat="ap" lemma="buitenlands" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="buitenlands" sense="buitenlands" vform="adj" word="Buitenlandse"/>
+            <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="zaak" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="zaak" sense="zaak" word="zaken"/>
+          </node>
+        </node>
+        <node begin="6" cat="mwu" end="8" his="name" his_1="not_begin" id="11" mwu_root="Wlodziemierz Cimoszewicz" mwu_sense="Wlodziemierz Cimoszewicz" rel="app">
+          <node begin="6" end="7" frame="proper_name(sg,'PER')" id="12" lcat="np" lemma="Wlodziemierz" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Wlodziemierz" sense="Wlodziemierz" spectype="deeleigen" word="Wlodziemierz"/>
+          <node begin="7" end="8" frame="proper_name(sg,'PER')" id="13" lcat="np" lemma="Cimoszewicz" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Cimoszewicz" sense="Cimoszewicz" spectype="deeleigen" word="Cimoszewicz"/>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="verb(hebben,sg3,part_np_vp_obj1(op))" his="normal" his_1="normal" id="14" infl="sg3" lcat="smain" lemma="op_roepen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="roep_op" sc="part_np_vp_obj1(op)" sense="roep_op" stype="declarative" tense="present" word="roept" wvorm="pv"/>
+      <node begin="9" cat="np" end="16" id="15" index="1" rel="obj1">
+        <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="compar" begin="10" buiging="met-e" end="11" frame="adjective(ere)" graad="basis" his="normal" his_1="normal" id="17" infl="e" lcat="ap" lemma="ander" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="ander" sense="ander" vform="adj" word="andere"/>
+        <node begin="11" end="12" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="kandidaat_lidstaat" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="kandidaat_lidstaat" sense="kandidaat_lidstaat" word="kandidaat-lidstaten"/>
+        <node begin="12" cat="pp" end="16" id="19" rel="mod">
+          <node begin="12" end="13" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="20" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="13" cat="np" end="16" id="21" rel="obj1">
+            <node begin="13" end="14" frame="determiner(de)" his="normal" his_1="normal" id="22" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="14" cat="mwu" end="16" his="normal" his_1="names_dictionary" id="23" mwu_root="Europese Unie" mwu_sense="Europese Unie" rel="hd">
+              <node begin="14" end="15" frame="proper_name(sg,'ORG')" id="24" lcat="np" lemma="Europese" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Europese" sense="Europese" spectype="deeleigen" word="Europese"/>
+              <node begin="15" end="16" frame="proper_name(sg,'ORG')" id="25" lcat="np" lemma="Unie" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Unie" sense="Unie" spectype="deeleigen" word="Unie"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="16" end="17" frame="particle(op)" his="normal" his_1="normal" id="26" lcat="part" lemma="op" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="op" sense="op" vztype="fin" word="op"/>
+      <node begin="9" cat="oti" end="29" id="27" rel="vc">
+        <node begin="17" end="18" frame="complementizer(om)" his="normal" his_1="normal" id="28" lcat="oti" lemma="om" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="om" sc="om" sense="om" vztype="init" word="om"/>
+        <node begin="9" cat="ti" end="29" id="29" rel="body">
+          <node begin="20" end="21" frame="complementizer(te)" his="normal" his_1="normal" id="30" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+          <node begin="9" cat="inf" end="29" id="31" rel="body">
+            <node begin="9" end="16" id="32" index="1" rel="su"/>
+            <node begin="18" end="19" frame="loc_adverb" his="normal" his_1="normal" id="33" lcat="advp" lemma="mee" pos="adv" postag="BW()" pt="bw" rel="mod" root="mee" sense="mee" special="loc" word="mee"/>
+            <node begin="19" end="20" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="34" lcat="np" lemma="front" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="front" sense="front" word="front"/>
+            <node begin="21" buiging="zonder" end="22" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="35" infl="inf" lcat="inf" lemma="vormen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="vorm" sc="transitive" sense="vorm" word="vormen" wvorm="inf"/>
+            <node begin="22" cat="pp" end="29" id="36" rel="mod">
+              <node begin="22" end="23" frame="preposition(voor,[aan,door,uit,[in,de,plaats]])" his="normal" his_1="normal" id="37" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="voor" sense="voor" vztype="init" word="voor"/>
+              <node begin="23" cat="np" end="29" id="38" rel="obj1">
+                <node begin="23" end="24" frame="determiner(een)" his="normal" his_1="normal" id="39" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                <node aform="base" begin="24" buiging="met-e" end="25" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="40" infl="e" lcat="ap" lemma="gelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="gelijk" sense="gelijk" vform="adj" word="gelijke"/>
+                <node begin="25" end="26" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="41" lcat="np" lemma="behandeling" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="behandeling" sense="behandeling" word="behandeling"/>
+                <node begin="26" cat="pp" end="29" id="42" rel="mod">
+                  <node begin="26" end="27" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="43" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="27" cat="np" end="29" id="44" rel="obj1">
+                    <node begin="27" buiging="met-e" end="28" frame="determiner(alle,nwh,mod,pro,nparg)" his="normal" his_1="normal" id="45" infl="alle" lcat="detp" lemma="alle" naamval="stan" npagr="agr" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,agr)" pt="vnw" rel="det" root="alle" sense="alle" vwtype="onbep" wh="nwh" word="alle"/>
+                    <node begin="28" end="29" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="46" lcat="np" lemma="lidstaat" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="lidstaat" sense="lidstaat" word="lidstaten"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="29" end="30" frame="punct(punt)" his="normal" his_1="normal" id="47" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">De Poolse minister van Buitenlandse zaken Wlodziemierz Cimoszewicz roept de andere kandidaat-lidstaten van de Europese Unie op om mee front te vormen voor een gelijke behandeling van alle lidstaten .</sentence>
+  <comments>
+    <comment>Q#2|De Poolse minister van Buitenlandse zaken Wlodziemierz Cimoszewicz roept de andere kandidaat-lidstaten van de Europese Unie op om mee front te vormen voor een gelijke behandeling van alle lidstaten .|1|1|-15.695539350019994</comment>
+  </comments>
+</alpino_ds>

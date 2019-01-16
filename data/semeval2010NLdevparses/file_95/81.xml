@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="17" id="0" rel="top">
+    <node begin="10" end="11" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="12" end="13" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="16" id="3" rel="--">
+      <node begin="0" cat="conj" end="3" id="4" rel="su">
+        <node begin="0" end="1" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="koper" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="cnj" rnum="pl" root="koper" sense="koper" word="Kopers"/>
+        <node begin="1" conjtype="neven" end="2" frame="conj(en)" his="normal" his_1="normal" id="6" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="verkoper" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="cnj" rnum="pl" root="verkoper" sense="verkoper" word="verkopers"/>
+      </node>
+      <node begin="3" end="4" frame="verb(zijn,past(pl),part_ld_pp(neer))" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="neer_strijken" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="strijk_neer" sc="part_ld_pp(neer)" sense="strijk_neer" stype="declarative" tense="past" word="streken" wvorm="pv"/>
+      <node begin="4" end="5" frame="adverb" his="normal" his_1="normal" id="9" lcat="advp" lemma="achtereenvolgens" pos="adv" postag="BW()" pt="bw" rel="mod" root="achtereenvolgens" sense="achtereenvolgens" word="achtereenvolgens"/>
+      <node begin="5" end="6" frame="particle(neer)" his="normal" his_1="normal" id="10" lcat="part" lemma="neer" pos="part" postag="BW()" pt="bw" rel="svp" root="neer" sense="neer" word="neer"/>
+      <node begin="6" cat="pp" end="16" id="11" rel="ld">
+        <node begin="6" end="7" frame="preposition(in,[])" his="normal" his_1="normal" id="12" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="7" cat="np" end="16" id="13" rel="obj1">
+          <node begin="7" end="8" frame="determiner(de)" his="normal" his_1="normal" id="14" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="stad" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="stad" sense="stad" word="steden"/>
+          <node begin="9" cat="conj" end="16" id="16" rel="app">
+            <node begin="9" end="10" frame="proper_name(both,'ORG')" genus="zijd" getal="ev" graad="basis" his="name" his_1="not_begin" id="17" lcat="np" lemma="Bar" naamval="stan" neclass="ORG" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="cnj" root="Bar" sense="Bar" word="Bar"/>
+            <node begin="11" end="12" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="name" his_1="not_begin" id="18" lcat="np" lemma="Lagny" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="cnj" rnum="sg" root="Lagny" sense="Lagny" word="Lagny"/>
+            <node begin="13" end="14" frame="proper_name(both,'PER')" genus="zijd" getal="ev" graad="basis" his="name" his_1="not_begin" id="19" lcat="np" lemma="Provins" naamval="stan" neclass="PER" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="cnj" rnum="sg" root="Provins" sense="Provins" word="Provins"/>
+            <node begin="14" conjtype="neven" end="15" frame="conj(en)" his="normal" his_1="normal" id="20" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="15" end="16" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="21" lcat="np" lemma="Troyes" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="cnj" rnum="sg" root="Troyes" sense="Troyes" word="Troyes"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="16" end="17" frame="punct(punt)" his="normal" his_1="normal" id="22" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="81">Kopers en verkopers streken achtereenvolgens neer in de steden Bar , Lagny , Provins en Troyes .</sentence>
+  <comments>
+    <comment>Q#81|Kopers en verkopers streken achtereenvolgens neer in de steden Bar , Lagny , Provins en Troyes .|1|1|-6.5355117278599995</comment>
+  </comments>
+</alpino_ds>

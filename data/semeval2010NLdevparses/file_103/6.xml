@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="10" id="0" rel="top">
+    <node begin="0" cat="smain" end="9" id="1" rel="--">
+      <node begin="0" cat="np" end="3" id="2" rel="su">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="Die"/>
+        <node begin="1" end="2" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="4" infl="pl_num" lcat="detp" lemma="zes" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="zes" sense="zes" special="hoofd" word="zes"/>
+        <node begin="2" end="3" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="land" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="land" sense="land" word="landen"/>
+      </node>
+      <node begin="3" end="4" frame="verb(unacc,pl,copula)" his="normal" his_1="normal" id="6" infl="pl" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="present" word="zijn" wvorm="pv"/>
+      <node begin="4" end="5" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="7" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+      <node begin="5" end="6" frame="sentence_adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="intussen" pos="adv" postag="BW()" pt="bw" rel="mod" root="intussen" sense="intussen" special="sentence" word="intussen"/>
+      <node begin="6" end="7" frame="sentence_adverb" his="normal" his_1="normal" id="9" lcat="advp" lemma="echter" pos="adv" postag="BW()" pt="bw" rel="mod" root="echter" sense="echter" special="sentence" word="echter"/>
+      <node begin="7" end="8" frame="adverb" his="normal" his_1="normal" id="10" lcat="advp" lemma="al" pos="adv" postag="BW()" pt="bw" rel="mod" root="al" sense="al" word="al"/>
+      <node begin="8" end="9" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="11" infl="pl_num" lcat="np" lemma="tien" numtype="hoofd" pos="num" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="predc" rnum="pl" root="tien" sense="tien" special="hoofd" word="tien"/>
+    </node>
+    <node begin="9" end="10" frame="punct(punt)" his="normal" his_1="normal" id="12" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="6">Die zes landen zijn er intussen echter al tien .</sentence>
+  <comments>
+    <comment>Q#6|Die zes landen zijn er intussen echter al tien .|1|1|-1.5967681216999976</comment>
+  </comments>
+</alpino_ds>

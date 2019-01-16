@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="24" id="0" rel="top">
+    <node begin="8" end="9" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="23" id="2" rel="--">
+      <node begin="0" cat="conj" end="17" id="3" rel="mod">
+        <node begin="0" cat="pp" end="8" id="4" rel="cnj">
+          <node begin="0" end="1" frame="preposition(door,[heen])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="Door"/>
+          <node begin="1" cat="np" end="8" id="6" rel="obj1">
+            <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="uitbreiding" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="uitbreiding" sense="uitbreiding" word="uitbreiding"/>
+            <node begin="3" cat="pp" end="8" id="9" rel="mod">
+              <node begin="3" end="4" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="10" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+              <node begin="4" cat="conj" end="8" id="11" rel="obj1">
+                <node begin="4" cat="np" end="6" id="12" rel="cnj">
+                  <node begin="4" buiging="zonder" end="5" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="13" index="1" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                  <node begin="5" end="6" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="gebied" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="gebied" sense="gebied" word="gebieden"/>
+                </node>
+                <node begin="6" conjtype="neven" end="7" frame="conj(en)" his="normal" his_1="normal" id="15" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+                <node begin="4" cat="np" end="8" id="16" rel="cnj">
+                  <node begin="4" end="5" id="17" index="1" rel="det"/>
+                  <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="bevolking" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bevolking" sense="bevolking" word="bevolking"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="9" conjtype="neven" end="10" frame="conj(en)" his="normal" his_1="normal" id="19" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="10" cat="pp" end="17" id="20" rel="cnj">
+          <node begin="10" end="11" frame="preposition(door,[heen])" his="normal" his_1="normal" id="21" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+          <node begin="11" cat="conj" end="17" id="22" rel="obj1">
+            <node begin="11" cat="np" end="14" id="23" rel="cnj">
+              <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="24" index="2" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(ende(padv))" his="normal" his_1="V-de" his_1_1="part-V" id="25" infl="e" lcat="ppres" lemma="toe_nemen" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="mod" root="neem_toe" sense="neem_toe" vform="gerund" word="toenemende" wvorm="od"/>
+              <node begin="13" end="14" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="26" lcat="np" lemma="bureaucratisering" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bureaucratisering" sense="bureaucratisering" word="bureaucratisering"/>
+            </node>
+            <node begin="14" conjtype="neven" end="15" frame="conj(en)" his="normal" his_1="normal" id="27" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="11" cat="np" end="17" id="28" rel="cnj">
+              <node begin="11" end="12" id="29" index="2" rel="det"/>
+              <node aform="base" begin="15" buiging="met-e" end="16" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="30" infl="e" lcat="ap" lemma="institutioneel" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="institutioneel" sense="institutioneel" vform="adj" word="institutionele"/>
+              <node begin="16" end="17" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="31" lcat="np" lemma="centralisering" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="centralisering" sense="centralisering" word="centralisering"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="17" end="18" frame="verb(hebben,past(pl),nonp_pred_np_ndev)" his="normal" his_1="normal" id="32" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="heb" sc="nonp_pred_np_ndev" sense="heb" stype="declarative" tense="past" word="hadden" wvorm="pv"/>
+      <node begin="18" cat="np" end="20" id="33" rel="su">
+        <node begin="18" end="19" frame="determiner(de)" his="normal" his_1="normal" id="34" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="19" end="20" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="35" lcat="np" lemma="vorst" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vorst" sense="vorst" word="vorsten"/>
+      </node>
+      <node begin="20" cat="np" end="22" id="36" rel="obj1">
+        <node aform="compar" begin="20" buiging="met-e" end="21" frame="adjective(ere)" graad="comp" his="normal" his_1="normal" id="37" infl="e" lcat="ap" lemma="modern" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,comp,met-e,stan)" pt="adj" rel="mod" root="modern" sense="modern" vform="adj" word="modernere"/>
+        <node begin="21" end="22" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="3" id="38" lcat="np" lemma="boek_houden_techniek" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="boek_houd_techniek" sense="boek_houd_techniek" word="boekhoudtechnieken"/>
+      </node>
+      <node aform="base" begin="22" buiging="zonder" end="23" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="39" infl="no_e" lcat="ap" lemma="nodig" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="nodig" sense="nodig" vform="adj" word="nodig"/>
+    </node>
+    <node begin="23" end="24" frame="punct(punt)" his="normal" his_1="normal" id="40" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="108">Door de uitbreiding van hun gebieden en bevolking , en door de toenemende bureaucratisering en institutionele centralisering hadden de vorsten modernere boekhoudtechnieken nodig .</sentence>
+  <comments>
+    <comment>Q#108|Door de uitbreiding van hun gebieden en bevolking , en door de toenemende bureaucratisering en institutionele centralisering hadden de vorsten modernere boekhoudtechnieken nodig .|1|1|-7.683999335959982</comment>
+  </comments>
+</alpino_ds>

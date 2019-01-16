@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="3" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="6" end="7" frame="punct(komma)" his="robust_skip" id="2" lcat="--" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="9" end="10" frame="punct(komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="12" end="13" frame="punct(hellip)" his="skip" id="4" lcat="--" lemma="..." pos="punct" postag="LET()" pt="let" rel="--" root="..." sense="..." special="hellip" word="..."/>
+    <node begin="13" end="14" frame="punct(komma)" his="normal" his_1="normal" id="5" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="20" id="6" rel="--">
+      <node begin="0" cat="du" end="6" id="7" rel="dp">
+        <node begin="0" cat="np" end="2" id="8" rel="dp">
+          <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="9" infl="no_e" lcat="ap" lemma="Vlaams" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="Vlaams" sense="Vlaams" vform="adj" word="Vlaams"/>
+          <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="laken" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="laken" sense="laken" word="laken"/>
+        </node>
+        <node begin="3" cat="np" end="6" id="11" rel="dp">
+          <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="12" infl="e" lcat="ap" lemma="fijn" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="fijn" sense="fijn" vform="adj" word="fijne"/>
+          <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="13" infl="e" lcat="ap" lemma="oosters" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="oosters" sense="oosters" vform="adj" word="oosterse"/>
+          <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="stof" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="stof" sense="stof" word="stoffen"/>
+        </node>
+      </node>
+      <node begin="7" cat="du" end="16" id="15" rel="dp">
+        <node begin="7" cat="du" end="12" id="16" rel="dp">
+          <node begin="7" cat="np" end="9" id="17" rel="dp">
+            <node aform="base" begin="7" buiging="met-e" end="8" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" infl="e" lcat="ap" lemma="Frans" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Frans" sense="Frans" vform="adj" word="Franse"/>
+            <node begin="8" end="9" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="wijn" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="wijn" sense="wijn" word="wijnen"/>
+          </node>
+          <node begin="10" cat="np" end="12" id="20" rel="dp">
+            <node aform="base" begin="10" buiging="met-e" end="11" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="21" infl="e" lcat="ap" lemma="Scandinavisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Scandinavisch" sense="Scandinavisch" vform="adj" word="Scandinavische"/>
+            <node begin="11" end="12" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="vacht" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vacht" sense="vacht" word="vachten"/>
+          </node>
+        </node>
+        <node begin="14" cat="du" end="16" id="23" rel="dp">
+          <node begin="14" end="15" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="goed" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="dp" rnum="pl" root="goed" sense="goed" word="goederen"/>
+          <node aform="base" begin="15" buiging="zonder" end="16" frame="adjective(both(nonadv))" graad="basis" his="normal" his_1="normal" id="25" infl="both" lcat="ap" lemma="allerhande" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="dp" root="allerhande" sense="allerhande" vform="adj" word="allerhande"/>
+        </node>
+      </node>
+      <node begin="16" cat="sv1" end="20" id="26" rel="dp">
+        <node begin="16" end="17" frame="verb(hebben,past(pl),pc_pp(van))" his="normal" his_1="normal" id="27" infl="pl" lcat="sv1" lemma="wisselen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="wissel" sc="pc_pp(van)" sense="wissel-van" stype="topic_drop" tense="past" word="wisselden" wvorm="pv"/>
+        <node begin="17" end="18" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="28" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+        <node begin="18" cat="pp" end="20" id="29" rel="pc">
+          <node begin="18" end="19" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="30" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="19" end="20" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="31" lcat="np" lemma="eigenaar" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="eigenaar" sense="eigenaar" word="eigenaar"/>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="robust_skip" id="32" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="76">Vlaams laken , fijne oosterse stoffen , Franse wijnen , Scandinavische vachten ... , goederen allerhande wisselden er van eigenaar .</sentence>
+  <comments>
+    <comment>Q#76|Vlaams laken , fijne oosterse stoffen , Franse wijnen , Scandinavische vachten ... , goederen allerhande wisselden er van eigenaar .|1|3|12.103887112099997</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="7" end="8" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="15" id="2" rel="--">
+      <node begin="0" cat="cp" end="7" id="3" rel="mod">
+        <node begin="0" conjtype="onder" end="1" frame="complementizer" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="cp" lemma="hoewel" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="hoewel" sense="hoewel" word="Hoewel"/>
+        <node begin="1" cat="ssub" end="7" id="5" rel="body">
+          <node begin="1" cat="np" end="3" id="6" index="1" rel="su">
+            <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="rente" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rente" sense="rente" word="rente"/>
+          </node>
+          <node begin="5" end="6" frame="verb(unacc,sg_heeft,aux_psp_zijn)" his="normal" his_1="normal" id="9" infl="sg_heeft" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="aux_psp_zijn" sense="ben" tense="present" word="is" wvorm="pv"/>
+          <node begin="1" cat="ppart" end="7" id="10" rel="vc">
+            <node begin="1" end="3" id="11" index="1" rel="su"/>
+            <node begin="3" cat="pp" end="5" id="12" rel="ld">
+              <node begin="3" end="4" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="13" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+              <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="nul" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="nul" sense="nul" word="nul"/>
+            </node>
+            <node begin="6" buiging="zonder" end="7" frame="verb(zijn,psp,ld_pp)" his="normal" his_1="normal" id="15" infl="psp" lcat="ppart" lemma="zakken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="zak" sc="ld_pp" sense="zak" word="gezakt" wvorm="vd"/>
+          </node>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="16" infl="sg3" lcat="smain" lemma="kennen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="ken" sc="transitive" sense="ken" stype="declarative" tense="present" word="kent" wvorm="pv"/>
+      <node begin="9" end="10" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="17" lcat="np" lemma="Japan" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="su" rnum="sg" root="Japan" sense="Japan" word="Japan"/>
+      <node begin="10" cat="np" end="15" id="18" rel="obj1">
+        <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="super" begin="11" buiging="met-e" end="12" frame="adjective(ste)" graad="sup" his="normal" his_1="normal" id="20" infl="e" lcat="ap" lemma="hoog" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,sup,met-e,stan)" pt="adj" rel="mod" root="hoog" sense="hoog" vform="adj" word="hoogste"/>
+        <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="21" lcat="np" lemma="sparen_quote" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="spaar_quote" sense="spaar_quote" word="spaarquote"/>
+        <node begin="13" cat="pp" end="15" id="22" rel="mod">
+          <node begin="13" end="14" frame="preposition(ter,[],nodet)" his="normal" his_1="normal" id="23" lcat="pp" lemma="ter" pos="prep" postag="VZ(versm)" pt="vz" rel="hd" root="ter" sc="nodet" sense="ter" vztype="versm" word="ter"/>
+          <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="wereld" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="wereld" sense="wereld" word="wereld"/>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="25" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="21">Hoewel de rente tot nul is gezakt , kent Japan de hoogste spaarquote ter wereld .</sentence>
+  <comments>
+    <comment>Q#21|Hoewel de rente tot nul is gezakt , kent Japan de hoogste spaarquote ter wereld .|1|1|-9.199543337359998</comment>
+  </comments>
+</alpino_ds>

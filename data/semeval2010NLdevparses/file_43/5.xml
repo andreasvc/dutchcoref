@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="25" id="0" rel="top">
+    <node begin="10" end="11" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="21" end="22" frame="punct(haak_open)" his="normal" his_1="normal" id="2" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="0" cat="smain" end="23" id="3" rel="--">
+      <node begin="0" cat="np" end="5" id="4" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="compound" his_1="2" id="6" infl="e" lcat="ap" lemma="West_Vlaams" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="West_Vlaams" sense="West_Vlaams" vform="adj" word="West-Vlaamse"/>
+        <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="7" lcat="np" lemma="provincie_gouverneur" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="provincie_gouverneur" sense="provincie_gouverneur" word="provinciegouverneur"/>
+        <node begin="3" cat="mwu" end="5" his="name" his_1="not_begin" id="8" mwu_root="Paul Breyne" mwu_sense="Paul Breyne" rel="app">
+          <node begin="3" end="4" frame="proper_name(sg,'PER')" id="9" lcat="np" lemma="Paul" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Paul" sense="Paul" spectype="deeleigen" word="Paul"/>
+          <node begin="4" end="5" frame="proper_name(sg,'PER')" id="10" lcat="np" lemma="Breyne" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Breyne" sense="Breyne" spectype="deeleigen" word="Breyne"/>
+        </node>
+      </node>
+      <node begin="5" end="6" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="11" infl="sg" lcat="smain" lemma="schorsen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="schors" sc="transitive" sense="schors" stype="declarative" tense="past" word="schorste" wvorm="pv"/>
+      <node begin="6" end="7" frame="sentence_adverb" his="normal" his_1="normal" id="12" lcat="advp" lemma="echter" pos="adv" postag="BW()" pt="bw" rel="mod" root="echter" sense="echter" special="sentence" word="echter"/>
+      <node begin="7" end="8" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="dinsdag" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="dinsdag" sense="dinsdag" special="tmp" word="dinsdag"/>
+      <node begin="8" cat="np" end="12" id="14" rel="obj1">
+        <node begin="8" buiging="zonder" end="9" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="15" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="die"/>
+        <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="beslissing" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="beslissing" sense="beslissing" word="beslissing"/>
+        <node aform="base" begin="11" buiging="zonder" end="12" frame="adjective(ge_no_e(adv))" his="normal" his_1="normal" id="17" infl="no_e" lcat="ppart" lemma="gesteund" pos="adj" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="mod" root="gesteund" sense="gesteund" vform="psp" word="gesteund" wvorm="vd"/>
+      </node>
+      <node begin="12" cat="pp" end="23" id="18" rel="mod">
+        <node begin="12" end="13" frame="preposition(door,[heen])" his="normal" his_1="normal" id="19" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+        <node begin="13" cat="np" end="23" id="20" rel="obj1">
+          <node aform="base" begin="13" buiging="zonder" end="14" frame="adjective(no_e(nonadv))" graad="basis" his="normal" his_1="normal" id="21" infl="no_e" lcat="ap" lemma="Vlaams" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="Vlaams" sense="Vlaams" vform="adj" word="Vlaams"/>
+          <node begin="14" end="15" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="minister"/>
+          <node begin="15" cat="pp" end="18" id="23" rel="mod">
+            <node begin="15" end="16" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="16" cat="mwu" end="18" his="normal" his_1="names_dictionary" id="25" mwu_root="Binnenlandse Aangelegenheden" mwu_sense="Binnenlandse Aangelegenheden" rel="obj1">
+              <node begin="16" end="17" frame="proper_name(sg,'ORG')" id="26" lcat="np" lemma="Binnenlandse" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Binnenlandse" sense="Binnenlandse" spectype="deeleigen" word="Binnenlandse"/>
+              <node begin="17" end="18" frame="proper_name(sg,'ORG')" id="27" lcat="np" lemma="Aangelegenheden" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Aangelegenheden" sense="Aangelegenheden" spectype="deeleigen" word="Aangelegenheden"/>
+            </node>
+          </node>
+          <node begin="18" cat="mwu" end="21" his="name" his_1="not_begin" id="28" mwu_root="Paul Van Grembergen" mwu_sense="Paul Van Grembergen" rel="app">
+            <node begin="18" end="19" frame="proper_name(both,'PER')" id="29" lcat="np" lemma="Paul" neclass="PER" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Paul" sense="Paul" spectype="deeleigen" word="Paul"/>
+            <node begin="19" end="20" frame="proper_name(both,'PER')" id="30" lcat="np" lemma="Van" neclass="PER" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Van" sense="Van" spectype="deeleigen" word="Van"/>
+            <node begin="20" end="21" frame="proper_name(both,'PER')" id="31" lcat="np" lemma="Grembergen" neclass="PER" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Grembergen" sense="Grembergen" spectype="deeleigen" word="Grembergen"/>
+          </node>
+          <node begin="22" end="23" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="32" lcat="np" lemma="Spirit" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="Spirit" sense="Spirit" word="Spirit"/>
+        </node>
+      </node>
+    </node>
+    <node begin="23" end="24" frame="punct(haak_sluit)" his="normal" his_1="normal" id="33" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="24" end="25" frame="punct(punt)" his="normal" his_1="normal" id="34" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="5">De West-Vlaamse provinciegouverneur Paul Breyne schorste echter dinsdag die beslissing , gesteund door Vlaams minister van Binnenlandse Aangelegenheden Paul Van Grembergen ( Spirit ) .</sentence>
+  <comments>
+    <comment>Q#5|De West-Vlaamse provinciegouverneur Paul Breyne schorste echter dinsdag die beslissing , gesteund door Vlaams minister van Binnenlandse Aangelegenheden Paul Van Grembergen ( Spirit ) .|1|1|-12.610269933560001</comment>
+  </comments>
+</alpino_ds>

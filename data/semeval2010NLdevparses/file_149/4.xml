@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="18" id="0" rel="top">
+    <node begin="0" cat="smain" end="17" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="su">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="Die"/>
+        <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="enclave" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="enclave" sense="enclave" word="enclave"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,past(sg),fixed([[in,handen],acc],no_passive))" his="normal" his_1="normal" id="5" infl="sg" lcat="smain" lemma="krijgen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="krijg" sc="fixed([[in,handen],acc],no_passive)" sense="in-handen-krijg" stype="declarative" tense="past" word="kreeg" wvorm="pv"/>
+      <node begin="3" cat="np" end="5" id="6" rel="obj1">
+        <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="4" end="5" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="8" lcat="np" lemma="FARC" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="FARC" sense="FARC" word="FARC"/>
+      </node>
+      <node begin="5" cat="pp" end="7" id="9" rel="mod">
+        <node begin="5" end="6" frame="preposition(in,[])" his="normal" his_1="normal" id="10" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="6" end="7" frame="np(year)" his="normal" his_1="normal" id="11" lcat="np" lemma="1998" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="obj1" rnum="sg" root="1998" sense="1998" word="1998"/>
+      </node>
+      <node begin="7" cat="mwu" end="9" his="normal" his_1="normal" id="12" mwu_root="in handen" mwu_sense="in handen" rel="svp">
+        <node begin="7" end="8" frame="fixed_part([in,handen])" id="13" lcat="fixed" lemma="in" pos="fixed" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+        <node begin="8" end="9" frame="fixed_part([in,handen])" getal="mv" graad="basis" id="14" lcat="fixed" lemma="handen" ntype="soort" pos="fixed" postag="N(soort,mv,basis)" pt="n" rel="mwp" root="handen" sense="handen" word="handen"/>
+      </node>
+      <node begin="9" cat="pp" end="17" id="15" rel="mod">
+        <node begin="9" cat="mwu" end="12" his="normal" his_1="normal" id="16" mwu_root="in ruil voor" mwu_sense="in ruil voor" rel="hd">
+          <node begin="9" end="10" frame="preposition([in,ruil,voor],[])" id="17" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+          <node begin="10" end="11" frame="preposition([in,ruil,voor],[])" genus="zijd" getal="ev" graad="basis" id="18" lcat="pp" lemma="ruil" naamval="stan" ntype="soort" pos="prep" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" root="ruil" sense="ruil" word="ruil"/>
+          <node begin="11" end="12" frame="preposition([in,ruil,voor],[])" id="19" lcat="pp" lemma="voor" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="voor" sense="voor" vztype="init" word="voor"/>
+        </node>
+        <node begin="12" cat="np" end="17" id="20" rel="obj1">
+          <node begin="12" end="13" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="13" end="14" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="voortzetting" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="voortzetting" sense="voortzetting" word="voortzetting"/>
+          <node begin="14" cat="pp" end="17" id="23" rel="mod">
+            <node begin="14" end="15" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="15" cat="np" end="17" id="25" rel="obj1">
+              <node begin="15" end="16" frame="determiner(de)" his="normal" his_1="normal" id="26" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="16" end="17" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="27" lcat="np" lemma="vredesonderhandeling" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vredesonderhandeling" sense="vredesonderhandeling" word="vredesonderhandelingen"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="17" end="18" frame="punct(punt)" his="normal" his_1="normal" id="28" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">Die enclave kreeg de FARC in 1998 in handen in ruil voor de voortzetting van de vredesonderhandelingen .</sentence>
+  <comments>
+    <comment>Q#4|Die enclave kreeg de FARC in 1998 in handen in ruil voor de voortzetting van de vredesonderhandelingen .|1|1|-3.5215007521399997</comment>
+  </comments>
+</alpino_ds>

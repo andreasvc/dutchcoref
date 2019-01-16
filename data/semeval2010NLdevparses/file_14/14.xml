@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="13" id="0" rel="top">
+    <node begin="0" cat="smain" end="12" id="1" rel="--">
+      <node begin="0" end="1" frame="het_noun" genus="onz" getal="ev" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="noun" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="sup" rnum="sg" root="het" sense="het" special="het" status="red" vwtype="pers" word="Het"/>
+      <node begin="1" end="2" frame="verb(unacc,sg_heeft,copula_vp)" his="normal" his_1="normal" id="3" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="copula_vp" sense="ben" stype="declarative" tense="present" word="is" wvorm="pv"/>
+      <node begin="2" cat="np" end="4" id="4" rel="predc">
+        <node begin="2" end="3" frame="determiner(de)" his="normal" his_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="3" end="4" frame="noun(de,count,sg,subject_vp)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="bedoeling" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bedoeling" sc="subject_vp" sense="bedoeling" word="bedoeling"/>
+      </node>
+      <node begin="4" cat="ti" end="12" id="7" rel="su">
+        <node begin="10" end="11" frame="complementizer(te)" his="normal" his_1="normal" id="8" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+        <node begin="4" cat="inf" end="12" id="9" rel="body">
+          <node begin="4" cat="np" end="6" id="10" rel="obj1">
+            <node begin="4" buiging="met-e" end="5" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="deze" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="deze" sense="deze" vwtype="aanw" wh="nwh" word="deze"/>
+            <node begin="5" end="6" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="kennis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="kennis" sense="kennis" word="kennis"/>
+          </node>
+          <node begin="6" end="7" frame="sentence_adverb" his="normal" his_1="normal" id="13" lcat="advp" lemma="ook" pos="adv" postag="BW()" pt="bw" rel="mod" root="ook" sense="ook" special="sentence" word="ook"/>
+          <node begin="7" cat="pp" end="9" id="14" rel="ld">
+            <node begin="7" end="8" frame="preposition(in,[])" his="normal" his_1="normal" id="15" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="8" end="9" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="vliegtuig" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="vliegtuig" sense="vliegtuig" word="vliegtuigen"/>
+          </node>
+          <node begin="9" end="10" frame="particle(in)" his="normal" his_1="normal" id="17" lcat="part" lemma="in" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="in" sense="in" vztype="fin" word="in"/>
+          <node begin="11" buiging="zonder" end="12" frame="verb(hebben,inf,part_np_ld_pp(in))" his="normal" his_1="normal" id="18" infl="inf" lcat="inf" lemma="in_bouwen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="bouw_in" sc="part_np_ld_pp(in)" sense="bouw_in" word="bouwen" wvorm="inf"/>
+        </node>
+      </node>
+    </node>
+    <node begin="12" end="13" frame="punct(punt)" his="normal" his_1="normal" id="19" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="14">Het is de bedoeling deze kennis ook in vliegtuigen in te bouwen .</sentence>
+  <comments>
+    <comment>Q#14|Het is de bedoeling deze kennis ook in vliegtuigen in te bouwen .|1|1|-6.92778422658</comment>
+  </comments>
+</alpino_ds>

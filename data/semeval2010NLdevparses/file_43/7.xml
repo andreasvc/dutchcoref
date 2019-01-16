@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="5" end="6" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="conj" end="20" id="2" rel="--">
+      <node begin="0" cat="smain" end="5" id="3" rel="cnj">
+        <node begin="0" cat="np" end="2" id="4" index="1" rel="su">
+          <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="Minister"/>
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="6" lcat="np" lemma="Aelvoet" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="app" rnum="sg" root="Aelvoet" sense="Aelvoet" word="Aelvoet"/>
+        </node>
+        <node begin="2" end="3" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="7" infl="sg3" lcat="smain" lemma="delen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="deel" sc="transitive" sense="deel" tense="present" word="deelt" wvorm="pv"/>
+        <node begin="3" cat="np" end="5" id="8" rel="obj1">
+          <node begin="3" buiging="zonder" end="4" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="9" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="det" root="die" sense="die" vwtype="aanw" wh="nwh" word="die"/>
+          <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="visie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="visie" sense="visie" word="visie"/>
+        </node>
+      </node>
+      <node begin="6" conjtype="neven" end="7" frame="conj(maar)" his="normal" his_1="normal" id="11" lcat="vg" lemma="maar" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="maar" sense="maar" word="maar"/>
+      <node begin="0" cat="smain" end="20" id="12" rel="cnj">
+        <node begin="0" end="2" id="13" index="1" rel="su"/>
+        <node begin="7" end="8" frame="verb(hebben,sg3,vp)" his="normal" his_1="normal" id="14" infl="sg3" lcat="smain" lemma="zeggen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="zeg" sc="vp" sense="zeg" tense="present" word="zegt" wvorm="pv"/>
+        <node begin="0" cat="ti" end="20" id="15" rel="vc">
+          <node begin="13" end="14" frame="complementizer(te)" his="normal" his_1="normal" id="16" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+          <node begin="0" cat="inf" end="20" id="17" rel="body">
+            <node begin="0" end="2" id="18" index="1" rel="su"/>
+            <node begin="8" end="9" frame="reflexive(u_thi,both)" getal="getal" his="normal" his_1="normal" id="19" lcat="np" lemma="zich" naamval="obl" num="both" pdtype="pron" per="u_thi" persoon="3" pos="pron" postag="VNW(refl,pron,obl,red,3,getal)" pt="vnw" refl="refl" rel="se" root="zich" sense="zich" status="red" vwtype="refl" word="zich"/>
+            <node begin="9" cat="pp" end="13" id="20" rel="pc">
+              <node begin="9" end="10" frame="preposition(over,[heen])" his="normal" his_1="normal" id="21" lcat="pp" lemma="over" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="over" sense="over" vztype="init" word="over"/>
+              <node begin="10" cat="np" end="13" id="22" rel="obj1">
+                <node aform="base" begin="10" buiging="met-e" end="11" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="23" infl="e" lcat="ap" lemma="mogelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="mogelijk" sense="mogelijk" vform="adj" word="mogelijke"/>
+                <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="24" infl="e" lcat="ap" lemma="alternatief" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="alternatief" sense="alternatief" vform="adj" word="alternatieve"/>
+                <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="oplossing" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="oplossing" sense="oplossing" word="oplossingen"/>
+              </node>
+            </node>
+            <node begin="14" buiging="zonder" end="15" frame="verb(hebben,inf,refl_pc_pp(over))" his="normal" his_1="normal" id="26" infl="inf" lcat="inf" lemma="beraden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="beraad" sc="refl_pc_pp(over)" sense="zich-beraad-over" word="beraden" wvorm="inf"/>
+            <node begin="15" cat="pp" end="20" id="27" rel="mod">
+              <node begin="15" end="16" frame="preposition(in,[])" his="normal" his_1="normal" id="28" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="16" cat="np" end="20" id="29" rel="obj1">
+                <node begin="16" end="17" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="samenspraak" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="samenspraak" sense="samenspraak" word="samenspraak"/>
+                <node begin="17" cat="pp" end="20" id="31" rel="mod">
+                  <node begin="17" end="18" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="32" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+                  <node begin="18" cat="np" end="20" id="33" rel="obj1">
+                    <node begin="18" end="19" frame="determiner(de)" his="normal" his_1="normal" id="34" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node begin="19" end="20" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="35" lcat="np" lemma="sector" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="sector" sense="sector" word="sector"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="36" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Minister Aelvoet deelt die visie , maar zegt zich over mogelijke alternatieve oplossingen te beraden in samenspraak met de sector .</sentence>
+  <comments>
+    <comment>Q#7|Minister Aelvoet deelt die visie , maar zegt zich over mogelijke alternatieve oplossingen te beraden in samenspraak met de sector .|1|1|-12.470597798219995</comment>
+  </comments>
+</alpino_ds>

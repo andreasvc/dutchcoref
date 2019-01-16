@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="4" end="5" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="10" end="11" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="16" end="17" frame="punct(komma)" his="normal" his_1="normal" id="3" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="22" id="4" rel="--">
+      <node begin="0" cat="np" end="16" id="5" index="1" rel="su">
+        <node begin="0" end="1" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="decap_and_compound" his_1="2" id="6" lcat="np" lemma="warenhuis_keten" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="warenhuis_keten" sense="warenhuis_keten" word="Warenhuisketens"/>
+        <node begin="1" cat="cp" end="16" id="7" rel="mod">
+          <node begin="1" end="2" frame="complementizer(als)" his="normal" his_1="normal" id="8" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+          <node begin="2" cat="conj" end="16" id="9" rel="body">
+            <node begin="2" cat="np" end="10" id="10" rel="cnj">
+              <node begin="2" cat="mwu" end="4" his="name" his_1="not_begin" id="11" mwu_root="Mycal Corp" mwu_sense="Mycal Corp" rel="hd">
+                <node begin="2" end="3" frame="proper_name(sg,'PER')" id="12" lcat="np" lemma="Mycal" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Mycal" sense="Mycal" spectype="deeleigen" word="Mycal"/>
+                <node begin="3" end="4" frame="proper_name(sg,'PER')" id="13" lcat="np" lemma="Corp" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Corp" sense="Corp" spectype="deeleigen" word="Corp"/>
+              </node>
+              <node begin="5" cat="np" end="10" id="14" rel="mod">
+                <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="15" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="6" end="7" frame="number(rang)" getal-n="zonder-n" his="normal" his_1="normal" id="16" lcat="np" lemma="vierde" numtype="rang" pos="num" positie="nom" postag="TW(rang,nom,zonder-n)" pt="tw" rel="hd" rnum="sg" root="vierde" sense="vierde" special="rang" word="vierde"/>
+                <node begin="7" cat="pp" end="10" id="17" rel="mod">
+                  <node begin="7" end="8" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="18" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="8" cat="np" end="10" id="19" rel="obj1">
+                    <node begin="8" end="9" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="20" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                    <node begin="9" end="10" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="21" lcat="np" lemma="land" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="land" sense="land" word="land"/>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node begin="11" conjtype="neven" end="12" frame="conj(en)" his="normal" his_1="normal" id="22" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="12" cat="np" end="16" id="23" rel="cnj">
+              <node begin="12" end="13" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="name" his_1="not_begin" id="24" lcat="np" lemma="Kotobukiya" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Kotobukiya" sense="Kotobukiya" word="Kotobukiya"/>
+              <node begin="13" cat="pp" end="16" id="25" rel="mod">
+                <node begin="13" end="14" frame="preposition(in,[])" his="normal" his_1="normal" id="26" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="14" cat="np" end="16" id="27" rel="obj1">
+                  <node begin="14" end="15" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="28" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                  <node begin="15" end="16" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="zuiden" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="zuiden" sense="zuiden" word="zuiden"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="17" end="18" frame="verb(unacc,pl,aux_psp_zijn)" his="normal" his_1="normal" id="30" infl="pl" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="aux_psp_zijn" sense="ben" stype="declarative" tense="present" word="zijn" wvorm="pv"/>
+      <node begin="0" cat="ppart" end="22" id="31" rel="vc">
+        <node begin="0" end="16" id="32" index="1" rel="su"/>
+        <node begin="18" cat="pp" end="21" id="33" rel="pc">
+          <node begin="18" end="19" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="34" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+          <node begin="19" cat="np" end="21" id="35" rel="obj1">
+            <node begin="19" end="20" frame="determiner(de)" his="normal" his_1="normal" id="36" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="37" lcat="np" lemma="fles" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="fles" sense="fles" word="fles"/>
+          </node>
+        </node>
+        <node begin="21" buiging="zonder" end="22" frame="verb(zijn,psp,pc_pp(op))" his="normal" his_1="normal" id="38" infl="psp" lcat="ppart" lemma="gaan" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="ga" sc="pc_pp(op)" sense="ga-op" word="gegaan" wvorm="vd"/>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="39" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="23">Warenhuisketens als Mycal Corp ( de vierde van het land ) en Kotobukiya in het zuiden , zijn op de fles gegaan .</sentence>
+  <comments>
+    <comment>Q#23|Warenhuisketens als Mycal Corp ( de vierde van het land ) en Kotobukiya in het zuiden , zijn op de fles gegaan .|1|1|-0.6936167287599978</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="2" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="17" end="18" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="1" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="0" cat="du" end="19" id="2" rel="--">
+      <node begin="0" cat="smain" end="12" id="3" rel="dp">
+        <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="4" infl="no_e" lcat="ap" lemma="verhoudingsgewijs" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="verhoudingsgewijs" sense="verhoudingsgewijs" vform="adj" word="Verhoudingsgewijs"/>
+        <node begin="1" end="2" frame="verb(hebben,past(pl),transitive_ndev)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="heb" sc="transitive_ndev" sense="heb" stype="declarative" tense="past" word="hadden" wvorm="pv"/>
+        <node begin="2" cat="np" end="5" id="6" rel="su">
+          <node begin="2" cat="ap" end="4" id="7" rel="det">
+            <node aform="base" begin="2" buiging="zonder" end="3" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="8" infl="no_e" lcat="ap" lemma="dubbel" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="dubbel" sense="dubbel" vform="adj" word="dubbel"/>
+            <node aform="base" begin="3" end="4" frame="adjective(no_e(odet_adv))" his="normal" his_1="normal" id="9" infl="no_e" lcat="ap" lemma="zoveel" naamval="stan" numtype="hoofd" pos="adj" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="hd" root="zoveel" sense="zoveel" vform="adj" word="zoveel"/>
+          </node>
+          <node aform="base" begin="4" buiging="met-e" end="5" frame="nominalized_adjective" getal-n="mv-n" graad="basis" his="compound" his_1="2" id="10" lcat="np" lemma="eerst_geboren" num="pl" personalized="true" pos="adj" positie="nom" postag="ADJ(nom,basis,met-e,mv-n)" pt="adj" rel="hd" rnum="pl" root="eerst_geboren" sense="eerst_geboren" special="a_noun" word="eerstgeborenen"/>
+        </node>
+        <node begin="5" cat="np" end="11" id="11" rel="obj1">
+          <node begin="5" end="6" frame="determiner(een)" his="normal" his_1="normal" id="12" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node aform="base" begin="6" buiging="zonder" end="7" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="13" infl="no_e" lcat="ap" lemma="hoog" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="hoog" sense="hoog" vform="adj" word="hoog"/>
+          <node begin="7" end="8" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="gehalte" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="gehalte" sense="gehalte" word="gehalte"/>
+          <node begin="8" cat="pp" end="11" id="15" rel="mod">
+            <node begin="8" end="9" frame="preposition(in,[])" his="normal" his_1="normal" id="16" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="9" cat="np" end="11" id="17" rel="obj1">
+              <node begin="9" end="10" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="18" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node begin="10" end="11" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="bloed" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="bloed" sense="bloed" word="bloed"/>
+            </node>
+          </node>
+        </node>
+        <node begin="11" end="12" frame="tmp_adverb" his="normal" his_1="normal" id="20" lcat="advp" lemma="dan" pos="adv" postag="BW()" pt="bw" rel="mod" root="dan" sense="dan" special="tmp" word="dan"/>
+      </node>
+      <node begin="12" cat="np" end="19" id="21" rel="dp">
+        <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="baby" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="baby" sense="baby" word="baby&apos;s"/>
+        <node begin="13" cat="pp" end="19" id="23" rel="mod">
+          <node begin="13" end="14" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+          <node begin="14" cat="conj" end="19" id="25" rel="obj1">
+            <node begin="14" end="15" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="26" infl="pl_num" lcat="np" lemma="twee" numtype="hoofd" pos="num" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="cnj" rnum="pl" root="twee" sense="twee" special="hoofd" word="twee"/>
+            <node begin="15" conjtype="neven" end="16" frame="conj(of)" his="normal" his_1="normal" id="27" lcat="vg" lemma="of" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="of" sense="of" word="of"/>
+            <node begin="16" cat="np" end="19" id="28" rel="cnj">
+              <node aform="compar" begin="16" buiging="zonder" end="17" frame="adjective(meer)" graad="comp" his="normal" his_1="normal" id="29" infl="meer" lcat="ap" lemma="meer" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,comp)" pt="vnw" rel="det" root="meer" sense="meer" vform="adj" vwtype="onbep" word="meer"/>
+              <node begin="18" end="19" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="voorganger" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="voorganger" sense="voorganger" word="voorgangers"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="19" end="20" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="31" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="20" end="21" frame="punct(punt)" his="robust_skip" id="32" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="12">Verhoudingsgewijs hadden dubbel zoveel eerstgeborenen een hoog gehalte in het bloed dan baby&apos;s met twee of meer &apos; voorgangers &apos; .</sentence>
+  <comments>
+    <comment>Q#12|Verhoudingsgewijs hadden dubbel zoveel eerstgeborenen een hoog gehalte in het bloed dan baby&apos;s met twee of meer &apos; voorgangers &apos; .|1|2|10.47372161979998</comment>
+  </comments>
+</alpino_ds>

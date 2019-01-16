@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="24" id="0" rel="top">
+    <node begin="7" end="8" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="16" end="17" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="23" id="3" rel="--">
+      <node begin="8" end="9" frame="verb(unacc,past(sg),passive)" his="normal" his_1="normal" id="4" infl="sg" lcat="smain" lemma="worden" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="word" sc="passive" sense="word" stype="declarative" tense="past" word="werd" wvorm="pv"/>
+      <node begin="9" cat="np" end="11" id="5" index="1" rel="su">
+        <node begin="9" end="10" frame="determiner(een)" his="normal" his_1="normal" id="6" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+        <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="overval" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="overval" sense="overval" word="overval"/>
+      </node>
+      <node begin="0" cat="ppart" end="12" id="8" rel="vc">
+        <node begin="0" cat="cp" end="7" id="9" rel="mod">
+          <node begin="0" conjtype="onder" end="1" frame="complementizer" his="normal" his_1="decap" his_1_1="normal" id="10" lcat="cp" lemma="wanneer" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="wanneer" sense="wanneer" word="Wanneer"/>
+          <node begin="1" cat="ssub" end="7" id="11" rel="body">
+            <node begin="1" cat="np" end="3" id="12" rel="su">
+              <node begin="1" end="2" frame="determiner(een)" his="normal" his_1="normal" id="13" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node begin="2" end="3" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="vorst" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="vorst" sense="vorst" word="vorst"/>
+            </node>
+            <node begin="3" end="4" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="handelaar" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="handelaar" sense="handelaar" word="handelaars"/>
+            <node begin="4" cat="mwu" end="6" his="normal" his_1="normal" id="16" mwu_root="in bescherming" mwu_sense="in bescherming" rel="svp">
+              <node begin="4" end="5" frame="fixed_part([in,bescherming])" id="17" lcat="fixed" lemma="in" pos="fixed" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="5" end="6" frame="fixed_part([in,bescherming])" genus="zijd" getal="ev" graad="basis" id="18" lcat="fixed" lemma="bescherming" naamval="stan" ntype="soort" pos="fixed" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" root="bescherming" sense="bescherming" word="bescherming"/>
+            </node>
+            <node begin="6" end="7" frame="verb(hebben,past(sg),fixed([[in,bescherming],acc],norm_passive))" his="normal" his_1="normal" id="19" infl="sg" lcat="ssub" lemma="nemen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="neem" sc="fixed([[in,bescherming],acc],norm_passive)" sense="in-bescherming-neem" tense="past" word="nam" wvorm="pv"/>
+          </node>
+        </node>
+        <node begin="9" end="11" id="20" index="1" rel="obj1"/>
+        <node begin="11" buiging="zonder" end="12" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="21" infl="psp" lcat="ppart" lemma="vertalen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="vertaal" sc="transitive" sense="vertaal" word="vertaald" wvorm="vd"/>
+      </node>
+      <node begin="12" cat="conj" end="23" id="22" rel="predm">
+        <node begin="12" cat="cp" end="16" id="23" rel="cnj">
+          <node begin="12" end="13" frame="complementizer(als)" his="normal" his_1="normal" id="24" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+          <node begin="13" cat="np" end="16" id="25" rel="body">
+            <node begin="13" end="14" frame="determiner(een)" his="normal" his_1="normal" id="26" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node aform="base" begin="14" buiging="met-e" end="15" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="27" infl="e" lcat="ap" lemma="politiek" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="politiek" sense="politiek" vform="adj" word="politieke"/>
+            <node begin="15" end="16" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="daad" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="daad" sense="daad" word="daad"/>
+          </node>
+        </node>
+        <node begin="17" cat="cp" end="23" id="29" rel="cnj">
+          <node begin="17" end="18" frame="complementizer(als)" his="normal" his_1="normal" id="30" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+          <node begin="18" cat="np" end="23" id="31" rel="body">
+            <node begin="18" end="19" frame="determiner(een)" his="normal" his_1="normal" id="32" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+            <node begin="19" end="20" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="33" lcat="np" lemma="aanval" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="aanval" sense="aanval" word="aanval"/>
+            <node begin="20" cat="pp" end="23" id="34" rel="mod">
+              <node begin="20" end="21" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="35" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+              <node begin="21" cat="np" end="23" id="36" rel="obj1">
+                <node begin="21" end="22" frame="determiner(de)" his="normal" his_1="normal" id="37" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="22" end="23" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="38" lcat="np" lemma="vorst" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="vorst" sense="vorst" word="vorst"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="23" end="24" frame="punct(punt)" his="normal" his_1="normal" id="39" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="85">Wanneer een vorst handelaars in bescherming nam , werd een overval vertaald als een politieke daad , als een aanval op de vorst .</sentence>
+  <comments>
+    <comment>Q#85|Wanneer een vorst handelaars in bescherming nam , werd een overval vertaald als een politieke daad , als een aanval op de vorst .|1|1|-4.8757700174600025</comment>
+  </comments>
+</alpino_ds>

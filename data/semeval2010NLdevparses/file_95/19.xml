@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="7" id="0" rel="top">
+    <node begin="0" cat="smain" end="6" id="1" rel="--">
+      <node begin="0" end="1" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="2" lcat="np" lemma="Brugge" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="su" rnum="sg" root="Brugge" sense="Brugge" word="Brugge"/>
+      <node begin="1" end="2" frame="verb(hebben,past(sg),als_pred_refl)" his="normal" his_1="normal" id="3" infl="sg" lcat="smain" lemma="profileren" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="profileer" sc="als_pred_refl" sense="zich-profileer" stype="declarative" tense="past" word="profileerde" wvorm="pv"/>
+      <node begin="2" end="3" frame="reflexive(u_thi,both)" getal="getal" his="normal" his_1="normal" id="4" lcat="np" lemma="zich" naamval="obl" num="both" pdtype="pron" per="u_thi" persoon="3" pos="pron" postag="VNW(refl,pron,obl,red,3,getal)" pt="vnw" refl="refl" rel="se" root="zich" sense="zich" status="red" vwtype="refl" word="zich"/>
+      <node begin="3" end="4" frame="sentence_adverb" his="normal" his_1="normal" id="5" lcat="advp" lemma="ook" pos="adv" postag="BW()" pt="bw" rel="mod" root="ook" sense="ook" special="sentence" word="ook"/>
+      <node begin="4" cat="cp" end="6" id="6" rel="predc">
+        <node begin="4" end="5" frame="complementizer(als)" his="normal" his_1="normal" id="7" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+        <node begin="5" end="6" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="8" lcat="np" lemma="kunst_centrum" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="body" rnum="sg" root="kunst_centrum" sense="kunst_centrum" word="kunstencentrum"/>
+      </node>
+    </node>
+    <node begin="6" end="7" frame="punct(punt)" his="normal" his_1="normal" id="9" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="19">Brugge profileerde zich ook als kunstencentrum .</sentence>
+  <comments>
+    <comment>Q#19|Brugge profileerde zich ook als kunstencentrum .|1|1|-4.52126869608</comment>
+  </comments>
+</alpino_ds>

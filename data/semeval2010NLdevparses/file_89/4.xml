@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="34" id="0" rel="top">
+    <node begin="9" end="10" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="conj" end="33" id="2" rel="--">
+      <node begin="0" cat="smain" end="9" id="3" rel="cnj">
+        <node begin="0" cat="np" end="2" id="4" index="1" rel="su">
+          <node begin="0" buiging="met-e" end="1" frame="determiner(elke,nwh,mod)" his="normal" his_1="decap" his_1_1="normal" id="5" infl="elke" lcat="detp" lemma="elk" naamval="stan" npagr="evz" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,evz)" pt="vnw" rel="det" root="elk" sense="elk" vwtype="onbep" wh="nwh" word="Elke"/>
+          <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="regering" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="regering" sense="regering" word="regering"/>
+        </node>
+        <node begin="2" end="3" frame="verb(hebben,sg,modifier(aux(inf)))" his="normal" his_1="normal" id="7" infl="sg" lcat="smain" lemma="mogen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="mag" sc="modifier(aux(inf))" sense="mag" stype="declarative" tense="present" word="mag" wvorm="pv"/>
+        <node begin="0" cat="inf" end="9" id="8" rel="vc">
+          <node begin="0" end="2" id="9" index="1" rel="su"/>
+          <node begin="3" cat="np" end="8" id="10" rel="obj1">
+            <node begin="3" end="4" frame="number(hoofd(sg_num))" his="normal" his_1="normal" id="11" infl="sg_num" lcat="detp" lemma="één" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="één" sense="één" special="hoofd" word="één"/>
+            <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="vertegenwoordiger" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="vertegenwoordiger" sense="vertegenwoordiger" word="vertegenwoordiger"/>
+            <node begin="5" cat="pp" end="8" id="13" rel="mod">
+              <node begin="5" end="6" frame="preposition(in,[])" his="normal" his_1="normal" id="14" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="6" cat="np" end="8" id="15" rel="obj1">
+                <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="7" end="8" frame="proper_name(both,'ORG')" genus="zijd" getal="ev" graad="basis" his="name" his_1="not_begin" id="17" lcat="np" lemma="Conventie" naamval="stan" neclass="ORG" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Conventie" sense="Conventie" word="Conventie"/>
+              </node>
+            </node>
+          </node>
+          <node begin="8" buiging="zonder" end="9" frame="verb(hebben,inf,transitive_ndev)" his="normal" his_1="normal" id="18" infl="inf" lcat="inf" lemma="hebben" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="heb" sc="transitive_ndev" sense="heb" word="hebben" wvorm="inf"/>
+        </node>
+      </node>
+      <node begin="10" conjtype="neven" end="11" frame="conj(maar)" his="normal" his_1="normal" id="19" lcat="vg" lemma="maar" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="maar" sense="maar" word="maar"/>
+      <node begin="11" cat="smain" end="33" id="20" rel="cnj">
+        <node begin="11" end="12" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="21" lcat="np" lemma="Italië" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="su" rnum="sg" root="Italië" sense="Italië" word="Italië"/>
+        <node begin="12" end="13" frame="verb(hebben,modal_not_u,modifier(tr_sbar))" his="normal" his_1="normal" id="22" infl="modal_not_u" lcat="smain" lemma="willen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="wil" sc="modifier(tr_sbar)" sense="wil" stype="declarative" tense="present" word="wil" wvorm="pv"/>
+        <node begin="13" cat="conj" end="33" id="23" rel="vc">
+          <node begin="13" cat="cp" end="22" id="24" rel="cnj">
+            <node begin="13" conjtype="onder" end="14" frame="complementizer(dat)" his="normal" his_1="normal" id="25" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+            <node begin="14" cat="ssub" end="22" id="26" rel="body">
+              <node begin="14" cat="np" end="17" id="27" index="2" rel="su">
+                <node begin="14" buiging="zonder" end="15" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="28" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+                <node aform="base" begin="15" buiging="met-e" end="16" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="29" infl="e" lcat="ap" lemma="rechts" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="rechts" sense="rechts" vform="adj" word="rechtse"/>
+                <node begin="16" end="17" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="regering" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="regering" sense="regering" word="regering"/>
+              </node>
+              <node begin="14" cat="ppart" end="21" id="31" rel="vc">
+                <node begin="14" end="17" id="32" index="2" rel="obj1"/>
+                <node begin="17" cat="pp" end="20" id="33" rel="mod">
+                  <node begin="17" end="18" frame="preposition(door,[heen])" his="normal" his_1="normal" id="34" lcat="pp" lemma="door" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="door" sense="door" vztype="init" word="door"/>
+                  <node begin="18" cat="mwu" end="20" his="normal" his_1="names_dictionary" id="35" mwu_root="Gianfranco Fini" mwu_sense="Gianfranco Fini" rel="obj1">
+                    <node begin="18" end="19" frame="proper_name(sg,'PER')" id="36" lcat="np" lemma="Gianfranco" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Gianfranco" sense="Gianfranco" spectype="deeleigen" word="Gianfranco"/>
+                    <node begin="19" end="20" frame="proper_name(sg,'PER')" id="37" lcat="np" lemma="Fini" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Fini" sense="Fini" spectype="deeleigen" word="Fini"/>
+                  </node>
+                </node>
+                <node begin="20" buiging="zonder" end="21" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="38" infl="psp" lcat="ppart" lemma="vertegenwoordigen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="vertegenwoordig" sc="transitive" sense="vertegenwoordig" word="vertegenwoordigd" wvorm="vd"/>
+              </node>
+              <node begin="21" end="22" frame="verb(unacc,sg3,passive)" his="normal" his_1="normal" id="39" infl="sg3" lcat="ssub" lemma="worden" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" tense="present" word="wordt" wvorm="pv"/>
+            </node>
+          </node>
+          <node begin="22" conjtype="neven" end="23" frame="conj(en)" his="normal" his_1="normal" id="40" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="23" cat="cp" end="33" id="41" rel="cnj">
+            <node begin="23" conjtype="onder" end="24" frame="complementizer(dat)" his="normal" his_1="normal" id="42" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+            <node begin="24" cat="ssub" end="33" id="43" rel="body">
+              <node begin="24" cat="np" end="27" id="44" index="3" rel="su">
+                <node begin="24" end="25" frame="determiner(de)" his="normal" his_1="normal" id="45" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node aform="base" begin="25" buiging="met-e" end="26" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="46" infl="e" lcat="ap" lemma="links" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="links" sense="links" vform="adj" word="linkse"/>
+                <node begin="26" end="27" frame="proper_name(sg,'PER')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="47" lcat="np" lemma="Amato" naamval="stan" neclass="PER" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Amato" sense="Amato" word="Amato"/>
+              </node>
+              <node begin="31" end="32" frame="verb('hebben/zijn',sg,modifier(aux(inf)))" his="normal" his_1="normal" id="48" infl="sg" lcat="ssub" lemma="moeten" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="moet" sc="modifier(aux(inf))" sense="moet" tense="present" word="moet" wvorm="pv"/>
+              <node begin="24" cat="inf" end="33" id="49" rel="vc">
+                <node begin="24" end="27" id="50" index="3" rel="su"/>
+                <node begin="27" end="28" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="51" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+                <node begin="28" cat="pp" end="31" id="52" rel="ld">
+                  <node begin="28" end="29" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="53" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+                  <node begin="29" cat="np" end="31" id="54" rel="obj1">
+                    <node aform="base" begin="29" buiging="met-e" end="30" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="55" infl="e" lcat="ap" lemma="persoonlijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="persoonlijk" sense="persoonlijk" vform="adj" word="persoonlijke"/>
+                    <node begin="30" end="31" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="56" lcat="np" lemma="titel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="titel" sense="titel" word="titel"/>
+                  </node>
+                </node>
+                <node begin="32" buiging="zonder" end="33" frame="verb(hebben,inf,ld_pp)" his="normal" his_1="normal" id="57" infl="inf" lcat="inf" lemma="zitten" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="zit" sc="ld_pp" sense="zit" word="zitten" wvorm="inf"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="33" end="34" frame="punct(punt)" his="normal" his_1="normal" id="58" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">Elke regering mag één vertegenwoordiger in de Conventie hebben , maar Italië wil dat zijn rechtse regering door Gianfranco Fini vertegenwoordigd wordt en dat de linkse Amato er op persoonlijke titel moet zitten .</sentence>
+  <comments>
+    <comment>Q#4|Elke regering mag één vertegenwoordiger in de Conventie hebben , maar Italië wil dat zijn rechtse regering door Gianfranco Fini vertegenwoordigd wordt en dat de linkse Amato er op persoonlijke titel moet zitten .|1|1|-12.811389839880022</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="11" id="0" rel="top">
+    <node begin="0" cat="smain" end="10" id="1" rel="--">
+      <node begin="0" end="1" frame="pp" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="pp" lemma="nadien" pos="pp" postag="BW()" pt="bw" rel="mod" root="nadien" sense="nadien" word="Nadien"/>
+      <node begin="1" end="2" frame="verb(hebben,pl,np_np)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="bezorgen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="bezorg" sc="np_np" sense="bezorg" stype="declarative" tense="present" word="bezorgen" wvorm="pv"/>
+      <node begin="2" case="both" def="def" end="3" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="4" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+      <node begin="3" cat="np" end="5" id="5" rel="obj2">
+        <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="6" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="4" end="5" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="7" lcat="np" lemma="nakomertjes" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="nakomertjes" sense="nakomertjes" word="nakomertjes"/>
+      </node>
+      <node begin="5" cat="pp" end="8" id="8" rel="mod">
+        <node begin="5" end="6" frame="preposition(via,[])" his="normal" his_1="normal" id="9" lcat="pp" lemma="via" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="via" sense="via" vztype="init" word="via"/>
+        <node begin="6" cat="np" end="8" id="10" rel="obj1">
+          <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="12" lcat="np" lemma="hygiëne_hypothese" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="hygiëne_hypothese" sense="hygiëne_hypothese" word="hygiënehypothese"/>
+        </node>
+      </node>
+      <node begin="8" end="9" frame="adverb" his="normal" his_1="normal" id="13" lcat="advp" lemma="nog" pos="adv" postag="BW()" pt="bw" rel="mod" root="nog" sense="nog" word="nog"/>
+      <node begin="9" end="10" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="hyphen" id="14" lcat="np" lemma="extra_voorsprong" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="extra_voorsprong" sense="extra_voorsprong" word="extra-voorsprong"/>
+    </node>
+    <node begin="10" end="11" frame="punct(punt)" his="normal" his_1="normal" id="15" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="15">Nadien bezorgen ze de nakomertjes via de hygiënehypothese nog extra-voorsprong .</sentence>
+  <comments>
+    <comment>Q#15|Nadien bezorgen ze de nakomertjes via de hygiënehypothese nog extra-voorsprong .|1|1|-7.229903875239999</comment>
+  </comments>
+</alpino_ds>

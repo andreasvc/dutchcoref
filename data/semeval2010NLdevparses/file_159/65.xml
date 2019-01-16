@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="smain" end="11" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node begin="1" end="2" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="werkgever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="werkgever" sense="werkgever" word="werkgevers"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,pl,intransitive)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="reageren" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="reageer" sc="intransitive" sense="reageer" stype="declarative" tense="present" word="reageren" wvorm="pv"/>
+      <node aform="base" begin="3" buiging="zonder" end="4" frame="adjective(no_e(padv))" graad="basis" his="normal" his_1="normal" id="6" infl="no_e" lcat="ap" lemma="woedend" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predm" root="woedend" sense="woedend" vform="adj" word="woedend"/>
+      <node begin="4" cat="cp" end="11" id="7" rel="mod">
+        <node begin="4" conjtype="onder" end="5" frame="complementizer" his="normal" his_1="normal" id="8" lcat="cp" lemma="omdat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="omdat" sense="omdat" word="omdat"/>
+        <node begin="5" cat="ssub" end="11" id="9" rel="body">
+          <node begin="5" cat="np" end="9" id="10" index="1" rel="su">
+            <node begin="5" buiging="zonder" end="6" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="11" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+            <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="mogelijkheid" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="mogelijkheid" sense="mogelijkheid" word="mogelijkheden"/>
+            <node begin="7" cat="pp" end="9" id="13" rel="mod">
+              <node begin="7" end="8" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="14" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+              <node begin="8" end="9" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="verweer" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="verweer" sense="verweer" word="verweer"/>
+            </node>
+          </node>
+          <node begin="9" end="10" frame="verb(unacc,pl,passive)" his="normal" his_1="normal" id="16" infl="pl" lcat="ssub" lemma="worden" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" tense="present" word="worden" wvorm="pv"/>
+          <node begin="5" cat="ppart" end="11" id="17" rel="vc">
+            <node begin="5" end="9" id="18" index="1" rel="obj1"/>
+            <node begin="10" buiging="zonder" end="11" frame="verb(hebben,psp,ninv(transitive,part_transitive(aan)))" his="normal" his_1="part-V" id="19" infl="psp" lcat="ppart" lemma="aan_tasten" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="tast_aan" sc="part_transitive(aan)" sense="tast_aan" word="aangetast" wvorm="vd"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="20" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="65">De werkgevers reageren woedend omdat hun mogelijkheden tot verweer worden aangetast .</sentence>
+  <comments>
+    <comment>Q#65|De werkgevers reageren woedend omdat hun mogelijkheden tot verweer worden aangetast .|1|1|-3.414711951579999</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="du" end="11" id="1" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="2" lcat="du" lemma="en" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="en" sc="root" sense="en" word="En"/>
+      <node begin="1" cat="smain" end="11" id="3" rel="nucl">
+        <node begin="1" cat="conj" end="5" id="4" rel="su">
+          <node begin="1" cat="np" end="3" id="5" rel="cnj">
+            <node aform="compar" begin="1" buiging="met-e" end="2" frame="adjective(ere)" graad="comp" his="normal" his_1="normal" id="6" index="1" infl="e" lcat="ap" lemma="oud" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,comp,met-e,stan)" pt="adj" rel="mod" root="oud" sense="oud" vform="adj" word="oudere"/>
+            <node begin="2" end="3" frame="noun(het,count,pl)" gen="het" getal="mv" graad="dim" his="normal" his_1="normal" id="7" lcat="np" lemma="broer" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,dim)" pt="n" rel="hd" rnum="pl" root="broer_DIM" sense="broer_DIM" word="broertjes"/>
+          </node>
+          <node begin="3" conjtype="neven" end="4" frame="conj(en)" his="normal" his_1="normal" id="8" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="1" cat="np" end="5" id="9" rel="cnj">
+            <node begin="1" end="2" id="10" index="1" rel="mod"/>
+            <node begin="4" end="5" frame="noun(het,count,pl)" gen="het" getal="mv" graad="dim" his="normal" his_1="normal" id="11" lcat="np" lemma="zus" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,dim)" pt="n" rel="hd" rnum="pl" root="zus_DIM" sense="zus_DIM" word="zusjes"/>
+          </node>
+        </node>
+        <node begin="5" end="6" frame="verb(unacc,pl,copula)" his="normal" his_1="normal" id="12" infl="pl" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="present" word="zijn" wvorm="pv"/>
+        <node begin="6" cat="np" end="11" id="13" rel="predc">
+          <node begin="6" end="7" frame="determiner(een)" his="normal" his_1="normal" id="14" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="bron" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bron" sense="bron" word="bron"/>
+          <node begin="8" cat="pp" end="11" id="16" rel="mod">
+            <node begin="8" end="9" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="17" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="9" cat="np" end="11" id="18" rel="obj1">
+              <node begin="9" buiging="met-e" end="10" frame="determiner(zulke,nwh,nmod,pro,yparg)" his="normal" his_1="normal" id="19" infl="zulke" lcat="detp" lemma="zulk" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="zulk" sense="zulk" vwtype="aanw" wh="nwh" word="zulke"/>
+              <node begin="10" end="11" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="allergeen" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="allergeen" sense="allergeen" word="allergenen"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="21" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="10">En oudere broertjes en zusjes zijn een bron van zulke allergenen .</sentence>
+  <comments>
+    <comment>Q#10|En oudere broertjes en zusjes zijn een bron van zulke allergenen .|1|1|-5.366959462820001</comment>
+  </comments>
+</alpino_ds>

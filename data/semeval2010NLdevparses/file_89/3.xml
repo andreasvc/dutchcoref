@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="17" id="0" rel="top">
+    <node begin="0" cat="smain" end="16" id="1" rel="--">
+      <node begin="0" cat="np" end="4" id="2" rel="su">
+        <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="np" lemma="voorzitter" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="voorzitter" sense="voorzitter" word="Voorzitter"/>
+        <node begin="1" cat="mwu" end="4" his="normal" his_1="names_dictionary" id="4" mwu_root="Valéry Giscard d&apos;Estaing" mwu_sense="Valéry Giscard d&apos;Estaing" rel="app">
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="5" lcat="np" lemma="Valéry" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Valéry" sense="Valéry" spectype="deeleigen" word="Valéry"/>
+          <node begin="2" end="3" frame="proper_name(sg,'PER')" id="6" lcat="np" lemma="Giscard" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Giscard" sense="Giscard" spectype="deeleigen" word="Giscard"/>
+          <node begin="3" end="4" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="d&apos;Estaing" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="d&apos;Estaing" sense="d&apos;Estaing" spectype="deeleigen" word="d&apos;Estaing"/>
+        </node>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,sg_heeft,nonp_pred_np_ndev)" his="normal" his_1="normal" id="8" infl="sg_heeft" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="heb" sc="nonp_pred_np_ndev" sense="heb" stype="declarative" tense="present" word="heeft" wvorm="pv"/>
+      <node begin="5" cat="conj" end="14" id="9" rel="obj1">
+        <node begin="5" cat="np" end="9" id="10" rel="cnj">
+          <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="6" end="7" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="Italiaan" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Italiaan" sense="Italiaan" word="Italiaan"/>
+          <node begin="7" cat="mwu" end="9" his="normal" his_1="names_dictionary" id="13" mwu_root="Giuliano Amato" mwu_sense="Giuliano Amato" rel="app">
+            <node begin="7" end="8" frame="proper_name(sg,'PER')" id="14" lcat="np" lemma="Giuliano" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Giuliano" sense="Giuliano" spectype="deeleigen" word="Giuliano"/>
+            <node begin="8" end="9" frame="proper_name(sg,'PER')" id="15" lcat="np" lemma="Amato" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Amato" sense="Amato" spectype="deeleigen" word="Amato"/>
+          </node>
+        </node>
+        <node begin="9" conjtype="neven" end="10" frame="conj(en)" his="normal" his_1="normal" id="16" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="10" cat="np" end="14" id="17" rel="cnj">
+          <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="18" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="11" end="12" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="Belg" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Belg" sense="Belg" word="Belg"/>
+          <node begin="12" cat="mwu" end="14" his="normal" his_1="names_dictionary" id="20" mwu_root="Jean-Luc Dehaene" mwu_sense="Jean-Luc Dehaene" rel="app">
+            <node begin="12" end="13" frame="proper_name(sg,'PER')" id="21" lcat="np" lemma="Jean-Luc" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Jean-Luc" sense="Jean-Luc" spectype="deeleigen" word="Jean-Luc"/>
+            <node begin="13" end="14" frame="proper_name(sg,'PER')" id="22" lcat="np" lemma="Dehaene" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Dehaene" sense="Dehaene" spectype="deeleigen" word="Dehaene"/>
+          </node>
+        </node>
+      </node>
+      <node begin="14" cat="cp" end="16" id="23" rel="predc">
+        <node begin="14" end="15" frame="complementizer(als)" his="normal" his_1="normal" id="24" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+        <node begin="15" end="16" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="vice_voorzitter" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="body" rnum="pl" root="vice_voorzitter" sense="vice_voorzitter" word="vice-voorzitters"/>
+      </node>
+    </node>
+    <node begin="16" end="17" frame="punct(punt)" his="normal" his_1="normal" id="26" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">Voorzitter Valéry Giscard d&apos;Estaing heeft de Italiaan Giuliano Amato en de Belg Jean-Luc Dehaene als vice-voorzitters .</sentence>
+  <comments>
+    <comment>Q#3|Voorzitter Valéry Giscard d&apos;Estaing heeft de Italiaan Giuliano Amato en de Belg Jean-Luc Dehaene als vice-voorzitters .|1|1|-5.137432989159997</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="25" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="13" end="14" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="24" id="3" rel="--">
+      <node begin="0" cat="np" end="13" id="4" rel="su">
+        <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(both))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" infl="no_e" lcat="ap" lemma="nieuw" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="nieuw" sense="nieuw" vform="adj" word="Nieuw"/>
+        <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="onderzoek" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="onderzoek" sense="onderzoek" word="onderzoek"/>
+        <node begin="3" cat="ppart" end="13" id="7" rel="mod">
+          <node aform="base" begin="3" buiging="zonder" end="4" frame="adjective(ge_both(adv))" his="normal" his_1="normal" id="8" infl="both" lcat="ppart" lemma="verschenen" pos="adj" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="verschenen" sense="verschenen" vform="psp" word="verschenen" wvorm="vd"/>
+          <node begin="4" cat="pp" end="13" id="9" rel="mod">
+            <node begin="4" end="5" frame="preposition(in,[])" his="normal" his_1="normal" id="10" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="5" cat="np" end="13" id="11" rel="obj1">
+              <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="12" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="6" cat="mwu" end="13" his="name" his_1="not_begin" id="13" mwu_root="Proceedings of the National Academy of Sciences" mwu_sense="Proceedings of the National Academy of Sciences" rel="hd">
+                <node begin="6" end="7" frame="proper_name(both)" id="14" lcat="np" lemma="Proceedings" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Proceedings" sense="Proceedings" spectype="deeleigen" word="Proceedings"/>
+                <node begin="7" end="8" frame="proper_name(both)" id="15" lcat="np" lemma="of" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="of" sense="of" spectype="deeleigen" word="of"/>
+                <node begin="8" end="9" frame="proper_name(both)" id="16" lcat="np" lemma="the" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="the" sense="the" spectype="deeleigen" word="the"/>
+                <node begin="9" end="10" frame="proper_name(both)" id="17" lcat="np" lemma="National" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="National" sense="National" spectype="deeleigen" word="National"/>
+                <node begin="10" end="11" frame="proper_name(both)" id="18" lcat="np" lemma="Academy" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Academy" sense="Academy" spectype="deeleigen" word="Academy"/>
+                <node begin="11" end="12" frame="proper_name(both)" id="19" lcat="np" lemma="of" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="of" sense="of" spectype="deeleigen" word="of"/>
+                <node begin="12" end="13" frame="proper_name(both)" id="20" lcat="np" lemma="Sciences" neclass="MISC" num="both" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Sciences" sense="Sciences" spectype="deeleigen" word="Sciences"/>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="14" end="15" frame="verb(hebben,past(sg),part_sbar(uit))" his="normal" his_1="normal" id="21" infl="sg" lcat="smain" lemma="uit_wijzen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="wijs_uit" sc="part_sbar(uit)" sense="wijs_uit" stype="declarative" tense="past" word="wees" wvorm="pv"/>
+      <node begin="15" end="16" frame="particle(uit)" his="normal" his_1="normal" id="22" lcat="part" lemma="uit" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="uit" sense="uit" vztype="fin" word="uit"/>
+      <node begin="16" cat="cp" end="24" id="23" rel="vc">
+        <node begin="16" conjtype="onder" end="17" frame="complementizer(dat)" his="normal" his_1="normal" id="24" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="17" cat="ssub" end="24" id="25" rel="body">
+          <node begin="17" cat="np" end="19" id="26" rel="su">
+            <node begin="17" buiging="met-e" end="18" frame="determiner(pl_num,nwh,nmod,pro,yparg)" his="normal" his_1="normal" id="27" infl="pl_num" lcat="detp" lemma="sommige" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,rest)" pt="vnw" rel="det" root="sommige" sense="sommige" vwtype="onbep" wh="nwh" word="sommige"/>
+            <node begin="18" end="19" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="bacterie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bacterie" sense="bacterie" word="bacteriën"/>
+          </node>
+          <node begin="19" end="20" frame="adverb" his="normal" his_1="normal" id="29" lcat="advp" lemma="zelfs" pos="adv" postag="BW()" pt="bw" rel="mod" root="zelfs" sense="zelfs" word="zelfs"/>
+          <node begin="21" end="22" frame="verb(unacc,pl,copula)" his="normal" his_1="normal" id="30" infl="pl" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" tense="present" word="zijn" wvorm="pv"/>
+          <node begin="20" cat="ap" end="24" id="31" rel="predc">
+            <node aform="base" begin="20" buiging="zonder" end="21" frame="adjective(no_e(adv),pp(op))" graad="basis" his="normal" his_1="normal" id="32" infl="no_e" lcat="ap" lemma="dol" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="dol" sc="pp(op)" sense="dol-op" vform="adj" word="dol"/>
+            <node begin="22" cat="pp" end="24" id="33" rel="pc">
+              <node begin="22" end="23" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="34" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+              <node begin="23" end="24" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="compound" his_1="2" id="35" lcat="np" lemma="kanker_gezwel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="kanker_gezwel" sense="kanker_gezwel" word="kankergezwellen"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="24" end="25" frame="punct(punt)" his="normal" his_1="normal" id="36" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">Nieuw onderzoek , verschenen in de Proceedings of the National Academy of Sciences , wees uit dat sommige bacteriën zelfs dol zijn op kankergezwellen .</sentence>
+  <comments>
+    <comment>Q#4|Nieuw onderzoek , verschenen in de Proceedings of the National Academy of Sciences , wees uit dat sommige bacteriën zelfs dol zijn op kankergezwellen .|1|1|-8.648315043579995</comment>
+  </comments>
+</alpino_ds>

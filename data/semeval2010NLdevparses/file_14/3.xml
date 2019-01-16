@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="7" end="8" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="14" end="15" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="conj" end="20" id="3" rel="--">
+      <node begin="0" cat="smain" end="5" id="4" rel="cnj">
+        <node begin="0" cat="np" end="3" id="5" index="1" rel="su">
+          <node begin="0" buiging="zonder" end="1" frame="determiner(het,nwh,nmod,pro,nparg)" his="normal" his_1="decap" his_1_1="normal" id="6" infl="het" lcat="detp" lemma="dit" naamval="stan" npagr="evon" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,evon)" pt="vnw" rel="det" root="dit" sense="dit" vwtype="aanw" wh="nwh" word="Dit"/>
+          <node begin="1" end="2" frame="noun(het,count,sg,measure)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="7" lcat="np" lemma="type" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="type" sc="measure" sense="type" word="type"/>
+          <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="zon_cel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="zon_cel" sense="zon_cel" word="zonnecel"/>
+        </node>
+        <node begin="3" end="4" frame="verb(unacc,sg_heeft,copula)" his="normal" his_1="normal" id="9" infl="sg_heeft" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" tense="present" word="is" wvorm="pv"/>
+        <node aform="base" begin="4" buiging="zonder" end="5" frame="adjective(no_e(adv))" graad="basis" his="form_of_suffix" his_1="baar" id="10" infl="no_e" lcat="ap" lemma="plooibaar" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="plooibaar" sense="plooibaar" vform="adj" word="plooibaar"/>
+      </node>
+      <node begin="5" conjtype="neven" end="6" frame="conj(en)" his="normal" his_1="normal" id="11" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="0" cat="smain" end="20" id="12" rel="cnj">
+        <node begin="0" end="3" id="13" index="1" rel="su"/>
+        <node begin="6" end="7" frame="verb('hebben/zijn',modal_not_u,aux(inf))" his="normal" his_1="normal" id="14" infl="modal_not_u" lcat="smain" lemma="kunnen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="kan" sc="aux(inf)" sense="kan" tense="present" word="kan" wvorm="pv"/>
+        <node begin="0" cat="inf" end="20" id="15" rel="vc">
+          <node begin="0" end="3" id="16" index="1" rel="su"/>
+          <node begin="0" cat="ppart" end="19" id="17" rel="vc">
+            <node begin="0" end="3" id="18" index="1" rel="obj1"/>
+            <node begin="8" cat="pp" end="14" id="19" rel="mod">
+              <node begin="8" cat="mwu" end="11" his="normal" his_1="normal" id="20" mwu_root="in tegenstelling tot" mwu_sense="in tegenstelling tot" rel="hd">
+                <node begin="8" end="9" frame="preposition([in,tegenstelling,tot],[])" id="21" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="9" end="10" frame="preposition([in,tegenstelling,tot],[])" genus="zijd" getal="ev" graad="basis" id="22" lcat="pp" lemma="tegenstelling" naamval="stan" ntype="soort" pos="prep" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" root="tegenstelling" sense="tegenstelling" word="tegenstelling"/>
+                <node begin="10" end="11" frame="preposition([in,tegenstelling,tot],[])" id="23" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="tot" sense="tot" vztype="init" word="tot"/>
+              </node>
+              <node begin="11" cat="np" end="14" id="24" rel="obj1">
+                <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="25" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="26" infl="e" lcat="ap" lemma="klassiek" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="klassiek" sense="klassiek" vform="adj" word="klassieke"/>
+                <node begin="13" end="14" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="27" lcat="np" lemma="paneel" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="paneel" sense="paneel" word="panelen"/>
+              </node>
+            </node>
+            <node begin="15" cat="cp" end="18" id="28" rel="predc">
+              <node begin="15" end="16" frame="complementizer(als)" his="normal" his_1="normal" id="29" lcat="cp" lemma="als" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="als" sc="als" sense="als" vztype="init" word="als"/>
+              <node begin="16" cat="np" end="18" id="30" rel="body">
+                <node begin="16" end="17" frame="determiner(een)" his="normal" his_1="normal" id="31" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                <node begin="17" end="18" frame="noun(both,count,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="32" lcat="np" lemma="folie" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="folie" sense="folie" word="folie"/>
+              </node>
+            </node>
+            <node begin="18" buiging="zonder" end="19" frame="verb(hebben,psp,als_pred_np)" his="normal" his_1="normal" id="33" infl="psp" lcat="ppart" lemma="gebruiken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="gebruik" sc="als_pred_np" sense="gebruik" word="gebruikt" wvorm="vd"/>
+          </node>
+          <node begin="19" buiging="zonder" end="20" frame="verb(unacc,inf,passive)" his="normal" his_1="normal" id="34" infl="inf" lcat="inf" lemma="worden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="word" sc="passive" sense="word" word="worden" wvorm="inf"/>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="35" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="3">Dit type zonnecel is plooibaar en kan , in tegenstelling tot de klassieke panelen , als een folie gebruikt worden .</sentence>
+  <comments>
+    <comment>Q#3|Dit type zonnecel is plooibaar en kan , in tegenstelling tot de klassieke panelen , als een folie gebruikt worden .|1|1|-13.720182777219993</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="3" end="4" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="5" end="6" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="0" cat="smain" end="20" id="3" rel="--">
+      <node begin="0" cat="np" end="5" id="4" rel="su">
+        <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="premier" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="premier" sense="premier" word="Premier"/>
+        <node begin="1" cat="mwu" end="3" his="normal" his_1="names_dictionary" id="6" mwu_root="Guy Verhofstadt" mwu_sense="Guy Verhofstadt" rel="app">
+          <node begin="1" end="2" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="Guy" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Guy" sense="Guy" spectype="deeleigen" word="Guy"/>
+          <node begin="2" end="3" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Verhofstadt" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Verhofstadt" sense="Verhofstadt" spectype="deeleigen" word="Verhofstadt"/>
+        </node>
+        <node begin="4" end="5" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="9" lcat="np" lemma="VLD" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="VLD" sense="VLD" word="VLD"/>
+      </node>
+      <node begin="6" end="7" frame="verb(hebben,sg3,part_sbar(vol))" his="normal" his_1="normal" id="10" infl="sg3" lcat="smain" lemma="vol_houden" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="houd_vol" sc="part_sbar(vol)" sense="houd_vol" stype="declarative" tense="present" word="houdt" wvorm="pv"/>
+      <node begin="7" buiging="zonder" end="8" frame="particle(vol)" graad="basis" his="normal" his_1="normal" id="11" lcat="part" lemma="vol" pos="part" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="svp" root="vol" sense="vol" word="vol"/>
+      <node begin="8" cat="cp" end="20" id="12" rel="vc">
+        <node begin="8" conjtype="onder" end="9" frame="complementizer(dat)" his="normal" his_1="normal" id="13" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="9" cat="ssub" end="20" id="14" rel="body">
+          <node begin="9" cat="np" end="14" id="15" index="1" rel="su">
+            <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="16" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="10" end="11" frame="number(rang)" his="normal" his_1="normal" id="17" lcat="ap" lemma="eerste" naamval="stan" numtype="rang" pos="num" positie="prenom" postag="TW(rang,prenom,stan)" pt="tw" rel="mod" root="eerste" sense="eerste" special="rang" word="eerste"/>
+            <node begin="11" end="12" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="18" infl="pl_num" lcat="detp" lemma="tien" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="tien" sense="tien" special="hoofd" word="tien"/>
+            <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="19" infl="e" lcat="ap" lemma="jong" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="jong" sense="jong" vform="adj" word="jonge"/>
+            <node begin="13" end="14" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="gevangene" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="gevangene" sense="gevangene" word="gevangenen"/>
+          </node>
+          <node begin="18" end="19" frame="verb('hebben/zijn',pl,aux(inf))" his="normal" his_1="normal" id="21" infl="pl" lcat="ssub" lemma="kunnen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kan" sc="aux(inf)" sense="kan" tense="present" word="kunnen" wvorm="pv"/>
+          <node begin="9" cat="inf" end="20" id="22" rel="vc">
+            <node begin="9" end="14" id="23" index="1" rel="su"/>
+            <node begin="9" cat="ppart" end="18" id="24" rel="vc">
+              <node begin="9" end="14" id="25" index="1" rel="obj1"/>
+              <node begin="14" cat="pp" end="17" id="26" rel="pc">
+                <node begin="14" end="15" frame="preposition(tegen,[aan,in,op])" his="normal" his_1="normal" id="27" lcat="pp" lemma="tegen" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tegen" sense="tegen" vztype="init" word="tegen"/>
+                <node begin="15" cat="np" end="17" id="28" rel="obj1">
+                  <node begin="15" end="16" frame="tmp_noun(het,count,sg,measure)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="eind" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="eind" sc="measure" sense="eind" special="tmp" word="eind"/>
+                  <node begin="16" end="17" frame="tmp_noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="februari" naamval="stan" ntype="eigen" num="sg" pos="noun" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="februari" sense="februari" special="tmp" word="februari"/>
+                </node>
+              </node>
+              <node begin="17" buiging="zonder" end="18" frame="verb(hebben,psp,ninv(np_pc_pp(tegen),part_np_pc_pp(op,tegen)))" his="normal" his_1="part-V" id="31" infl="psp" lcat="ppart" lemma="op_nemen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="neem_op" sc="part_np_pc_pp(op,tegen)" sense="neem_op-tegen" word="opgenomen" wvorm="vd"/>
+            </node>
+            <node begin="19" buiging="zonder" end="20" frame="verb(unacc,inf,passive)" his="normal" his_1="normal" id="32" infl="inf" lcat="inf" lemma="worden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="word" sc="passive" sense="word" word="worden" wvorm="inf"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="33" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">Premier Guy Verhofstadt ( VLD ) houdt vol dat de eerste tien jonge gevangenen tegen eind februari opgenomen kunnen worden .</sentence>
+  <comments>
+    <comment>Q#4|Premier Guy Verhofstadt ( VLD ) houdt vol dat de eerste tien jonge gevangenen tegen eind februari opgenomen kunnen worden .|1|1|-20.9804793215</comment>
+  </comments>
+</alpino_ds>

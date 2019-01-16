@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="14" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="10" end="11" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="13" id="3" rel="--">
+      <node begin="0" cat="pp" end="3" id="4" rel="mod">
+        <node begin="0" end="1" frame="preposition(op,[af,na])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="Op"/>
+        <node begin="1" cat="np" end="3" id="6" rel="obj1">
+          <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="8" lcat="np" lemma="jaar_markt" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="jaar_markt" sense="jaar_markt" word="jaarmarkten"/>
+        </node>
+      </node>
+      <node begin="3" end="4" frame="verb(unacc,past(pl),intransitive)" his="normal" his_1="normal" id="9" infl="pl" lcat="smain" lemma="ontstaan" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="ontsta" sc="intransitive" sense="ontsta" stype="declarative" tense="past" word="ontstonden" wvorm="pv"/>
+      <node begin="4" cat="np" end="8" id="10" rel="su">
+        <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="nieuw" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="nieuw" sense="nieuw" vform="adj" word="nieuwe"/>
+        <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="12" lcat="np" lemma="betaling_techniek" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="betaling_techniek" sense="betaling_techniek" word="betalingstechnieken"/>
+        <node aform="base" begin="7" buiging="zonder" end="8" frame="adjective(ge_no_e(adv))" his="normal" his_1="normal" id="13" infl="no_e" lcat="ppart" lemma="geschoeid" pos="adj" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="mod" root="geschoeid" sense="geschoeid" vform="psp" word="geschoeid" wvorm="vd"/>
+      </node>
+      <node begin="8" cat="pp" end="13" id="14" rel="mod">
+        <node begin="8" end="9" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="15" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+        <node begin="9" cat="np" end="13" id="16" rel="obj1">
+          <node aform="base" begin="9" buiging="met-e" end="10" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="17" infl="e" lcat="ap" lemma="oud" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="oud" sense="oud" vform="adj" word="oude"/>
+          <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" infl="e" lcat="ap" lemma="notarieel" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="notarieel" sense="notarieel" vform="adj" word="notariële"/>
+          <node begin="12" end="13" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="document" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="document" sense="document" word="documenten"/>
+        </node>
+      </node>
+    </node>
+    <node begin="13" end="14" frame="punct(punt)" his="normal" his_1="normal" id="20" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="90">Op de jaarmarkten ontstonden nieuwe betalingstechnieken , geschoeid op oude , notariële documenten .</sentence>
+  <comments>
+    <comment>Q#90|Op de jaarmarkten ontstonden nieuwe betalingstechnieken , geschoeid op oude , notariële documenten .|1|1|-0.4757090388399965</comment>
+  </comments>
+</alpino_ds>

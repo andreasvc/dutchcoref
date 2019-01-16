@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="10" id="0" rel="top">
+    <node begin="0" cat="smain" end="9" id="1" rel="--">
+      <node begin="0" cat="np" end="4" id="2" rel="su">
+        <node begin="0" cat="detp" end="2" id="3" rel="det">
+          <node begin="0" buiging="zonder" end="1" frame="pre_det_quant(al)" his="normal" his_1="decap" his_1_1="normal" id="4" infl="al" lcat="detp" lemma="al" naamval="stan" pdtype="det" pos="det" positie="vrij" postag="VNW(onbep,det,stan,vrij,zonder)" pt="vnw" rel="mod" root="al" sense="al" special="pre_det_quant" vwtype="onbep" word="Al"/>
+          <node begin="1" buiging="zonder" end="2" frame="determiner(de,nwh,nmod,pro,nparg)" his="normal" his_1="normal" id="5" infl="de" lcat="detp" lemma="die" naamval="stan" npagr="rest" pdtype="det" pos="det" positie="prenom" postag="VNW(aanw,det,stan,prenom,zonder,rest)" pt="vnw" rel="hd" root="die" sense="die" vwtype="aanw" wh="nwh" word="die"/>
+        </node>
+        <node begin="2" end="3" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="element" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="element" sense="element" word="elementen"/>
+        <node aform="base" begin="3" end="4" frame="adjective(postn_pred(padv))" his="normal" his_1="normal" id="7" infl="pred" lcat="ap" lemma="samen" pos="adj" postag="BW()" pt="bw" rel="mod" root="samen" sense="samen" vform="adj" word="samen"/>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,past(pl),part_transitive(aan))" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="aan_trekken" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="trek_aan" sc="part_transitive(aan)" sense="trek_aan" stype="declarative" tense="past" word="trokken" wvorm="pv"/>
+      <node begin="5" cat="np" end="8" id="9" rel="obj1">
+        <node begin="5" cat="ap" end="7" id="10" rel="det">
+          <node begin="5" end="6" frame="adverb" his="normal" his_1="normal" id="11" lcat="advp" lemma="steeds" pos="adv" postag="BW()" pt="bw" rel="mod" root="steeds" sense="steeds" word="steeds"/>
+          <node aform="compar" begin="6" buiging="zonder" end="7" frame="adjective(meer)" graad="comp" his="normal" his_1="normal" id="12" infl="meer" lcat="ap" lemma="meer" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,comp)" pt="vnw" rel="hd" root="meer" sense="meer" vform="adj" vwtype="onbep" word="meer"/>
+        </node>
+        <node begin="7" end="8" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="koopman" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="koopman" sense="koopman" word="kooplui"/>
+      </node>
+      <node begin="8" end="9" frame="particle(aan)" his="normal" his_1="normal" id="14" lcat="part" lemma="aan" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="aan" sense="aan" vztype="fin" word="aan"/>
+    </node>
+    <node begin="9" end="10" frame="punct(punt)" his="normal" his_1="normal" id="15" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="20">Al die elementen samen trokken steeds meer kooplui aan .</sentence>
+  <comments>
+    <comment>Q#20|Al die elementen samen trokken steeds meer kooplui aan .|1|1|0.5738917523199966</comment>
+  </comments>
+</alpino_ds>

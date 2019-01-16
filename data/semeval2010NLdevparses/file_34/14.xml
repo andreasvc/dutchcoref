@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="7" id="0" rel="top">
+    <node begin="0" cat="smain" end="6" id="1" rel="--">
+      <node begin="0" cat="np" end="2" id="2" rel="su">
+        <node begin="0" buiging="met-e" end="1" frame="determiner(elke,nwh,mod)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="elke" lcat="detp" lemma="elk" naamval="stan" npagr="evz" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,evz)" pt="vnw" rel="det" root="elk" sense="elk" vwtype="onbep" wh="nwh" word="Elke"/>
+        <node begin="1" end="2" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="4" lcat="np" lemma="danser" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="danser" sense="danser" word="danser"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,past(sg),transitive)" his="normal" his_1="normal" id="5" infl="sg" lcat="smain" lemma="lokken" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="lok" sc="transitive" sense="lok" stype="declarative" tense="past" word="lokte" wvorm="pv"/>
+      <node begin="3" cat="np" end="6" id="6" rel="obj1">
+        <node begin="3" buiging="zonder" end="4" frame="modal_adverb(adv_noun_prep)" graad="basis" his="normal" his_1="normal" id="7" lcat="advp" lemma="gemiddeld" pos="adv" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="gemiddeld" sc="adv_noun_prep" sense="gemiddeld" word="gemiddeld"/>
+        <node begin="4" end="5" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="8" infl="pl_num" lcat="detp" lemma="vier" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="vier" sense="vier" special="hoofd" word="vier"/>
+        <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="volger" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="volger" sense="volger" word="volgers"/>
+      </node>
+    </node>
+    <node begin="6" end="7" frame="punct(punt)" his="normal" his_1="normal" id="10" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="14">Elke danser lokte gemiddeld vier volgers .</sentence>
+  <comments>
+    <comment>Q#14|Elke danser lokte gemiddeld vier volgers .|1|1|1.1618319162799997</comment>
+  </comments>
+</alpino_ds>

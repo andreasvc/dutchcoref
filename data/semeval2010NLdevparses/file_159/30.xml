@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="36" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="20" end="21" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="30" end="31" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="3" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="33" end="34" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="4" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="0" cat="du" end="35" id="5" rel="--">
+      <node begin="0" cat="ap" end="2" id="6" rel="dp">
+        <node aform="compar" begin="0" buiging="zonder" end="1" frame="adjective(er(adv))" graad="comp" his="normal" his_1="decap" his_1_1="normal" id="7" infl="no_e" lcat="ap" lemma="erg" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="hd" root="erg" sense="erg" vform="adj" word="Erger"/>
+        <node begin="1" end="2" frame="postadj_adverb" his="normal" his_1="normal" id="8" lcat="advp" lemma="nog" pos="adv" postag="BW()" pt="bw" rel="mod" root="nog" sense="nog" special="postadj" word="nog"/>
+      </node>
+      <node begin="3" cat="conj" end="35" id="9" rel="dp">
+        <node begin="3" cat="smain" end="20" id="10" rel="cnj">
+          <node begin="3" cat="pp" end="13" id="11" rel="mod">
+            <node begin="3" end="4" frame="preposition(rond,[heen])" his="normal" his_1="normal" id="12" lcat="pp" lemma="rond" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="rond" sense="rond" vztype="init" word="rond"/>
+            <node begin="4" cat="np" end="13" id="13" rel="obj1">
+              <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="14" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="5" end="6" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="tafel" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="tafel" sense="tafel" word="tafel"/>
+              <node begin="6" cat="pp" end="13" id="16" rel="mod">
+                <node begin="6" end="7" frame="preposition(in,[])" his="normal" his_1="normal" id="17" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="7" cat="np" end="13" id="18" rel="obj1">
+                  <node begin="7" buiging="zonder" end="8" frame="determiner(pron)" getal="ev" his="normal" his_1="normal" id="19" infl="pron" lcat="detp" lemma="zijn" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,ev,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="zijn" sense="zijn" status="vol" vwtype="bez" word="zijn"/>
+                  <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="ambt_woning" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="ambt_woning" sense="ambt_woning" word="ambtswoning"/>
+                  <node begin="9" cat="pp" end="13" id="21" rel="mod">
+                    <node begin="9" end="10" frame="preposition(aan,[vooraf])" his="normal" his_1="normal" id="22" lcat="pp" lemma="aan" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="aan" sense="aan" vztype="init" word="aan"/>
+                    <node begin="10" cat="np" end="13" id="23" rel="obj1">
+                      <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="24" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                      <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="25" infl="e" lcat="ap" lemma="Brussels" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Brussels" sense="Brussels" vform="adj" word="Brusselse"/>
+                      <node begin="12" end="13" frame="proper_name(sg,'LOC')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="26" lcat="np" lemma="Lambermont" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Lambermont" sense="Lambermont" word="Lambermont"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node begin="13" end="14" frame="verb(hebben,pl,pc_pp(over))" his="normal" his_1="normal" id="27" infl="pl" lcat="smain" lemma="ruziën" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ruzie" sc="pc_pp(over)" sense="ruzie-over" stype="declarative" tense="present" word="ruziën" wvorm="pv"/>
+          <node begin="14" cat="conj" end="17" id="28" rel="su">
+            <node begin="14" end="15" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="bond" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="cnj" rnum="pl" root="bond" sense="bond" word="bonden"/>
+            <node begin="15" conjtype="neven" end="16" frame="conj(en)" his="normal" his_1="normal" id="30" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="16" end="17" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="31" lcat="np" lemma="werkgever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="cnj" rnum="pl" root="werkgever" sense="werkgever" word="werkgevers"/>
+          </node>
+          <node begin="17" cat="pp" end="20" id="32" rel="pc">
+            <node begin="17" end="18" frame="preposition(over,[heen])" his="normal" his_1="normal" id="33" lcat="pp" lemma="over" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="over" sense="over" vztype="init" word="over"/>
+            <node begin="18" cat="np" end="20" id="34" rel="obj1">
+              <node begin="18" end="19" frame="determiner(de)" his="normal" his_1="normal" id="35" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="19" end="20" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="36" lcat="np" lemma="loon_kosten" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="loon_kosten" sense="loon_kosten" word="loonkosten"/>
+            </node>
+          </node>
+        </node>
+        <node begin="21" conjtype="neven" end="22" frame="conj(maar)" his="normal" his_1="normal" id="37" lcat="vg" lemma="maar" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="maar" sense="maar" word="maar"/>
+        <node begin="22" cat="smain" end="35" id="38" rel="cnj">
+          <node begin="22" case="both" def="def" end="23" frame="pronoun(nwh,thi,both,de,both,def,wkpro)" gen="de" getal="mv" his="normal" his_1="normal" id="39" lcat="np" lemma="ze" naamval="stan" num="both" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,stan,red,3,mv)" pt="vnw" rel="su" rnum="pl" root="ze" sense="ze" special="wkpro" status="red" vwtype="pers" wh="nwh" word="ze"/>
+          <node begin="23" end="24" frame="verb(zijn,pl,fixed([[in,opstand]],no_passive))" his="normal" his_1="normal" id="40" infl="pl" lcat="smain" lemma="komen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="kom" sc="fixed([[in,opstand]],no_passive)" sense="in-opstand-kom" stype="declarative" tense="present" word="komen" wvorm="pv"/>
+          <node aform="base" begin="24" end="25" frame="adjective(postn_pred(padv))" his="normal" his_1="normal" id="41" infl="pred" lcat="ap" lemma="samen" pos="adj" postag="BW()" pt="bw" rel="predm" root="samen" sense="samen" vform="adj" word="samen"/>
+          <node begin="25" cat="mwu" end="27" his="normal" his_1="normal" id="42" mwu_root="in opstand" mwu_sense="in opstand" rel="svp">
+            <node begin="25" end="26" frame="fixed_part([in,opstand])" id="43" lcat="fixed" lemma="in" pos="fixed" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="26" end="27" frame="fixed_part([in,opstand])" genus="zijd" getal="ev" graad="basis" id="44" lcat="fixed" lemma="opstand" naamval="stan" ntype="soort" pos="fixed" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="mwp" root="opstand" sense="opstand" word="opstand"/>
+          </node>
+          <node begin="27" cat="cp" end="35" id="45" rel="mod">
+            <node begin="27" conjtype="onder" end="28" frame="complementizer(als)" his="normal" his_1="normal" id="46" lcat="cp" lemma="als" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="als" sc="als" sense="als" word="als"/>
+            <node begin="28" cat="ssub" end="35" id="47" rel="body">
+              <node begin="28" cat="np" end="30" id="48" rel="su">
+                <node begin="28" end="29" frame="determiner(de)" his="normal" his_1="normal" id="49" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node begin="29" end="30" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="50" lcat="np" lemma="regering" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="regering" sense="regering" word="regering"/>
+              </node>
+              <node begin="31" cat="np" end="33" id="51" rel="obj1">
+                <node begin="31" buiging="zonder" end="32" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="52" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                <node begin="32" end="33" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="53" lcat="np" lemma="terrein" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="terrein" sense="terrein" word="terrein"/>
+              </node>
+              <node begin="34" end="35" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="54" infl="sg3" lcat="ssub" lemma="betreden" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="betreed" sc="transitive" sense="betreed" tense="present" word="betreedt" wvorm="pv"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="35" end="36" frame="punct(punt)" his="normal" his_1="normal" id="55" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="30">Erger nog , rond de tafel in zijn ambtswoning aan de Brusselse Lambermont ruziën bonden en werkgevers over de loonkosten , maar ze komen samen in opstand als de regering &apos; hun terrein &apos; betreedt .</sentence>
+  <comments>
+    <comment>Q#30|Erger nog , rond de tafel in zijn ambtswoning aan de Brusselse Lambermont ruziën bonden en werkgevers over de loonkosten , maar ze komen samen in opstand als de regering &apos; hun terrein &apos; betreedt .|1|1|0.36471111948000084</comment>
+  </comments>
+</alpino_ds>

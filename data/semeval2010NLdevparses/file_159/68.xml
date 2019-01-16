@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="33" id="0" rel="top">
+    <node begin="4" end="5" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="32" id="2" rel="--">
+      <node begin="0" cat="np" end="2" id="3" rel="su">
+        <node begin="0" buiging="zonder" end="1" frame="determiner(pron)" getal="mv" his="normal" his_1="decap" his_1_1="normal" id="4" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="Hun"/>
+        <node begin="1" end="2" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="5" lcat="np" lemma="heer_accoord" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="heer_accoord" sense="heer_accoord" word="herenakkoord"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,sg3,transitive)" his="normal" his_1="normal" id="6" infl="sg3" lcat="smain" lemma="regelen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="regel" sc="transitive" sense="regel" stype="declarative" tense="present" word="regelt" wvorm="pv"/>
+      <node begin="3" end="4" frame="meas_mod_noun(het,mass,sg)" gen="het" getal="ev" his="normal" his_1="normal" id="7" lcat="np" lemma="niets" naamval="stan" num="sg" pdtype="pron" persoon="3o" pos="noun" postag="VNW(onbep,pron,stan,vol,3o,ev)" pt="vnw" rel="obj1" rnum="sg" root="niets" sense="niets" special="meas_mod" status="vol" vwtype="onbep" word="niets"/>
+      <node begin="5" cat="cp" end="32" id="8" rel="mod">
+        <node begin="5" conjtype="onder" end="6" frame="complementizer" his="normal" his_1="normal" id="9" lcat="cp" lemma="tenzij" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="tenzij" sense="tenzij" word="tenzij"/>
+        <node begin="6" cat="ssub" end="32" id="10" rel="body">
+          <node begin="6" cat="conj" end="26" id="11" index="1" rel="su">
+            <node begin="6" cat="np" end="23" id="12" rel="cnj">
+              <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="13" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="7" end="8" frame="noun(de,count,sg,sbar)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="14" lcat="np" lemma="belofte" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="belofte" sc="sbar" sense="belofte" word="belofte"/>
+              <node begin="8" cat="cp" end="23" id="15" rel="vc">
+                <node begin="8" conjtype="onder" end="9" frame="complementizer(dat)" his="normal" his_1="normal" id="16" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+                <node begin="9" cat="ssub" end="23" id="17" rel="body">
+                  <node begin="9" cat="np" end="11" id="18" index="2" rel="su">
+                    <node begin="9" end="10" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                    <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="werkgever" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="werkgever" sense="werkgever" word="werkgevers"/>
+                  </node>
+                  <node begin="13" end="14" frame="verb(hebben,pl,aux(inf))" his="normal" his_1="normal" id="21" infl="pl" lcat="ssub" lemma="zullen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="zal" sc="aux(inf)" sense="zal" tense="present" word="zullen" wvorm="pv"/>
+                  <node begin="9" cat="inf" end="23" id="22" rel="vc">
+                    <node begin="9" end="11" id="23" index="2" rel="su"/>
+                    <node begin="11" cat="np" end="13" id="24" index="3" rel="obj1">
+                      <node begin="11" buiging="zonder" end="12" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="25" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                      <node begin="12" end="13" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="lid" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="lid" sense="lid" word="leden"/>
+                    </node>
+                    <node begin="14" buiging="zonder" end="15" frame="verb(hebben,inf,ninv(np_vp_obj1,part_np_vp_obj1(aan)))" his="normal" his_1="part-V" id="27" infl="inf" lcat="inf" lemma="aan_sporen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="spoor_aan" sc="part_np_vp_obj1(aan)" sense="spoor_aan" word="aansporen" wvorm="inf"/>
+                    <node begin="11" cat="ti" end="23" id="28" rel="vc">
+                      <node begin="21" end="22" frame="complementizer(te)" his="normal" his_1="normal" id="29" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+                      <node begin="11" cat="inf" end="23" id="30" rel="body">
+                        <node begin="11" end="13" id="31" index="3" rel="su"/>
+                        <node begin="15" end="16" frame="adverb" his="normal" his_1="normal" id="32" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+                        <node begin="16" cat="ap" end="18" id="33" rel="mod">
+                          <node begin="16" end="17" frame="intensifier" his="normal" his_1="normal" id="34" lcat="advp" lemma="te" pos="adv" postag="BW()" pt="bw" rel="mod" root="te" sense="te" special="intensifier" word="te"/>
+                          <node aform="base" begin="17" buiging="zonder" end="18" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="35" infl="no_e" lcat="ap" lemma="snel" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="hd" root="snel" sense="snel" vform="adj" word="snel"/>
+                        </node>
+                        <node begin="18" cat="pp" end="21" id="36" rel="ld">
+                          <node begin="18" end="19" frame="preposition(naar,[toe])" his="normal" his_1="normal" id="37" lcat="pp" lemma="naar" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naar" sense="naar" vztype="init" word="naar"/>
+                          <node begin="19" cat="np" end="21" id="38" rel="obj1">
+                            <node begin="19" end="20" frame="determiner(de)" his="normal" his_1="normal" id="39" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                            <node begin="20" end="21" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="40" lcat="np" lemma="rechtbank" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rechtbank" sense="rechtbank" word="rechtbank"/>
+                          </node>
+                        </node>
+                        <node begin="22" buiging="zonder" end="23" frame="verb('hebben/zijn',inf,ld_pp)" his="normal" his_1="normal" id="41" infl="inf" lcat="inf" lemma="lopen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="loop" sc="ld_pp" sense="loop" word="lopen" wvorm="inf"/>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node begin="23" conjtype="neven" end="24" frame="conj(en)" his="normal" his_1="normal" id="42" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="24" cat="np" end="26" id="43" rel="cnj">
+              <node begin="24" end="25" frame="determiner(de)" his="normal" his_1="normal" id="44" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="25" end="26" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="45" lcat="np" lemma="vakbond" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="vakbond" sense="vakbond" word="vakbonden"/>
+            </node>
+          </node>
+          <node begin="30" end="31" frame="verb(hebben,pl,aux(inf))" his="normal" his_1="normal" id="46" infl="pl" lcat="ssub" lemma="zullen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="zal" sc="aux(inf)" sense="zal" tense="present" word="zullen" wvorm="pv"/>
+          <node begin="6" cat="inf" end="32" id="47" rel="vc">
+            <node begin="6" end="26" id="48" index="1" rel="su"/>
+            <node begin="26" cat="conj" end="30" id="49" rel="obj1">
+              <node begin="26" cat="np" end="28" id="50" rel="cnj">
+                <node aform="base" begin="26" buiging="met-e" end="27" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="51" index="4" infl="e" lcat="ap" lemma="wild" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="wild" sense="wild" vform="adj" word="wilde"/>
+                <node begin="27" end="28" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="52" lcat="np" lemma="staking" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="staking" sense="staking" word="stakingen"/>
+              </node>
+              <node begin="28" conjtype="neven" end="29" frame="conj(en)" his="normal" his_1="normal" id="53" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+              <node begin="26" cat="np" end="30" id="54" rel="cnj">
+                <node begin="26" end="27" id="55" index="4" rel="mod"/>
+                <node begin="29" end="30" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="56" lcat="np" lemma="bedrijf_bezetting" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bedrijf_bezetting" sense="bedrijf_bezetting" word="bedrijfsbezettingen"/>
+              </node>
+            </node>
+            <node begin="31" buiging="zonder" end="32" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="57" infl="inf" lcat="inf" lemma="ontraden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="ontraad" sc="transitive" sense="ontraad" word="ontraden" wvorm="inf"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="32" end="33" frame="punct(punt)" his="normal" his_1="normal" id="58" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="68">Hun herenakkoord regelt niets , tenzij de belofte dat de werkgevers hun leden zullen aansporen niet te snel naar de rechtbank te lopen en de vakbonden wilde stakingen en bedrijfsbezettingen zullen ontraden .</sentence>
+  <comments>
+    <comment>Q#68|Hun herenakkoord regelt niets , tenzij de belofte dat de werkgevers hun leden zullen aansporen niet te snel naar de rechtbank te lopen en de vakbonden wilde stakingen en bedrijfsbezettingen zullen ontraden .|1|1|-6.876654511620009</comment>
+  </comments>
+</alpino_ds>

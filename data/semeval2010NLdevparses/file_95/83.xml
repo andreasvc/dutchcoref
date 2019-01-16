@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="20" id="0" rel="top">
+    <node begin="9" end="10" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="19" id="2" rel="--">
+      <node begin="0" cat="ap" end="5" id="3" rel="predc">
+        <node aform="compar" begin="0" buiging="zonder" end="1" frame="adjective(er(adv))" graad="comp" his="normal" his_1="decap" his_1_1="normal" id="4" infl="no_e" lcat="ap" lemma="belangrijk" pos="adj" positie="vrij" postag="ADJ(vrij,comp,zonder)" pt="adj" rel="hd" root="belangrijk" sense="belangrijk" vform="adj" word="Belangrijker"/>
+        <node begin="1" end="2" frame="postadj_adverb" his="normal" his_1="normal" id="5" lcat="advp" lemma="nog" pos="adv" postag="BW()" pt="bw" rel="mod" root="nog" sense="nog" special="postadj" word="nog"/>
+        <node begin="2" cat="cp" end="5" id="6" rel="obcomp">
+          <node begin="2" conjtype="onder" end="3" frame="comparative(dan)" his="normal" his_1="normal" id="7" lcat="comparative" lemma="dan" pos="comparative" postag="VG(onder)" pt="vg" rel="cmp" root="dan" sense="dan" word="dan"/>
+          <node begin="3" cat="np" end="5" id="8" rel="body">
+            <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="9" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="4" end="5" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="10" lcat="np" lemma="ligging" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="ligging" sense="ligging" word="ligging"/>
+          </node>
+        </node>
+      </node>
+      <node begin="5" end="6" frame="verb(unacc,past(sg),copula)" his="normal" his_1="normal" id="11" infl="sg" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="past" word="was" wvorm="pv"/>
+      <node begin="6" cat="conj" end="19" id="12" rel="su">
+        <node begin="11" conjtype="neven" end="12" frame="conj(en)" his="normal" his_1="normal" id="13" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="6" cat="np" end="19" id="14" rel="cnj">
+          <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="15" index="1" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node aform="base" begin="7" buiging="met-e" end="8" frame="adjective(ende(padv))" his="normal" his_1="V-de" his_1_1="part-V" id="16" index="2" infl="e" lcat="ppres" lemma="uit_munten" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="mod" root="munt_uit" sense="munt_uit" vform="gerund" word="uitmuntende" wvorm="od"/>
+          <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="bescherming" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bescherming" sense="bescherming" word="bescherming"/>
+          <node begin="13" cat="pp" end="19" id="18" index="3" rel="mod">
+            <node begin="13" end="14" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="19" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="14" cat="np" end="19" id="20" rel="obj1">
+              <node begin="14" end="15" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="15" end="16" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="graaf" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="graaf" sense="graaf" word="graaf"/>
+              <node begin="16" cat="pp" end="19" id="23" rel="mod">
+                <node begin="16" end="17" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="24" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="17" cat="np" end="19" id="25" rel="obj1">
+                  <node begin="17" end="18" frame="determiner(de)" his="normal" his_1="normal" id="26" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="18" end="19" frame="proper_name(sg)" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="27" lcat="np" lemma="Champagne" naamval="stan" neclass="MISC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="Champagne" sense="Champagne" word="Champagne"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="6" cat="np" end="19" id="28" rel="cnj">
+          <node begin="6" end="7" id="29" index="1" rel="det"/>
+          <node begin="7" end="8" id="30" index="2" rel="mod"/>
+          <node begin="10" end="11" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="31" lcat="np" lemma="bewaking" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="bewaking" sense="bewaking" word="bewaking"/>
+          <node begin="13" end="19" id="32" index="3" rel="mod"/>
+        </node>
+        <node begin="6" cat="np" end="19" id="33" rel="cnj">
+          <node begin="6" end="7" id="34" index="1" rel="det"/>
+          <node begin="7" end="8" id="35" index="2" rel="mod"/>
+          <node begin="12" end="13" frame="noun(both,mass,sg)" gen="both" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="36" lcat="np" lemma="onthaal" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="onthaal" sense="onthaal" word="onthaal"/>
+          <node begin="13" end="19" id="37" index="3" rel="mod"/>
+        </node>
+      </node>
+    </node>
+    <node begin="19" end="20" frame="punct(punt)" his="normal" his_1="normal" id="38" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="83">Belangrijker nog dan de ligging was de uitmuntende bescherming , bewaking en onthaal van de graaf van de Champagne .</sentence>
+  <comments>
+    <comment>Q#83|Belangrijker nog dan de ligging was de uitmuntende bescherming , bewaking en onthaal van de graaf van de Champagne .|1|1|-5.4680249213399925</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="23" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(haak_open)" his="normal" his_1="normal" id="1" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="8" end="9" frame="punct(haak_sluit)" his="normal" his_1="normal" id="2" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="0" cat="smain" end="22" id="3" rel="--">
+      <node begin="0" cat="np" end="8" id="4" index="1" rel="su">
+        <node begin="0" end="1" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="np" lemma="minister" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="minister" sense="minister" word="Minister"/>
+        <node begin="1" cat="pp" end="4" id="6" rel="mod">
+          <node begin="1" end="2" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="7" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="2" cat="mwu" end="4" his="normal" his_1="names_dictionary" id="8" mwu_root="Buitenlandse Zaken" mwu_sense="Buitenlandse Zaken" rel="obj1">
+            <node begin="2" end="3" frame="proper_name(sg,'ORG')" id="9" lcat="np" lemma="Buitenlandse" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Buitenlandse" sense="Buitenlandse" spectype="deeleigen" word="Buitenlandse"/>
+            <node begin="3" end="4" frame="proper_name(sg,'ORG')" id="10" lcat="np" lemma="Zaken" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Zaken" sense="Zaken" spectype="deeleigen" word="Zaken"/>
+          </node>
+        </node>
+        <node begin="4" cat="mwu" end="6" his="normal" his_1="names_dictionary" id="11" mwu_root="Louis Michel" mwu_sense="Louis Michel" rel="app">
+          <node begin="4" end="5" frame="proper_name(sg,'PER')" id="12" lcat="np" lemma="Louis" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Louis" sense="Louis" spectype="deeleigen" word="Louis"/>
+          <node begin="5" end="6" frame="proper_name(sg,'PER')" id="13" lcat="np" lemma="Michel" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Michel" sense="Michel" spectype="deeleigen" word="Michel"/>
+        </node>
+        <node begin="7" end="8" frame="proper_name(sg,'ORG')" genus="zijd" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="14" lcat="np" lemma="PRL" naamval="stan" neclass="ORG" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,zijd,stan)" pt="n" rel="mod" rnum="sg" root="PRL" sense="PRL" word="PRL"/>
+      </node>
+      <node begin="9" end="10" frame="verb(hebben,modal_not_u,modifier(aux(inf)))" his="normal" his_1="normal" id="15" infl="modal_not_u" lcat="smain" lemma="willen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="wil" sc="modifier(aux(inf))" sense="wil" stype="declarative" tense="present" word="wil" wvorm="pv"/>
+      <node begin="0" cat="inf" end="22" id="16" rel="vc">
+        <node begin="0" end="8" id="17" index="1" rel="su"/>
+        <node begin="10" cat="np" end="21" id="18" rel="obj1">
+          <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="11" end="12" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="20" lcat="np" lemma="genocide_wet" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="genocide_wet" sense="genocide_wet" word="genocidewet"/>
+          <node begin="12" cat="pp" end="21" id="21" rel="mod">
+            <node begin="12" cat="mwu" end="16" his="normal" his_1="normal" id="22" mwu_root="in de geest van" mwu_sense="in de geest van" rel="hd">
+              <node begin="12" end="13" frame="preposition([in,de,geest,van],[])" id="23" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="13" end="14" frame="preposition([in,de,geest,van],[])" id="24" lcat="pp" lemma="de" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="de" sense="de" vztype="init" word="de"/>
+              <node begin="14" end="15" frame="preposition([in,de,geest,van],[])" id="25" lcat="pp" lemma="geest" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="geest" sense="geest" vztype="init" word="geest"/>
+              <node begin="15" end="16" frame="preposition([in,de,geest,van],[])" id="26" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="mwp" root="van" sense="van" vztype="init" word="van"/>
+            </node>
+            <node begin="16" cat="np" end="21" id="27" rel="obj1">
+              <node begin="16" end="17" frame="determiner(de)" his="normal" his_1="normal" id="28" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node begin="17" end="18" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="29" lcat="np" lemma="uitspraak" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="uitspraak" sense="uitspraak" word="uitspraak"/>
+              <node begin="18" cat="pp" end="21" id="30" rel="mod">
+                <node begin="18" end="19" frame="preposition(in,[])" his="normal" his_1="normal" id="31" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="19" cat="mwu" end="21" his="normal" his_1="names_dictionary" id="32" mwu_root="Den Haag" mwu_sense="Den Haag" rel="obj1">
+                  <node begin="19" end="20" frame="proper_name(sg,'LOC')" id="33" lcat="np" lemma="Den" neclass="LOC" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Den" sense="Den" spectype="deeleigen" word="Den"/>
+                  <node begin="20" end="21" frame="proper_name(sg,'LOC')" id="34" lcat="np" lemma="Haag" neclass="LOC" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Haag" sense="Haag" spectype="deeleigen" word="Haag"/>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="21" buiging="zonder" end="22" frame="verb(hebben,inf,ninv(transitive,part_transitive(aan)))" his="normal" his_1="part-V" id="35" infl="inf" lcat="inf" lemma="aan_passen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="pas_aan" sc="part_transitive(aan)" sense="pas_aan" word="aanpassen" wvorm="inf"/>
+      </node>
+    </node>
+    <node begin="22" end="23" frame="punct(punt)" his="normal" his_1="normal" id="36" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="7">Minister van Buitenlandse Zaken Louis Michel ( PRL ) wil de genocidewet in de geest van de uitspraak in Den Haag aanpassen .</sentence>
+  <comments>
+    <comment>Q#7|Minister van Buitenlandse Zaken Louis Michel ( PRL ) wil de genocidewet in de geest van de uitspraak in Den Haag aanpassen .|1|1|-14.84339398188</comment>
+  </comments>
+</alpino_ds>

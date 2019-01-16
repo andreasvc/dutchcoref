@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="24" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="23" id="2" rel="--">
+      <node begin="7" end="8" frame="verb(hebben,modal_not_u,aux(inf))" his="normal" his_1="normal" id="3" infl="modal_not_u" lcat="smain" lemma="zullen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="zal" sc="aux(inf)" sense="zal" stype="declarative" tense="present" word="zal" wvorm="pv"/>
+      <node begin="8" cat="np" end="10" id="4" index="1" rel="su">
+        <node begin="8" end="9" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="5" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+        <node begin="9" end="10" frame="tmp_noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="leven" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="leven" sense="leven" special="tmp" word="leven"/>
+      </node>
+      <node begin="0" cat="inf" end="23" id="7" rel="vc">
+        <node begin="8" end="10" id="8" index="1" rel="su"/>
+        <node begin="14" buiging="zonder" end="15" frame="verb(unacc,inf,passive)" his="normal" his_1="normal" id="9" infl="inf" lcat="inf" lemma="worden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="word" sc="passive" sense="word" word="worden" wvorm="inf"/>
+        <node begin="0" cat="ppart" end="23" id="10" rel="vc">
+          <node begin="0" cat="cp" end="6" id="11" rel="mod">
+            <node begin="0" conjtype="onder" end="1" frame="complementizer(als)" his="normal" his_1="decap" his_1_1="normal" id="12" lcat="cp" lemma="als" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="als" sc="als" sense="als" word="Als"/>
+            <node begin="1" cat="ssub" end="6" id="13" rel="body">
+              <node begin="4" end="5" frame="verb(unacc,sg3,passive)" his="normal" his_1="normal" id="14" infl="sg3" lcat="ssub" lemma="worden" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" tense="present" word="wordt" wvorm="pv"/>
+              <node begin="1" cat="ppart" end="6" id="15" rel="vc">
+                <node begin="1" end="2" frame="er_vp_adverb" getal="getal" his="normal" his_1="normal" id="16" lcat="advp" lemma="er" naamval="stan" pdtype="adv-pron" persoon="3" pos="adv" postag="VNW(aanw,adv-pron,stan,red,3,getal)" pt="vnw" rel="mod" root="er" sense="er" special="er" status="red" vwtype="aanw" word="er"/>
+                <node begin="2" end="3" frame="adverb" his="normal" his_1="normal" id="17" lcat="advp" lemma="niet" pos="adv" postag="BW()" pt="bw" rel="mod" root="niet" sense="niet" word="niet"/>
+                <node aform="base" begin="3" buiging="zonder" end="4" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="18" infl="no_e" lcat="ap" lemma="drastisch" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="drastisch" sense="drastisch" vform="adj" word="drastisch"/>
+                <node begin="5" buiging="zonder" end="6" frame="verb(hebben,psp,ninv(intransitive,part_intransitive(in)))" his="normal" his_1="part-V" id="19" infl="psp" lcat="ppart" lemma="in_grijpen" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="grijp_in" sc="part_intransitive(in)" sense="grijp_in" word="ingegrepen" wvorm="vd"/>
+              </node>
+            </node>
+          </node>
+          <node begin="8" end="10" id="20" index="1" rel="obj1"/>
+          <node begin="10" cat="pp" end="13" id="21" rel="mod">
+            <node begin="10" end="11" frame="preposition(in,[])" his="normal" his_1="normal" id="22" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="11" cat="np" end="13" id="23" rel="obj1">
+              <node begin="11" end="12" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="24" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node begin="12" end="13" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="meer" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="meer" sense="meer" word="meer"/>
+            </node>
+          </node>
+          <node begin="13" buiging="zonder" end="14" frame="verb(hebben,psp,transitive)" his="normal" his_1="normal" id="26" infl="psp" lcat="ppart" lemma="reduceren" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="reduceer" sc="transitive" sense="reduceer" word="gereduceerd" wvorm="vd"/>
+          <node begin="15" cat="pp" end="23" id="27" rel="mod">
+            <node begin="15" end="16" frame="preposition(tot,[toe,[aan,toe]])" his="normal" his_1="normal" id="28" lcat="pp" lemma="tot" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="tot" sense="tot" vztype="init" word="tot"/>
+            <node begin="16" cat="np" end="23" id="29" rel="obj1">
+              <node begin="16" end="17" frame="determiner(het,nwh,nmod,pro,nparg)" getal="ev" his="normal" his_1="normal" id="30" infl="het" lcat="np" lemma="dat" naamval="stan" pdtype="pron" persoon="3o" pos="det" postag="VNW(aanw,pron,stan,vol,3o,ev)" pt="vnw" rel="hd" rnum="sg" root="dat" sense="dat" status="vol" vwtype="aanw" wh="nwh" word="dat"/>
+              <node begin="17" cat="pp" end="23" id="31" rel="mod">
+                <node begin="17" end="18" frame="preposition(in,[])" his="normal" his_1="normal" id="32" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                <node begin="18" cat="np" end="23" id="33" rel="obj1">
+                  <node begin="18" end="19" frame="determiner(een)" his="normal" his_1="normal" id="34" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                  <node begin="19" end="20" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="3" id="35" lcat="np" lemma="doorsnede_zand_winning_put" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="doorsnede_zand_winning_put" sense="doorsnede_zand_winning_put" word="doorsneezandwinningsput"/>
+                  <node begin="20" cat="pp" end="23" id="36" rel="mod">
+                    <node begin="20" end="21" frame="preposition(in,[])" his="normal" his_1="normal" id="37" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                    <node begin="21" cat="np" end="23" id="38" rel="obj1">
+                      <node begin="21" buiging="met-e" end="22" frame="determiner(onze)" getal="mv" his="normal" his_1="normal" id="39" infl="onze" lcat="detp" lemma="ons" naamval="stan" npagr="rest" pdtype="det" persoon="1" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,1,mv,prenom,met-e,rest)" pt="vnw" rel="det" root="ons" sense="ons" status="vol" vwtype="bez" word="onze"/>
+                      <node begin="22" end="23" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="40" lcat="np" lemma="contreien" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="contreien" sense="contreien" word="contreien"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="23" end="24" frame="punct(punt)" his="normal" his_1="normal" id="41" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="4">Als er niet drastisch wordt ingegrepen , zal het leven in het meer gereduceerd worden tot dat in een doorsneezandwinningsput in onze contreien .</sentence>
+  <comments>
+    <comment>Q#4|Als er niet drastisch wordt ingegrepen , zal het leven in het meer gereduceerd worden tot dat in een doorsneezandwinningsput in onze contreien .|1|1|-4.269844613119993</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="6" end="7" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="14" id="2" rel="--">
+      <node begin="0" cat="pp" end="3" id="3" rel="mod">
+        <node begin="0" end="1" frame="preposition(naast,[])" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="pp" lemma="naast" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="naast" sense="naast" vztype="init" word="Naast"/>
+        <node begin="1" cat="np" end="3" id="5" rel="obj1">
+          <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="6" infl="e" lcat="ap" lemma="eenvoudig" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="eenvoudig" sense="eenvoudig" vform="adj" word="eenvoudige"/>
+          <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="7" lcat="np" lemma="wissel_bank" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="wissel_bank" sense="wissel_bank" word="wisselbanken"/>
+        </node>
+      </node>
+      <node begin="3" end="4" frame="verb(hebben,past(pl),intransitive)" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="bestaan" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="besta" sc="intransitive" sense="besta" stype="declarative" tense="past" word="bestonden" wvorm="pv"/>
+      <node begin="4" cat="np" end="14" id="9" rel="su">
+        <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="10" infl="e" lcat="ap" lemma="heus" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="heus" sense="heus" vform="adj" word="heuse"/>
+        <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="11" lcat="np" lemma="deposito_bank" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="deposito_bank" sense="deposito_bank" word="depositobanken"/>
+        <node begin="7" cat="rel" end="14" id="12" rel="mod">
+          <node begin="7" case="no_obl" end="8" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="13" index="1" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="pl" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+          <node begin="7" cat="ssub" end="14" id="14" rel="body">
+            <node begin="7" end="8" id="15" index="1" rel="su"/>
+            <node begin="8" cat="np" end="11" id="16" rel="obj1">
+              <node begin="8" end="9" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="geld" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="geld" sense="geld" word="geld"/>
+              <node begin="9" cat="pp" end="11" id="18" rel="mod">
+                <node begin="9" end="10" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="19" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="klant" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="klant" sense="klant" word="klanten"/>
+              </node>
+            </node>
+            <node begin="11" cat="pp" end="13" id="21" rel="ld">
+              <node begin="11" end="12" frame="preposition(in,[])" his="normal" his_1="normal" id="22" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="12" end="13" frame="noun(de,mass,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="23" lcat="np" lemma="bewaring" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="obj1" rnum="sg" root="bewaring" sense="bewaring" word="bewaring"/>
+            </node>
+            <node begin="13" end="14" frame="verb(hebben,past(pl),np_ld_pp)" his="normal" his_1="normal" id="24" infl="pl" lcat="ssub" lemma="houden" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="houd" sc="np_ld_pp" sense="houd" tense="past" word="hielden" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="25" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="25">Naast eenvoudige wisselbanken bestonden heuse depositobanken , die geld van klanten in bewaring hielden .</sentence>
+  <comments>
+    <comment>Q#25|Naast eenvoudige wisselbanken bestonden heuse depositobanken , die geld van klanten in bewaring hielden .|1|1|-1.0526565123399974</comment>
+  </comments>
+</alpino_ds>

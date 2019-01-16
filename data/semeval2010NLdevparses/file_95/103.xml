@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="21" id="0" rel="top">
+    <node begin="14" end="15" frame="punct(komma)" his="normal" his_1="normal" id="1" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="smain" end="20" id="2" rel="--">
+      <node begin="0" cat="oti" end="14" id="3" rel="mod">
+        <node begin="0" end="1" frame="complementizer(om)" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="oti" lemma="om" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="om" sc="om" sense="om" vztype="init" word="Om"/>
+        <node begin="1" cat="ti" end="14" id="5" rel="body">
+          <node begin="12" end="13" frame="complementizer(te)" his="normal" his_1="normal" id="6" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+          <node begin="1" cat="inf" end="14" id="7" rel="body">
+            <node begin="1" cat="pp" end="5" id="8" rel="mod">
+              <node begin="1" end="2" frame="preposition(bij,[vandaan])" his="normal" his_1="normal" id="9" lcat="pp" lemma="bij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bij" sense="bij" vztype="init" word="bij"/>
+              <node begin="2" cat="np" end="5" id="10" rel="obj1">
+                <node begin="2" end="3" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                <node aform="base" begin="3" buiging="met-e" end="4" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="12" infl="e" lcat="ap" lemma="internationaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="internationaal" sense="internationaal" vform="adj" word="internationale"/>
+                <node begin="4" end="5" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="operatie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="operatie" sense="operatie" word="operaties"/>
+              </node>
+            </node>
+            <node begin="5" cat="np" end="12" id="14" rel="obj1">
+              <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="15" lcat="np" lemma="discussie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="discussie" sense="discussie" word="discussies"/>
+              <node begin="6" cat="pp" end="12" id="16" rel="mod">
+                <node begin="6" end="7" frame="preposition(over,[heen])" his="normal" his_1="normal" id="17" lcat="pp" lemma="over" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="over" sense="over" vztype="init" word="over"/>
+                <node begin="7" cat="np" end="12" id="18" rel="obj1">
+                  <node begin="7" end="8" frame="determiner(de)" his="normal" his_1="normal" id="19" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                  <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="afhandeling" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="afhandeling" sense="afhandeling" word="afhandeling"/>
+                  <node begin="9" cat="pp" end="12" id="21" rel="mod">
+                    <node begin="9" end="10" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="22" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                    <node begin="10" cat="np" end="12" id="23" rel="obj1">
+                      <node begin="10" end="11" frame="determiner(de)" his="normal" his_1="normal" id="24" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+                      <node begin="11" end="12" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="25" lcat="np" lemma="transactie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="transactie" sense="transactie" word="transacties"/>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node begin="13" buiging="zonder" end="14" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="26" infl="inf" lcat="inf" lemma="vermijden" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="vermijd" sc="transitive" sense="vermijd" word="vermijden" wvorm="inf"/>
+          </node>
+        </node>
+      </node>
+      <node begin="15" end="16" frame="verb(hebben,past(pl),transitive)" his="normal" his_1="normal" id="27" infl="pl" lcat="smain" lemma="ontwikkelen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="ontwikkel" sc="transitive" sense="ontwikkel" stype="declarative" tense="past" word="ontwikkelden" wvorm="pv"/>
+      <node begin="16" cat="np" end="18" id="28" rel="su">
+        <node begin="16" end="17" frame="determiner(de)" his="normal" his_1="normal" id="29" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="17" end="18" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="30" lcat="np" lemma="Italiaan" ntype="eigen" num="pl" pos="noun" postag="N(eigen,mv,basis)" pt="n" rel="hd" rnum="pl" root="Italiaan" sense="Italiaan" word="Italianen"/>
+      </node>
+      <node begin="18" cat="np" end="20" id="31" rel="obj1">
+        <node aform="base" begin="18" buiging="met-e" end="19" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="32" infl="e" lcat="ap" lemma="nieuw" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="nieuw" sense="nieuw" vform="adj" word="nieuwe"/>
+        <node begin="19" end="20" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="compound" his_1="3" id="33" lcat="np" lemma="boek_houden_systeem" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="boek_houd_systeem" sense="boek_houd_systeem" word="boekhoudsystemen"/>
+      </node>
+    </node>
+    <node begin="20" end="21" frame="punct(punt)" his="normal" his_1="normal" id="34" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="103">Om bij de internationale operaties discussies over de afhandeling van de transacties te vermijden , ontwikkelden de Italianen nieuwe boekhoudsystemen .</sentence>
+  <comments>
+    <comment>Q#103|Om bij de internationale operaties discussies over de afhandeling van de transacties te vermijden , ontwikkelden de Italianen nieuwe boekhoudsystemen .|1|1|-11.372271769599998</comment>
+  </comments>
+</alpino_ds>

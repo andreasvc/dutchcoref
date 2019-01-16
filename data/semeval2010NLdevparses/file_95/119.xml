@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="12" id="0" rel="top">
+    <node begin="0" cat="smain" end="11" id="1" rel="--">
+      <node begin="0" cat="pp" end="2" id="2" rel="mod">
+        <node begin="0" end="1" frame="preposition(in,[])" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="In"/>
+        <node begin="1" end="2" frame="np(year)" his="normal" his_1="normal" id="4" lcat="np" lemma="1318" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="obj1" rnum="sg" root="1318" sense="1318" word="1318"/>
+      </node>
+      <node begin="2" end="3" frame="verb(hebben,past(pl),transitive)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="halen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="haal" sc="transitive" sense="haal" stype="declarative" tense="past" word="haalden" wvorm="pv"/>
+      <node begin="3" cat="np" end="5" id="6" rel="su">
+        <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="7" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="4" end="5" frame="noun(both,count,pl)" gen="both" getal="mv" graad="basis" his="form_of_suffix" his_1="&apos;s" id="8" lcat="np" lemma="bardi" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bardi" sense="bardi" word="Bardi&apos;s"/>
+      </node>
+      <node begin="5" cat="np" end="11" id="9" rel="obj1">
+        <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="10" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="base" begin="6" buiging="met-e" end="7" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="gigantisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="gigantisch" sense="gigantisch" vform="adj" word="gigantische"/>
+        <node begin="7" end="8" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="omzet" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="omzet" sense="omzet" word="omzet"/>
+        <node begin="8" cat="pp" end="11" id="13" rel="mod">
+          <node begin="8" end="9" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="14" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="9" cat="np" end="11" id="15" rel="obj1">
+            <node begin="9" end="10" frame="number(hoofd(both))" his="normal" his_1="number_expression" id="16" infl="both" lcat="detp" lemma="1.266.775" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="1.266.775" sense="1.266.775" special="hoofd" word="1.266.775"/>
+            <node begin="10" end="11" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="17" lcat="np" lemma="florijnen" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="florijnen" sense="florijnen" word="florijnen"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="11" end="12" frame="punct(punt)" his="normal" his_1="normal" id="18" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="119">In 1318 haalden de Bardi&apos;s de gigantische omzet van 1.266.775 florijnen .</sentence>
+  <comments>
+    <comment>Q#119|In 1318 haalden de Bardi&apos;s de gigantische omzet van 1.266.775 florijnen .|1|1|-3.755216201900002</comment>
+  </comments>
+</alpino_ds>

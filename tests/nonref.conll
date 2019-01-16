@@ -1,0 +1,78 @@
+#begin document (nonref);
+nonref	1	De	(0
+nonref	2	vrouw	0)
+nonref	3	zei	-
+nonref	4	dat	-
+nonref	5	hij	(1)
+nonref	6	grappig	-
+nonref	7	is	-
+nonref	8	.	-
+
+nonref	9	Zij	(2)
+nonref	10	ziet	-
+nonref	11	haar	(3)
+nonref	12	.	-
+
+nonref	13	Jan	(4)
+nonref	14	lijkt	-
+nonref	15	hem	(5)
+nonref	16	te	-
+nonref	17	willen	-
+nonref	18	zien	-
+nonref	19	.	-
+
+nonref	20	Zij	(6)
+nonref	21	zat	-
+nonref	22	naast	-
+nonref	23	haar	(7)
+nonref	24	.	-
+
+nonref	25	Hij	(8)
+nonref	26	gelooft	-
+nonref	27	dat	-
+nonref	28	de	(9
+nonref	29	man	9)
+nonref	30	grappig	-
+nonref	31	is	-
+nonref	32	.	-
+
+nonref	33	Hij	(10)
+nonref	34	zei	-
+nonref	35	dat	-
+nonref	36	dit	(11)
+nonref	37	de	(11
+nonref	38	man	11)
+nonref	39	is	-
+nonref	40	waarover	-
+nonref	41	Jan	(12)
+nonref	42	schreef	-
+nonref	43	.	-
+
+nonref	44	Jans	14|(15
+nonref	45	portret	15
+nonref	46	van	15
+nonref	47	hem	15)|(16)
+nonref	48	is	-
+nonref	49	interessant	-
+nonref	50	.	-
+
+nonref	51	Zijn	(14)|(16
+nonref	52	protret	16
+nonref	53	van	16
+nonref	54	Jan	16)|(4)
+nonref	55	is	-
+nonref	56	interessant	-
+nonref	57	.	-
+
+nonref	58	Zijn	(17)|(18
+nonref	59	beschrijving	18
+nonref	60	van	18
+nonref	61	het	18|(20
+nonref	62	portret	18|20
+nonref	63	van	18|20
+nonref	64	Jan	18)|20)|(19)
+nonref	65	is	-
+nonref	66	interessant	-
+nonref	67	.	-
+
+#end document

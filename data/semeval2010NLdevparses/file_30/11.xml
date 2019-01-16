@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="32" id="0" rel="top">
+    <node begin="26" end="27" frame="punct(dubb_punt)" his="normal" his_1="normal" id="1" lcat="punct" lemma=":" pos="punct" postag="LET()" pt="let" rel="--" root=":" sense=":" special="dubb_punt" word=":"/>
+    <node begin="28" end="29" frame="punct(haak_open)" his="normal" his_1="normal" id="2" lcat="punct" lemma="(" pos="punct" postag="LET()" pt="let" rel="--" root="(" sense="(" special="haak_open" word="("/>
+    <node begin="0" cat="du" end="30" id="3" rel="--">
+      <node begin="0" conjtype="neven" end="1" frame="complementizer(root)" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="du" lemma="maar" pos="comp" postag="VG(neven)" pt="vg" rel="dlink" root="maar" sc="root" sense="maar" word="Maar"/>
+      <node begin="1" cat="du" end="30" id="5" rel="nucl">
+        <node begin="1" cat="smain" end="26" id="6" rel="nucl">
+          <node begin="1" end="2" frame="noun(both,both,both)" gen="both" getal="mv" graad="basis" his="noun" id="7" index="1" lcat="np" lemma="immunologen" ntype="soort" num="both" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="su" rnum="pl" root="immunologen" sense="immunologen" word="immunologen"/>
+          <node begin="2" end="3" frame="verb(hebben,pl,aux_psp_hebben)" his="normal" his_1="normal" id="8" infl="pl" lcat="smain" lemma="hebben" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="heb" sc="aux_psp_hebben" sense="heb" stype="declarative" tense="present" word="hebben" wvorm="pv"/>
+          <node begin="1" cat="ppart" end="26" id="9" rel="vc">
+            <node begin="1" end="2" id="10" index="1" rel="su"/>
+            <node begin="3" buiging="zonder" end="4" frame="verb(hebben,psp,sbar)" his="normal" his_1="normal" id="11" infl="psp" lcat="ppart" lemma="ontdekken" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="ontdek" sc="sbar" sense="ontdek" word="ontdekt" wvorm="vd"/>
+            <node begin="4" cat="cp" end="26" id="12" rel="vc">
+              <node begin="4" conjtype="onder" end="5" frame="complementizer(dat)" his="normal" his_1="normal" id="13" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+              <node begin="5" cat="ssub" end="26" id="14" rel="body">
+                <node begin="5" cat="pp" end="11" id="15" rel="mod">
+                  <node begin="5" end="6" frame="preposition(in,[])" his="normal" his_1="normal" id="16" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                  <node begin="6" cat="np" end="11" id="17" rel="obj1">
+                    <node begin="6" end="7" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="18" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                    <node begin="7" end="8" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="bloed" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="bloed" sense="bloed" word="bloed"/>
+                    <node begin="8" cat="pp" end="11" id="20" rel="mod">
+                      <node begin="8" end="9" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="21" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                      <node begin="9" cat="np" end="11" id="22" rel="obj1">
+                        <node aform="base" begin="9" buiging="zonder" end="10" frame="adjective(ge_both(padv))" his="compound" his_1="2" id="23" infl="both" lcat="ppart" lemma="eerst_geboren" pos="adj" positie="prenom" postag="WW(vd,prenom,zonder)" pt="ww" rel="mod" root="eerst_geboren" sense="eerst_geboren" vform="psp" word="eerstgeboren" wvorm="vd"/>
+                        <node begin="10" end="11" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="24" lcat="np" lemma="baby" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="baby" sense="baby" word="baby&apos;s"/>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node begin="11" cat="np" end="13" id="25" rel="su">
+                  <node aform="compar" begin="11" buiging="met-e" end="12" frame="adjective(ere)" graad="comp" his="normal" his_1="normal" id="26" infl="e" lcat="ap" lemma="hoog" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,comp,met-e,stan)" pt="adj" rel="mod" root="hoog" sense="hoog" vform="adj" word="hogere"/>
+                  <node begin="12" end="13" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="27" lcat="np" lemma="concentratie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="concentratie" sense="concentratie" word="concentraties"/>
+                </node>
+                <node aform="base" begin="13" buiging="zonder" end="14" frame="adjective(no_e(padv))" graad="basis" his="normal" his_1="normal" id="28" infl="no_e" lcat="ap" lemma="aanwezig" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="aanwezig" sense="aanwezig" vform="adj" word="aanwezig"/>
+                <node begin="14" end="15" frame="verb(unacc,pl,copula)" his="normal" his_1="normal" id="29" infl="pl" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="copula" sense="ben" tense="present" word="zijn" wvorm="pv"/>
+                <node begin="15" cat="pp" end="26" id="30" rel="mod">
+                  <node begin="15" end="16" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="31" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                  <node begin="16" cat="np" end="26" id="32" rel="obj1">
+                    <node begin="16" end="17" frame="determiner(een)" his="normal" his_1="normal" id="33" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                    <node begin="17" end="18" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="compound" his_1="2" id="34" lcat="np" lemma="sleutel_eiwit" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="sleutel_eiwit" sense="sleutel_eiwit" word="sleuteleiwit"/>
+                    <node begin="18" cat="pp" end="26" id="35" rel="mod">
+                      <node begin="18" end="19" frame="preposition(uit,[vandaan])" his="normal" his_1="normal" id="36" lcat="pp" lemma="uit" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="uit" sense="uit" vztype="init" word="uit"/>
+                      <node begin="19" cat="np" end="26" id="37" rel="obj1">
+                        <node begin="19" end="20" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="38" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                        <node begin="20" end="21" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="39" lcat="np" lemma="afweer_systeem" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="afweer_systeem" sense="afweer_systeem" word="afweersysteem"/>
+                        <node begin="21" cat="rel" end="26" id="40" rel="mod">
+                          <node begin="21" case="no_obl" end="22" frame="rel_pronoun(het,no_obl)" gen="het" getal="ev" his="normal" his_1="normal" id="41" index="2" lcat="np" lemma="dat" naamval="stan" pdtype="pron" persoon="3" pos="pron" postag="VNW(betr,pron,stan,vol,3,ev)" pt="vnw" rel="rhd" rnum="sg" root="dat" sense="dat" status="vol" vwtype="betr" wh="rel" word="dat"/>
+                          <node begin="21" cat="ssub" end="26" id="42" rel="body">
+                            <node begin="21" end="22" id="43" index="2" rel="su"/>
+                            <node begin="21" cat="ppart" end="25" id="44" rel="vc">
+                              <node begin="21" end="22" id="45" index="2" rel="obj1"/>
+                              <node begin="22" cat="pp" end="24" id="46" rel="pc">
+                                <node begin="22" end="23" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="normal" id="47" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="met"/>
+                                <node begin="23" end="24" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="48" lcat="np" lemma="allergie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="allergie" sense="allergie" word="allergieën"/>
+                              </node>
+                              <node begin="24" buiging="zonder" end="25" frame="verb(hebben,psp,np_pc_pp(met))" his="normal" his_1="normal" id="49" infl="psp" lcat="ppart" lemma="associëren" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="associeer" sc="np_pc_pp(met)" sense="associeer-met" word="geassocieerd" wvorm="vd"/>
+                            </node>
+                            <node begin="25" end="26" frame="verb(unacc,sg_heeft,passive)" his="normal" his_1="normal" id="50" infl="sg_heeft" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="ben" sc="passive" sense="ben" tense="present" word="is" wvorm="pv"/>
+                          </node>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node begin="27" cat="np" end="30" id="51" rel="sat">
+          <node begin="27" end="28" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="52" lcat="np" lemma="immunoglobulineE" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="immunoglobulineE" sense="immunoglobulineE" word="immunoglobulineE"/>
+          <node begin="29" end="30" frame="proper_name(both,'LOC')" genus="onz" getal="ev" graad="basis" his="name" his_1="not_begin" id="53" lcat="np" lemma="IgE" naamval="stan" neclass="LOC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="mod" rnum="sg" root="IgE" sense="IgE" word="IgE"/>
+        </node>
+      </node>
+    </node>
+    <node begin="30" end="31" frame="punct(haak_sluit)" his="normal" his_1="normal" id="54" lcat="punct" lemma=")" pos="punct" postag="LET()" pt="let" rel="--" root=")" sense=")" special="haak_sluit" word=")"/>
+    <node begin="31" end="32" frame="punct(punt)" his="normal" his_1="normal" id="55" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="11">Maar immunologen hebben ontdekt dat in het bloed van eerstgeboren baby&apos;s hogere concentraties aanwezig zijn van een sleuteleiwit uit het afweersysteem dat met allergieën geassocieerd is : immunoglobulineE ( IgE ) .</sentence>
+  <comments>
+    <comment>Q#11|Maar immunologen hebben ontdekt dat in het bloed van eerstgeboren baby&apos;s hogere concentraties aanwezig zijn van een sleuteleiwit uit het afweersysteem dat met allergieën geassocieerd is : immunoglobulineE ( IgE ) .|1|1|-3.1517708939600033</comment>
+  </comments>
+</alpino_ds>

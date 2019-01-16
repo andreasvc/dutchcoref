@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="0" cat="smain" end="15" id="1" rel="--">
+      <node begin="0" cat="np" end="4" id="2" rel="su">
+        <node begin="0" cat="detp" end="3" id="3" rel="det">
+          <node begin="0" cat="mwu" end="2" his="normal" his_1="decap" his_1_1="normal" id="4" mwu_root="meer dan" mwu_sense="meer dan" rel="mod">
+            <node begin="0" buiging="zonder" end="1" frame="pre_num_adv(both)" graad="comp" id="5" infl="both" lcat="advp" lemma="meer" naamval="stan" pdtype="grad" pos="det" positie="vrij" postag="VNW(onbep,grad,stan,vrij,zonder,comp)" pt="vnw" rel="mwp" root="meer" sense="meer" special="pre_num_adv" vwtype="onbep" word="Meer"/>
+            <node begin="1" conjtype="onder" end="2" frame="pre_num_adv(both)" id="6" infl="both" lcat="advp" lemma="dan" pos="det" postag="VG(onder)" pt="vg" rel="mwp" root="dan" sense="dan" special="pre_num_adv" word="dan"/>
+          </node>
+          <node begin="2" end="3" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="7" infl="pl_num" lcat="detp" lemma="140.000" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="hd" root="140.000" sense="140.000" special="hoofd" word="140.000"/>
+        </node>
+        <node begin="3" end="4" frame="noun(both,both,both)" gen="both" getal="mv" graad="basis" his="noun" id="8" lcat="np" lemma="feestvierders" ntype="soort" num="both" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="feestvierders" sense="feestvierders" word="feestvierders"/>
+      </node>
+      <node begin="4" end="5" frame="verb(hebben,pl,transitive)" his="normal" his_1="normal" id="9" infl="pl" lcat="smain" lemma="maken" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="maak" sc="transitive" sense="maak" stype="declarative" tense="present" word="maken" wvorm="pv"/>
+      <node begin="5" cat="np" end="15" id="10" rel="obj1">
+        <node begin="5" end="6" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="gebruik" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="gebruik" sense="gebruik" word="gebruik"/>
+        <node begin="6" cat="pp" end="15" id="12" rel="mod">
+          <node begin="6" end="7" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="13" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="7" cat="conj" end="15" id="14" rel="obj1">
+            <node begin="10" conjtype="neven" end="11" frame="conj(en)" his="normal" his_1="normal" id="15" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+            <node begin="7" cat="np" end="15" id="16" rel="cnj">
+              <node begin="7" end="8" frame="determiner(de)" his="normal" his_1="normal" id="17" index="1" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node aform="base" begin="8" buiging="met-e" end="9" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" index="2" infl="e" lcat="ap" lemma="speciaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="speciaal" sense="speciaal" vform="adj" word="speciale"/>
+              <node begin="9" end="10" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="tram" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="tram" sense="tram" word="trams"/>
+              <node begin="12" cat="pp" end="15" id="20" index="3" rel="mod">
+                <node begin="12" end="13" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="21" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="13" cat="mwu" end="15" his="normal" his_1="names_dictionary" id="22" mwu_root="De Lijn" mwu_sense="De Lijn" rel="obj1">
+                  <node begin="13" end="14" frame="proper_name(sg,'ORG')" id="23" lcat="np" lemma="De" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="De" sense="De" spectype="deeleigen" word="De"/>
+                  <node begin="14" end="15" frame="proper_name(sg,'ORG')" id="24" lcat="np" lemma="Lijn" neclass="ORG" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Lijn" sense="Lijn" spectype="deeleigen" word="Lijn"/>
+                </node>
+              </node>
+            </node>
+            <node begin="7" cat="np" end="15" id="25" rel="cnj">
+              <node begin="7" end="8" id="26" index="1" rel="det"/>
+              <node begin="8" end="9" id="27" index="2" rel="mod"/>
+              <node begin="11" end="12" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="bus" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="bus" sense="bus" word="bussen"/>
+              <node begin="12" end="15" id="29" index="3" rel="mod"/>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="normal" his_1="normal" id="30" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="6">Meer dan 140.000 feestvierders maken gebruik van de speciale trams en bussen van De Lijn .</sentence>
+  <comments>
+    <comment>Q#6|Meer dan 140.000 feestvierders maken gebruik van de speciale trams en bussen van De Lijn .|1|1|-10.739725657419998</comment>
+  </comments>
+</alpino_ds>

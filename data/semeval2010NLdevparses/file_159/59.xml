@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="2" skips="0" />
+  <node begin="0" cat="top" end="16" id="0" rel="top">
+    <node begin="0" cat="du" end="15" id="1" rel="--">
+      <node begin="0" cat="smain" end="7" id="2" rel="dp">
+        <node begin="0" cat="np" end="5" id="3" rel="su">
+          <node begin="0" cat="pp" end="4" id="4" rel="mod">
+            <node begin="0" end="1" frame="preposition(met,[mee,[en,al]])" his="normal" his_1="decap" his_1_1="normal" id="5" lcat="pp" lemma="met" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="met" sense="met" vztype="init" word="Met"/>
+            <node begin="1" cat="np" end="4" id="6" rel="obj1">
+              <node begin="1" end="2" frame="determiner(een)" his="normal" his_1="normal" id="7" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node aform="base" begin="2" buiging="zonder" end="3" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="8" infl="no_e" lcat="ap" lemma="eenzijdig" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="eenzijdig" sense="eenzijdig" vform="adj" word="eenzijdig"/>
+              <node begin="3" end="4" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="verzoekschrift" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="verzoekschrift" sense="verzoekschrift" word="verzoekschrift"/>
+            </node>
+          </node>
+          <node begin="4" buiging="zonder" end="5" frame="v_noun(intransitive)" getal-n="zonder-n" his="normal" his_1="normal" id="10" lcat="np" lemma="verkrijgen" pos="verb" positie="nom" postag="WW(inf,nom,zonder,zonder-n)" pt="ww" rel="hd" rnum="sg" root="verkrijg" sc="intransitive" sense="verkrijg" special="v_noun" word="verkrijgen" wvorm="inf"/>
+        </node>
+        <node begin="5" end="6" frame="verb(unacc,subjunctive,copula)" his="normal" his_1="normal" id="11" infl="subjunctive" lcat="smain" lemma="zijn" pos="verb" postag="WW(pv,conj,ev)" pt="ww" pvagr="ev" pvtijd="conj" rel="hd" root="ben" sc="copula" sense="ben" stype="declarative" tense="subjunctive" word="zij" wvorm="pv"/>
+        <node aform="base" begin="6" buiging="zonder" end="7" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="12" infl="no_e" lcat="ap" lemma="makkelijk" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="predc" root="makkelijk" sense="makkelijk" vform="adj" word="makkelijk"/>
+      </node>
+      <node begin="7" cat="cp" end="15" id="13" rel="dp">
+        <node begin="7" conjtype="onder" end="8" frame="complementizer(dat)" his="normal" his_1="normal" id="14" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+        <node begin="8" cat="ssub" end="15" id="15" rel="body">
+          <node begin="8" cat="np" end="11" id="16" rel="su">
+            <node begin="8" end="9" frame="determiner(de)" his="normal" his_1="normal" id="17" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="9" buiging="met-e" end="10" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="18" infl="e" lcat="ap" lemma="burgerlijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="burgerlijk" sense="burgerlijk" vform="adj" word="burgerlijke"/>
+            <node begin="10" end="11" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="19" lcat="np" lemma="rechter" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="rechter" sense="rechter" word="rechter"/>
+          </node>
+          <node begin="11" end="12" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="20" lcat="np" lemma="dwangsom" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="dwangsom" sense="dwangsom" word="dwangsommen"/>
+          <node begin="12" cat="pp" end="14" id="21" rel="ld">
+            <node begin="12" end="13" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="22" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+            <node begin="13" end="14" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="23" lcat="np" lemma="staking_actie" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="obj1" rnum="pl" root="staking_actie" sense="staking_actie" word="stakingsacties"/>
+          </node>
+          <node begin="14" end="15" frame="verb(hebben,sg,np_ld_pp)" his="normal" his_1="normal" id="24" infl="sg" lcat="ssub" lemma="zetten" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="zet" sc="np_ld_pp" sense="zet" tense="present" word="zet" wvorm="pv"/>
+        </node>
+      </node>
+    </node>
+    <node begin="15" end="16" frame="punct(punt)" his="robust_skip" id="25" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="59">Met een eenzijdig verzoekschrift verkrijgen zij makkelijk dat de burgerlijke rechter dwangsommen op stakingsacties zet .</sentence>
+  <comments>
+    <comment>Q#59|Met een eenzijdig verzoekschrift verkrijgen zij makkelijk dat de burgerlijke rechter dwangsommen op stakingsacties zet .|1|2|1.9933364610399973</comment>
+  </comments>
+</alpino_ds>

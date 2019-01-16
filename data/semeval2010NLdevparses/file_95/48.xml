@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="smain" end="14" id="1" rel="--">
+      <node begin="4" end="5" frame="verb('hebben/zijn',past(pl),aux(inf))" his="normal" his_1="normal" id="2" infl="pl" lcat="smain" lemma="kunnen" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="kan" sc="aux(inf)" sense="kan" stype="declarative" tense="past" word="konden" wvorm="pv"/>
+      <node begin="5" cat="np" end="7" id="3" index="1" rel="su">
+        <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="4" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="handelaar" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="handelaar" sense="handelaar" word="handelaars"/>
+      </node>
+      <node begin="0" cat="inf" end="14" id="6" rel="vc">
+        <node begin="0" cat="pp" end="4" id="7" rel="mod">
+          <node begin="0" end="1" frame="preposition(dankzij,[])" his="normal" his_1="decap" his_1_1="normal" id="8" lcat="pp" lemma="dankzij" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="dankzij" sense="dankzij" vztype="init" word="Dankzij"/>
+          <node begin="1" cat="np" end="4" id="9" rel="obj1">
+            <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="10" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="2" buiging="met-e" end="3" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="11" infl="e" lcat="ap" lemma="juridisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="juridisch" sense="juridisch" vform="adj" word="juridische"/>
+            <node begin="3" end="4" frame="noun(de,both,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="erkenning" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="erkenning" sense="erkenning" word="erkenning"/>
+          </node>
+        </node>
+        <node begin="5" end="7" id="13" index="1" rel="su"/>
+        <node begin="7" cat="np" end="9" id="14" rel="obj1">
+          <node begin="7" end="8" frame="determiner(een)" his="normal" his_1="normal" id="15" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+          <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="16" lcat="np" lemma="gemeenschap" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="gemeenschap" sense="gemeenschap" word="gemeenschap"/>
+        </node>
+        <node begin="9" buiging="zonder" end="10" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="17" infl="inf" lcat="inf" lemma="vormen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="vorm" sc="transitive" sense="vorm" word="vormen" wvorm="inf"/>
+        <node begin="10" cat="pp" end="14" id="18" rel="mod">
+          <node begin="10" end="11" frame="preposition(binnen,[])" his="normal" his_1="normal" id="19" lcat="pp" lemma="binnen" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="binnen" sense="binnen" vztype="init" word="binnen"/>
+          <node begin="11" cat="np" end="14" id="20" rel="obj1">
+            <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="22" infl="e" lcat="ap" lemma="stedelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="stedelijk" sense="stedelijk" vform="adj" word="stedelijke"/>
+            <node begin="13" end="14" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="23" lcat="np" lemma="samenleving" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="samenleving" sense="samenleving" word="samenleving"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="24" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="48">Dankzij de juridische erkenning konden de handelaars een gemeenschap vormen binnen de stedelijke samenleving .</sentence>
+  <comments>
+    <comment>Q#48|Dankzij de juridische erkenning konden de handelaars een gemeenschap vormen binnen de stedelijke samenleving .|1|1|-9.07458692664</comment>
+  </comments>
+</alpino_ds>

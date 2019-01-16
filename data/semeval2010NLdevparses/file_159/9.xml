@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="26" id="0" rel="top">
+    <node begin="2" end="3" frame="punct(dubb_punt)" his="normal" his_1="normal" id="1" lcat="punct" lemma=":" pos="punct" postag="LET()" pt="let" rel="--" root=":" sense=":" special="dubb_punt" word=":"/>
+    <node begin="21" end="22" frame="punct(komma)" his="normal" his_1="normal" id="2" lcat="punct" lemma="," pos="punct" postag="LET()" pt="let" rel="--" root="," sense="," special="komma" word=","/>
+    <node begin="0" cat="du" end="25" id="3" rel="--">
+      <node begin="0" cat="ppart" end="2" id="4" rel="nucl">
+        <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="5" infl="no_e" lcat="ap" lemma="brutaal" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="brutaal" sense="brutaal" vform="adj" word="Brutaal"/>
+        <node aform="base" begin="1" buiging="zonder" end="2" frame="adjective(ge_no_e(adv))" his="normal" his_1="normal" id="6" infl="no_e" lcat="ppart" lemma="vertaald" pos="adj" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="vertaald" sense="vertaald" vform="psp" word="vertaald" wvorm="vd"/>
+      </node>
+      <node begin="3" cat="smain" end="25" id="7" rel="sat">
+        <node begin="3" cat="np" end="6" id="8" index="1" rel="su">
+          <node begin="3" end="4" frame="determiner(de)" his="normal" his_1="normal" id="9" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node aform="base" begin="4" buiging="met-e" end="5" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="10" infl="e" lcat="ap" lemma="Belgisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Belgisch" sense="Belgisch" vform="adj" word="Belgische"/>
+          <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="11" lcat="np" lemma="werknemer" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="werknemer" sense="werknemer" word="werknemers"/>
+        </node>
+        <node begin="6" end="7" frame="verb(hebben,pl,aux(inf))" his="normal" his_1="normal" id="12" infl="pl" lcat="smain" lemma="zullen" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="zal" sc="aux(inf)" sense="zal" stype="declarative" tense="present" word="zullen" wvorm="pv"/>
+        <node begin="3" cat="inf" end="25" id="13" rel="vc">
+          <node begin="3" end="6" id="14" index="1" rel="su"/>
+          <node begin="14" buiging="zonder" end="15" frame="verb('hebben/zijn',inf,aux(inf))" his="normal" his_1="normal" id="15" infl="inf" lcat="inf" lemma="kunnen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="kan" sc="aux(inf)" sense="kan" word="kunnen" wvorm="inf"/>
+          <node begin="3" cat="inf" end="25" id="16" rel="vc">
+            <node begin="3" end="6" id="17" index="1" rel="su"/>
+            <node begin="7" cat="pp" end="11" id="18" rel="mod">
+              <node begin="7" end="8" frame="preposition(in,[])" his="normal" his_1="normal" id="19" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+              <node begin="8" cat="conj" end="11" id="20" rel="obj1">
+                <node begin="8" end="9" frame="np(year)" his="normal" his_1="normal" id="21" lcat="np" lemma="2003" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="cnj" rnum="sg" root="2003" sense="2003" word="2003"/>
+                <node begin="9" conjtype="neven" end="10" frame="conj(en)" his="normal" his_1="normal" id="22" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+                <node begin="10" end="11" frame="np(year)" his="normal" his_1="normal" id="23" lcat="np" lemma="2004" neclass="year" numtype="hoofd" pos="noun" positie="vrij" postag="TW(hoofd,vrij)" pt="tw" rel="cnj" rnum="sg" root="2004" sense="2004" word="2004"/>
+              </node>
+            </node>
+            <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,pc_pp(op))" his="normal" his_1="normal" id="24" infl="inf" lcat="inf" lemma="rekenen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="reken" sc="pc_pp(op)" sense="reken-op" word="rekenen" wvorm="inf"/>
+            <node begin="11" cat="pp" end="25" id="25" rel="pc">
+              <node begin="11" end="12" frame="preposition(op,[af,na])" his="normal" his_1="normal" id="26" lcat="pp" lemma="op" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="op" sense="op" vztype="init" word="op"/>
+              <node begin="12" cat="np" end="25" id="27" rel="obj1">
+                <node begin="13" end="14" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="28" lcat="np" lemma="loon_verhoging" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="loon_verhoging" sense="loon_verhoging" word="loonsverhoging"/>
+                <node begin="12" cat="ap" end="25" id="29" rel="det">
+                  <node aform="compar" begin="12" buiging="zonder" end="13" frame="adjective(meer)" graad="comp" his="normal" his_1="normal" id="30" infl="meer" lcat="ap" lemma="minder" naamval="stan" npagr="agr" pdtype="grad" pos="adj" positie="prenom" postag="VNW(onbep,grad,stan,prenom,zonder,agr,comp)" pt="vnw" rel="hd" root="minder" sense="minder" vform="adj" vwtype="onbep" word="minder"/>
+                  <node begin="16" cat="cp" end="25" id="31" rel="obcomp">
+                    <node begin="16" conjtype="onder" end="17" frame="comparative(dan)" his="normal" his_1="normal" id="32" lcat="comparative" lemma="dan" pos="comparative" postag="VG(onder)" pt="vg" rel="cmp" root="dan" sense="dan" word="dan"/>
+                    <node begin="17" cat="np" end="25" id="33" rel="body">
+                      <node begin="17" buiging="zonder" end="18" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="34" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+                      <node begin="18" end="19" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="35" lcat="np" lemma="collega" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="collega" sense="collega" word="collega&apos;s"/>
+                      <node begin="19" cat="pp" end="25" id="36" rel="mod">
+                        <node begin="19" end="20" frame="preposition(in,[])" his="normal" his_1="normal" id="37" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+                        <node begin="20" cat="conj" end="25" id="38" rel="obj1">
+                          <node begin="20" end="21" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="39" lcat="np" lemma="Nederland" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="cnj" rnum="sg" root="Nederland" sense="Nederland" word="Nederland"/>
+                          <node begin="22" end="23" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="40" lcat="np" lemma="Duitsland" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="cnj" rnum="sg" root="Duitsland" sense="Duitsland" word="Duitsland"/>
+                          <node begin="23" conjtype="neven" end="24" frame="conj(en)" his="normal" his_1="normal" id="41" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+                          <node begin="24" end="25" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="42" lcat="np" lemma="Frankrijk" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="cnj" rnum="sg" root="Frankrijk" sense="Frankrijk" word="Frankrijk"/>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="25" end="26" frame="punct(punt)" his="normal" his_1="normal" id="43" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="9">Brutaal vertaald : de Belgische werknemers zullen in 2003 en 2004 op minder loonsverhoging kunnen rekenen dan hun collega&apos;s in Nederland , Duitsland en Frankrijk .</sentence>
+  <comments>
+    <comment>Q#9|Brutaal vertaald : de Belgische werknemers zullen in 2003 en 2004 op minder loonsverhoging kunnen rekenen dan hun collega&apos;s in Nederland , Duitsland en Frankrijk .|1|1|-7.492025620040003</comment>
+  </comments>
+</alpino_ds>

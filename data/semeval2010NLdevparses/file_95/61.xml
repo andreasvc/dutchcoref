@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="17" id="0" rel="top">
+    <node begin="4" end="5" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="1" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="9" end="10" frame="punct(aanhaal_both)" his="normal" his_1="normal" id="2" lcat="punct" lemma="&apos;" pos="punct" postag="LET()" pt="let" rel="--" root="&apos;" sense="&apos;" special="aanhaal_both" word="&apos;"/>
+    <node begin="0" cat="smain" end="16" id="3" rel="--">
+      <node begin="0" end="1" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="4" lcat="np" lemma="handelaar" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="su" rnum="pl" root="handelaar" sense="handelaar" word="Handelaars"/>
+      <node begin="1" end="2" frame="verb(hebben,past(pl),transitive)" his="normal" his_1="normal" id="5" infl="pl" lcat="smain" lemma="gebruiken" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="gebruik" sc="transitive" sense="gebruik" stype="declarative" tense="past" word="gebruikten" wvorm="pv"/>
+      <node begin="2" end="3" frame="sentence_adverb" his="normal" his_1="normal" id="6" lcat="advp" lemma="uiteraard" pos="adv" postag="BW()" pt="bw" rel="mod" root="uiteraard" sense="uiteraard" special="sentence" word="uiteraard"/>
+      <node begin="3" cat="np" end="9" id="7" rel="obj1">
+        <node begin="3" buiging="met-e" end="4" frame="determiner(alle,nwh,mod,pro,nparg)" his="normal" his_1="normal" id="8" infl="alle" lcat="detp" lemma="alle" naamval="stan" npagr="agr" pdtype="det" pos="det" positie="prenom" postag="VNW(onbep,det,stan,prenom,met-e,agr)" pt="vnw" rel="det" root="alle" sense="alle" vwtype="onbep" wh="nwh" word="alle"/>
+        <node begin="5" end="6" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="normal" his_1="normal" id="9" lcat="np" lemma="truc" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="truc" sense="truc" word="trucs"/>
+        <node begin="6" cat="pp" end="9" id="10" rel="mod">
+          <node begin="6" end="7" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="11" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+          <node begin="7" cat="np" end="9" id="12" rel="obj1">
+            <node begin="7" end="8" frame="determiner(de)" his="normal" his_1="normal" id="13" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="8" end="9" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="14" lcat="np" lemma="foor" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="foor" sense="foor" word="foor"/>
+          </node>
+        </node>
+      </node>
+      <node begin="10" cat="oti" end="16" id="15" rel="mod">
+        <node begin="10" end="11" frame="complementizer(om)" his="normal" his_1="normal" id="16" lcat="oti" lemma="om" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="om" sc="om" sense="om" vztype="init" word="om"/>
+        <node begin="11" cat="ti" end="16" id="17" rel="body">
+          <node begin="14" end="15" frame="complementizer(te)" his="normal" his_1="normal" id="18" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+          <node begin="11" cat="inf" end="16" id="19" rel="body">
+            <node begin="11" cat="np" end="14" id="20" rel="obj1">
+              <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+              <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="22" infl="e" lcat="ap" lemma="kerkelijk" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="kerkelijk" sense="kerkelijk" vform="adj" word="kerkelijke"/>
+              <node begin="13" end="14" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="23" lcat="np" lemma="reglement" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="reglement" sense="reglement" word="reglementen"/>
+            </node>
+            <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,transitive)" his="normal" his_1="normal" id="24" infl="inf" lcat="inf" lemma="omzeilen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="omzeil" sc="transitive" sense="omzeil" word="omzeilen" wvorm="inf"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="16" end="17" frame="punct(punt)" his="normal" his_1="normal" id="25" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="61">Handelaars gebruikten uiteraard alle &apos; trucs van de foor &apos; om de kerkelijke reglementen te omzeilen .</sentence>
+  <comments>
+    <comment>Q#61|Handelaars gebruikten uiteraard alle &apos; trucs van de foor &apos; om de kerkelijke reglementen te omzeilen .|1|1|-7.428940161180002</comment>
+  </comments>
+</alpino_ds>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="smain" end="14" id="1" rel="--">
+      <node begin="0" cat="pp" end="3" id="2" rel="ld">
+        <node begin="0" end="1" frame="preposition(bovenaan,[])" his="normal" his_1="decap" his_1_1="normal" id="3" lcat="pp" lemma="bovenaan" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="bovenaan" sense="bovenaan" vztype="init" word="Bovenaan"/>
+        <node begin="1" cat="np" end="3" id="4" rel="obj1">
+          <node begin="1" end="2" frame="determiner(de)" his="normal" his_1="normal" id="5" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="6" lcat="np" lemma="ladder" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="ladder" sense="ladder" word="ladder"/>
+        </node>
+      </node>
+      <node begin="3" end="4" frame="verb(hebben,past(pl),ld_pp)" his="normal" his_1="normal" id="7" infl="pl" lcat="smain" lemma="staan" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="sta" sc="ld_pp" sense="sta" stype="declarative" tense="past" word="stonden" wvorm="pv"/>
+      <node begin="4" cat="np" end="14" id="8" rel="su">
+        <node begin="4" end="5" frame="determiner(de)" his="normal" his_1="normal" id="9" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="base" begin="5" buiging="met-e" end="6" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="10" infl="e" lcat="ap" lemma="internationaal" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="internationaal" sense="internationaal" vform="adj" word="internationale"/>
+        <node begin="6" end="7" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="hyphen" id="11" lcat="np" lemma="handelaars_bankier" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="handelaars_bankier" sense="handelaars_bankier" word="handelaars-bankiers"/>
+        <node begin="7" cat="rel" end="14" id="12" rel="mod">
+          <node begin="7" case="no_obl" end="8" frame="rel_pronoun(de,no_obl)" gen="de" getal="getal" his="normal" his_1="normal" id="13" index="1" lcat="np" lemma="die" naamval="stan" pdtype="pron" persoon="persoon" pos="pron" postag="VNW(betr,pron,stan,vol,persoon,getal)" pt="vnw" rel="rhd" rnum="pl" root="die" sense="die" status="vol" vwtype="betr" wh="rel" word="die"/>
+          <node begin="7" cat="ssub" end="14" id="14" rel="body">
+            <node begin="7" end="8" id="15" index="1" rel="su"/>
+            <node begin="8" cat="np" end="13" id="16" rel="obj1">
+              <node begin="8" end="9" frame="determiner(een)" his="normal" his_1="normal" id="17" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+              <node begin="9" end="10" frame="noun(het,count,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="netwerk" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="netwerk" sense="netwerk" word="netwerk"/>
+              <node begin="10" cat="pp" end="13" id="19" rel="mod">
+                <node begin="10" end="11" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="20" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+                <node begin="11" cat="np" end="13" id="21" rel="obj1">
+                  <node aform="base" begin="11" buiging="met-e" end="12" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="22" infl="e" lcat="ap" lemma="Europees" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Europees" sense="Europees" vform="adj" word="Europese"/>
+                  <node begin="12" end="13" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="23" lcat="np" lemma="filiaal" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="filiaal" sense="filiaal" word="filialen"/>
+                </node>
+              </node>
+            </node>
+            <node begin="13" end="14" frame="verb(hebben,past(pl),ninv(transitive,part_transitive(uit)))" his="normal" his_1="part-V" id="24" infl="pl" lcat="ssub" lemma="uit_baten" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="baat_uit" sc="part_transitive(uit)" sense="baat_uit" tense="past" word="uitbaatten" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="25" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="22">Bovenaan de ladder stonden de internationale handelaars-bankiers die een netwerk van Europese filialen uitbaatten .</sentence>
+  <comments>
+    <comment>Q#22|Bovenaan de ladder stonden de internationale handelaars-bankiers die een netwerk van Europese filialen uitbaatten .|1|1|-9.994265192900004</comment>
+  </comments>
+</alpino_ds>

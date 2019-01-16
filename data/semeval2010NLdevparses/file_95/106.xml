@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="13" id="0" rel="top">
+    <node begin="0" cat="smain" end="12" id="1" rel="--">
+      <node begin="0" cat="np" end="3" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(ende(adv))" his="normal" his_1="normal" id="4" infl="e" lcat="ppres" lemma="vooruitstrevend" pos="adj" positie="prenom" postag="WW(od,prenom,met-e)" pt="ww" rel="mod" root="vooruitstrevend" sense="vooruitstrevend" vform="gerund" word="vooruitstrevende" wvorm="od"/>
+        <node begin="2" end="3" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="3" id="5" lcat="np" lemma="boek_houden_techniek" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="boek_houd_techniek" sense="boek_houd_techniek" word="boekhoudtechnieken"/>
+      </node>
+      <node begin="3" end="4" frame="verb(hebben,past(pl),refl_ld_pp)" his="normal" his_1="normal" id="6" infl="pl" lcat="smain" lemma="verspreiden" pos="verb" postag="WW(pv,verl,mv)" pt="ww" pvagr="mv" pvtijd="verl" rel="hd" root="verspreid" sc="refl_ld_pp" sense="zich-verspreid" stype="declarative" tense="past" word="verspreidden" wvorm="pv"/>
+      <node begin="4" end="5" frame="reflexive(u_thi,both)" getal="getal" his="normal" his_1="normal" id="7" lcat="np" lemma="zich" naamval="obl" num="both" pdtype="pron" per="u_thi" persoon="3" pos="pron" postag="VNW(refl,pron,obl,red,3,getal)" pt="vnw" refl="refl" rel="se" root="zich" sense="zich" status="red" vwtype="refl" word="zich"/>
+      <node begin="5" cat="pp" end="10" id="8" rel="mod">
+        <node begin="5" end="6" frame="preposition(langs,[heen])" his="normal" his_1="normal" id="9" lcat="pp" lemma="langs" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="langs" sense="langs" vztype="init" word="langs"/>
+        <node begin="6" cat="conj" end="10" id="10" rel="obj1">
+          <node begin="6" cat="np" end="8" id="11" rel="cnj">
+            <node begin="6" buiging="zonder" end="7" frame="determiner(pron)" getal="mv" his="normal" his_1="normal" id="12" index="1" infl="pron" lcat="detp" lemma="hun" naamval="stan" npagr="agr" pdtype="det" persoon="3" pos="det" positie="prenom" postag="VNW(bez,det,stan,vol,3,mv,prenom,zonder,agr)" pron="true" pt="vnw" rel="det" root="hun" sense="hun" status="vol" vwtype="bez" word="hun"/>
+            <node begin="7" end="8" frame="noun(de,count,pl)" gen="de" getal="mv" graad="basis" his="compound" his_1="2" id="13" lcat="np" lemma="handel_route" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="handel_route" sense="handel_route" word="handelsroutes"/>
+          </node>
+          <node begin="8" conjtype="neven" end="9" frame="conj(en)" his="normal" his_1="normal" id="14" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+          <node begin="6" cat="np" end="10" id="15" rel="cnj">
+            <node begin="6" end="7" id="16" index="1" rel="det"/>
+            <node begin="9" end="10" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="17" lcat="np" lemma="filiaal" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="filiaal" sense="filiaal" word="filialen"/>
+          </node>
+        </node>
+      </node>
+      <node begin="10" cat="pp" end="12" id="18" rel="ld">
+        <node begin="10" end="11" frame="preposition(over,[heen])" his="normal" his_1="normal" id="19" lcat="pp" lemma="over" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="over" sense="over" vztype="init" word="over"/>
+        <node begin="11" end="12" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="20" lcat="np" lemma="Europa" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Europa" sense="Europa" word="Europa"/>
+      </node>
+    </node>
+    <node begin="12" end="13" frame="punct(punt)" his="normal" his_1="normal" id="21" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="106">De vooruitstrevende boekhoudtechnieken verspreidden zich langs hun handelsroutes en filialen over Europa .</sentence>
+  <comments>
+    <comment>Q#106|De vooruitstrevende boekhoudtechnieken verspreidden zich langs hun handelsroutes en filialen over Europa .|1|1|-5.840402360420001</comment>
+  </comments>
+</alpino_ds>

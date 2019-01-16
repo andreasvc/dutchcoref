@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="15" id="0" rel="top">
+    <node begin="0" cat="conj" end="14" id="1" rel="--">
+      <node begin="0" cat="smain" end="4" id="2" rel="cnj">
+        <node begin="1" end="2" frame="verb(unacc,pl,passive)" his="normal" his_1="normal" id="3" infl="pl" lcat="smain" lemma="worden" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="word" sc="passive" sense="word" stype="declarative" tense="present" word="worden" wvorm="pv"/>
+        <node begin="2" end="3" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="4" index="1" lcat="np" lemma="rund" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="su" rnum="pl" root="rund" sense="rund" word="runderen"/>
+        <node begin="0" cat="ppart" end="4" id="5" rel="vc">
+          <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="6" infl="no_e" lcat="ap" lemma="massaal" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="mod" root="massaal" sense="massaal" vform="adj" word="Massaal"/>
+          <node begin="2" end="3" id="7" index="1" rel="obj1"/>
+          <node begin="3" buiging="zonder" end="4" frame="verb(hebben,psp,ninv(transitive,part_transitive(af)))" his="normal" his_1="part-V" id="8" infl="psp" lcat="ppart" lemma="af_slachten" pos="verb" positie="vrij" postag="WW(vd,vrij,zonder)" pt="ww" rel="hd" root="slacht_af" sc="part_transitive(af)" sense="slacht_af" word="afgeslacht" wvorm="vd"/>
+        </node>
+      </node>
+      <node begin="4" conjtype="neven" end="5" frame="conj(en)" his="normal" his_1="normal" id="9" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+      <node begin="5" cat="smain" end="14" id="10" rel="cnj">
+        <node begin="5" cat="np" end="10" id="11" rel="su">
+          <node begin="5" end="6" frame="determiner(de)" his="normal" his_1="normal" id="12" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+          <node begin="6" end="7" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="prijs" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="prijs" sense="prijs" word="prijs"/>
+          <node begin="7" cat="pp" end="10" id="14" rel="mod">
+            <node begin="7" end="8" frame="preposition(van,[af,uit,vandaan,[af,aan]])" his="normal" his_1="normal" id="15" lcat="pp" lemma="van" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="van" sense="van" vztype="init" word="van"/>
+            <node begin="8" cat="np" end="10" id="16" rel="obj1">
+              <node begin="8" end="9" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="17" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+              <node begin="9" end="10" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="18" lcat="np" lemma="vlees" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="vlees" sense="vlees" word="vlees"/>
+            </node>
+          </node>
+        </node>
+        <node begin="10" end="11" frame="verb(unacc,past(sg),ld_dir)" his="normal" his_1="normal" id="19" infl="sg" lcat="smain" lemma="tuimelen" pos="verb" postag="WW(pv,verl,ev)" pt="ww" pvagr="ev" pvtijd="verl" rel="hd" root="tuimel" sc="ld_dir" sense="tuimel" stype="declarative" tense="past" word="tuimelde" wvorm="pv"/>
+        <node begin="11" cat="np" end="13" id="20" rel="mod">
+          <node begin="11" end="12" frame="number(hoofd(pl_num))" his="normal" his_1="normal" id="21" infl="pl_num" lcat="detp" lemma="40" naamval="stan" numtype="hoofd" pos="num" positie="prenom" postag="TW(hoofd,prenom,stan)" pt="tw" rel="det" root="40" sense="40" special="hoofd" word="40"/>
+          <node begin="12" end="13" frame="meas_mod_noun(both,count,meas)" gen="both" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="22" lcat="np" lemma="procent" naamval="stan" ntype="soort" num="meas" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="pl" root="procent" sense="procent" special="meas_mod" word="procent"/>
+        </node>
+        <node begin="13" end="14" frame="dir_adverb" his="normal" his_1="normal" id="23" lcat="advp" lemma="omlaag" pos="adv" postag="BW()" pt="bw" rel="ld" root="omlaag" sense="omlaag" special="dir" word="omlaag"/>
+      </node>
+    </node>
+    <node begin="14" end="15" frame="punct(punt)" his="normal" his_1="normal" id="24" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="37">Massaal worden runderen afgeslacht en de prijs van het vlees tuimelde 40 procent omlaag .</sentence>
+  <comments>
+    <comment>Q#37|Massaal worden runderen afgeslacht en de prijs van het vlees tuimelde 40 procent omlaag .|1|1|-5.463302356579999</comment>
+  </comments>
+</alpino_ds>

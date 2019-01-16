@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="19" id="0" rel="top">
+    <node begin="0" cat="smain" end="18" id="1" rel="--">
+      <node begin="0" cat="np" end="5" id="2" rel="su">
+        <node begin="0" end="1" frame="determiner(de)" his="normal" his_1="decap" his_1_1="normal" id="3" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="De"/>
+        <node aform="base" begin="1" buiging="met-e" end="2" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="4" infl="e" lcat="ap" lemma="Israëlisch" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Israëlisch" sense="Israëlisch" vform="adj" word="Israëlische"/>
+        <node begin="2" end="3" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="5" lcat="np" lemma="premier" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="premier" sense="premier" word="premier"/>
+        <node begin="3" cat="mwu" end="5" his="normal" his_1="names_dictionary" id="6" mwu_root="Ariel Sharon" mwu_sense="Ariel Sharon" rel="app">
+          <node begin="3" end="4" frame="proper_name(sg,'PER')" id="7" lcat="np" lemma="Ariel" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Ariel" sense="Ariel" spectype="deeleigen" word="Ariel"/>
+          <node begin="4" end="5" frame="proper_name(sg,'PER')" id="8" lcat="np" lemma="Sharon" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Sharon" sense="Sharon" spectype="deeleigen" word="Sharon"/>
+        </node>
+      </node>
+      <node begin="5" end="6" frame="verb(hebben,sg3,np_vp_obj)" his="normal" his_1="normal" id="9" infl="sg3" lcat="smain" lemma="verhinderen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="verhinder" sc="np_vp_obj" sense="verhinder" stype="declarative" tense="present" word="verhindert" wvorm="pv"/>
+      <node begin="6" cat="np" end="11" id="10" index="1" rel="obj2">
+        <node begin="6" end="7" frame="determiner(de)" his="normal" his_1="normal" id="11" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+        <node aform="base" begin="7" buiging="met-e" end="8" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="12" infl="e" lcat="ap" lemma="Palestijns" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="Palestijns" sense="Palestijns" vform="adj" word="Palestijnse"/>
+        <node begin="8" end="9" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="normal" his_1="normal" id="13" lcat="np" lemma="president" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="president" sense="president" word="president"/>
+        <node begin="9" cat="mwu" end="11" his="normal" his_1="names_dictionary" id="14" mwu_root="Yasser Arafat" mwu_sense="Yasser Arafat" rel="app">
+          <node begin="9" end="10" frame="proper_name(sg,'PER')" id="15" lcat="np" lemma="Yasser" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Yasser" sense="Yasser" spectype="deeleigen" word="Yasser"/>
+          <node begin="10" end="11" frame="proper_name(sg,'PER')" id="16" lcat="np" lemma="Arafat" neclass="PER" num="sg" pos="name" postag="SPEC(deeleigen)" pt="spec" rel="mwp" rnum="sg" root="Arafat" sense="Arafat" spectype="deeleigen" word="Arafat"/>
+        </node>
+      </node>
+      <node begin="6" cat="ti" end="18" id="17" rel="vc">
+        <node begin="14" end="15" frame="complementizer(te)" his="normal" his_1="normal" id="18" lcat="ti" lemma="te" pos="comp" postag="VZ(init)" pt="vz" rel="cmp" root="te" sc="te" sense="te" vztype="init" word="te"/>
+        <node begin="6" cat="inf" end="18" id="19" rel="body">
+          <node begin="6" end="11" id="20" index="1" rel="su"/>
+          <node begin="11" cat="np" end="13" id="21" rel="obj1">
+            <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="22" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
+            <node begin="12" end="13" frame="noun(de,count,sg)" gen="de" genus="zijd" getal="ev" graad="basis" his="compound" his_1="2" id="23" lcat="np" lemma="kerst_nacht_mis" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="hd" rnum="sg" root="kerst_nacht_mis" sense="kerst_nacht_mis" word="kerstnachtmis"/>
+          </node>
+          <node begin="13" end="14" frame="particle(bij)" his="normal" his_1="normal" id="24" lcat="part" lemma="bij" pos="part" postag="VZ(fin)" pt="vz" rel="svp" root="bij" sense="bij" vztype="fin" word="bij"/>
+          <node begin="15" buiging="zonder" end="16" frame="verb(hebben,inf,part_transitive(bij))" his="normal" his_1="normal" id="25" infl="inf" lcat="inf" lemma="bij_wonen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="woon_bij" sc="part_transitive(bij)" sense="woon_bij" word="wonen" wvorm="inf"/>
+          <node begin="16" cat="pp" end="18" id="26" rel="mod">
+            <node begin="16" end="17" frame="preposition(in,[])" his="normal" his_1="normal" id="27" lcat="pp" lemma="in" pos="prep" postag="VZ(init)" pt="vz" rel="hd" root="in" sense="in" vztype="init" word="in"/>
+            <node begin="17" end="18" frame="proper_name(sg,'LOC')" genus="onz" getal="ev" graad="basis" his="normal" his_1="names_dictionary" id="28" lcat="np" lemma="Bethlehem" naamval="stan" neclass="LOC" ntype="eigen" num="sg" pos="name" postag="N(eigen,ev,basis,onz,stan)" pt="n" rel="obj1" rnum="sg" root="Bethlehem" sense="Bethlehem" word="Bethlehem"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="18" end="19" frame="punct(punt)" his="normal" his_1="normal" id="29" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">De Israëlische premier Ariel Sharon verhindert de Palestijnse president Yasser Arafat de kerstnachtmis bij te wonen in Bethlehem .</sentence>
+  <comments>
+    <comment>Q#2|De Israëlische premier Ariel Sharon verhindert de Palestijnse president Yasser Arafat de kerstnachtmis bij te wonen in Bethlehem .|1|1|-14.14647002188</comment>
+  </comments>
+</alpino_ds>

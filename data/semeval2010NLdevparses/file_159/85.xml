@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="2" skips="0" />
+  <node begin="0" cat="top" end="17" id="0" rel="top">
+    <node begin="0" cat="du" end="16" id="1" rel="--">
+      <node begin="0" cat="conj" end="15" id="2" rel="dp">
+        <node begin="0" cat="smain" end="7" id="3" rel="cnj">
+          <node begin="0" case="nom" def="def" end="1" frame="pronoun(nwh,thi,sg,de,nom,def)" gen="de" genus="masc" getal="ev" his="normal" his_1="decap" his_1_1="normal" id="4" index="1" lcat="np" lemma="hij" naamval="nomin" num="sg" pdtype="pron" per="thi" persoon="3" pos="pron" postag="VNW(pers,pron,nomin,vol,3,ev,masc)" pt="vnw" rel="su" rnum="sg" root="hij" sense="hij" status="vol" vwtype="pers" wh="nwh" word="Hij"/>
+          <node begin="1" end="2" frame="verb(hebben,sg3,sbar)" his="normal" his_1="normal" id="5" infl="sg3" lcat="smain" lemma="vertellen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="vertel" sc="sbar" sense="vertel" tense="present" word="vertelt" wvorm="pv"/>
+          <node begin="2" cat="cp" end="7" id="6" rel="vc">
+            <node begin="2" conjtype="onder" end="3" frame="complementizer(dat)" his="normal" his_1="normal" id="7" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+            <node begin="3" cat="ssub" end="7" id="8" rel="body">
+              <node begin="3" cat="np" end="6" id="9" rel="su">
+                <node begin="3" end="4" frame="determiner(het,nwh,nmod,pro,nparg,wkpro)" his="normal" his_1="normal" id="10" infl="het" lcat="detp" lemma="het" lwtype="bep" naamval="stan" npagr="evon" pos="det" postag="LID(bep,stan,evon)" pt="lid" rel="det" root="het" sense="het" wh="nwh" word="het"/>
+                <node aform="base" begin="4" buiging="zonder" end="5" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="normal" id="11" infl="no_e" lcat="ap" lemma="sociaal" pos="adj" positie="prenom" postag="ADJ(prenom,basis,zonder)" pt="adj" rel="mod" root="sociaal" sense="sociaal" vform="adj" word="sociaal"/>
+                <node begin="5" end="6" frame="noun(het,mass,sg)" gen="het" genus="onz" getal="ev" graad="basis" his="normal" his_1="normal" id="12" lcat="np" lemma="overleg" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,onz,stan)" pt="n" rel="hd" rnum="sg" root="overleg" sense="overleg" word="overleg"/>
+              </node>
+              <node begin="6" end="7" frame="verb(hebben,sg3,intransitive)" his="normal" his_1="normal" id="13" infl="sg3" lcat="ssub" lemma="werken" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="werk" sc="intransitive" sense="werk" tense="present" word="werkt" wvorm="pv"/>
+            </node>
+          </node>
+        </node>
+        <node begin="7" conjtype="neven" end="8" frame="conj(en)" his="normal" his_1="normal" id="14" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
+        <node begin="0" cat="smain" end="15" id="15" rel="cnj">
+          <node begin="0" end="1" id="16" index="1" rel="su"/>
+          <node begin="8" end="9" frame="verb(hebben,sg3,sbar)" his="normal" his_1="normal" id="17" infl="sg3" lcat="smain" lemma="verzwijgen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="verzwijg" sc="sbar" sense="verzwijg" tense="present" word="verzwijgt" wvorm="pv"/>
+          <node begin="9" cat="cp" end="15" id="18" rel="vc">
+            <node begin="9" conjtype="onder" end="10" frame="complementizer(dat)" his="normal" his_1="normal" id="19" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+            <node begin="10" cat="ssub" end="15" id="20" rel="body">
+              <node begin="10" cat="np" end="14" id="21" rel="su">
+                <node begin="10" cat="np" end="12" his="normal" his_1="normal" id="22" rel="det">
+                  <node begin="10" end="11" frame="determiner(een)" id="23" infl="een" lcat="detp" lemma="een" lwtype="onbep" naamval="stan" npagr="agr" pos="det" postag="LID(onbep,stan,agr)" pt="lid" rel="det" root="een" sense="een" word="een"/>
+                  <node begin="11" end="12" frame="noun(both,both,sg)" gen="both" genus="genus" getal="ev" graad="basis" id="24" lcat="np" lemma="paar" naamval="stan" ntype="soort" num="sg" pos="noun" postag="N(soort,ev,basis,genus,stan)" pt="n" rel="hd" root="paar" sense="paar" word="paar"/>
+                </node>
+                <node aform="base" begin="12" buiging="met-e" end="13" frame="adjective(e)" graad="basis" his="normal" his_1="normal" id="25" infl="e" lcat="ap" lemma="politiek" naamval="stan" pos="adj" positie="prenom" postag="ADJ(prenom,basis,met-e,stan)" pt="adj" rel="mod" root="politiek" sense="politiek" vform="adj" word="politieke"/>
+                <node begin="13" end="14" frame="noun(het,count,pl)" gen="het" getal="mv" graad="basis" his="normal" his_1="normal" id="26" lcat="np" lemma="probleem" ntype="soort" num="pl" pos="noun" postag="N(soort,mv,basis)" pt="n" rel="hd" rnum="pl" root="probleem" sense="probleem" word="problemen"/>
+              </node>
+              <node begin="14" end="15" frame="verb(unacc,pl,intransitive)" his="normal" his_1="normal" id="27" infl="pl" lcat="ssub" lemma="zijn" pos="verb" postag="WW(pv,tgw,mv)" pt="ww" pvagr="mv" pvtijd="tgw" rel="hd" root="ben" sc="intransitive" sense="ben" tense="present" word="zijn" wvorm="pv"/>
+            </node>
+          </node>
+        </node>
+      </node>
+      <node begin="15" end="16" frame="noun(both,both,both)" gen="both" genus="zijd" getal="ev" graad="basis" his="noun" id="28" lcat="np" lemma="ontmijnd" naamval="stan" ntype="soort" num="both" pos="noun" postag="N(soort,ev,basis,zijd,stan)" pt="n" rel="dp" rnum="sg" root="ontmijnd" sense="ontmijnd" word="ontmijnd"/>
+    </node>
+    <node begin="16" end="17" frame="punct(punt)" his="robust_skip" id="29" lcat="--" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="85">Hij vertelt dat het sociaal overleg werkt en verzwijgt dat een paar politieke problemen zijn ontmijnd .</sentence>
+  <comments>
+    <comment>Q#85|Hij vertelt dat het sociaal overleg werkt en verzwijgt dat een paar politieke problemen zijn ontmijnd .|1|2|0.10248192238000209</comment>
+  </comments>
+</alpino_ds>

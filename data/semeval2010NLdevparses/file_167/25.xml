@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="2" id="0" rel="top">
+    <node aform="base" begin="0" buiging="zonder" end="1" frame="adjective(no_e(adv))" graad="basis" his="normal" his_1="decap" his_1_1="normal" id="1" infl="no_e" lcat="ap" lemma="tevergeefs" pos="adj" positie="vrij" postag="ADJ(vrij,basis,zonder)" pt="adj" rel="--" root="tevergeefs" sense="tevergeefs" vform="adj" word="Tevergeefs"/>
+    <node begin="1" end="2" frame="punct(punt)" his="normal" his_1="normal" id="2" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="25">Tevergeefs .</sentence>
+  <comments>
+    <comment>Q#25|Tevergeefs .|1|1|0.29577215364</comment>
+  </comments>
+</alpino_ds>
