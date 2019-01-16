@@ -62,7 +62,7 @@ $ cat example.txt | Alpino number_analyses=1 end_hook=xml -flag treebank example
 [...]
 ```
 
-![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/datat/output.png "verbose output")
+![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/data/output.png "verbose output")
 
 ```
 #begin document (example);
