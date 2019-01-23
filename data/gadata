@@ -4782,7 +4782,7 @@ achterbout		nonhuman
 achterbuur		nonhuman
 achterbuurman		nonhuman
 achterbuurt		nonhuman
-achterbuurvrouw		nonhuman
+achterbuurvrouw	f	human
 achterdeel		nonhuman
 achterdek		nonhuman
 achterdeur		nonhuman
@@ -4820,9 +4820,9 @@ achterkajuit		nonhuman
 achterkamer		nonhuman
 achterkant	m	nonhuman
 achterklap	m	nonhuman
-achterkleindochter		nonhuman
+achterkleindochter	f	human
 achterkleinkind		human
-achterkleinzoon		nonhuman
+achterkleinzoon	m	human
 achterklep		nonhuman
 achterkwab		nonhuman
 achterlader		nonhuman
@@ -7977,7 +7977,7 @@ bastaardvijl		nonhuman
 bastaardvloek	m	nonhuman
 bastaardvorm	m	nonhuman
 bastaardwoord		nonhuman
-bastaardzoon		nonhuman
+bastaardzoon	m	human
 bastaardzuster		nonhuman
 basterd		nonhuman
 bastion		nonhuman
@@ -9379,7 +9379,7 @@ bewindslieden		human
 bewindsman	m	human
 bewindspersoon		human
 bewindsvrouw	f	human
-bewindsvrouwe		nonhuman
+bewindsvrouwe	f	human
 bewindvoerder		human
 bewolking	f	nonhuman
 bewolkingsband		nonhuman
@@ -9681,7 +9681,7 @@ bijstandsniveau		nonhuman
 bijstandsregeling	f	nonhuman
 bijstandstrekker		human
 bijstandsuitkering	f	nonhuman
-bijstandsvrouw		nonhuman
+bijstandsvrouw	f	human
 bijstandswet		nonhuman
 bijstandtrekker		nonhuman
 bijstorting		nonhuman
@@ -10738,7 +10738,7 @@ bommelding	f	nonhuman
 bommengooier		nonhuman
 bommenlast		nonhuman
 bommentapijt		nonhuman
-bommoeder		nonhuman
+bommoeder	f	human
 bomschade		nonhuman
 bomscherf		nonhuman
 bomtapijt		nonhuman
@@ -15869,7 +15869,7 @@ docentschap		nonhuman
 docht		nonhuman
 dochter	f	human
 dochterbedrijf		nonhuman
-dochterlief		nonhuman
+dochterlief	f	human
 dochtermaatschappij	f	nonhuman
 dochteronderneming	f	nonhuman
 dochtertaal		nonhuman
@@ -16098,7 +16098,7 @@ donorcodicil		nonhuman
 donorhart		nonhuman
 donorinseminatie		nonhuman
 donorland		nonhuman
-donormoeder		nonhuman
+donormoeder	f	human
 donororgaan		nonhuman
 dons		nonhuman
 donsdeken		nonhuman
@@ -16168,7 +16168,7 @@ doopkaars		nonhuman
 doopkapel		nonhuman
 doopleerling		nonhuman
 dooplid		nonhuman
-doopmoeder		nonhuman
+doopmoeder	f	human
 doopnaam	m	nonhuman
 doopplechtigheid		nonhuman
 doopregister		nonhuman
@@ -22284,7 +22284,7 @@ godendrank	m	nonhuman
 godenleer		nonhuman
 godenschemering		nonhuman
 godenspijs		nonhuman
-godenzoon		nonhuman
+godenzoon	m	human
 godgeleerde		human
 godgeleerdheid	f	nonhuman
 godheid		human
@@ -23892,7 +23892,7 @@ hardvochtigheid		nonhuman
 hardvoer		nonhuman
 hardware	m	nonhuman
 harembroek		nonhuman
-haremvrouw		nonhuman
+haremvrouw	f	human
 haremwachter		nonhuman
 haring	m	nonhuman
 haringbuis		nonhuman
@@ -24512,11 +24512,11 @@ herbebossing	f	nonhuman
 herbenoeming	f	nonhuman
 herberg		nonhuman
 herbergier		human
-herbergmoeder		nonhuman
-herbergvader		nonhuman
+herbergmoeder	f	human
+herbergvader	m	human
 herbesteding		nonhuman
 herbewapening		nonhuman
-herbezinning	f	nonhuman
+herbezinning		nonhuman
 herbicide		nonhuman
 herbivoor	m	nonhuman
 herborist		nonhuman
@@ -25087,7 +25087,7 @@ hoerenkot		nonhuman
 hoerenloper	m	human
 hoerenmadam		nonhuman
 hoerenwaard		nonhuman
-hoerenzoon		nonhuman
+hoerenzoon	m	human
 hoererij		nonhuman
 hoes		nonhuman
 hoeslaken		nonhuman
@@ -25986,7 +25986,7 @@ huismerk		nonhuman
 huismiddel		nonhuman
 huismiddeltje		nonhuman
 huismoeder	f	human
-huismoedertje		nonhuman
+huismoedertje	f	human
 huismuis		nonhuman
 huismus		nonhuman
 huisnummer		nonhuman
@@ -26143,7 +26143,7 @@ huurkoopovereenkomst		nonhuman
 huurlast		nonhuman
 huurleger		nonhuman
 huurling		human
-huurmoeder		nonhuman
+huurmoeder	f	human
 huurmoord		nonhuman
 huurmoordenaar		human
 huuropbrengst		nonhuman
@@ -27840,7 +27840,7 @@ jongerentaal		nonhuman
 jongerentijdschrift		nonhuman
 jongerenwerk		nonhuman
 jongerenwerker		nonhuman
-jongetje		nonhuman
+jongetje	m	human
 jonggeborene		nonhuman
 jonggehuwden		nonhuman
 jongleur		human
@@ -29923,7 +29923,7 @@ kletsmajoor		human
 kletsmeier		human
 kletspartij		nonhuman
 kletspraatje		nonhuman
-kletstante		nonhuman
+kletstante	f	human
 kletsverhaal		nonhuman
 kletteraar		nonhuman
 kleun		nonhuman
@@ -30895,8 +30895,8 @@ koning	m	human
 koning-keizer		nonhuman
 koning-stadhouder		nonhuman
 koningin	f	human
-koningin-moeder		nonhuman
-koningin-regentes		nonhuman
+koningin-moeder		f	human
+koningin-regentes	f	human
 koninginneharing		nonhuman
 koninginnenbrood		nonhuman
 koninginnencel		nonhuman
@@ -30913,7 +30913,7 @@ koningsappel		nonhuman
 koningsarend		nonhuman
 koningschap		nonhuman
 koningsdag		nonhuman
-koningsdochter		nonhuman
+koningsdochter	f	human
 koningsdrama		nonhuman
 koningsgeel		nonhuman
 koningsgezindheid		nonhuman
@@ -30935,7 +30935,7 @@ koningstijger		nonhuman
 koningstitel		nonhuman
 koningsvleugel		nonhuman
 koningswater		nonhuman
-koningszoon		nonhuman
+koningszoon	m	human
 koninkrijk		nonhuman
 konkelaar		human
 konkelarij	f	nonhuman
@@ -32117,7 +32117,7 @@ kunstminnaar		nonhuman
 kunstmoeder		nonhuman
 kunstmuziek		nonhuman
 kunstnier		nonhuman
-kunstnijverheid	f	nonhuman
+kunstnijverheid		nonhuman
 kunstoog		nonhuman
 kunstoor		nonhuman
 kunstopvatting		nonhuman
@@ -32130,7 +32130,7 @@ kunstrichting		nonhuman
 kunstrijder		nonhuman
 kunstrubber		nonhuman
 kunstsatelliet		nonhuman
-kunstschaats	m	nonhuman
+kunstschaats		nonhuman
 kunstschans		nonhuman
 kunstschat	m	nonhuman
 kunstschilder		human
@@ -33272,9 +33272,9 @@ leeslamp		nonhuman
 leesles		nonhuman
 leeslijst		nonhuman
 leeslint		nonhuman
-leesmachine	f	nonhuman
+leesmachine		nonhuman
 leesmethode		nonhuman
-leesmoeder		nonhuman
+leesmoeder	f	human
 leesoefening		nonhuman
 leesonderwijs		nonhuman
 leespen		nonhuman
@@ -41374,7 +41374,7 @@ opossum		nonhuman
 opossummuis		nonhuman
 oppas		human
 oppascentrale		nonhuman
-oppasmoeder		nonhuman
+oppasmoeder	f	human
 oppasser		human
 oppensioenstelling		nonhuman
 oppepper	m	nonhuman
@@ -41852,8 +41852,8 @@ oudheidkundige		human
 oudjaar		nonhuman
 oudje		human
 oudoom	m	human
-oudovergrootmoeder		nonhuman
-oudovergrootvader		nonhuman
+oudovergrootmoeder	f	human
+oudovergrootvader	m	human
 oudroest		nonhuman
 oudste		human
 oudtante	f	human
@@ -56912,7 +56912,7 @@ surrealisme		nonhuman
 surrealist		human
 surrogaat		nonhuman
 surrogaatkoffie	m	nonhuman
-surrogaatmoeder		nonhuman
+surrogaatmoeder	f	human
 surseance		nonhuman
 surveillance		nonhuman
 surveillancewagen		nonhuman
@@ -68029,7 +68029,7 @@ zoomsteek		nonhuman
 zoomvoet		nonhuman
 zoomwerk		nonhuman
 zoon	m	human
-zoonlief		nonhuman
+zoonlief	m	human
 zootje		nonhuman
 zorg		nonhuman
 zorgeloosheid		nonhuman
