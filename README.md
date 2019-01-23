@@ -111,3 +111,5 @@ Heeyoung Lee, Angel Chang, Yves Peirsman, Nathanael Chambers, Mihai Surdeanu, an
 See also these previous implementations
 https://bitbucket.org/robvanderg/groref
 and https://github.com/antske/coref_draft
+
+The UD conversion uses a slightly modified version of https://github.com/gossebouma/lassy2ud

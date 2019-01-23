@@ -21,6 +21,7 @@ Instead of giving a directory, can use one of the following presets:
 	--semeval     run on SEMEVAL 2010 development data
 	--test        run tests
 """
+import io
 import os
 import re
 import sys
@@ -34,7 +35,7 @@ from datetime import datetime
 from glob import glob
 from lxml import etree
 import colorama
-
+import ansi2html
 
 STOPWORDS = (
 		# List of Dutch Stop words (http://www.ranks.nl/stopwords/dutch)
@@ -73,12 +74,21 @@ WEATHERVERBS = ('dooien gieten hagelen miezeren misten motregenen onweren '
 		'plenzen regenen sneeuwen stormen stortregenen ijzelen vriezen '
 		'weerlichten winteren zomeren').split()
 VERBOSE = False
+DEBUGFILE = sys.stdout
 HTMLTEMPLATE = """<!DOCTYPE html><html>
 <head><meta charset=utf-8>
 <style>
 body { margin: 3em; max-width: 50em; }
 span { font-weight: bold; }
 span.q { color: green; font-weight: normal; }
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.div_foreground { color: #AAAAAA; padding: .5em; }
+.div_background { background-color: #000000; }
+.div_foreground > .bold,.bold > .div_foreground, div.div_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi32 { color: #00cd00; }
+.ansi33 { color: #cdcd00; }
 </style>
 <script>
 function highlight(ev) {
@@ -265,7 +275,7 @@ class Quotation:
 
 def debug(*args, **kwargs):
 	if VERBOSE:
-		print(*args, **kwargs)
+		print(*args, **kwargs, file=DEBUGFILE)
 
 
 def color(text, c):
@@ -585,7 +595,10 @@ def getmentions(trees, ngdata, gadata, precise):
 	for sentno, (_, tree) in enumerate(trees):
 		candidates = []
 		candidates.extend(tree.findall('.//node[@cat="np"]'))
-		# candidates.extend(tree.findall('.//node[@cat="conj"]'))
+		# candidates.extend(tree.findall(
+		# 		'.//node[@cat="conj"]/node[@cat="np"]/..'))
+		# candidates.extend(tree.findall(
+		# 		'.//node[@cat="conj"]/node[@pt="n"]/..'))
 		candidates.extend(tree.findall(
 				'.//node[@cat="mwu"]/node[@pt="spec"]/..'))
 		candidates.extend(tree.findall('.//node[@pt="n"][@ntype="eigen"]'))
@@ -594,6 +607,10 @@ def getmentions(trees, ngdata, gadata, precise):
 		candidates.extend(tree.findall('.//node[@pt="n"][@rel="body"]'))
 		candidates.extend(tree.findall('.//node[@pdtype="pron"]'))
 		candidates.extend(tree.findall('.//node[@vwtype="bez"]'))
+		# - Numerals, i.e. constituents with PoS num, which do not have the
+		#   dependency relation det or mod.
+		# - Determiners, i.e. constituents with PoS det, which do not have the
+		#   dependency relation det.
 		covered = set()
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, mentions, covered,
@@ -1354,7 +1371,14 @@ def writehtml(trees, mentions, clusters, quotations,
 			if doctokenid in qends:
 				print('</span>', end='', file=file)
 			doctokenid += 1
-	print('\n</p></body></html>', file=file)
+	print('\n</p>', file=file)
+	if VERBOSE:
+		conv = ansi2html.Ansi2HTMLConverter(scheme='xterm', dark_bg=True)
+		debugoutput = conv.convert(DEBUGFILE.getvalue(), full=False)
+		print('<div class="div_foreground div_background">'
+				'<pre class="ansi2html-content" style="background: black; ">'
+				'%s</pre></div>' % debugoutput, file=file)
+	print('</body></html>', file=file)
 
 
 def readconll(conllfile, docname='-'):
@@ -1474,6 +1498,30 @@ def comparecoref(conlldata, trees, mentions, clusters, resp, gold,
 		# (b) gold links for missed mentions
 
 
+def getUD(filenames, trees):
+	"""Convert Alpino trees to UD trees and store head/label in attributes."""
+	with tempfile.NamedTemporaryFile(mode='w') as out:
+		out.write('<collection>')
+		out.writelines('<doc href="%s"/>\n' % filename
+				for filename in filenames)
+		out.write('</collection>')
+		out.flush()
+		conll = subprocess.check_output(
+				('xqilla -v ENHANCED yes -v DIR %s -v MODE conll '
+				'universal_dependencies_2.2.xq' % out.name).split())
+	conll = re.sub(r'<pre><code.*?</sentence>\n|[ \t]+!\n\s+</code></pre>',
+			'', conll.decode('utf8'))
+	for (_, tree), chunk in zip(trees, conll.split('\n\n')):
+		tokens = sorted(tree.iterfind('.//node[@word]'),
+					key=lambda x: int(x.get('begin')))
+		chunk = [line.split('\t') for line in chunk.splitlines()]
+		if len(tokens) != len(chunk):
+			raise ValueError('sentence length mismatch.')
+		for token, line in zip(tokens, chunk):
+			token.set('UDparent', line[6] if len(line) > 7 else '-')
+			token.set('UDlabel', line[7] if len(line) > 7 else '-')
+
+
 def process(path, output, ngdata, gadata,
 		docname='-', conllfile=None, fmt=None,
 		start=None, end=None, startcluster=0,
@@ -1481,7 +1529,9 @@ def process(path, output, ngdata, gadata,
 	"""Process a single directory with Alpino XML parses."""
 	if not path.endswith('*.xml'):
 		path = os.path.join(path, '*.xml')
-	debug(conllfile or path)
+	if fmt == 'html':
+		setverbose(VERBOSE, io.StringIO())
+	# debug(conllfile or path)
 	filenames = sorted(glob(path), key=parsesentid)[start:end]
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
@@ -1505,30 +1555,6 @@ def process(path, output, ngdata, gadata,
 		comparecoref(conlldata, trees, mentions, clusters, resp, gold,
 				docname=docname)
 	return len(clusters)
-
-
-def getUD(filenames, trees):
-	"""Convert Alpino trees to UD trees and store head/label in attributes."""
-	with tempfile.NamedTemporaryFile(mode='w') as out:
-		out.write('<collection>')
-		out.writelines('<doc href="%s"/>\n' % filename
-				for filename in filenames)
-		out.write('</collection>')
-		out.flush()
-		conll = subprocess.check_output(
-				('xqilla -v ENHANCED yes -v DIR %s -v MODE conll '
-				'universal_dependencies_2.2.xq' % out.name).split())
-	conll = re.sub(r'<pre><code.*?</sentence>\n|[ \t]+!\n\s+</code></pre>',
-			'', conll.decode('utf8'))
-	for (_, tree), chunk in zip(trees, conll.split('\n\n')):
-		tokens = sorted(tree.iterfind('.//node[@word]'),
-					key=lambda x: int(x.get('begin')))
-		chunk = [line.split('\t') for line in chunk.splitlines()]
-		if len(tokens) != len(chunk):
-			raise ValueError('sentence length mismatch.')
-		for token, line in zip(tokens, chunk):
-			token.set('UDparent', line[6] if len(line) > 7 else '-')
-			token.set('UDlabel', line[7] if len(line) > 7 else '-')
 
 
 def clindev(ngdata, gadata, goldmentions):
@@ -1644,9 +1670,14 @@ def readngdata():
 	return ngdata, gadata
 
 
+def setverbose(verbose, debugfile):
+	global VERBOSE, DEBUGFILE
+	VERBOSE = verbose
+	DEBUGFILE = debugfile
+
+
 def main():
 	"""CLI"""
-	global VERBOSE
 	opts, args = gnu_getopt(sys.argv[1:], '', [
 		'help', 'verbose', 'clindev', 'semeval', 'test',
 		'goldmentions', 'fmt=', 'slice='])
@@ -1655,7 +1686,7 @@ def main():
 		print(__doc__)
 		return
 	if '--verbose' in opts:
-		VERBOSE = True
+		setverbose(True, sys.stdout)
 		sys.argv.remove('--verbose')
 	ngdata, gadata = readngdata()
 	if '--clindev' in opts:
