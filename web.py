@@ -11,8 +11,8 @@ from flask import request, render_template
 import coref
 
 APP = Flask(__name__)
-DEBUG = True
-LIMIT = 10000  # maximum number of bytes of input to accept
+DEBUG = False
+LIMIT = 5000  # maximum number of bytes of input to accept
 STANDALONE = __name__ == '__main__'
 ALPINOAPI = 'http://127.0.0.1:11300/json'
 
