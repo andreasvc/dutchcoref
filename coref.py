@@ -87,8 +87,8 @@ span.q { color: green; font-weight: normal; }
 .div_foreground > .bold,.bold > .div_foreground, div.div_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
-.ansi32 { color: #00cd00; }
-.ansi33 { color: #cdcd00; }
+.ansi32 { color: #00a800; }
+.ansi33 { color: #c3ac39; }
 </style>
 <script>
 function highlight(ev) {
@@ -1171,6 +1171,8 @@ def resolvepronouns(mentions, clusters, quotations):
 				if (sameclause(other.node, mention.node)
 						and other.node.find('..//node[@id="%s"]'
 						% mention.node.get('id')) is not None):
+					mention.prohibit.add(other.id)
+					other.prohibit.add(mention.id)
 					debug('\t%d %d %s %d %s prohibited=1 coargument' % (
 							other.sentno, other.begin, other.node.get('rel'),
 							len(clusters[other.clusterid]),

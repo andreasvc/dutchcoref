@@ -21,7 +21,7 @@ ALPINOAPI = 'http://127.0.0.1:11300/json'
 @APP.route('/index')
 def index():
 	"""Start page where a text can be entered."""
-	return render_template('index.html')
+	return render_template('index.html', limit=LIMIT)
 
 
 @APP.route('/coref', methods=('POST', ))

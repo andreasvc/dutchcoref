@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>coref demo</title>
+		<script>
+		function replace() {
+			document.getElementById("text").value = "Jan vond Ben's portret van zichzelf mooi. Hij heeft hem een compliment gegeven. 'Ik ben onder de indruk van je schilderwerk,' zei hij. 'Allemaal dankzij Bob Ross,' antwoordde Ben.";
+		}
+		</script>
+	</head>
+	<body>
+		<h1>Dutch Coreference demo</h1>
+		<p>A demo of the coreference system
+		<a href="https://github.com/andreasvc/dutchcoref">
+			https://github.com/andreasvc/dutchcoref</a></p>
+
+
+		<form name=form action=coref method=post enctype="multipart/form-data">
+			<p>Enter some Dutch text (maximum {{ limit }} characters).
+			The text will be parsed (this may take a minute),
+			and a coreference analysis will be shown.
+			Alternatively, <a href="javascript:replace()">click here for an example.</a>
+			</p>
+			<p>
+				<textarea name=text rows=12 cols=60 id=text></textarea>
+				<input type=submit>
+			</p>
+		</form>
+	</body>
+</html>
