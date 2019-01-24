@@ -7,6 +7,8 @@ Usage
 ```
 Usage: python3 coref.py [options] <directory>
 where directory contains .xml files with sentences parsed by Alpino.
+Filenames (and sentence IDs) are expected to be of the form `n.xml` or `m-n.xml`,
+where `n` is a sentence number and `m` a paragraph number.
 Output is sent to STDOUT.
 
 Options:
@@ -30,15 +32,15 @@ Instead of giving a directory, can use one of the following presets:
 Datasets
 --------
 
-### Dutch first names
+### Dutch first names (required)
 
-download `Top_eerste_voornamen_NL_2010.csv`
+Download `Top_eerste_voornamen_NL_2010.csv`
 from https://www.meertens.knaw.nl/nvb/
 and put it in the `data/` directory.
 
-### CLIN26 shared task data, number & gender data from Web text
+### Number & gender data from Web text (required), CLIN26 shared task data
 
-Clone this repository under same parent folder as this repository::
+Clone this repository under same parent folder as this repository:
 
     ~/code/dutchcoref $ cd ..
     ~/code $ git clone https://bitbucket.org/robvanderg/groref.git
@@ -46,6 +48,7 @@ Clone this repository under same parent folder as this repository::
 ### SemEval 2010 shared task data
 
 Download the data from http://www.lsi.upc.edu/~esapena/downloads/index.php?id=1
+
 Apply the Unicode fix in `fixsemeval2010.sh`.
 The directory `data/semeval2010NLdevparses` contains Alpino parses for the
 Dutch development set of this task.
@@ -101,6 +104,30 @@ $ cat example.txt | Alpino number_analyses=1 end_hook=xml -flag treebank example
 
 #end document
 ```
+
+Column types
+------------
+With `--fmt=booknlp`, the output contains the following columns:
+
+1. Global token number
+2. Sentence ID
+3. Token number within sentence
+4. Token
+5. Lemma
+6. Rich POS tag (including morphological features)
+7. UD parent token (ID as in column 3)
+8. UD dependency label
+9. Named entity class (PER, ORG, LOC, ...)
+10. Speaker ID (if a speaker is found, every token in a direct speech utterance gets the speaker ID; these IDs are the same as the coreference cluster IDs in column 13.)
+11. Similar as above, but for addressee.
+12. Whether token is part of direct speech (B, I) or not (O)
+13. Coreference cluster in CoNLL notation
+
+Web demo
+--------
+See `web.py`. Requires a running instance of
+[alpiner](https://github.com/rug-compling/alpino-api/tree/master/demo),
+with the port number matching the one defined in `web.py` in the variable ALPINOAPI.
 
 References
 ----------
