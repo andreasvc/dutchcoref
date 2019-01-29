@@ -173,12 +173,18 @@ class Mention:
 		self.features = {
 				'human': None, 'gender': None,
 				'number': None, 'person': None}
+		self._detectfeatures(ngdata, gadata)
+
+	def _detectfeatures(self, ngdata, gadata):
+		"""Set features for this mention based on linguistic features or
+		external dataset."""
 		self.features['number'] = self.head.get(
 				'rnum', self.head.get('num'))
 		if self.features['number'] is None and 'getal' in self.head.keys():
 			self.features['number'] = {
 					'ev': 'sg', 'mv': 'pl', 'getal': 'both'
 					}[self.head.get('getal')]
+
 		if self.head.get('genus') in ('masc', 'fem'):
 			self.features['gender'] = self.head.get('genus')[0]
 			self.features['human'] = 1
@@ -223,12 +229,12 @@ class Mention:
 			elif self.head.get('neclass') is not None:
 				self.features['human'] = 0
 				self.features['gender'] = 'n'
-			if ' '.join(tokens).lower() in ngdata:
-				self._nglookup(' '.join(tokens), ngdata)
+			if ' '.join(self.tokens).lower() in ngdata:
+				self._nglookup(' '.join(self.tokens), ngdata)
 			elif (self.head.get('neclass') == 'PER'
-					and tokens[0] not in STOPWORDS):
+					and self.tokens[0] not in STOPWORDS):
 				# Assume first token is first name.
-				self._nglookup(tokens[0], ngdata)
+				self._nglookup(self.tokens[0], ngdata)
 
 	def _nglookup(self, key, ngdata):
 		genderdata = ngdata.get(key.lower())
@@ -1488,13 +1494,15 @@ def comparecoref(conlldata, trees, mentions, clusters, resp, gold,
 				in gold)
 		n = cand[0] if cand else min(cluster)
 		print(mentions[n].sentno, mentions[n].begin,
-				' '.join(mentions[n].tokens))
+				' '.join(mentions[n].tokens),
+				file=out)
 		for m in sorted(cluster - {n}):
 			correct = correctlink(mentions[n], mentions[m])
 			print('\t',
 					color('<-->', 'green' if correct else 'red'),
 					mentions[m].sentno, mentions[m].begin,
-					' '.join(mentions[m].tokens))
+					' '.join(mentions[m].tokens),
+					file=out)
 		# FIXME: look up missed gold links and print as 'yellow'
 		# (a) gold links for correctly identified mentions
 		# (b) gold links for missed mentions
