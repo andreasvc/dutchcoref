@@ -81,10 +81,12 @@ HTMLTEMPLATE = """<!DOCTYPE html><html>
 body { margin: 3em; max-width: 50em; }
 span { font-weight: bold; }
 span.q { color: green; font-weight: normal; }
-.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.ansi2html-content { display: inline; white-space: pre-wrap;
+	word-wrap: break-word; }
 .div_foreground { color: #AAAAAA; padding: .5em; }
 .div_background { background-color: #000000; }
-.div_foreground > .bold,.bold > .div_foreground, div.div_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.div_foreground > .bold,.bold > .div_foreground, div.div_foreground
+	> pre > .bold { color: #FFFFFF; font-weight: normal; }
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi32 { color: #00a800; }
@@ -600,19 +602,17 @@ def getmentions(trees, ngdata, gadata, precise):
 	mentions = []
 	for sentno, (_, tree) in enumerate(trees):
 		candidates = []
-		candidates.extend(tree.findall('.//node[@cat="np"]'))
-		# candidates.extend(tree.findall(
+		candidates.extend(tree.xpath('.//node[@cat="np"]'))
+		# candidates.extend(tree.xpath(
 		# 		'.//node[@cat="conj"]/node[@cat="np"]/..'))
-		# candidates.extend(tree.findall(
+		# candidates.extend(tree.xpath(
 		# 		'.//node[@cat="conj"]/node[@pt="n"]/..'))
-		candidates.extend(tree.findall(
+		candidates.extend(tree.xpath(
 				'.//node[@cat="mwu"]/node[@pt="spec"]/..'))
-		candidates.extend(tree.findall('.//node[@pt="n"][@ntype="eigen"]'))
-		candidates.extend(tree.findall('.//node[@pt="n"][@rel="su"]'))
-		candidates.extend(tree.findall('.//node[@pt="n"][@rel="obj1"]'))
-		candidates.extend(tree.findall('.//node[@pt="n"][@rel="body"]'))
-		candidates.extend(tree.findall('.//node[@pdtype="pron"]'))
-		candidates.extend(tree.findall('.//node[@vwtype="bez"]'))
+		candidates.extend(tree.xpath('.//node[@pt="n"]'
+				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body"]'))
+		candidates.extend(tree.xpath(
+				'.//node[@pdtype="pron" or @vwtype="bez"]'))
 		# - Numerals, i.e. constituents with PoS num, which do not have the
 		#   dependency relation det or mod.
 		# - Determiners, i.e. constituents with PoS det, which do not have the
