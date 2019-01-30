@@ -6,7 +6,7 @@ import time
 import logging
 import requests
 from lxml import etree
-from flask import Flask
+from flask import Flask, Markup
 from flask import request, render_template
 import coref
 
@@ -40,10 +40,10 @@ def results():
 	coref.setverbose(True, io.StringIO())
 	mentions, clusters, quotations = coref.resolvecoreference(
 			trees, ngdata, gadata)
-	output = io.StringIO()
-	coref.writehtml(trees, mentions, clusters, quotations, file=output)
-	return output.getvalue()
-	# return render_template('results.html', data=output.getvalue())
+	corefresults, debugoutput = coref.htmlvis(
+			trees, mentions, clusters, quotations)
+	return render_template('results.html', docname='',
+			corefresults=Markup(corefresults), debugoutput=Markup(debugoutput))
 
 
 def parse(text):

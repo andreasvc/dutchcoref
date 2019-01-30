@@ -1,0 +1,70 @@
+<!DOCTYPE html><html>
+<head><meta charset=utf-8>
+<title>{{ docname }} coref</title>
+<style>
+body { margin: 3em; max-width: 50em; }
+span { font-weight: bold; }
+span.n { font-weight: normal; }
+span.q { color: green; font-weight: normal; }
+.ansi2html-content {
+	display: inline; white-space: pre-wrap; word-wrap: break-word;
+	background: black; }
+.div_foreground { color: #AAAAAA; padding: .5em; }
+.div_background { background-color: #000000; }
+.div_foreground > .bold,.bold > .div_foreground, div.div_foreground
+	> pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi32 { color: #00cd00; }
+.ansi33 { color: #cdcd00; }
+</style>
+<script>
+function highlight(ev) {
+    var cls = ev.target.className;
+    var elems = document.getElementsByClassName(cls)
+    for (var n in elems)
+        elems[n].style = 'background: yellow; ';
+}
+function unhighlight(ev) {
+    var cls = ev.target.className;
+    var elems = document.getElementsByClassName(cls)
+    for (var n in elems)
+        elems[n].style = '';
+}
+function addhighlighting() {
+    var elems = document.getElementsByTagName('span');
+    for (var n in elems) {
+        if (elems[n].className.charAt(0) == 'c') {
+            elems[n].onmouseover = highlight;
+            elems[n].onmouseout = unhighlight;
+        }
+    }
+}
+function hl1(id) {
+    document.getElementById(id).style = 'background: lightblue; ';
+}
+function hl2(id) {
+    document.getElementById(id).style = 'background: lightcoral; ';
+}
+function nohl(id) {
+    document.getElementById(id).style = '';
+}
+</script>
+</head>
+<body onLoad="addhighlighting()">
+<p>Move mouse over bracketed text to highlight coreference.
+Move mouse over direct speech to highlight speaker and addressee.<br>
+Legend:
+<span class="n">[ Singleton ]</span>
+<span style="background: yellow">[ Coreference ]</span>
+<span style="background: lightblue">[ Speaker ]</span>
+<span style="background: lightcoral">[ Addressee ]</span>
+<span class="q">' Direct speech '</span>
+
+{{ corefresults }}
+
+{% if debugoutput %}
+<div class="div_foreground div_background">
+<pre class="ansi2html-content">{{ debugoutput }}</pre></div>
+{% endif %}
+</body></html>

@@ -36,6 +36,8 @@ from glob import glob
 from lxml import etree
 import colorama
 import ansi2html
+from jinja2 import Template
+
 
 STOPWORDS = (
 		# List of Dutch Stop words (http://www.ranks.nl/stopwords/dutch)
@@ -75,63 +77,6 @@ WEATHERVERBS = ('dooien gieten hagelen miezeren misten motregenen onweren '
 		'weerlichten winteren zomeren').split()
 VERBOSE = False
 DEBUGFILE = sys.stdout
-HTMLTEMPLATE = """<!DOCTYPE html><html>
-<head><meta charset=utf-8>
-<style>
-body { margin: 3em; max-width: 50em; }
-span { font-weight: bold; }
-span.q { color: green; font-weight: normal; }
-.ansi2html-content { display: inline; white-space: pre-wrap;
-	word-wrap: break-word; }
-.div_foreground { color: #AAAAAA; padding: .5em; }
-.div_background { background-color: #000000; }
-.div_foreground > .bold,.bold > .div_foreground, div.div_foreground
-	> pre > .bold { color: #FFFFFF; font-weight: normal; }
-.inv_foreground { color: #000000; }
-.inv_background { background-color: #AAAAAA; }
-.ansi32 { color: #00a800; }
-.ansi33 { color: #c3ac39; }
-</style>
-<script>
-function highlight(ev) {
-	var cls = ev.target.className;
-	var elems = document.getElementsByClassName(cls)
-	for (var n in elems)
-		elems[n].style = 'background: yellow; ';
-}
-function unhighlight(ev) {
-	var cls = ev.target.className;
-	var elems = document.getElementsByClassName(cls)
-	for (var n in elems)
-		elems[n].style = '';
-}
-function addhighlighting() {
-	var elems = document.getElementsByTagName('span');
-	for (var n in elems) {
-		if (elems[n].className.charAt(0) == 'c') {
-			elems[n].onmouseover = highlight;
-			elems[n].onmouseout = unhighlight;
-		}
-	}
-}
-function hl1(id) {
-	document.getElementById(id).style = 'background: lightblue; ';
-}
-function hl2(id) {
-	document.getElementById(id).style = 'background: lightcoral; ';
-}
-function nohl(id) {
-	document.getElementById(id).style = '';
-}
-</script>
-<title>%s coref</title>
-</head>
-<body onLoad="addhighlighting()">
-<p>Legend:
-<span style="background: yellow">[ Coreference ]</span>
-<span style="background: lightblue">[ Speaker ]</span>
-<span style="background: lightcoral">[ Addressee ]</span></p>\n
-"""
 
 
 class Mention:
@@ -231,35 +176,13 @@ class Mention:
 			elif self.head.get('neclass') is not None:
 				self.features['human'] = 0
 				self.features['gender'] = 'n'
-			if ' '.join(self.tokens).lower() in ngdata:
-				self._nglookup(' '.join(self.tokens), ngdata)
+			result = nglookup(' '.join(self.tokens), ngdata)
+			if result:
+				self.features.update(result)
 			elif (self.head.get('neclass') == 'PER'
 					and self.tokens[0] not in STOPWORDS):
 				# Assume first token is first name.
-				self._nglookup(self.tokens[0], ngdata)
-
-	def _nglookup(self, key, ngdata):
-		genderdata = ngdata.get(key.lower())
-		if not key or genderdata is None:
-			return
-		genderdata = [int(x) for x in genderdata.split(' ')]
-		self.features['number'] = 'sg'
-		if (genderdata[0] > sum(genderdata) / 3
-				and genderdata[1] > sum(genderdata) / 3):
-			self.features['gender'] = 'mf'
-			self.features['human'] = 1
-		elif genderdata[0] > sum(genderdata) / 3:
-			self.features['gender'] = 'm'
-			self.features['human'] = 1
-		elif genderdata[1] > sum(genderdata) / 3:
-			self.features['gender'] = 'f'
-			self.features['human'] = 1
-		elif genderdata[2] > sum(genderdata) / 3:
-			self.features['gender'] = 'n'
-			self.features['human'] = 0
-		elif genderdata[3] > sum(genderdata) / 3:
-			self.features['number'] = 'pl'
-			self.features['gender'] = 'n'
+				self.features.update(nglookup(self.tokens[0], ngdata))
 
 	def __str__(self):
 		return '\'%s\' %s inquote=%s' % (
@@ -1225,9 +1148,9 @@ def resolvecoreference(trees, ngdata, gadata, precise=True, mentions=None):
 					'head=%s neclass=%s' % (
 						mention.head.get('word'),
 						mention.head.get('neclass')),
-					# ngdata.get(' '.join(mention.tokens).lower()),
-					# ngdata.get(mention.tokens[0].lower()),
-					# gadata.get(mention.head.get('lemma', '').replace('_', ''))
+					# nglookup(' '.join(mention.tokens).lower(), ngdata),
+					# nglookup(mention.tokens[0].lower(), ngdata),
+					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
 					)
 	speakeridentification(mentions, clusters, quotations, idx, doc)
 	stringmatch(mentions, clusters)
@@ -1328,10 +1251,9 @@ def writetabular(trees, mentions,
 		print('#end document', file=file)
 
 
-def writehtml(trees, mentions, clusters, quotations,
-		docname='-', file=sys.stdout):
+def htmlvis(trees, mentions, clusters, quotations, docname=''):
 	"""Visualize coreference in HTML document."""
-	print(HTMLTEMPLATE % docname, file=file)
+	output = []
 	sentences = [[a.get('word') for a
 			in sorted(tree.iterfind('.//node[@word]'),
 				key=lambda x: int(x.get('begin')))]
@@ -1359,9 +1281,9 @@ def writehtml(trees, mentions, clusters, quotations,
 	doctokenid = 0
 	for ((parno, sentno), sent) in zip(sentids, sentences):
 		if parno == 1 and sentno == 1:
-			print('<p>', end='', file=file)
+			output.append('<p>')
 		elif sentno == 1:
-			print('</p>\n<p>', end='', file=file)
+			output.append('</p>\n<p>')
 		for token in sent:
 			if doctokenid in qstarts:
 				quotation = quotations[qstarts[doctokenid]]
@@ -1374,19 +1296,17 @@ def writehtml(trees, mentions, clusters, quotations,
 					out += "nohl('m%d'); " % quotation.addressee.id
 				if over:
 					att = ' onmouseover="%s" onmouseout="%s"' % (over, out)
-				print('<span class=q%s>' % att, end='', file=file)
-			print(' ' + token, end='', file=file)
+				output.append('<span class=q%s>' % att)
+			output.append(' ' + token)
 			if doctokenid in qends:
-				print('</span>', end='', file=file)
+				output.append('</span>')
 			doctokenid += 1
-	print('\n</p>', file=file)
+	output.append('\n</p>\n')
+	debugoutput = ''
 	if VERBOSE:
 		conv = ansi2html.Ansi2HTMLConverter(scheme='xterm', dark_bg=True)
 		debugoutput = conv.convert(DEBUGFILE.getvalue(), full=False)
-		print('<div class="div_foreground div_background">'
-				'<pre class="ansi2html-content" style="background: black; ">'
-				'%s</pre></div>' % debugoutput, file=file)
-	print('</body></html>', file=file)
+	return ''.join(output), debugoutput
 
 
 def readconll(conllfile, docname='-'):
@@ -1555,8 +1475,13 @@ def process(path, output, ngdata, gadata,
 	if fmt == 'booknlp':
 		getUD(filenames, trees)
 	if fmt == 'html':
-		writehtml(trees, mentions, clusters, quotations,
-				docname=docname, file=output)
+		corefresults, debugoutput = htmlvis(
+				trees, mentions, clusters, quotations, docname)
+		with open('templates/results.html') as inp:
+			template = Template(inp.read())
+		print(template.render(docname=docname, corefresults=corefresults,
+					debugoutput=debugoutput),
+				file=output)
 	else:
 		writetabular(trees, mentions, docname=docname,
 				file=output, fmt=fmt, startcluster=startcluster)
@@ -1659,18 +1584,17 @@ def runtests(ngdata, gadata):
 
 def readngdata():
 	"""Read noun phrase number-gender counts."""
-	ngdata = {}  # Format: {NP: [masc, fem, neuter, plural]}
-	with open('../groref/ngdata', encoding='utf8') as inp:
-		for line in inp:
-			n = line.index('\t')
-			ngdata[line[:n]] = line[n + 1:-1]
+	# For faster loading, do not decode and parse into dict:
+	with open('../groref/ngdata', 'rb') as inp:
+		ngdata = inp.read()
 	gadata = {}  # Format: {noun: (gender, animacy)}
 	with open('data/gadata', encoding='utf8') as inp:
 		for line in inp:
 			a, b, c = line.rstrip('\n').split('\t')
 			gadata[a] = b, c
 	# https://www.meertens.knaw.nl/nvb/
-	with open('data/Top_eerste_voornamen_NL_2010.csv', encoding='latin1') as inp:
+	with open('data/Top_eerste_voornamen_NL_2010.csv',
+			encoding='latin1') as inp:
 		for line in islice(inp, 2, None):
 			fields = line.split(';')
 			if fields[1]:
@@ -1678,6 +1602,31 @@ def readngdata():
 			if fields[3]:
 				gadata[fields[3]] = ('m', 'human')
 	return ngdata, gadata
+
+
+def nglookup(key, ngdata):
+	"""Search through tab-separate file stored as bytestring for efficiency.
+
+	:returns: a dictionary with features."""
+	if not key:
+		return
+	i = ngdata.find(('\n%s\t' % key.lower()).encode('utf8'))
+	if i == -1:
+		return
+	j = ngdata.find('\n'.encode('utf8'), i + 1)
+	match = ngdata[i + len(key) + 2:j].decode('utf8')
+	genderdata = [int(x) for x in match.split(' ')]
+	if (genderdata[0] > sum(genderdata) / 3
+			and genderdata[1] > sum(genderdata) / 3):
+		return {'number': 'sg', 'gender': 'mf', 'human': 1}
+	elif genderdata[0] > sum(genderdata) / 3:
+		return {'number': 'sg', 'gender': 'm', 'human': 1}
+	elif genderdata[1] > sum(genderdata) / 3:
+		return {'number': 'sg', 'gender': 'f', 'human': 1}
+	elif genderdata[2] > sum(genderdata) / 3:
+		return {'number': 'sg', 'gender': 'n', 'human': 0}
+	elif genderdata[3] > sum(genderdata) / 3:
+		return {'number': 'pl', 'gender': 'n'}
 
 
 def setverbose(verbose, debugfile):
