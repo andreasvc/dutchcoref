@@ -1,6 +1,6 @@
 Dutch coreference resolution & dialogue analysis
 ================================================
-An implementation of the Stanford Multi-Pass Coreference System.
+An implementation of the Stanford Multi-Pass Sieve Coreference System.
 
 Usage
 -----
@@ -25,9 +25,12 @@ Options:
 
 Instead of giving a directory, can use one of the following presets:
 	--clindev     run on CLIN26 shared task development data
-	--semeval     run on SEMEVAL 2010 development data
+	--semeval     run on SemEval 2010 development data
 	--test        run tests
 ```
+
+See https://andreasvc.github.io/voskuil.html for an example of the HTML visualization.
+
 
 Datasets
 --------
@@ -63,6 +66,7 @@ Ik vroeg hem binnen te komen .
 $ mkdir example
 $ cat example.txt | Alpino number_analyses=1 end_hook=xml -flag treebank example -parse
 [...]
+$ python3 coref.py --verbose --fmt=booknlp /tmp/example
 ```
 
 ![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/data/output.png "verbose output")
@@ -131,7 +135,8 @@ with the port number matching the one defined in `web.py` in the variable ALPINO
 
 References
 ----------
-This code base is a Dutch implementation of the Stanford Multi-Pass Coreference System for English:
+This code base is a Dutch implementation of the Stanford Multi-Pass Sieve Coreference System
+for English:
 
 Heeyoung Lee, Angel Chang, Yves Peirsman, Nathanael Chambers, Mihai Surdeanu, and Dan Jurafsky. Deterministic coreference resolution based on entity-centric, precision-ranked rules. Computational Linguistics, 39 (4):885–916, 2013. http://aclweb.org/anthology/J13-4004.pdf
 
