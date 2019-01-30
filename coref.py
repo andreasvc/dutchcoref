@@ -490,8 +490,11 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			headidx = max(int(a.get('begin')) for a
 					in node.findall('.//node[@word]')
 					if int(a.get('begin')) < b)
-	# NP without appositive: John in "John, the painter"
-	if precise and len(node) > 1 and node[1].get('rel') == 'app':
+	# Appositives: "[John], [the painter]"
+	# but: "[actor John Cleese]"
+	if (precise and len(node) > 1 and node[1].get('rel') == 'app'
+			and node[1].get('ntype') != 'eigen'
+			and node[1].get('pt') != 'spec'):
 		node = node[0]
 		b = int(node.get('end'))
 	tokens = [token.get('word') for token
@@ -604,19 +607,16 @@ def getmentions(trees, ngdata, gadata, precise):
 		candidates = []
 		candidates.extend(tree.xpath('.//node[@cat="np"]'))
 		# candidates.extend(tree.xpath(
-		# 		'.//node[@cat="conj"]/node[@cat="np"]/..'))
-		# candidates.extend(tree.xpath(
-		# 		'.//node[@cat="conj"]/node[@pt="n"]/..'))
+		# 		'.//node[@cat="conj"]/node[@cat="np" or @pt="n"]/..'))
 		candidates.extend(tree.xpath(
 				'.//node[@cat="mwu"]/node[@pt="spec"]/..'))
 		candidates.extend(tree.xpath('.//node[@pt="n"]'
 				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body"]'))
 		candidates.extend(tree.xpath(
 				'.//node[@pdtype="pron" or @vwtype="bez"]'))
-		# - Numerals, i.e. constituents with PoS num, which do not have the
-		#   dependency relation det or mod.
-		# - Determiners, i.e. constituents with PoS det, which do not have the
-		#   dependency relation det.
+		candidates.extend(tree.xpath(
+				'.//node[@pt="num" and @rel!="det" and @rel!="mod"]'))
+		candidates.extend(tree.xpath('.//node[@pt="det" and @rel!="det"]'))
 		covered = set()
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, mentions, covered,
