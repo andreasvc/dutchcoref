@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alpino_ds version="1.6">
+  <parser cats="1" skips="0" />
+  <node begin="0" cat="top" end="7" id="0" rel="top">
+    <node begin="0" cat="smain" end="6" id="1" rel="--">
+      <node begin="0" end="1" frame="het_noun" genus="onz" getal="ev" his="normal" his_1="decap" his_1_1="normal" id="2" index="1" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="noun" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="su" rnum="sg" root="het" sense="het" special="het" status="red" vwtype="pers" word="Het"/>
+      <node begin="1" end="2" frame="verb('hebben/zijn',modal_not_u,aux(inf))" his="normal" his_1="normal" id="3" infl="modal_not_u" lcat="smain" lemma="kunnen" pos="verb" postag="WW(pv,tgw,ev)" pt="ww" pvagr="ev" pvtijd="tgw" rel="hd" root="kan" sc="aux(inf)" sense="kan" stype="declarative" tense="present" word="kan" wvorm="pv"/>
+      <node begin="0" cat="inf" end="6" id="4" rel="vc">
+        <node begin="0" end="1" id="5" index="1" rel="sup"/>
+        <node begin="2" buiging="zonder" end="3" frame="verb(zijn,inf,ninv(sbar_subj,part_sbar_subj(voor)))" his="normal" his_1="part-V" id="6" infl="inf" lcat="inf" lemma="voor_komen" pos="verb" positie="vrij" postag="WW(inf,vrij,zonder)" pt="ww" rel="hd" root="kom_voor" sc="part_sbar_subj(voor)" sense="kom_voor" word="voorkomen" wvorm="inf"/>
+        <node begin="3" cat="cp" end="6" id="7" rel="su">
+          <node begin="3" conjtype="onder" end="4" frame="complementizer(dat)" his="normal" his_1="normal" id="8" lcat="cp" lemma="dat" pos="comp" postag="VG(onder)" pt="vg" rel="cmp" root="dat" sc="dat" sense="dat" word="dat"/>
+          <node begin="4" cat="ssub" end="6" id="9" rel="body">
+            <node begin="4" end="5" frame="het_noun" genus="onz" getal="ev" his="normal" his_1="normal" id="10" lcat="np" lemma="het" naamval="stan" pdtype="pron" persoon="3" pos="noun" postag="VNW(pers,pron,stan,red,3,ev,onz)" pt="vnw" rel="su" rnum="sg" root="het" sense="het" special="het" status="red" vwtype="pers" word="het"/>
+            <node begin="5" end="6" frame="verb(hebben,sg3,het_subj)" his="normal" his_1="normal" id="11" infl="sg3" lcat="ssub" lemma="regenen" pos="verb" postag="WW(pv,tgw,met-t)" pt="ww" pvagr="met-t" pvtijd="tgw" rel="hd" root="regen" sc="het_subj" sense="het-regen" tense="present" word="regent" wvorm="pv"/>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node begin="6" end="7" frame="punct(punt)" his="normal" his_1="normal" id="12" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
+  </node>
+  <sentence sentid="2">Het kan voorkomen dat het regent .</sentence>
+  <comments>
+    <comment>Q#2|Het kan voorkomen dat het regent .|1|1|-9.0370794075</comment>
+  </comments>
+</alpino_ds>

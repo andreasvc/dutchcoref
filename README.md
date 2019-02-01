@@ -64,7 +64,7 @@ $ cat /tmp/example.txt
 ' Mag ik u iets vragen ? '
 Ik vroeg hem binnen te komen .
 $ mkdir example
-$ cat example.txt | Alpino number_analyses=1 end_hook=xml -flag treebank example -parse
+$ cat example.txt | Alpino number_analyses=1 end_hook=xml -parse -flag treebank example
 [...]
 $ python3 coref.py --verbose --fmt=booknlp /tmp/example
 ```

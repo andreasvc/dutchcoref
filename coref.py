@@ -18,7 +18,7 @@ Options:
 
 Instead of giving a directory, can use one of the following presets:
 	--clindev     run on CLIN26 shared task development data
-	--semeval     run on SEMEVAL 2010 development data
+	--semeval     run on SemEval 2010 development data
 	--test        run tests
 """
 import io
@@ -34,9 +34,9 @@ from getopt import gnu_getopt
 from datetime import datetime
 from glob import glob
 from lxml import etree
+from jinja2 import Template
 import colorama
 import ansi2html
-from jinja2 import Template
 
 
 STOPWORDS = (
@@ -193,6 +193,7 @@ class Mention:
 
 
 class Quotation:
+	"""A span of direct speech."""
 	def __init__(self, start, end, sentno, parno, text, sentbounds):
 		self.start, self.end = start, end  # global token indices
 		self.sentno = sentno  # global sentence index (ignoring paragraphs)
@@ -205,6 +206,8 @@ class Quotation:
 
 
 def debug(*args, **kwargs):
+	"""Print debug information if global variable VERBOSE is True;
+	send output to file (or stdout) DEBUGFILE."""
 	if VERBOSE:
 		print(*args, **kwargs, file=DEBUGFILE)
 
@@ -369,6 +372,49 @@ def mentionselection(mentions, clusters):
 			yield n, mentions[n]
 
 
+def pleonasticpronoun(node):
+	"""Return true if node is a pleonastic (non-referential) pronoun."""
+	# Examples from Lassy syntactic annotation manual.
+	if node.get('rel') in ('sup', 'pobj1'):
+		return True
+	if node.get('rel') == 'su' and node.get('lemma') == 'het':
+		hd = node.find('../node[@rel="hd"]')
+		# het regent. / hoe gaat het?
+		if hd.get('lemma') in WEATHERVERBS or hd.get('lemma') == 'gaan':
+			return True
+		if (hd.get('lemma') == 'ontbreken'
+				and node.find('../node[@rel="pc"]'
+					'/node[@rel="hd"][@lemma="aan"]') is not None):
+			return True
+		# het kan voorkomen dat ...
+		if (node.get('index') and node.get('index')
+				in node.xpath('../node//node[@rel="sup"]/@index')):
+			return True
+	if node.get('rel') == 'obj1' and node.get('lemma') == 'het':
+		hd = node.find('../node[@rel="hd"]')
+		hd = '' if hd is None else hd.get('lemma')
+		# (60) de presidente had het warm
+		if hd == 'hebben' and node.find('../node[@rel="predc"]') is not None:
+			return True
+		# (61) samen zullen we het wel rooien.
+		if hd == 'rooien':
+			return True
+		# (62) hij zette het op een lopen
+		if (hd == 'zetten' and node.find('../node[@rel="svp"]/'
+				'node[@word="lopen"]') is not None):
+			return True
+		# (63) had het op mij gemunt.
+		if hd == 'munten' and node.find('..//node[@word="op"]') is not None:
+			return True
+		# (64) het erover hebben
+		if (hd == 'hebben'
+				and (node.find('../node[@word="erover"]') is not None
+					or (node.find('..//node[@word="er"]') is not None
+						and node.find('..//node[@word="over"]') is not None))):
+			return True
+	return False
+
+
 def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 		precise):
 	"""Decide whether a candidate mention should be added.
@@ -406,6 +452,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			headidx = max(int(a.get('begin')) for a
 					in node.findall('.//node[@word]')
 					if int(a.get('begin')) < b)
+	# Relative clauses: [de man] [die] ik eerder had gezien.
 	relpronoun = node.find('./node[@cat="rel"]/node[@wh="rel"]')
 	if relpronoun is not None and int(relpronoun.get('begin')) < b:
 		b = int(relpronoun.get('begin'))
@@ -413,8 +460,8 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			headidx = max(int(a.get('begin')) for a
 					in node.findall('.//node[@word]')
 					if int(a.get('begin')) < b)
-	# Appositives: "[John], [the painter]"
-	# but: "[actor John Cleese]"
+	# Appositives: "[Jan], [de schilder]"
+	# but: "[acteur John Cleese]"
 	if (precise and len(node) > 1 and node[1].get('rel') == 'app'
 			and node[1].get('ntype') != 'eigen'
 			and node[1].get('pt') != 'spec'):
@@ -424,6 +471,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			in sorted((token for token in tree.findall('.//node[@word]')
 				if a <= int(token.get('begin')) < b),
 			key=lambda x: int(x.get('begin')))]
+	# Trim punctuation
 	if tokens[0] in ',\'"()':
 		tokens = tokens[1:]
 		a += 1
@@ -435,44 +483,8 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 	# various
 	if head.get('lemma') in ('aantal', 'keer', 'toekomst', 'manier'):
 		return
-	# pleonastic it
-	if node.get('rel') in ('sup', 'pobj1'):
+	if pleonasticpronoun(node):
 		return
-	if node.get('rel') == 'su' and node.get('lemma') == 'het':
-		hd = node.find('../node[@rel="hd"]')
-		# het regent. / hoe gaat het?
-		if hd.get('lemma') in WEATHERVERBS or hd.get('lemma') == 'gaan':
-			return
-		if (hd.get('lemma') == 'ontbreken'
-				and node.find('../node[@rel="pc"]'
-					'/node[@rel="hd"][@lemma="aan"]') is not None):
-			return
-		# het kan voorkomen dat ...
-		if (node.get('index') and node.get('index')
-				in node.xpath('../node//node[@rel="sup"]/@index')):
-			return
-	if node.get('rel') == 'obj1' and node.get('lemma') == 'het':
-		hd = node.find('../node[@rel="hd"]')
-		hd = '' if hd is None else hd.get('lemma')
-		# (60) de presidente had het warm
-		if hd == 'hebben' and node.find('../node[@rel="predc"]') is not None:
-			return
-		# (61) samen zullen we het wel rooien.
-		if hd == 'rooien':
-			return
-		# (62) hij zette het op een lopen
-		if (hd == 'zetten' and node.find('../node[@rel="svp"]/'
-				'node[@word="lopen"]') is not None):
-			return
-		# (63) had het op mij gemunt.
-		if hd == 'munten' and node.find('..//node[@word="op"]') is not None:
-			return
-		# (64) het erover hebben
-		if (hd == 'hebben'
-				and (node.find('../node[@word="erover"]') is not None
-					or (node.find('..//node[@word="er"]') is not None
-						and node.find('..//node[@word="over"]') is not None))):
-			return
 	if (headidx not in covered
 			# discard measure phrases
 			and node.find('.//node[@num="meas"]') is None
@@ -481,10 +493,10 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			# and not tokens[0].isnumeric()
 			# "a few" ...
 			and (node.get('cat') != 'np' or node.get('rel') != 'det')
-			# which in "I won't say which restaurant"
+			# "welk" in "Ik ga niet zeggen welk restaurant"
 			and node.find('.//node[@begin="%d"][@vwtype="onbep"]' % a) is None
 			and node.find('.//node[@begin="%d"][@vwtype="vb"]' % a) is None
-			# "something"
+			# "iets"
 			and node.get('vwtype') not in ('onbep', 'vb')
 			# temporal expressions
 			and head.get('special') != 'tmp' and node.get('special') != 'tmp'
@@ -493,6 +505,8 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 			and node.find('./node[@sc="noun_prep"]') is None
 			# and (node.get('cat') != 'np'
 			# 	or node[0].get('pos') not in ('adj', 'noun'))
+			# het fietsen
+			and head.get('pt') != 'ww'
 			):
 		mentions.append(Mention(
 				len(mentions), sentno, tree, node, a, b, headidx,
@@ -689,7 +703,7 @@ def getquotations(trees):
 	return quotations, idx, doc
 
 
-def speakeridentification(mentions, clusters, quotations, idx, doc):
+def speakeridentification(mentions, quotations, idx, doc):
 	debug(color(
 			'speaker identification (%d quotations)' % len(quotations),
 			'yellow'))
@@ -854,9 +868,6 @@ def speakeridentification(mentions, clusters, quotations, idx, doc):
 			counts[-1] += 1
 		else:
 			counts[quotation.speaker.clusterid] += 1
-	# for a, b in sorted(counts.items(), key=lambda x: -x[1]):
-	# 	debug('%d %s' % (b, 'Unknown' if a == -1
-	# 			else mentions[min(clusters[a])]))
 
 
 def stringmatch(mentions, clusters, relaxed=False):
@@ -1152,7 +1163,7 @@ def resolvecoreference(trees, ngdata, gadata, precise=True, mentions=None):
 					# nglookup(mention.tokens[0].lower(), ngdata),
 					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
 					)
-	speakeridentification(mentions, clusters, quotations, idx, doc)
+	speakeridentification(mentions, quotations, idx, doc)
 	stringmatch(mentions, clusters)
 	stringmatch(mentions, clusters, relaxed=True)
 	preciseconstructs(mentions, clusters)
@@ -1251,7 +1262,7 @@ def writetabular(trees, mentions,
 		print('#end document', file=file)
 
 
-def htmlvis(trees, mentions, clusters, quotations, docname=''):
+def htmlvis(trees, mentions, clusters, quotations):
 	"""Visualize coreference in HTML document."""
 	output = []
 	sentences = [[a.get('word') for a
@@ -1361,7 +1372,7 @@ def comparementions(conlldata, trees, mentions, out=sys.stdout):
 	for mention in mentions:
 		mentionbegin[mention.sentno, mention.begin] += 1
 		mentionend[mention.sentno, mention.end - 1] += 1
-	for sentno, ((_, tree), sent) in enumerate(zip(trees, sentences)):
+	for sentno, sent in enumerate(sentences):
 		out.write('%d: ' % sentno)
 		for idx, token in enumerate(sent):
 			goldopen = goldclose = respopen = respclose = 0
@@ -1386,8 +1397,7 @@ def comparementions(conlldata, trees, mentions, out=sys.stdout):
 	return resp, gold
 
 
-def comparecoref(conlldata, trees, mentions, clusters, resp, gold,
-		out=sys.stdout, docname='-'):
+def comparecoref(conlldata, mentions, clusters, gold, out=sys.stdout):
 	"""List correct/incorrect coreference links."""
 	def getcoref(mention):
 		# look up span of mention in conll file
@@ -1476,7 +1486,7 @@ def process(path, output, ngdata, gadata,
 		getUD(filenames, trees)
 	if fmt == 'html':
 		corefresults, debugoutput = htmlvis(
-				trees, mentions, clusters, quotations, docname)
+				trees, mentions, clusters, quotations)
 		with open('templates/results.html') as inp:
 			template = Template(inp.read())
 		print(template.render(docname=docname, corefresults=corefresults,
@@ -1486,9 +1496,8 @@ def process(path, output, ngdata, gadata,
 		writetabular(trees, mentions, docname=docname,
 				file=output, fmt=fmt, startcluster=startcluster)
 	if conllfile is not None and VERBOSE:
-		resp, gold = comparementions(conlldata, trees, mentions)
-		comparecoref(conlldata, trees, mentions, clusters, resp, gold,
-				docname=docname)
+		_, gold = comparementions(conlldata, trees, mentions)
+		comparecoref(conlldata, mentions, clusters, gold)
 	return len(clusters)
 
 
@@ -1549,7 +1558,8 @@ def semeval(ngdata, gadata, goldmentions):
 
 
 def runtests(ngdata, gadata):
-	print('ref')
+	"""Some simple tests."""
+	print('ref (each sentence should have a coreference link)')
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in sorted(glob('tests/ref/*.xml'), key=parsesentid)]
 	for n in range(len(trees)):
@@ -1558,17 +1568,17 @@ def runtests(ngdata, gadata):
 		print(n, ' '.join(a.get('word') for a in sorted(
 				(a for a in trees[n][1].iterfind('.//node[@word]')),
 				key=lambda x: int(x.get('begin')))))
-		for n, mention in enumerate(mentions):
-			print(n, mention)
+		for m, mention in enumerate(mentions):
+			print(m, mention)
 		print(clusters)
 		if not any(len(a) > 1 for a in clusters if a is not None):
 			raise ValueError
 
-	print('\nnonref')
+	print('\nnonref (no sentence should have any coreference link)')
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in sorted(glob('tests/nonref/*.xml'), key=parsesentid)]
 	for n in range(len(trees)):
-		mentions, clusters, quotations = resolvecoreference(
+		mentions, clusters, _quotations = resolvecoreference(
 				trees[n:n + 1], ngdata, gadata)
 		print(n, ' '.join(a.get('word') for a in sorted(
 				(a for a in trees[n][1].iterfind('.//node[@word]')),
@@ -1577,6 +1587,18 @@ def runtests(ngdata, gadata):
 			print(m, mention)
 		print(clusters)
 		if not all(len(a) == 1 for a in clusters if a is not None):
+			raise ValueError
+
+	print('\nnomention (no sentence should have any mention)')
+	trees = [(parsesentid(filename), etree.parse(filename))
+			for filename in sorted(glob('tests/nomention/*.xml'),
+				key=parsesentid)]
+	for n in range(len(trees)):
+		mentions, clusters, _quotations = resolvecoreference(
+				trees[n:n + 1], ngdata, gadata)
+		for m, mention in enumerate(mentions):
+			print(m, mention)
+		if mentions:
 			raise ValueError
 
 	print('\ntests passed')
@@ -1631,6 +1653,10 @@ def nglookup(key, ngdata):
 
 
 def setverbose(verbose, debugfile):
+	"""Set global verbosity variables.
+
+	:param verbose: whether to print messages
+	:param debugfile: file to redirect messages to."""
 	global VERBOSE, DEBUGFILE
 	VERBOSE = verbose
 	DEBUGFILE = debugfile
