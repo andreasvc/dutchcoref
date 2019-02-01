@@ -1609,10 +1609,10 @@ def nglookup(key, ngdata):
 
 	:returns: a dictionary with features."""
 	if not key:
-		return
+		return {}
 	i = ngdata.find(('\n%s\t' % key.lower()).encode('utf8'))
 	if i == -1:
-		return
+		return {}
 	j = ngdata.find('\n'.encode('utf8'), i + 1)
 	match = ngdata[i + len(key) + 2:j].decode('utf8')
 	genderdata = [int(x) for x in match.split(' ')]
@@ -1627,6 +1627,7 @@ def nglookup(key, ngdata):
 		return {'number': 'sg', 'gender': 'n', 'human': 0}
 	elif genderdata[3] > sum(genderdata) / 3:
 		return {'number': 'pl', 'gender': 'n'}
+	return {}
 
 
 def setverbose(verbose, debugfile):
