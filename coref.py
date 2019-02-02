@@ -155,10 +155,12 @@ class Mention:
 				self.features['gender'] = 'n'
 				self.features['human'] = 0
 			if self.head.get('lemma') == 'haar':
-				self.features['gender'] = 'f'
-				self.features['human'] = 1
+				self.features['gender'] = 'fn'
 			elif self.head.get('lemma') == 'zijn':
 				self.features['gender'] = 'mn'
+			elif (self.head.get('lemma') in ('hun', 'hen')
+					and self.head.get('vwtype') == 'pers'):
+				self.features['human'] = 1
 		# nouns: use lexical resource
 		elif self.head.get('lemma', '').replace('_', '') in gadata:
 			gender, animacy = gadata[self.head.get(
@@ -301,7 +303,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 		return
 	if (headidx not in covered
 			# discard measure phrases
-			and node.find('.//node[@num="meas"]') is None
+			# and node.find('.//node[@num="meas"]') is None
 			and node.get('num') != "meas"
 			and node.find('./node[@pt="tw"]') is None
 			# and not tokens[0].isnumeric()
@@ -885,7 +887,9 @@ def resolvepronouns(mentions, clusters, quotations):
 				# and should not contain anaphor.
 				if (other.sentno == mention.sentno
 						and (other.begin >= mention.begin
-							or other.end >= mention.end)):
+							# allow: [de raket met [haar] massa van 750 ton]
+							or (mention.head.get('vwtype') != 'bez'
+								and other.end >= mention.end))):
 					debug('\t%d %d %s %d %s prohibited=%d i-within-i or >' % (
 							other.sentno, other.begin, other.node.get('rel'),
 							len(clusters[other.clusterid]),
@@ -895,7 +899,10 @@ def resolvepronouns(mentions, clusters, quotations):
 				# An anaphor (mention) cannot be a coargument of its
 				# antecedent (other). Coarguments are in the same clause
 				# but do not necessarily have the same parent.
-				if (sameclause(other.node, mention.node)
+				# Do not apply restriction to possessives; e.g.
+				# [de raket met [haar] massa van 750 ton]
+				if (mention.head.get('vwtype') != 'bez'
+						and sameclause(other.node, mention.node)
 						and other.node.find('..//node[@id="%s"]'
 						% mention.node.get('id')) is not None):
 					mention.prohibit.add(other.id)
@@ -1041,11 +1048,15 @@ def mergefeatures(mention, other):
 		elif key == 'number':
 			mention.features[key] = 'both'
 		elif key == 'gender':
+			# FIXME: refactor this..
 			if (mention.features[key] == 'mf'
 					and other.features[key] in ('m', 'f')):
 				mention.features[key] = other.features[key]
 			elif (mention.features[key] == 'mn'
 					and other.features[key] in ('m', 'n')):
+				mention.features[key] = other.features[key]
+			elif (mention.features[key] == 'fn'
+					and other.features[key] in ('f', 'n')):
 				mention.features[key] = other.features[key]
 			elif (mention.features[key] in ('m', 'f')
 					and other.features[key] in ('m', 'f')):
@@ -1053,11 +1064,17 @@ def mergefeatures(mention, other):
 			elif (mention.features[key] in ('m', 'n')
 					and other.features[key] in ('m', 'n')):
 				mention.features[key] = 'mn'
+			elif (mention.features[key] in ('f', 'n')
+					and other.features[key] in ('f', 'n')):
+				mention.features[key] = 'fn'
 			elif (mention.features[key] in ('m', 'f')
 					and other.features[key] == 'mf'):
 				pass
 			elif (mention.features[key] in ('m', 'n')
 					and other.features[key] == 'mn'):
+				pass
+			elif (mention.features[key] in ('f', 'n')
+					and other.features[key] == 'fn'):
 				pass
 			else:
 				mention.features[key] = None
@@ -1076,6 +1093,9 @@ def compatible(mention, other):
 			or (key == 'gender'
 				and 'mn' in (mention.features[key], other.features[key])
 				and 'f' not in (mention.features[key], other.features[key]))
+			or (key == 'gender'
+				and 'fn' in (mention.features[key], other.features[key])
+				and 'm' not in (mention.features[key], other.features[key]))
 			or (key == 'number'
 				and 'both' in (mention.features[key], other.features[key]))
 			for key in mention.features)
@@ -1371,7 +1391,7 @@ def readconll(conllfile, docname='-'):
 	return conlldata
 
 
-def compare(conlldata, trees, mentions, clusters):
+def compare(conlldata, trees, mentions, clusters, out=sys.stdout):
 	"""Visualize mentions and links wrt conll file."""
 	goldspansforcluster = extractgoldclusterdict(conlldata)
 	respspansforcluster = extractrespclusterdict(mentions, clusters)
@@ -1380,10 +1400,10 @@ def compare(conlldata, trees, mentions, clusters):
 	respspans = {(mention.sentno, mention.begin, mention.end)
 			for mention in mentions}
 	comparementions(conlldata, trees, mentions,
-			goldspans, respspans)
+			goldspans, respspans, out=out)
 	comparecoref(conlldata, trees, mentions, clusters,
 			goldspans, respspans,
-			goldspansforcluster, respspansforcluster)
+			goldspansforcluster, respspansforcluster, out=out)
 
 
 def comparementions(conlldata, trees, mentions, goldspans, respspans,
@@ -1396,13 +1416,14 @@ def comparementions(conlldata, trees, mentions, goldspans, respspans,
 			sorted(tree.iterfind('.//node[@word]'),
 				key=lambda x: int(x.get('begin')))]
 			for _, tree in trees]
-	print('\nmentions in gold missing from response:')
+	print(color('mentions in gold missing from response:', 'yellow'), file=out)
 	for sentno, begin, end in goldspans - respspans:
-		print(' '.join(sentences[sentno][begin:end]))
-	print('\nmentions in response but not in gold:')
+		print(' '.join(sentences[sentno][begin:end]), file=out)
+	print('\n' + color('mentions in response but not in gold:', 'yellow'),
+			file=out)
 	for sentno, begin, end in respspans - goldspans:
-		print(' '.join(sentences[sentno][begin:end]))
-	print()
+		print(' '.join(sentences[sentno][begin:end]), file=out)
+	print('', file=out)
 	#
 	mentionbegin = defaultdict(int)
 	mentionend = defaultdict(int)
@@ -1465,6 +1486,7 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 		b = goldclustersforspan(mention2.sentno, mention2.begin, mention2.end)
 		return a and b and not a.isdisjoint(b)
 
+	print('\n' + color('coreference clusters:', 'yellow'), file=out)
 	# take the first mention of cluster that is also a mention in gold
 	for cluster in clusters:
 		if cluster is None or len(cluster) == 1:
@@ -1628,8 +1650,8 @@ def process(path, output, ngdata, gadata,
 		writetabular(trees, mentions, docname=docname,
 				file=output, fmt=fmt, startcluster=startcluster)
 	if conllfile is not None and VERBOSE:
-		debug('evaluating against:', conllfile)
-		compare(conlldata, trees, mentions, clusters)
+		debug(color('evaluating against:', 'yellow'), conllfile)
+		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
 	return len(clusters)
 
 
