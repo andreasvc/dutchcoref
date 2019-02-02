@@ -12,9 +12,11 @@ where `n` is a sentence number and `m` a paragraph number.
 Output is sent to STDOUT.
 
 Options:
-	--help        this message
-	--verbose     debug output (sent to STDOUT)
-	--slice=N:M   restrict input with a Python slice of sentence numbers
+	--help          this message
+	--verbose       debug output (sent to STDOUT)
+	--slice=N:M     restrict input with a Python slice of sentence numbers
+	--gold=<file>   show error analysis against coreference in CoNLL file
+	--goldmentions  use gold mentions instead of predicting mentions
 	--fmt=<minimal|semeval2010|conll2012|booknlp|html>
 		output format:
 			:minimal: doc ID, token ID, token, and coreference columns
@@ -23,7 +25,7 @@ Options:
 			:html: interactive HTML visualization with coreference and dialogue
 				information.
 
-Instead of giving a directory, can use one of the following presets:
+Instead of specifying a directory and gold file, can use the following presets:
 	--clindev     run on CLIN26 shared task development data
 	--semeval     run on SemEval 2010 development data
 	--test        run tests
