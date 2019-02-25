@@ -1207,7 +1207,7 @@ def nglookup(key, ngdata):
 
 
 def writetabular(trees, mentions,
-		docname='-', part='-', file=sys.stdout, fmt=None, startcluster=0):
+		docname='-', part=0, file=sys.stdout, fmt=None, startcluster=0):
 	"""Write output in tabular format."""
 	sentences = [sorted(tree.iterfind('.//node[@word]'),
 				key=lambda x: int(x.get('begin')))
@@ -1215,39 +1215,31 @@ def writetabular(trees, mentions,
 	sentids = ['%d-%d' % (parno, sentno) for (parno, sentno), _ in trees]
 	labels = [[''] * len(sent) for sent in sentences]
 	for mention in sortmentions(mentions):
-		for n in range(mention.begin, mention.end):
-			coreflabel = labels[mention.sentno][n]
-			# Start of mention, add bracket
-			if n == mention.begin:
-				if coreflabel:
-					coreflabel += '|'
-				coreflabel += '('
-			if coreflabel:
-				if coreflabel[-1] != '(':
-					coreflabel += '|'
-			coreflabel += str(mention.clusterid + startcluster)
-			# End of mention, add bracket
-			if n + 1 == mention.end:
-				coreflabel += ')'
-			labels[mention.sentno][n] = coreflabel
-	labels = [[a or '-' for a in coreflabels]
+		labels[mention.sentno][mention.begin] += '|(%d' % (
+				mention.clusterid + startcluster)
+		if mention.begin == mention.end - 1:
+			labels[mention.sentno][mention.begin] += ')'
+		else:
+			labels[mention.sentno][mention.end - 1] += '|%d)' % (
+					mention.clusterid + startcluster)
+	labels = [[a.lstrip('|') or '-' for a in coreflabels]
 			for n, coreflabels in enumerate(labels, 1)]
 	doctokenid = 0
 	if fmt == 'semeval2010':
 		print('#begin document %s' % docname, file=file)
+	elif fmt == 'conll2012':
+		print('#begin document (%s); part %03d' % (docname, part), file=file)
 	else:
 		print('#begin document (%s);' % docname, file=file)
 	for sentid, sent, sentlabels in zip(sentids, sentences, labels):
-		if fmt == 'conll2012':
-			print('# sent_id = %s' % sentid)
 		for tokenid, (token, label) in enumerate(zip(sent, sentlabels), 1):
 			doctokenid += 1
 			if fmt is None or fmt == 'minimal':
 				print(docname, doctokenid, token.get('word'), label,
 						sep='\t', file=file)
 			elif fmt == 'conll2012':
-				print(docname, part, doctokenid, token.get('word'),
-						token.get('postag'), *(['-'] * 5), label,
+				print(docname, part, tokenid - 1, token.get('word'),
+						*(['-'] * 6), '*', label,
 						sep='\t', file=file)
 			elif fmt == 'semeval2010':
 				print(tokenid, token.get('word'), label,
