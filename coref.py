@@ -1215,13 +1215,14 @@ def writetabular(trees, mentions,
 	sentids = ['%d-%d' % (parno, sentno) for (parno, sentno), _ in trees]
 	labels = [[''] * len(sent) for sent in sentences]
 	for mention in sortmentions(mentions):
-		labels[mention.sentno][mention.begin] += '|(%d' % (
-				mention.clusterid + startcluster)
-		if mention.begin == mention.end - 1:
-			labels[mention.sentno][mention.begin] += ')'
-		else:
-			labels[mention.sentno][mention.end - 1] += '|%d)' % (
-					mention.clusterid + startcluster)
+		labels[mention.sentno][mention.begin] = '|(%d%s%s' % (
+				mention.clusterid + startcluster,
+				')' if mention.begin == mention.end - 1 else '',
+				labels[mention.sentno][mention.begin])
+		if mention.begin != mention.end - 1:
+			labels[mention.sentno][mention.end - 1] = '|%d)%s' % (
+					mention.clusterid + startcluster,
+					labels[mention.sentno][mention.end - 1])
 	labels = [[a.lstrip('|') or '-' for a in coreflabels]
 			for n, coreflabels in enumerate(labels, 1)]
 	doctokenid = 0
@@ -1371,7 +1372,7 @@ def readconll(conllfile, docname='-'):
 					if line.startswith('#'):
 						pass
 					elif line.strip():
-						conlldata[-1].append(line.strip().split('\t'))
+						conlldata[-1].append(line.strip().split())
 					else:
 						conlldata.append([])
 				break
@@ -1549,6 +1550,7 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 def extractgoldclusterdict(conlldata):
 	"""Extract dict from connl file mapping gold cluster IDs to spans."""
 	spansforcluster = {}
+	spans = set()
 	for sentno, chunk in enumerate(conlldata):
 		scratch = {}
 		for idx, fields in enumerate(chunk):
@@ -1560,11 +1562,17 @@ def extractgoldclusterdict(conlldata):
 				if a.startswith('('):
 					scratch.setdefault(clusterid, []).append((sentno, idx))
 				if a.endswith(')'):
-					spansforcluster.setdefault(clusterid, set()).add(
-							scratch[int(a.strip('()'))].pop() + (idx + 1, ))
+					span = scratch[int(a.strip('()'))].pop() + (idx + 1, )
+					if span in spans:
+						debug('Warning: gold data has duplicate span %r '
+								'in cluster %d' % (span, clusterid))
+					spans.add(span)
+					spansforcluster.setdefault(clusterid, set()).add(span)
 		if any(scratch.values()):
-			raise ValueError('Unclosed paren? %d %r %s'
-					% (sentno, scratch, chunk))
+			print({a: b for a, b in scratch.items() if b})
+			for line in chunk:
+				print('\t'.join(line))
+			raise ValueError('Unclosed paren? sentno=%d' % (sentno))
 	return spansforcluster
 
 
