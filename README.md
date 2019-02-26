@@ -131,10 +131,10 @@ With `--fmt=booknlp`, the output contains the following columns:
 
 Web demo
 --------
-See `web.py`. Requires a running instance of
-[alpiner](https://github.com/rug-compling/alpino-api/tree/master/demo),
-with the port number matching the one defined in `web.py` in the variable ALPINOAPI.
-
+The web demo accepts short pieces of text, takes care of parsing, and presents
+a visualization of coreference results. Requires a running instance of
+[alpiner](https://github.com/andreasvc/alpino-api/tree/master/demo).
+Run with `python3 web.py`
 
 Annotation workflow
 -------------------

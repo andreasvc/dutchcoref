@@ -14,7 +14,7 @@ APP = Flask(__name__)
 DEBUG = False
 LIMIT = 5000  # maximum number of bytes of input to accept
 STANDALONE = __name__ == '__main__'
-ALPINOAPI = 'http://127.0.0.1:11300/json'
+ALPINOAPI = 'http://127.0.0.1:11200/json'
 
 
 @APP.route('/')
@@ -49,7 +49,7 @@ def results():
 def parse(text):
 	"""Tokenize & parse text with Alpino API.
 
-	Cf. https://github.com/rug-compling/alpino-api
+	Cf. https://github.com/andreasvc/alpino-api
 	Expects alpino-api/demo/alpiner server to be running and accessible
 	at URL ALPINOAPI."""
 	def parselabel(label):
@@ -107,13 +107,14 @@ if STANDALONE:
 	from getopt import gnu_getopt, GetoptError
 	try:
 		opts, _args = gnu_getopt(sys.argv[1:], '',
-				['port=', 'ip=', 'numproc=', 'debug'])
+				['port=', 'ip=', 'alpinoapi=', 'debug'])
 		opts = dict(opts)
 	except GetoptError as err:
 		print('error: %r' % err, file=sys.stderr)
 		sys.exit(2)
 	DEBUG = '--debug' in opts
-if STANDALONE:
+	if '--alpinoapi' in opts:
+		ALPINOAPI = opts['--alpinoapi']
 	APP.run(use_reloader=True,
 			host=opts.get('--ip', '0.0.0.0'),
 			port=int(opts.get('--port', 5005)),
