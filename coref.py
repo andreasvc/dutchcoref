@@ -1703,7 +1703,7 @@ def semeval(ngdata, gadata, goldmentions):
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
 				'blanc',
-				'../../data/semeval2010/task01.posttask.v1.0/'
+				'data/semeval2010/task01.posttask.v1.0/'
 					'corpora/training/nl.devel.txt.fixed',
 				'resultsemeval/%s/result.conll'
 				% timestamp],
