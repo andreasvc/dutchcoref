@@ -5,23 +5,32 @@ where directory contains .xml files with sentences parsed by Alpino.
 Output is sent to STDOUT.
 
 Options:
-	--help          this message
-	--verbose       debug output (sent to STDOUT)
-	--slice=N:M     restrict input with a Python slice of sentence numbers
-	--gold=<file>   show error analysis against coreference in CoNLL file
-	--goldmentions  use gold mentions instead of predicting mentions
-	--fmt=<minimal|semeval2010|conll2012|booknlp|html>
-		output format:
-			:minimal: doc ID, token ID, token, and coreference columns
-			:booknlp: tabular format with universal dependencies and dialogue
-				information in addition to coreference.
-			:html: interactive HTML visualization with coreference and dialogue
-				information.
+    --help          this message
+    --verbose       debug output (sent to STDOUT)
+    --slice=N:M     restrict input with a Python slice of sentence numbers
+    --gold=<file>   show error analysis against coreference in CoNLL file
+    --goldmentions  use gold mentions instead of predicting mentions
+    --fmt=<minimal|semeval2010|conll2012|booknlp|html>
+        output format:
+            :minimal: doc ID, token ID, token, and coreference columns
+            :booknlp: tabular format with universal dependencies and dialogue
+                information in addition to coreference.
+            :html: interactive HTML visualization with coreference and dialogue
+                information.
+    --exclude=<item1,item2,...>
+        exclude given types of mentions/links from output:
+            :singletons: mentions without any coreference links
+            :npsingletons: non-name mentions without any coreference links
+            :relpronouns: relative pronouns
+            :reflectives: reflective pronouns
+            :reciprocals: reciprocal pronouns
+            :appositives: appositives NPs
+            :predicatives: nominal predicatives
 
 Instead of specifying a directory and gold file, can use the following presets:
-	--clindev     run on CLIN26 shared task development data
-	--semeval     run on SemEval 2010 development data
-	--test        run tests
+    --clindev     run on CLIN26 shared task development data
+    --semeval     run on SemEval 2010 development data
+    --test        run tests
 """
 import io
 import os
@@ -93,6 +102,7 @@ class Mention:
 		self.tokens = tokens
 		self.id = mentionid
 		self.prohibit = set()
+		self.filter = False
 		removeids = {n for rng in
 				(range(int(child.get('begin')), int(child.get('end')))
 				for child in node.findall('.//node[@rel="app"]')
@@ -188,12 +198,20 @@ class Mention:
 				# Assume first token is first name.
 				self.features.update(nglookup(self.tokens[0], ngdata))
 
+	def featrepr(self, extended=False):
+		result = ' '.join('%s=%s' % (a, '?' if b is None else b)
+					for a, b in self.features.items())
+		result += ' inquote=%d' % int(self.head.get('quotelabel') == 'I')
+		if extended:
+			result += ' neclass=%s head=%s' % (
+					self.head.get('neclass'), self.head.get('word'))
+		return result
+
 	def __str__(self):
-		return '\'%s\' %s inquote=%s' % (
-				color(' '.join(self.tokens), 'green'),
-				' '.join('%s=%s' % (a, '?' if b is None else b)
-					for a, b in self.features.items()),
-				int(self.head.get('quotelabel') == 'I'))
+		return "'%s'" % color(' '.join(self.tokens), 'green')
+
+	def __repr__(self):
+		return "Mention('%s', ...)" % ' '.join(self.tokens)
 
 
 class Quotation:
@@ -209,7 +227,7 @@ class Quotation:
 		self.text = text  # text of quote (including quote marks)
 
 
-def getmentions(trees, ngdata, gadata, precise):
+def getmentions(trees, ngdata, gadata):
 	"""Collect mentions."""
 	debug(color('mention detection', 'yellow'))
 	mentions = []
@@ -230,23 +248,14 @@ def getmentions(trees, ngdata, gadata, precise):
 		covered = set()
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, mentions, covered,
-					ngdata, gadata, precise)
+					ngdata, gadata)
 	return mentions
 
 
-def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
-		precise):
-	"""Decide whether a candidate mention should be added.
-
-	:param precise: whether 'precise constructs' are enabled (appositives,
-		reflexive/relative/reciprocal pronouns, nominal predicates).
-	"""
+def considermention(node, tree, sentno, mentions, covered, ngdata, gadata):
+	"""Decide whether a candidate mention should be added."""
 	if len(node) == 0 and 'word' not in node.keys():
 		return
-	if not precise:
-		if (node.get('vwtype') in ('betr', 'refl', 'recip')
-				or node.get('rel') in ('app', 'predc')):
-			return
 	headidx = getheadidx(node)
 	indices = sorted(int(token.get('begin')) for token
 			in (node.findall('.//node[@word]') if len(node) else [node]))
@@ -273,7 +282,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 					if int(a.get('begin')) < b)
 	# Relative clauses: [de man] [die] ik eerder had gezien.
 	relpronoun = node.find('./node[@cat="rel"]/node[@wh="rel"]')
-	if precise and relpronoun is not None and int(relpronoun.get('begin')) < b:
+	if relpronoun is not None and int(relpronoun.get('begin')) < b:
 		b = int(relpronoun.get('begin'))
 		if headidx > b:
 			headidx = max(int(a.get('begin')) for a
@@ -281,7 +290,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata,
 					if int(a.get('begin')) < b)
 	# Appositives: "[Jan], [de schilder]"
 	# but: "[acteur John Cleese]"
-	if (precise and len(node) > 1 and node[1].get('rel') == 'app'
+	if (len(node) > 1 and node[1].get('rel') == 'app'
 			and node[1].get('ntype') != 'eigen'
 			and node[1].get('pt') != 'spec'):
 		node = node[0]
@@ -409,7 +418,7 @@ def getquotations(trees):
 			'``': "''",
 			}
 	# convert to flat list of tokens
-	doc = []
+	doc = []  # list of tokens as XML nodes by global token index
 	parbreak = []  # True if new paragraph starts at token index
 	idx = {}  # map (sentno, tokenno) to global token index
 	sentnos = []  # map global token index to sentno
@@ -687,6 +696,7 @@ def preciseconstructs(mentions, clusters):
 	relpronouns = {}
 	reflpronouns = {}
 	recippronouns = {}
+	acronyms = {}
 
 	# Pass 1: collect antecedents
 	for mention in mentions:
@@ -730,6 +740,16 @@ def preciseconstructs(mentions, clusters):
 				recippronouns[mention.sentno,
 					int(node.get('begin')), int(node.get('end'))
 					] = mention
+		if (mention.head.get('neclass') is not None
+				and len(mention.tokens) > 1):
+			# FIXME: detect and avoid ambiguous acronyms
+			# FIXME: prefer explicit cases: "Full NP (acronym)"
+			# De Partij van de Arbeid => PvdA
+			acronyms[''.join(token[0] for n, token in enumerate(mention.tokens)
+					if token.lower() not in STOPWORDS or n > 0)] = mention
+			# De Koninklijke Nederlandse Akademie van Wetenschappen => KNAW
+			acronyms[''.join(token[0] for token in mention.tokens
+					if token.lower() not in STOPWORDS)] = mention
 
 	# Pass 2: find mentions to link to collected antecedents
 	for mention in mentions:
@@ -762,6 +782,13 @@ def preciseconstructs(mentions, clusters):
 				in recippronouns):
 			merge(recippronouns[mention.sentno, mention.begin, mention.end],
 					mention, mentions, clusters)
+		if (mention.head.get('neclass') is not None
+				and len(mention.tokens) == 1
+				and sum(a.isupper() for a in mention.tokens[0]) > 1):
+			# an acronym is a token with two or more upper case characters.
+			acr = ''.join(a for a in mention.tokens[0] if a.isalnum())
+			if acr in acronyms:
+				merge(acronyms[acr], mention, mentions, clusters)
 
 
 def strictheadmatch(mentions, clusters, sieve):
@@ -941,18 +968,15 @@ def resolvepronouns(mentions, clusters, quotations):
 					merge(quotation.addressee, pronouns[0], mentions, clusters)
 
 
-def resolvecoreference(trees, ngdata, gadata, precise=True, mentions=None):
+def resolvecoreference(trees, ngdata, gadata, mentions=None):
 	"""Get mentions and apply coreference sieves."""
 	if mentions is None:
-		mentions = getmentions(trees, ngdata, gadata, precise)
+		mentions = getmentions(trees, ngdata, gadata)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE:
 		for mention in mentions:
-			debug(mention,
-					'head=%s neclass=%s' % (
-						mention.head.get('word'),
-						mention.head.get('neclass')),
+			debug(mention, mention.featrepr(extended=True),
 					# nglookup(' '.join(mention.tokens).lower(), ngdata),
 					# nglookup(mention.tokens[0].lower(), ngdata),
 					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
@@ -1028,9 +1052,9 @@ def merge(mention1, mention2, mentions, clusters):
 	cluster1.update(cluster2)
 	for m in cluster2:
 		mentions[m].clusterid = mention1.clusterid
-	debug('Linked  %d %d %s\n\t%d %d %s' % (
-			mention1.sentno, mention1.begin, mention1,
-			mention2.sentno, mention2.begin, mention2))
+	debug('Linked  %d %d %s %s\n\t%d %d %s %s' % (
+			mention1.sentno, mention1.begin, mention1, mention1.featrepr(),
+			mention2.sentno, mention2.begin, mention2, mention2.featrepr()))
 
 
 def mergefeatures(mention, other):
@@ -1215,6 +1239,8 @@ def writetabular(trees, mentions,
 	sentids = ['%d-%d' % (parno, sentno) for (parno, sentno), _ in trees]
 	labels = [[''] * len(sent) for sent in sentences]
 	for mention in sortmentions(mentions):
+		if mention.filter:
+			continue
 		labels[mention.sentno][mention.begin] = '|(%d%s%s' % (
 				mention.clusterid + startcluster,
 				')' if mention.begin == mention.end - 1 else '',
@@ -1277,22 +1303,19 @@ def htmlvis(trees, mentions, clusters, quotations):
 			for _, tree in trees]
 	sentids = [(parno, sentno) for (parno, sentno), _ in trees]
 	for mention in sortmentions(mentions):
-		for n in range(mention.begin, mention.end):
-			coreflabel = sentences[mention.sentno][n]
-			# Start of mention, add bracket
-			if n == mention.begin:
-				if len(clusters[mention.clusterid]) > 1:
-					coreflabel = '<span id="m%d" class="c%d">[%s' % (
-							mention.id, mention.clusterid, coreflabel)
-				else:
-					coreflabel = '[' + coreflabel
-			# End of mention, add bracket
-			if n + 1 == mention.end:
-				if len(clusters[mention.clusterid]) > 1:
-					coreflabel = coreflabel + ']</span>'
-				else:
-					coreflabel = coreflabel + ']'
-			sentences[mention.sentno][n] = coreflabel
+		if mention.filter:
+			continue
+		if len(clusters[mention.clusterid]) > 1:
+			sentences[mention.sentno][mention.begin] = (
+					'<span id="m%d" class="c%d" title="%s">[%s' % (
+						mention.id, mention.clusterid,
+						mention.featrepr(extended=True),
+						sentences[mention.sentno][mention.begin]))
+			sentences[mention.sentno][mention.end - 1] += ']</span>'
+		else:
+			sentences[mention.sentno][mention.begin] = (
+					'[%s' % sentences[mention.sentno][mention.begin])
+			sentences[mention.sentno][mention.end - 1] += ']'
 	qstarts = {q.start: n for n, q in enumerate(quotations)}
 	qends = {q.end - 1 for q in quotations}
 	doctokenid = 0
@@ -1391,7 +1414,7 @@ def compare(conlldata, trees, mentions, clusters, out=sys.stdout):
 	goldspans = {span for spans in goldspansforcluster.values()
 			for span in spans}
 	respspans = {(mention.sentno, mention.begin, mention.end)
-			for mention in mentions}
+			for mention in mentions if not mention.filter}
 	comparementions(conlldata, trees, mentions,
 			goldspans, respspans, out=out)
 	comparecoref(conlldata, trees, mentions, clusters,
@@ -1412,19 +1435,25 @@ def comparementions(conlldata, trees, mentions, goldspans, respspans,
 	print(color('mentions in gold missing from response:', 'yellow'), file=out)
 	for sentno, begin, end in goldspans - respspans:
 		print(' '.join(sentences[sentno][begin:end]), file=out)
+	if len(goldspans - respspans) == 0:
+		print('(none)')
 	print('\n' + color('mentions in response but not in gold:', 'yellow'),
 			file=out)
 	for sentno, begin, end in respspans - goldspans:
 		print(' '.join(sentences[sentno][begin:end]), file=out)
+	if len(respspans - goldspans) == 0:
+		print('(none)')
 	print('', file=out)
 	#
 	mentionbegin = defaultdict(int)
 	mentionend = defaultdict(int)
 	for mention in mentions:
-		mentionbegin[mention.sentno, mention.begin] += 1
-		mentionend[mention.sentno, mention.end - 1] += 1
+		if not mention.filter:
+			mentionbegin[mention.sentno, mention.begin] += 1
+			mentionend[mention.sentno, mention.end - 1] += 1
 	for sentno, sent in enumerate(sentences):
 		out.write('%d: ' % sentno)
+		# FIXME: ensure parentheses are well-nested
 		for idx, token in enumerate(sent):
 			goldopen = goldclose = respopen = respclose = 0
 			respopen += mentionbegin.get((sentno, idx), 0)
@@ -1482,18 +1511,28 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 	print('\n' + color('coreference clusters:', 'yellow'), file=out)
 	# take the first mention of cluster that is also a mention in gold
 	for cluster in clusters:
-		if cluster is None or len(cluster) == 1:
+		# skip clusters that are singleton in both response and gold
+		if cluster is None or (
+				len(cluster) == 1 and all(
+					len(goldspansforcluster[cid]) == 1
+					for m in cluster
+						for cid in goldclustersforspan(mentions[m].sentno,
+							mentions[m].begin, mentions[m].end))):
 			continue
 		cand = sorted(n for n in cluster if
 				(mentions[n].sentno, mentions[n].begin, mentions[n].end)
-				in goldspans)
+				in goldspans and not mentions[n].filter)
 		n = cand[0] if cand else min(cluster)
 		correctmention = ((mentions[n].sentno, mentions[n].begin,
 				mentions[n].end) in goldspans)
+		if correctmention:
+			c = 'yellow' if mentions[n].filter else 'green'
+		elif mentions[n].filter:
+			continue
+		else:
+			c = 'red'
 		print(mentions[n].sentno, mentions[n].begin,
-				color('[', 'green' if correctmention else 'red')
-				+ ' '.join(mentions[n].tokens)
-				+ color(']', 'green' if correctmention else 'red'),
+				color('[', c) + ' '.join(mentions[n].tokens) + color(']', c),
 				file=out)
 		for m in sorted(cluster - {n}):
 			correct = correctlink(mentions[n], mentions[m])
@@ -1510,7 +1549,10 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 		for cid in goldclustersforspan(mentions[n].sentno, mentions[n].begin,
 				mentions[n].end):
 			for span in goldspansforcluster[cid]:
-				if span not in respspansforcluster[mentions[n].clusterid]:
+				if (span != (mentions[n].sentno, mentions[n].begin,
+						mentions[n].end)
+						and span not in respspansforcluster[
+							mentions[n].clusterid]):
 					sentno, begin, end = span
 					print('\t',
 							color('<-->', 'yellow'),
@@ -1583,8 +1625,10 @@ def extractrespclusterdict(mentions, clusters):
 		if cluster is None:
 			continue
 		for m in cluster:
-			spansforcluster.setdefault(n, set()).add(
-				(mentions[m].sentno, mentions[m].begin, mentions[m].end))
+			spansforcluster.setdefault(n, set())
+			if not mentions[m].filter:
+				spansforcluster[n].add((mentions[m].sentno,
+						mentions[m].begin, mentions[m].end))
 	return spansforcluster
 
 
@@ -1616,10 +1660,38 @@ def color(text, c):
 	raise ValueError
 
 
+def postprocess(exclude, mentions, clusters, goldmentions):
+	"""Filter certain mentions/links."""
+	tests = {
+			'singletons': lambda m: len(clusters[m.clusterid]) == 1,
+			'npsingletons': lambda m: (len(clusters[m.clusterid]) == 1
+				and m.type != 'name'),
+			'relpronouns': lambda m: m.node.get('vwtype') == 'betr',
+			'reflectives': lambda m: m.node.get('vwtype') == 'refl',
+			'reciprocals': lambda m: m.node.get('vwtype') == 'recip',
+			'appositives': lambda m: m.node.get('rel') == 'app',
+			'predicatives': lambda m: m.node.get('rel') == 'predc',
+			}
+	for kind in exclude:
+		if kind not in tests:
+			raise ValueError('unrecognized --exclude argument: %s' % kind)
+	if exclude:
+		for mention in mentions:
+			if any(tests[kind](mention) for kind in exclude):
+				if goldmentions:
+					# Remove links but keep gold mention
+					if mention.clusterid != mention.id:
+						clusters[mention.clusterid].remove(mention.id)
+						mention.clusterid = mention.id
+						clusters[mention.id] = {mention.id}
+				else:  # Mark as filtered; removal would change mention IDs
+					mention.filter = True
+
+
 def process(path, output, ngdata, gadata,
 		docname='-', conllfile=None, fmt=None,
 		start=None, end=None, startcluster=0,
-		precise=True, goldmentions=False):
+		goldmentions=False, exclude=()):
 	"""Process a single directory with Alpino XML parses."""
 	if os.path.isdir(path):
 		path = os.path.join(path, '*.xml')
@@ -1635,7 +1707,8 @@ def process(path, output, ngdata, gadata,
 	if goldmentions:
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
 	mentions, clusters, quotations = resolvecoreference(trees, ngdata, gadata,
-			precise, mentions)
+			mentions)
+	postprocess(exclude, mentions, clusters, goldmentions)
 	if fmt == 'booknlp':
 		getunivdeps(filenames, trees)
 	if fmt == 'html':
@@ -1650,7 +1723,7 @@ def process(path, output, ngdata, gadata,
 		writetabular(trees, mentions, docname=docname,
 				file=output, fmt=fmt, startcluster=startcluster)
 	if conllfile is not None and VERBOSE:
-		debug(color('evaluating against:', 'yellow'), conllfile)
+		debug(color('evaluating against:', 'yellow'), conllfile, docname)
 		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
 	return len(clusters)
 
@@ -1697,8 +1770,9 @@ def semeval(ngdata, gadata, goldmentions):
 					fmt='semeval2010', docname=docname,
 					conllfile='data/semeval2010/task01.posttask.v1.0/'
 						'corpora/training/nl.devel.txt.fixed',
-					startcluster=startcluster, precise=False,
-					goldmentions=goldmentions)
+					startcluster=startcluster, goldmentions=goldmentions,
+					exclude=('relpronouns', 'reflectives', 'reciprocals',
+						'predicatives', 'appositives', 'npsingletons'))
 	with open('resultsemeval/%s/blanc_scores' % timestamp, 'w') as out:
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
@@ -1719,9 +1793,7 @@ def runtests(ngdata, gadata):
 	for n in range(len(trees)):
 		mentions, clusters, _quotations = resolvecoreference(
 				trees[n:n + 1], ngdata, gadata)
-		print(n, ' '.join(a.get('word') for a in sorted(
-				(a for a in trees[n][1].iterfind('.//node[@word]')),
-				key=lambda x: int(x.get('begin')))))
+		print('%d. %s' % (n, ' '.join(gettokens(trees[n][1], 0, 999))))
 		for m, mention in enumerate(mentions):
 			print(m, mention)
 		print(clusters)
@@ -1734,9 +1806,7 @@ def runtests(ngdata, gadata):
 	for n in range(len(trees)):
 		mentions, clusters, _quotations = resolvecoreference(
 				trees[n:n + 1], ngdata, gadata)
-		print(n, ' '.join(a.get('word') for a in sorted(
-				(a for a in trees[n][1].iterfind('.//node[@word]')),
-				key=lambda x: int(x.get('begin')))))
+		print('%d. %s' % (n, ' '.join(gettokens(trees[n][1], 0, 999))))
 		for m, mention in enumerate(mentions):
 			print(m, mention)
 		print(clusters)
@@ -1750,19 +1820,21 @@ def runtests(ngdata, gadata):
 	for n in range(len(trees)):
 		mentions, clusters, _quotations = resolvecoreference(
 				trees[n:n + 1], ngdata, gadata)
+		print('%d. %s [%d mentions]' % (
+				n, ' '.join(gettokens(trees[n][1], 0, 999)), len(mentions)))
 		for m, mention in enumerate(mentions):
 			print(m, mention)
 		if mentions:
 			raise ValueError
 
-	print('\ntests passed')
+	print('\nall tests passed')
 
 
 def main():
 	"""CLI"""
 	opts, args = gnu_getopt(sys.argv[1:], '', [
 		'help', 'verbose', 'clindev', 'semeval', 'test',
-		'goldmentions', 'fmt=', 'slice=', 'gold='])
+		'goldmentions', 'fmt=', 'slice=', 'gold=', 'exclude='])
 	opts = dict(opts)
 	if '--help' in opts:
 		print(__doc__)
@@ -1786,7 +1858,8 @@ def main():
 				fmt=opts.get('--fmt'), start=start, end=end,
 				docname=os.path.basename(path.rstrip('/')),
 				conllfile=opts.get('--gold'),
-				goldmentions='--goldmentions' in opts)
+				goldmentions='--goldmentions' in opts,
+				exclude=opts.get('--exclude', '').split(','))
 
 
 if __name__ == '__main__':

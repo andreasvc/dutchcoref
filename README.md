@@ -34,8 +34,14 @@ Instead of specifying a directory and gold file, can use the following presets:
 See https://andreasvc.github.io/voskuil.html for an example of the HTML visualization.
 
 
-Datasets
---------
+Dependencies and Datasets
+-------------------------
+Install the required packages:
+
+	$ pip3 install -r requirements.txt
+
+Unless you are working on an already annotated or parsed corpus, you will want to
+install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUserGuide.html).
 
 ### Dutch first names (required)
 
@@ -152,8 +158,8 @@ Annotation workflow
 
 References
 ----------
-This code base is a Dutch implementation of the Stanford Multi-Pass Sieve Coreference System
-for English:
+This code base is a Dutch implementation of the Stanford Multi-Pass Sieve
+Coreference System for English:
 
 Heeyoung Lee, Angel Chang, Yves Peirsman, Nathanael Chambers, Mihai Surdeanu, and Dan Jurafsky. Deterministic coreference resolution based on entity-centric, precision-ranked rules. Computational Linguistics, 39 (4):885–916, 2013. http://aclweb.org/anthology/J13-4004.pdf
 
