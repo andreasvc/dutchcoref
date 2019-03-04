@@ -36,6 +36,11 @@ See https://andreasvc.github.io/voskuil.html for an example of the HTML visualiz
 
 Dependencies and Datasets
 -------------------------
+Get the repository:
+
+	$ git clone https://github.com/andreasvc/dutchcoref.git
+	$ cd dutchcoref
+
 Install the required packages:
 
 	$ pip3 install -r requirements.txt
@@ -46,17 +51,18 @@ install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUser
 ### Dutch first names (required)
 
 Download `Top_eerste_voornamen_NL_2010.csv`
-from https://www.meertens.knaw.nl/nvb/
-and put it in the `data/` directory.
+from https://www.meertens.knaw.nl/nvb/ (click on "Veelgestelde vragen"
+and then on the bottom "Klik hier").
+Unzip it and put the csv file in the `data/` directory.
 
-### Number & gender data from Web text (required), CLIN26 shared task data
+### Number & gender data from Web text (required), CLIN26 shared task data (optional)
 
 Clone this repository under same parent folder as this repository:
 
     ~/code/dutchcoref $ cd ..
     ~/code $ git clone https://bitbucket.org/robvanderg/groref.git
 
-### SemEval 2010 shared task data
+### SemEval 2010 shared task data (optional)
 
 Download the data from http://www.lsi.upc.edu/~esapena/downloads/index.php?id=1
 
@@ -148,6 +154,7 @@ Annotation workflow
 	in XML files.
 2. Run coreference resolution on the parse trees:
 	`python3 coref.py --fmt=conll2012 /path/to/text/ > text.conll`
+	(Forward slashes are required, also on Windows).
 3. Get the latest stable release of [CorefAnnotator](https://github.com/nilsreiter/CorefAnnotator/releases).
 	Run it with `java -jar CorefAnnotator-1.7.3-full.jar`
 4. Import the `.conll` file (CoNLL 2012 button under "Import from other formats").
