@@ -1859,7 +1859,7 @@ def main():
 				docname=os.path.basename(path.rstrip('/')),
 				conllfile=opts.get('--gold'),
 				goldmentions='--goldmentions' in opts,
-				exclude=opts.get('--exclude', '').split(','))
+				exclude=[a for a in opts.get('--exclude', '').split(',') if a])
 
 
 if __name__ == '__main__':
