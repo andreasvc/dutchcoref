@@ -1266,7 +1266,7 @@ def writetabular(trees, mentions,
 						sep='\t', file=file)
 			elif fmt == 'conll2012':
 				print(docname, part, tokenid - 1, token.get('word'),
-						*(['-'] * 6), '*', label,
+						*(['-'] * 5), '*', label,
 						sep='\t', file=file)
 			elif fmt == 'semeval2010':
 				print(tokenid, token.get('word'), label,
