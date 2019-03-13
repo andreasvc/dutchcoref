@@ -41,7 +41,7 @@
 \item Identify mentions by asking yourself whether a span of text describes
   a specific identifiable object or person.
 \item When the same entity is referred to again, ensure that both mentions
-  are assigned to the same coreference cluster. Conversely, remove any
+  are in the same coreference cluster. Conversely, remove any
   incorrect links.
 \end{itemize*}
 
@@ -51,13 +51,11 @@ A mention is a span of text that refers to an entity or person in the
 real or mental world. All mentions referring to objects or persons are
 annotated, including entities that are not referred to again
 (singletons). Mentions have been automatically identified, but they may
-need to be corrected. Always annotate the longest, most specific
-continuous span describing a mention (e.g., \emph{kandidaat voor de
-coalitie}, not \emph{kandidaat}).
+need to be corrected.
 
 The following subsections list the types of mentions that should be annotated.
 The span of a mention is indicated here with square brackets {[} and {]};
-a span that should not be annotated is indicated with \n{[} red brackets\n{]}.
+a span that should not be annotated as mention is indicated with \n{[} red brackets\n{]}.
 
 \subsection{Pronouns}
 \begin{itemize*}
@@ -65,13 +63,14 @@ a span that should not be annotated is indicated with \n{[} red brackets\n{]}.
         Includes \emph{het} when used as pronoun.
     \item Possessive pronouns (\emph{mijn, zijn}, \dots)
     \item Demonstrative pronouns (\emph{die, dat, deze, dit, daar})
-    \item Relative pronouns (\emph{die, dat})
+    \item Relative pronouns (\emph{die, dat, wie, wat})
     \item Reflexive/reciprocal pronouns (\emph{zich, zichzelf, elkaar}).
         Both obligatory and normal reflexives are annotated.
     \item Indefinite/generic pronouns (\emph{men, je, ze, iedereen, iemand, \dots})
       when the same unspecified person/thing can be referred to again. This
       excludes e.g. \emph{niemand} or wh-pronouns in questions
       (\emph{wie, wat, welke, \dots)}.
+    \item Pronominal adverbs of location: \emph{er, hier, daar, waar, waarin, \dots}
 \end{itemize*}
 
 Exclude non-referential, pleonastic pronouns:
@@ -82,8 +81,7 @@ Exclude non-referential, pleonastic pronouns:
 \end{itemize*}
 
 
-\subsection{Proper nouns}
-i.e., named entities
+\subsection{Proper nouns (named entities)}
 \begin{itemize*}
     \item One-word names: \emph{[Jan], [Amerika]}.
     \item Multiword names form a single mention: \emph{[Jan de Vries], [de Verenigde Staten]}.
@@ -91,9 +89,24 @@ i.e., named entities
 
 
 \subsection{Noun phrases (NPs)}
+Always annotate the longest, most specific
+continuous span describing a mention. What to include:
+\begin{itemize*}
+    \item Determiners: \emph{[het huis]} \\
+        A possessive pronoun is a determiner,
+        and is also its own mention:\\
+            \emph{[[mijn] fiets]}
+    \item Adjectives, nouns: \emph{[een warme kop thee]}
+    \item Prepositional phrases modifying the noun:
+        \emph{[kandidaat voor [de coalitie]]}.
+    \item Noun phrases within noun phrases. See previous example.
+        Since \emph{kandidaat} and \emph{coalitie} describe different
+        entities, they are both annotated. On the other hand,
+        there is no need to mark \emph{kandidaat} twice:
 
-e.g., \emph{[kandidaat voor de coalitie]}. Include modifiers that
-make the description more specific (prepositional phrases).
+        \emph{[\n{[}kandidaat\n{]} voor [de coalitie]]}.
+
+\end{itemize*}
 
 Special cases:
 \begin{itemize*}
@@ -143,6 +156,23 @@ What to exclude:
   middelen\n{]}}
 \item Quantities, measurements: \emph{\n{[}20 graden\n{]} , \n{[}100
   MB\n{]} , \n{[}ongeveer 10 euro\n{]}}
+
+  However, not every NP with a quantity is excluded, because the NP may describe a specific object that is referred to again:
+
+  \emph{'En wij kregen als speciale missie om [vijf miljoen Nederlandse
+  guldens]\textsubscript{1} uit de kluizen van de Nederlandsche Bank in
+  Middelburg via Duinkerken naar Londen te brengen.
+  De koers waartegen [ze]\textsubscript{1} in Whitehall konden worden
+  ingewisseld tegen Engelse ponden, was [\dots]. [Het geld]\textsubscript{1}
+  zat in twee zwarte koffers, verdeeld over achthonderd linnen zakjes.}
+
+\item Idioms: \emph{Wat is er aan \n{[}de hand\n{]}?}
+
+    \emph{[Hij] zag [Esmée] bij [het hoofdeinde] in \n{[}gesprek\n{]} met [een familielid].} (\emph{gesprek} has no determiner, it is not a specific identifiable conversation that can be referred to again)
+
+\item Material, substances, and other non-specific mass nouns:\\
+    \emph{[het deksel van \n{[}blank hout\n{]}]}
+
 \end{itemize*}
 
 
@@ -168,6 +198,12 @@ coreference are recognized:
 
   \emph{{[}Jan{]}\textsubscript{1} is {[}een schrijver{]}\textsubscript{1} .}
 
+\item Relative clauses
+
+    \emph{[De burgemeester]\textsubscript{1} {[}die{]}\textsubscript{1} de vergadering opende was behoorlijk nors.}
+
+    \emph{[Het huis]\textsubscript{2} [waar]\textsubscript{2} ik ben geboren.}
+
 \item Appositions. If the first part is a name, mark separately:
 
   \emph{{[}Hu Jintao{]}\textsubscript{1} , {[}de president van China{]}\textsubscript{1} , hield een
@@ -176,14 +212,6 @@ coreference are recognized:
   But a modifier followed by a name is a single mention:
   
   \emph{{[}zeilster Carolijn Brouwer{]}}
-  
-\item Metonymy:
-
-    \emph{De VS heeft meerdere doelen gebombardeerd. Moskou heeft woedend
-  gereageerd.}
-  
-  ``\emph{Moskou}'' refers here not to the city, but to the government of
-  Russia. We annotate the intended referent, not the literal meaning.
   
 \item Type-token coreference:
 
@@ -208,29 +236,63 @@ coreference are recognized:
   
 \end{itemize*}
 
+Special cases:
+\begin{itemize*}
+\item Always annotate the intended referent. In case of nicknames or jokes,
+    you may have to distinguish mentions of the real referent, and nicknames or jokes that refer to someone else.
+
+\item Metonymy:
+
+    \emph{De VS heeft meerdere doelen gebombardeerd. Moskou heeft woedend
+  gereageerd.}
+
+  ``\emph{Moskou}'' refers here not to the city, but to the government of
+  Russia. We annotate the intended referent, not the literal meaning.
+
+\item Use/mention distinction:\footnote{%
+    \url{https://en.wikipedia.org/wiki/Use\%E2\%80\%93mention_distinction}}
+
+    \emph{[Jan]\textsubscript{1} is rijk, [hij]\textsubscript{1} heeft [een Ferarri].
+    [Jan]\textsubscript{2} is [een gangbare naam]\textsubscript{2}.}
+
+    The second instance of \emph{Jan} refers to the name/word itself,
+    not the person. This is sometimes indicated with quotation marks.
+
+    \emph{Maar verdomd, op [pagina vier] wordt [de aankomst in [de Hauptstadt]] gemeld van [een 'prominenter, unabhängiger politischer Publizist aus den Niederlanden']\textsubscript{1}.
+    [Politischer Publizist]\textsubscript{2}!
+    [Dat etiket]\textsubscript{2} zal [ik]\textsubscript{1} tijdens [dit bezoek] zeker niet meer kwijtraken.}
+
+    The first mention refers to the protagonist,
+    but the second mention refers to the label.
+
+\end{itemize*}
+
 
 Several more complex phenomena are excluded:
-
 \begin{itemize*}
 \item VP coreference:
 
   \emph{\n{[}Mijn fiets was gestolen\n{]} . \n{[}Dat\n{]} vond ik
   jammer .}
   
-  \emph{{[}Heeft u ook een nieuwsbericht\n{]} , dan vernemen wij
+  \emph{\n{[}Heeft u ook een nieuwsbericht\n{]} , dan vernemen wij
   \n{[}dat\n{]} graag .}
   
+  Note that in addition to not annotating a link, these are not mentions because they do not refer to objects or persons.
+
 \item Part/whole, subset/superset relations (bridging relations):
 
-  \emph{In de Raadsvergadering is het vertrouwen opgezegd in \n{[}het
-  college\n{]}\textsubscript{1}. In een motie is gevraagd aan \n{[}alle
-  wethouders\n{]}\textsubscript{2} hun ontslag in te dienen .}
+  \emph{In de Raadsvergadering is het vertrouwen opgezegd in {[}het
+  college{]}\textsubscript{1}. In een motie is gevraagd aan {[}alle
+  wethouders{]}\textsubscript{2} hun ontslag in te dienen .}
+
+  While the entities of \emph{het college} and \emph{alle wethouders} are related, they are distinct entities, and we do not annotate such a bridging relation between entities.
   
 \item Modality/negation:
 
-  \emph{{[}Een partij als de CD\&V{]} is nou niet echt \n{[}het toonbeeld
-  van sociale betrokkenheid\n{]}}
-  
+  \emph{{[}Een partij als de CD\&V{]} is nou niet echt {[}het toonbeeld
+  van sociale betrokkenheid{]}}
+
 \end{itemize*}
 
 
@@ -264,7 +326,7 @@ Cf. \citet{bouma2007corea}
   Motivation: it can be difficult to identify the complete relative
   clause, due to discontinuity or long parenthetical remarks. Annotating
   the NP before the relative pronoun avoids a lot of difficult cases.
-  These case are both difficult for annotators, as well as for automatic parsers.
+  Such cases are both difficult for annotators as well as for automatic parsers.
   For example:
 
     \begin{itemize*}
@@ -294,8 +356,8 @@ Cf. \citet{bouma2007corea}
 \subsection{Differences with the Newsreader annotation scheme}
 Cf. \citet{schoen2014newsreader}
 \begin{itemize*}
-\item Entities do not have to be one of a set of predefined types (person,
-  organization, location, product, \dots)
+\item Entities are not restricted to a set of predefined types
+    (person, organization, location, product, \dots)
 \item Relative pronouns, discontinuous NPs, and appositions are annotated
   differently.
 \end{itemize*}
