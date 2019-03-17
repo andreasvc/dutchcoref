@@ -48,6 +48,9 @@ Install the required packages:
 Unless you are working on an already annotated or parsed corpus, you will want to
 install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUserGuide.html).
 
+To get parse tree visualizations in the HTML output,
+install https://github.com/andreasvc/disco-dop/
+
 ### Dutch first names (required)
 
 Download `Top_eerste_voornamen_NL_2010.csv`
@@ -70,8 +73,9 @@ Apply the Unicode fix in `fixsemeval2010.sh`.
 The directory `data/semeval2010NLdevparses` contains Alpino parses for the
 Dutch development set of this task.
 
-Example
--------
+Examples
+--------
+### Parsing and coreference of a text file
 ```
 $ cat /tmp/example.txt
 ' Ik ben de directeur van Fecalo , van hierachter , ' zei hij .
@@ -121,6 +125,37 @@ $ python3 coref.py --verbose --fmt=booknlp /tmp/example
 30      7-1     7       .       .       LET()   2       punct   -       -       -       O       -
 
 #end document
+```
+
+### Error analysis against a gold standard .conll file
+The following creates lots of output; scroll to the end for the error analysis.
+Mention boundaries and links are printed in green if they are correct,
+yellow if in gold but missing from output,
+and red if in output but not in gold.
+```
+$ ls mydocument/
+1.xml 2.xml [...]
+$ python3 coref.py mydocument/ --gold=mydocument.conll --verbose | less -R
+```
+alternatively, use the HTML visualization and view results in your favorite browser:
+```
+$ python3 coref.py mydocument/ --gold=mydocument.conll --verbose --fmt=html >output.html
+```
+
+### Evaluation against a gold standard .conll file
+Get the scorer script: https://github.com/ns-moosavi/coval
+```
+$ python3 coref.py mydocument/ --fmt=conll2012 >output.conll
+$ python3 ../coval/scorer.py mydocument.conll output.conll
+lea
+Recall: 48.98  Precision: 62.76  F1: 55.02
+muc
+Recall: 74.31  Precision: 73.58  F1: 73.94
+bcub
+Recall: 57.03  Precision: 70.77  F1: 63.16
+ceafe
+Recall: 79.99  Precision: 66.41  F1: 72.57
+CoNLL score: 69.89
 ```
 
 Column types
