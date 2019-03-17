@@ -6,10 +6,10 @@ Output is sent to STDOUT.
 
 Options:
     --help          this message
-    --verbose       debug output (sent to STDOUT)
     --slice=N:M     restrict input with a Python slice of sentence numbers
-    --gold=<file>   show error analysis against coreference in CoNLL file
-    --goldmentions  use gold mentions instead of predicting mentions
+    --verbose       debug output instead of coreference output
+    --gold=<file>   with --verbose, show error analysis against CoNLL file
+    --goldmentions  instead of predicting mentions, use mentions in --gold file
     --fmt=<minimal|semeval2010|conll2012|booknlp|html>
         output format:
             :minimal: doc ID, token ID, token, and coreference columns
@@ -1709,6 +1709,9 @@ def process(path, output, ngdata, gadata,
 	mentions, clusters, quotations = resolvecoreference(trees, ngdata, gadata,
 			mentions)
 	postprocess(exclude, mentions, clusters, goldmentions)
+	if conllfile is not None and VERBOSE:
+		debug(color('evaluating against:', 'yellow'), conllfile, docname)
+		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
 	if fmt == 'booknlp':
 		getunivdeps(filenames, trees)
 	if fmt == 'html':
@@ -1719,12 +1722,9 @@ def process(path, output, ngdata, gadata,
 		print(template.render(docname=docname, corefresults=corefresults,
 					debugoutput=debugoutput),
 				file=output)
-	else:
+	elif not VERBOSE:
 		writetabular(trees, mentions, docname=docname,
 				file=output, fmt=fmt, startcluster=startcluster)
-	if conllfile is not None and VERBOSE:
-		debug(color('evaluating against:', 'yellow'), conllfile, docname)
-		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
 	return len(clusters)
 
 
