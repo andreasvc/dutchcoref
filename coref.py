@@ -44,6 +44,7 @@ from bisect import bisect
 from getopt import gnu_getopt
 from datetime import datetime
 from glob import glob
+from html import escape
 from lxml import etree
 from jinja2 import Template
 import colorama
@@ -1318,12 +1319,40 @@ def htmlvis(trees, mentions, clusters, quotations):
 			sentences[mention.sentno][mention.end - 1] += ']'
 	qstarts = {q.start: n for n, q in enumerate(quotations)}
 	qends = {q.end - 1 for q in quotations}
+	try:
+		from discodop.tree import DrawTree
+		from discodop.treebank import alpinotree
+		from discodop.punctuation import applypunct
+		import xml.etree.ElementTree as ElementTree
+		drawtrees = True
+	except ImportError:
+		drawtrees = False
+	dt = ''
+	for (parno, sentno), tree in trees:
+		xml = etree.tostring(tree, encoding='utf8', pretty_print=True)
+		if drawtrees:
+			# discodop expects ElementTree instead of lxml tree
+			item = alpinotree(
+					ElementTree.fromstring(xml),
+					functions='add', morphology='no')
+			applypunct('move', item.tree, item.sent)
+			dt = DrawTree(item.tree, item.sent).text(
+						unicodelines=True, html=True, funcsep='-')
+		output.append('<div id=t%d-%d style="display: none; ">'
+				'<pre style="white-space: pre-wrap;">%s</pre>'
+				'<pre>%s</pre></div>' % (
+				parno, sentno,
+				escape(xml.decode('utf8')),  # FIXME: highlight syntax?
+				dt))
 	doctokenid = 0
+	output.append('<div class=main>\n')
 	for ((parno, sentno), sent) in zip(sentids, sentences):
 		if parno == 1 and sentno == 1:
 			output.append('<p>')
 		elif sentno == 1:
 			output.append('</p>\n<p>')
+		output.append('<span class=n onClick="toggle(\'t%d-%d\')">' % (
+				parno, sentno))
 		for token in sent:
 			if doctokenid in qstarts:
 				quotation = quotations[qstarts[doctokenid]]
@@ -1341,7 +1370,8 @@ def htmlvis(trees, mentions, clusters, quotations):
 			if doctokenid in qends:
 				output.append('</span>')
 			doctokenid += 1
-	output.append('\n</p>\n')
+		output.append('</span>\n')
+	output.append('\n</p></div>\n')
 	debugoutput = ''
 	if VERBOSE:
 		conv = ansi2html.Ansi2HTMLConverter(scheme='xterm', dark_bg=True)
