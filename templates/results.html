@@ -2,10 +2,23 @@
 <head><meta charset=utf-8>
 <title>{{ docname }} coref</title>
 <style>
-body { margin: 3em; max-width: 50em; }
+body { margin: 3em; }
+div.main { max-width: 50em; }
 span { font-weight: bold; }
 span.n { font-weight: normal; }
 span.q { color: green; font-weight: normal; }
+pre {
+    font-family:
+        "Liberation Mono",
+        "Ubuntu Monospace",
+        "Andale Mono",
+        "Lucida Console",
+        "Droid Sans Mono",
+        "DejaVu Sans Mono",
+        monospace;
+    font-size: 10pt;
+}
+pre { line-height: 11pt; }
 .ansi2html-content {
 	display: inline; white-space: pre-wrap; word-wrap: break-word;
 	background: black; }
@@ -34,7 +47,8 @@ function unhighlight(ev) {
 function addhighlighting() {
     var elems = document.getElementsByTagName('span');
     for (var n in elems) {
-        if (elems[n].className.charAt(0) == 'c') {
+        if (typeof elems[n].className !== 'undefined'
+				&& elems[n].className.charAt(0) == 'c') {
             elems[n].onmouseover = highlight;
             elems[n].onmouseout = unhighlight;
         }
@@ -49,22 +63,33 @@ function hl2(id) {
 function nohl(id) {
     document.getElementById(id).style = '';
 }
+function toggle(id) {
+        /* toggle element with id to be hidden or not. */
+        var el = document.getElementById(id);
+        if(el.style.display == 'none')
+                el.style.display = 'block';
+        else
+                el.style.display = 'none';
+}
 </script>
 </head>
 <body onLoad="addhighlighting()">
-<p>Move mouse over bracketed text to highlight coreference.
-Move mouse over direct speech to highlight speaker and addressee.<br>
+<div class=main style="background: lightgray; border-style: dotted; padding: 8px; ">
+Move mouse over bracketed text to highlight coreference.
+Move mouse over direct speech to highlight speaker and addressee.
+Click on a sentence to toggle the display of its parse tree.<br>
 Legend:
 <span class="n">[ Singleton ]</span>
 <span style="background: yellow">[ Coreference ]</span>
 <span style="background: lightblue">[ Speaker ]</span>
 <span style="background: lightcoral">[ Addressee ]</span>
 <span class="q">' Direct speech '</span>
+</div>
 
 {{ corefresults }}
 
 {% if debugoutput %}
-<div class="div_foreground div_background">
+<div class="div_foreground div_background main">
 <pre class="ansi2html-content">{{ debugoutput }}</pre></div>
 {% endif %}
 </body></html>

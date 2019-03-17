@@ -9,26 +9,38 @@
 		}
 		</script>
 		<style>
-		body { margin: 3em; max-width: 50em; }
+		body { margin: 3em; }
+		div.main { max-width: 50em; }
+		div.header {
+			background: lightgray;
+			border-style: dotted;
+			padding: 8px;
+			width: 100%;
+		}
+		textarea {
+			width: 100%;
+			font-size: 150%;
+			padding: 8px;
+		}
 		</style>
 	</head>
 	<body>
 		<h1>Dutch Coreference demo</h1>
-		<p>A demo of the coreference system
-		<a href="https://github.com/andreasvc/dutchcoref">
-			https://github.com/andreasvc/dutchcoref</a></p>
-
-
-		<form name=form action=coref method=post enctype="multipart/form-data">
+		<div class=main>
+			<div class="header">
+			<p>A demo of the coreference system
+			<a href="https://github.com/andreasvc/dutchcoref">
+				https://github.com/andreasvc/dutchcoref</a></p>
 			<p>Enter some Dutch text (maximum {{ limit }} characters).
-			The text will be parsed (this may take a minute),
+			The text will be parsed by Alpino (this may take a minute),
 			and a coreference analysis will be shown.
 			Alternatively, <a href="javascript:replace()">click here for an example.</a>
 			</p>
-			<p>
-				<textarea name=text rows=12 cols=60 id=text></textarea>
+			</div><br>
+			<form name=form action=coref method=post enctype="multipart/form-data">
+				<textarea name=text rows=15 cols=80 id=text></textarea>
 				<input type=submit>
-			</p>
-		</form>
+			</form>
+		</div>
 	</body>
 </html>
