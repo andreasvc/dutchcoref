@@ -84,6 +84,8 @@ SPEECHVERBS = frozenset((
 		'waarschuw verduidelijk stamel beken hijg kreun jammer bulder krijs '
 		'snik prevel bevestig grinnik verontschuldig grap murmel bries '
 		'piep kir ').split())
+# Weather verbs as they appear in the "lemma" attribute;
+# e.g. het dooit; het kan morgen dooien; etc.
 WEATHERVERBS = ('dooien gieten hagelen miezeren misten motregenen onweren '
 		'plenzen regenen sneeuwen stormen stortregenen ijzelen vriezen '
 		'weerlichten winteren zomeren').split()
@@ -92,16 +94,44 @@ DEBUGFILE = sys.stdout
 
 
 class Mention:
-	"""A span referring to an entity."""
+	"""A span referring to an entity.
+
+	:ivar clusterid: cluster (entity) ID this mention is in.
+	:ivar prohibit: do not link this mention to these mention IDs.
+	:ivar filter: if True, do not include this mention in output.
+	:ivar relaxedtokens: list of tokens without postnominal modifiers.
+	:ivar head: node corresponding to head word.
+	:ivar type: one of ('name', 'noun', 'pronoun')
+	:ivar mainmod: list of string tokens that modify the head noun
+	:ivar features: dict with following keys and possible values:
+		:number: ('sg', 'pl', both, None); None means unknown.
+		:gender: ('m', 'f', 'n', 'mf', 'mn', 'fn', None)
+		:human: (0, 1, None)
+		:person: (1, 2, 3, None); only for pronouns.
+	"""
 	def __init__(self, mentionid, sentno, tree, node, begin, end, headidx,
 			tokens, ngdata, gadata):
+		"""Create a new mention.
+
+		:param mentionid: unique integer for this mention.
+		:param sentno: global sentence index (ignoring paragraphs)
+			this mention occurs in.
+		:param tree: lxml.ElementTree with Alpino XML parse tree of sentence
+		:param node: node in tree covering this mention
+		:param begin: start index in sentence of mention (0-indexed)
+		:param end: end index in sentence of mention (exclusive)
+		:param headidx: index in sentence of head word of mention
+		:param tokens: list of tokens in mention as strings
+		:param ngdata: look up table with number and gender data
+		:param gadata:: look up table with gender and animacy data
+		"""
+		self.id = mentionid
 		self.sentno = sentno
 		self.node = node
 		self.begin = begin
 		self.end = end
-		self.clusterid = mentionid
 		self.tokens = tokens
-		self.id = mentionid
+		self.clusterid = mentionid
 		self.prohibit = set()
 		self.filter = False
 		removeids = {n for rng in
@@ -216,16 +246,29 @@ class Mention:
 
 
 class Quotation:
-	"""A span of direct speech."""
+	"""A span of direct speech.
+
+	:ivar speaker: detected speaker Mention object.
+	:ivar addressee: detected addressee Mention object.
+	:ivar mentions: list of Mention objects occurring in this quote.
+	"""
 	def __init__(self, start, end, sentno, parno, text, sentbounds):
-		self.start, self.end = start, end  # global token indices
-		self.sentno = sentno  # global sentence index (ignoring paragraphs)
-		self.parno = parno  # paragraph number
-		self.sentbounds = sentbounds  # quote starts+ends at sent boundaries
-		self.speaker = None  # detected speaker mention
-		self.addressee = None  # detected addressee mention
-		self.mentions = []  # list of mentions within this quote
-		self.text = text  # text of quote (including quote marks)
+		"""
+		:param start: global token start index.
+		:param end: global token end index.
+		:param sentno: global sentence index (ignoring paragraphs).
+		:param parno: paragraph number.
+		:param text: text of quote as string (including quote marks).
+		:param sentbounds: bool, whether quote starts+ends at sent boundaries.
+		"""
+		self.start, self.end = start, end
+		self.sentno = sentno
+		self.parno = parno
+		self.sentbounds = sentbounds
+		self.speaker = None
+		self.addressee = None
+		self.mentions = []
+		self.text = text
 
 
 def getmentions(trees, ngdata, gadata):
@@ -1439,16 +1482,16 @@ def readconll(conllfile, docname='-'):
 
 def compare(conlldata, trees, mentions, clusters, out=sys.stdout):
 	"""Visualize mentions and links wrt conll file."""
-	goldspansforcluster = extractgoldclusterdict(conlldata)
-	respspansforcluster = extractrespclusterdict(mentions, clusters)
+	goldspansforcluster = conllclusterdict(conlldata)
+	respspansforcluster = respclusterdict(mentions, clusters)
 	goldspans = {span for spans in goldspansforcluster.values()
 			for span in spans}
-	respspans = {(mention.sentno, mention.begin, mention.end)
+	respspans = {(mention.sentno, mention.begin, mention.end,
+			' '.join(mention.tokens))
 			for mention in mentions if not mention.filter}
 	comparementions(conlldata, trees, mentions,
 			goldspans, respspans, out=out)
-	comparecoref(conlldata, trees, mentions, clusters,
-			goldspans, respspans,
+	comparecoref(conlldata, mentions, clusters, goldspans, respspans,
 			goldspansforcluster, respspansforcluster, out=out)
 
 
@@ -1463,14 +1506,14 @@ def comparementions(conlldata, trees, mentions, goldspans, respspans,
 				key=lambda x: int(x.get('begin')))]
 			for _, tree in trees]
 	print(color('mentions in gold missing from response:', 'yellow'), file=out)
-	for sentno, begin, end in goldspans - respspans:
-		print(' '.join(sentences[sentno][begin:end]), file=out)
+	for _sentno, _begin, _end, text in goldspans - respspans:
+		print(text, file=out)
 	if len(goldspans - respspans) == 0:
 		print('(none)')
 	print('\n' + color('mentions in response but not in gold:', 'yellow'),
 			file=out)
-	for sentno, begin, end in respspans - goldspans:
-		print(' '.join(sentences[sentno][begin:end]), file=out)
+	for _sentno, _begin, _end, text in respspans - goldspans:
+		print(text, file=out)
 	if len(respspans - goldspans) == 0:
 		print('(none)')
 	print('', file=out)
@@ -1506,7 +1549,7 @@ def comparementions(conlldata, trees, mentions, goldspans, respspans,
 		out.write('\n')
 
 
-def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
+def comparecoref(conlldata, mentions, clusters, goldspans, respspans,
 		goldspansforcluster, respspansforcluster, out=sys.stdout):
 	"""List correct/incorrect coreference links.
 
@@ -1550,11 +1593,12 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 							mentions[m].begin, mentions[m].end))):
 			continue
 		cand = sorted(n for n in cluster if
-				(mentions[n].sentno, mentions[n].begin, mentions[n].end)
+				(mentions[n].sentno, mentions[n].begin, mentions[n].end,
+					' '.join(mentions[n].tokens))
 				in goldspans and not mentions[n].filter)
 		n = cand[0] if cand else min(cluster)
 		correctmention = ((mentions[n].sentno, mentions[n].begin,
-				mentions[n].end) in goldspans)
+				mentions[n].end, ' '.join(mentions[n].tokens)) in goldspans)
 		if correctmention:
 			c = 'yellow' if mentions[n].filter else 'green'
 		elif mentions[n].filter:
@@ -1580,16 +1624,16 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 				mentions[n].end):
 			for span in goldspansforcluster[cid]:
 				if (span != (mentions[n].sentno, mentions[n].begin,
-						mentions[n].end)
+						mentions[n].end, ' '.join(mentions[n].tokens))
 						and span not in respspansforcluster[
 							mentions[n].clusterid]):
-					sentno, begin, end = span
+					sentno, begin, _end, text = span
 					print('\t',
 							color('<-->', 'yellow'),
 							sentno, begin,
 							color('[', 'green'
 								if span in respspans else 'yellow')
-							+ ' '.join(gettokens(trees[sentno][1], begin, end))
+							+ text
 							+ color(']', 'green'
 								if span in respspans else 'yellow'),
 							file=out)
@@ -1598,29 +1642,28 @@ def comparecoref(conlldata, trees, mentions, clusters, goldspans, respspans,
 def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 	"""Extract gold mentions from annotated data."""
 	mentions = []
-	goldspansforcluster = extractgoldclusterdict(conlldata)
+	goldspansforcluster = conllclusterdict(conlldata)
 	goldspans = {span for spans in goldspansforcluster.values()
 			for span in spans}
-	for (sentno, begin, end) in sorted(goldspans):
+	for sentno, begin, end, text in sorted(goldspans):
 		# smallest node spanning begin, end
 		tree = trees[sentno][1]
 		node = sorted((node for node in tree.findall('.//node')
 					if begin >= int(node.get('begin'))
 					and end <= int(node.get('end'))),
 				key=lambda x: int(x.get('end')) - int(x.get('begin')))[0]
-		tokens = gettokens(tree, begin, end)
 		headidx = getheadidx(node)
 		if headidx >= end:
 			headidx = max(int(x.get('begin')) for x in node.findall('.//node')
 					if int(x.get('begin')) < end)
 		mentions.append(Mention(
-				len(mentions), sentno, tree, node, begin, end, headidx, tokens,
-				ngdata, gadata))
+				len(mentions), sentno, tree, node, begin, end, headidx,
+				text.split(' '), ngdata, gadata))
 	return mentions
 
 
-def extractgoldclusterdict(conlldata):
-	"""Extract dict from connl file mapping gold cluster IDs to spans."""
+def conllclusterdict(conlldata):
+	"""Extract dict from CoNLL file mapping gold cluster IDs to spans."""
 	spansforcluster = {}
 	spans = set()
 	for sentno, chunk in enumerate(conlldata):
@@ -1634,7 +1677,9 @@ def extractgoldclusterdict(conlldata):
 				if a.startswith('('):
 					scratch.setdefault(clusterid, []).append((sentno, idx))
 				if a.endswith(')'):
-					span = scratch[int(a.strip('()'))].pop() + (idx + 1, )
+					sentno, begin = scratch[int(a.strip('()'))].pop()
+					text = ' '.join(line[3] for line in chunk[begin:idx + 1])
+					span = (sentno, begin, idx + 1, text)
 					if span in spans:
 						debug('Warning: gold data has duplicate span %r '
 								'in cluster %d' % (span, clusterid))
@@ -1648,7 +1693,7 @@ def extractgoldclusterdict(conlldata):
 	return spansforcluster
 
 
-def extractrespclusterdict(mentions, clusters):
+def respclusterdict(mentions, clusters):
 	"""Return dict that maps system cluster ID to set of coreferent spans."""
 	spansforcluster = {}
 	for n, cluster in enumerate(clusters):
@@ -1658,7 +1703,8 @@ def extractrespclusterdict(mentions, clusters):
 			spansforcluster.setdefault(n, set())
 			if not mentions[m].filter:
 				spansforcluster[n].add((mentions[m].sentno,
-						mentions[m].begin, mentions[m].end))
+						mentions[m].begin, mentions[m].end,
+						' '.join(mentions[m].tokens)))
 	return spansforcluster
 
 
