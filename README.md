@@ -171,7 +171,10 @@ With `--fmt=booknlp`, the output contains the following columns:
 7. UD parent token (ID as in column 3)
 8. UD dependency label
 9. Named entity class (PER, ORG, LOC, ...)
-10. Speaker ID (if a speaker is found, every token in a direct speech utterance gets the speaker ID; these IDs are the same as the coreference cluster IDs in column 13.)
+10. Speaker ID (if a speaker is found, every token in a direct speech utterance
+	is assigned the speaker ID; the ID is the global token number of the head
+	word of the speaker mention; the entity of the speaker can be found by
+	looking up its coreference cluster)
 11. Similar as above, but for addressee.
 12. Whether token is part of direct speech (B, I) or not (O)
 13. Coreference cluster in CoNLL notation
