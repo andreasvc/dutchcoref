@@ -2,48 +2,13 @@ Dutch coreference resolution & dialogue analysis
 ================================================
 An implementation of the Stanford Multi-Pass Sieve Coreference System.
 
-Usage
------
-```
-Usage: python3 coref.py [options] <directory>
-where directory contains .xml files with sentences parsed by Alpino.
-Filenames (and sentence IDs) are expected to be of the form `n.xml` or `m-n.xml`,
-where `n` is a sentence number and `m` a paragraph number.
-Output is sent to STDOUT.
-
-Options:
-	--help          this message
-	--verbose       debug output (sent to STDOUT)
-	--slice=N:M     restrict input with a Python slice of sentence numbers
-	--gold=<file>   show error analysis against coreference in CoNLL file
-	--goldmentions  use gold mentions instead of predicting mentions
-	--fmt=<minimal|semeval2010|conll2012|booknlp|html>
-		output format:
-			:minimal: doc ID, token ID, token, and coreference columns
-			:booknlp: tabular format with universal dependencies and dialogue
-				information in addition to coreference.
-			:html: interactive HTML visualization with coreference and dialogue
-				information.
-
-Instead of specifying a directory and gold file, can use the following presets:
-	--clindev     run on CLIN26 shared task development data
-	--semeval     run on SemEval 2010 development data
-	--test        run tests
-```
-
-See https://andreasvc.github.io/voskuil.html for an example of the HTML visualization.
-
-
 Dependencies and Datasets
 -------------------------
-Get the repository:
+Get the repository and install the required packages:
 
-	$ git clone https://github.com/andreasvc/dutchcoref.git
-	$ cd dutchcoref
-
-Install the required packages:
-
-	$ pip3 install -r requirements.txt
+    $ git clone https://github.com/andreasvc/dutchcoref.git
+    $ cd dutchcoref
+    $ pip3 install -r requirements.txt
 
 Unless you are working on an already annotated or parsed corpus, you will want to
 install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUserGuide.html).
@@ -73,8 +38,10 @@ Apply the Unicode fix in `fixsemeval2010.sh`.
 The directory `data/semeval2010NLdevparses` contains Alpino parses for the
 Dutch development set of this task.
 
-Examples
---------
+Usage examples
+--------------
+See `coref.py --help` for command line options.
+
 ### Parsing and coreference of a text file
 ```
 $ cat /tmp/example.txt
@@ -137,10 +104,21 @@ $ ls mydocument/
 1.xml 2.xml [...]
 $ python3 coref.py mydocument/ --gold=mydocument.conll --verbose | less -R
 ```
-alternatively, use the HTML visualization and view results in your favorite browser:
+alternatively, use the HTML visualization and view the results in your favorite browser:
 ```
 $ python3 coref.py mydocument/ --gold=mydocument.conll --verbose --fmt=html >output.html
 ```
+See https://andreasvc.github.io/voskuil.html for an example of the HTML visualization.
+
+For further analysis with other tools, use the option `--outputprefix' to dump information
+on clusters, mentions, links and quotations:
+```
+$ python3 coref.py mydocument/ --fmt=booknlp --outputprefix=output
+```
+This creates the files `output.{mentions,clusters,links,quotes}.tsv` (tabular format)
+`output.conll` (--fmt), and `output.icarus` (ICARUS allocation format).
+Make sure you don't overwrite the gold standard conll file!
+
 
 ### Evaluation against a gold standard .conll file
 Get the scorer script: https://github.com/ns-moosavi/coval
@@ -158,6 +136,7 @@ Recall: 79.99  Precision: 66.41  F1: 72.57
 CoNLL score: 69.89
 ```
 
+
 Column types
 ------------
 With `--fmt=booknlp`, the output contains the following columns:
@@ -172,9 +151,7 @@ With `--fmt=booknlp`, the output contains the following columns:
 8. UD dependency label
 9. Named entity class (PER, ORG, LOC, ...)
 10. Speaker ID (if a speaker is found, every token in a direct speech utterance
-	is assigned the speaker ID; the ID is the global token number of the head
-	word of the speaker mention; the entity of the speaker can be found by
-	looking up its coreference cluster)
+    is assigned the speaker ID; the ID is the cluster ID of the speaker)
 11. Similar as above, but for addressee.
 12. Whether token is part of direct speech (B, I) or not (O)
 13. Coreference cluster in CoNLL notation
@@ -189,16 +166,16 @@ Run with `python3 web.py`
 Annotation workflow
 -------------------
 1. Preprocess, tokenize and parse a text with Alpino to get a directory of parse trees
-	in XML files.
+    in XML files.
 2. Run coreference resolution on the parse trees:
-	`python3 coref.py --fmt=conll2012 /path/to/text/ > text.conll`
-	(Forward slashes are required, also on Windows).
+    `python3 coref.py --fmt=conll2012 /path/to/text/ > text.conll`
+    (Forward slashes are required, also on Windows).
 3. Get the latest stable release of [CorefAnnotator](https://github.com/nilsreiter/CorefAnnotator/releases).
-	Run it with `java -jar CorefAnnotator-1.7.3-full.jar`
+    Run it with `java -jar CorefAnnotator-1.9.0-full.jar`
 4. Import the `.conll` file (CoNLL 2012 button under "Import from other formats").
-5. Read the annotation guidelines in this repository
+5. Read the [annotation guidelines](https://github.com/andreasvc/dutchcoref/raw/master/dutchcoref%20annotation%20guidelines.pdf) in this repository
 6. Correct the annotation; save regularly
-	(in the .xmi format used by CorefAnnotator)
+    (in the .xmi format used by CorefAnnotator)
 7. When done, export to CoNLL 2012 format
 
 References

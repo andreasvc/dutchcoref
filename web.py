@@ -38,7 +38,7 @@ def results():
 		return 'Parsing failed!'
 	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
 	coref.setverbose(True, io.StringIO())
-	mentions, clusters, quotations = coref.resolvecoreference(
+	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata)
 	corefresults, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations)
