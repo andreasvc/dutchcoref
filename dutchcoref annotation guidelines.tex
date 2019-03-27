@@ -14,7 +14,16 @@
   year={2014},
   institution={VU University},
   note={\url{http://www.newsreader-project.eu/files/2013/01/8-AnnotationGuidelinesDutch.pdf}}
-} 
+}
+
+@inproceedings{roesiger2018literary,
+    title = {Towards Coreference for Literary Text: Analyzing Domain-Specific Phenomena},
+    author = {R\"osiger, Ina  and Schulz, Sarah  and Reiter, Nils},
+    year={2018},
+    booktitle={Proceedings of LaTeCH-CLfL},
+    pages={129--138},
+    note = {\url{http://aclweb.org/anthology/W18-4515}}
+}
 \end{filecontents}
 \PassOptionsToPackage{hyphens}{url}
 \documentclass[a4paper]{article}
@@ -28,7 +37,7 @@
 
 \title{Annotation guidelines for dutchcoref}
 \author{Andreas van Cranenburgh}
-\date{}
+\date{\today}
 
 \begin{document}
 \maketitle
@@ -47,15 +56,25 @@
 
 \section{Mentions}
 
-A mention is a span of text that refers to an entity or person in the
-real or mental world. All mentions referring to objects or persons are
+A mention is a span of text that refers to an identifiable
+entity or person in the real or mental world.
+All mentions referring to objects or persons are
 annotated, including entities that are not referred to again
 (singletons). Mentions have been automatically identified, but they may
 need to be corrected.
 
-The following subsections list the types of mentions that should be annotated.
-The span of a mention is indicated here with square brackets {[} and {]};
+The correct span for mentions is indicated with square brackets {[} and {]};
 a span that should not be annotated as mention is indicated with \n{[} red brackets\n{]}.
+
+Due to technical limitations (i.e., the CoNLL 2012 format),
+mentions must follow word boundaries. Therefore we must annotate:\footnote{%
+    Fixing this would require correcting the tokenization and parse tree,
+    which is outside the scope of these annotation guidelines.}
+
+\emph{[hoek [Groot Hertoginnelaan-Laan] [van Meerdervoort]]} \\
+and not: \emph{[hoek [Groot Hertoginnelaan\n{]}-\n{[}Laan van Meerdervoort]]}
+
+\noindent The following subsections list the types of mentions that should be annotated.
 
 \subsection{Pronouns}
 \begin{itemize*}
@@ -67,17 +86,32 @@ a span that should not be annotated as mention is indicated with \n{[} red brack
     \item Reflexive/reciprocal pronouns (\emph{zich, zichzelf, elkaar}).
         Both obligatory and normal reflexives are annotated.
     \item Indefinite/generic pronouns (\emph{men, je, ze, iedereen, iemand, \dots})
-      when the same unspecified person/thing can be referred to again. This
-      excludes e.g. \emph{niemand} or wh-pronouns in questions
-      (\emph{wie, wat, welke, \dots)}.
+      when the same unspecified person/object can be referred to again.
+      This excludes e.g., negations \emph{niemand}
+      or wh-pronouns in questions (\emph{wie, wat, welke, \dots)}.
     \item Pronominal adverbs of location: \emph{er, hier, daar, waar, waarin, \dots}
 \end{itemize*}
 
-Exclude non-referential, pleonastic pronouns:
+Exclude non-referential, pleonastic, and/or expletive pronouns:
 \begin{itemize*}
    \item \emph{\n{[}Het\n{]} regent.}
-   \item \emph{Daar moeten we \n{[}het\n{]} over hebben.}
-   \item \emph{\n{[}Er\n{]} zit niets anders op.}
+   \item \emph{[Daar] moeten we \n{[}het\n{]} over hebben.}
+   \item \emph{\n{[}Er\n{]} zit \n{[}niets anders\n{]} op.}
+\end{itemize*}
+
+Indefinite pronouns require judgment to determine
+whether they refer to an identifiable person/object
+and whether they can be referred to again:
+\begin{itemize*}
+    \item The word \emph{iets} often occurs in a negative context,
+        such as \emph{nauwelijks, zonder, alsof}, which indicates
+        that there is no identifiable referent:
+        \begin{itemize*}
+            \item Van [die schaamte] is nauwelijks \n{[}iets\n{]} terug te vinden in [[zijn] romans].
+            \item {[}Esmée{]} nam [ze] in [de hand] , staarde er langdurig naar , legde [ze] zonder \n{[}iets\n{]} te zeggen terug op [de kist] .
+            \item \emph{[Oscar] bleef in [de verte] turen alsof [hij] \n{[}iets\n{]} verwachtte : [een plots inzicht] , [een verklaring] ?}
+        \end{itemize*}
+    \item Conversely, in the following sentence there is a concrete referent: \emph{"[Ik] zie [iets]," zegt [Jan]. [Een eiland] verschijnt aan de horizon.}
 \end{itemize*}
 
 
@@ -85,6 +119,8 @@ Exclude non-referential, pleonastic pronouns:
 \begin{itemize*}
     \item One-word names: \emph{[Jan], [Amerika]}.
     \item Multiword names form a single mention: \emph{[Jan de Vries], [de Verenigde Staten]}.
+    \item Geographical: \emph{{[}Los Angeles, [California]{]}}
+    \item Possessive: \emph{[[Jans] moeder]}
 \end{itemize*}
 
 
@@ -95,7 +131,8 @@ continuous span describing a mention. What to include:
     \item Determiners: \emph{[het huis]} \\
         A possessive pronoun is a determiner,
         and is also its own mention:\\
-            \emph{[[mijn] fiets]}
+            \emph{[[mijn] fiets]}\\
+        Quantifiers are also determiners: [iedere buitenlandse televisiezender]
     \item Adjectives, nouns: \emph{[een warme kop thee]}
     \item Prepositional phrases modifying the noun:
         \emph{[kandidaat voor [de coalitie]]}.
@@ -115,6 +152,18 @@ Special cases:
   e.g., when referred to again as a single group bij a plural pronoun ``\emph{ze}''.
   By default, only the individual conjuncts \emph{Jan} and \emph{Marie} are
   considered as separate mentions.
+
+\item Disjunctions (\emph{tram 18 of 22}). Include the whole disjunction if there is a single intended referent; otherwise only annotate the disjuncts as mentions separately:
+
+    \emph{[We] zijn in [Praag] op [de hoek van [de Vyšehradska] en [de Trojicka]]. [Tram 18 of 22] staat stil bij [de Botanische Tuin].}
+
+    While the description is imprecise, the narrator has a specific tram in mind, so the whole is a mention; later, \emph{de tram} is used to refer to the same tram again.
+
+    Contrast with the following, where there are two separate options,
+    which do not form a single mention:
+
+    \emph{Vanaf [het station] kan je [tram 18] of [22] nemen.}
+
 \item NPs with commas.
     Except in special cases, a comma indicates the end of a mention:
 
@@ -122,38 +171,47 @@ Special cases:
 
     Special cases:
     \begin{itemize*}
-        \item Geographical: \emph{{[}Los Angeles, California{]}}
-        \item Adjective: \emph{{[}Een mooie, rode roos{]}}
+        \item Geographical: \emph{{[}Los Angeles, [California]{]}}
+        \item Adjectives: \emph{{[}Een mooie, rode roos{]}}
         \item Conjunction functions as group (see above)
-        
+
           \emph{{[}{[}Jan{]}, {[}Marie{]} en {[}Joost{]}{]}}
-          
+
     \end{itemize*}
 
 \item Discontinuous NPs
 
   \emph{\n{[}[een belediging] /zijn/ van onze gastvrijheid\n{]}}
-  
+
     Mentions must be continuous, uninterrupted spans in the text.
     Since the verb ``\emph{zijn}'' is not part of the noun phrase,
     it should also not be part of the mention.
     In this case only ``\emph{een belediging}'' is marked as a mention
     (i.e., the part with the head of the constituent \emph{belediging}).
 
-\item Relative clauses.
-    The relative pronoun indicates the end of the mention:
-  
-    \emph{\n{[}[De burgemeester]\textsubscript{1} {[}die{]}\textsubscript{1} de vergadering opende\n{]} was behoorlijk nors.}
+\item Relative clauses and other NP-modifying clauses:
+    The relative pronoun (\emph{die, dat, waar, waarover, \dots}) indicates the end of the mention:
+
+    \begin{itemize*}
+    \item \emph{\n{[}[De burgemeester]\textsubscript{1} {[}die{]}\textsubscript{1} de vergadering opende\n{]} was behoorlijk nors.}
+    \item \emph{[Hij] en [ik], na [een aperitief]\textsubscript{1} [dat]\textsubscript{1} hij aanduidde als '[Rotkäppchen]\textsubscript{1}'}
+    \item \emph{\dots [een kroeg op [de Schönhauser Allee]\textsubscript{1}] , [een buurt]\textsubscript{1} [waar]\textsubscript{1} volgens [hem] ondanks [de Wende] niets veranderd was .}
+    \end{itemize*}
+
+    The same holds for other clauses modifying an NP,
+    e.g. \emph{[NP] om te \dots}:
+
+    \emph{Dan overviel [mij] [de onweerstaanbare drang] om te vluchten , in [grote haast] , [de duivel] op [[mijn] hielen] . }
 
 \end{itemize*}
 
 What to exclude:
-
 \begin{itemize*}
 \item Time-related NPs: \emph{\n{[}gisteren\n{]} , \n{[}de langste dag van
   de zomer\n{]}}
-\item Actions, verb phrases: \emph{\n{[}het verzamelen van liquide
-  middelen\n{]}}
+\item Actions, manners, verb phrases: \emph{\n{[}het verzamelen van liquide
+  middelen\n{]}}, \emph{\n{[}de wijze\n{]} \n{[}waarop\n{]} [die oude communisten] alles rechtpraten wat krom is}
+\item Adjectives, demonyms: \emph{[de \n{[}Nederlandse\n{]} soldaten]}
 \item Quantities, measurements: \emph{\n{[}20 graden\n{]} , \n{[}100
   MB\n{]} , \n{[}ongeveer 10 euro\n{]}}
 
@@ -168,11 +226,18 @@ What to exclude:
 
 \item Idioms: \emph{Wat is er aan \n{[}de hand\n{]}?}
 
-    \emph{[Hij] zag [Esmée] bij [het hoofdeinde] in \n{[}gesprek\n{]} met [een familielid].} (\emph{gesprek} has no determiner, it is not a specific identifiable conversation that can be referred to again)
+    \emph{[Hij] zag [Esmée] bij [het hoofdeinde] in \n{[}gesprek\n{]} met [een familielid].}
+    (there is an implied conversation, but the common noun \emph{gesprek}
+    is not a mention that can be referred to again)
 
 \item Material, substances, and other non-specific mass nouns:\\
     \emph{[het deksel van \n{[}blank hout\n{]}]}
 
+\item Descriptions in a negative context (\emph{niet, geen, nooit, \dots})
+    do not refer, and are therefore not mentions:
+
+    \emph{Maar nee, geen \n{[}glimmende regenjassen en gleufhoeden\n{]} 's nachts aan [de deur van [[mijn] hotelkamer]] , \n{[}geen enkele toespeling op [mijn] geschrijf\n{]} van de kant van [het Presseamt] , [waar] [ik] [mij] bij ieder bezoek aan [de DDR] nederig meldde , nooit \n{[}gezeur met visa\n{]} , \dots }
+    %altijd even hoffelijk en hulpvaardig , [die naamloze , gezichtloze onderknuppels van [Herr Schulze]] , [die] natuurlijk ook niet zo heette . }
 \end{itemize*}
 
 
@@ -194,6 +259,7 @@ coreference are recognized:
     \emph{[Jan]\textsubscript{1} ziet [Marie]\textsubscript{2} .
     [Hij]\textsubscript{1} zwaait naar [haar]\textsubscript{2}j .}
 
+
 \item Predicate nominals
 
   \emph{{[}Jan{]}\textsubscript{1} is {[}een schrijver{]}\textsubscript{1} .}
@@ -208,32 +274,40 @@ coreference are recognized:
 
   \emph{{[}Hu Jintao{]}\textsubscript{1} , {[}de president van China{]}\textsubscript{1} , hield een
   toespraak voor de VN.}
-  
+
   But a modifier followed by a name is a single mention:
-  
+
   \emph{{[}zeilster Carolijn Brouwer{]}}
-  
+
+\item Acronyms: [De Partij van de Arbeid]\textsubscript{1} ([PvdA]\textsubscript{1})
+
+\item Generic entities. Only add a link when there is a clear anaphoric relation:
+
+    \emph{[Men]\textsubscript{1} verloor [elkaar]\textsubscript{1} makkelijk uit het oog na [de Wende] .}
+
+    If a later sentence mentions a generic \emph{men},
+    annotate it as a different entity.
+
 \item Type-token coreference:
 
   {[}The man{]}\textsubscript{1} who gave {[}{[}his{]}\textsubscript{1} paycheck{]}\textsubscript{2} to
   his wife was wiser than {[}the man{]}\textsubscript{3} who gave {[}it{]}\textsubscript{2} to
   [{[}his{]}\textsubscript{3} mistress]\textsubscript{4}.
-  
-  The mentions in cluster 2 are not identical, but are tokens of the
-  same type.
-  
+
+  The referents of 2 are not identical, but are tokens of the same type.
+
 \item Time-indexed coreference:
 
   \emph{{[}Bert Degraeve{]}\textsubscript{1} , tot voor kort {[}gedelegeerd
   bestuurder{]}\textsubscript{1} , gaat aan de slag als {[}chief financial and
   administration officer{]}\textsubscript{1} .}
-  
+
   Cluster 1 contains mentions whose coreference is only valid at
   specific times, but we do not annotate this distinction.
 \item Bound anaphora:
 
   \emph{{[}Iedere man{]}\textsubscript{1} steekt wel eens {[}zijn{]}\textsubscript{1} nek uit.}
-  
+
 \end{itemize*}
 
 Special cases:
@@ -249,8 +323,21 @@ Special cases:
   ``\emph{Moskou}'' refers here not to the city, but to the government of
   Russia. We annotate the intended referent, not the literal meaning.
 
-\item Use/mention distinction:\footnote{%
-    \url{https://en.wikipedia.org/wiki/Use\%E2\%80\%93mention_distinction}}
+    However, this only holds when the intended referent is strictly equivalent. The following cases are not coreferent:
+    \begin{itemize*}
+    \item \emph{[westerse critici] hadden [het boek]\textsubscript{1} ([zevenhonderd pagina's]\textsubscript{2}) onder hoongelach verguisd als '[hagiografie van een meeloper]\textsubscript{1}'} \\
+    (\emph{zevenhonderd pagina's} refers only to a physical aspect of
+    the book)
+    \item \emph{[De gastheer]\textsubscript{1} begon met [een loflied op [Nederland]\textsubscript{2}] , [[zijn]\textsubscript{1} aangenaamste buitenlandse post]\textsubscript{3} , en ook [[zijn]\textsubscript{1} laatste]\textsubscript{3}.} (\emph{Nederland} and \emph{buitenlandse post}, a country and a job, are not equivalent)
+    \item \emph{[Hij]\textsubscript{1} werd voorgesteld als '[mein Mitarbeiter Herr \dots]\textsubscript{1}'
+([Naam]\textsubscript{2} niet verstaan.)} (person and name are not equivalent)
+    \end{itemize*}
+
+\item Use--mention distinction:\footnote{%
+    Cf.\ \url{https://en.wikipedia.org/wiki/Use\%E2\%80\%93mention_distinction}\\
+    NB: `mention' in this terminology is used in a different sense as
+    in these guidelines.
+    }
 
     \emph{[Jan]\textsubscript{1} is rijk, [hij]\textsubscript{1} heeft [een Ferarri].
     [Jan]\textsubscript{2} is [een gangbare naam]\textsubscript{2}.}
@@ -270,15 +357,20 @@ Special cases:
 
 Several more complex phenomena are excluded:
 \begin{itemize*}
-\item VP coreference:
+\item VP/clausal coreference:
 
   \emph{\n{[}Mijn fiets was gestolen\n{]} . \n{[}Dat\n{]} vond ik
   jammer .}
-  
+
   \emph{\n{[}Heeft u ook een nieuwsbericht\n{]} , dan vernemen wij
   \n{[}dat\n{]} graag .}
-  
-  Note that in addition to not annotating a link, these are not mentions because they do not refer to objects or persons.
+
+  In addition to not annotating a link, these are not mentions because
+  they do not refer to objects or persons.
+  In the following example, the clause is not a mention (see use--mention distinction above), \emph{deze opmerking} is a mention (a mental object),
+  but again there is no coreference link:
+
+  \emph{\n{[}``Ik ben onschuldig,''\n{]} zei hij. Na [deze opmerking] bleef het stil.}
 
 \item Part/whole, subset/superset relations (bridging relations):
 
@@ -286,18 +378,18 @@ Several more complex phenomena are excluded:
   college{]}\textsubscript{1}. In een motie is gevraagd aan {[}alle
   wethouders{]}\textsubscript{2} hun ontslag in te dienen .}
 
-  While the entities of \emph{het college} and \emph{alle wethouders} are related, they are distinct entities, and we do not annotate such a bridging relation between entities.
-  
-\item Modality/negation:
+  The entities of \emph{het college} and \emph{alle wethouders} are related
+  but distinct entities, and we do not annotate such a bridging relation between entities.
 
-  \emph{{[}Een partij als de CD\&V{]} is nou niet echt {[}het toonbeeld
-  van sociale betrokkenheid{]}}
+\item Modality/negation:
+  \emph{{[}Een partij als de CD\&V{]} is nou niet echt \n{[}het toonbeeld
+  van sociale betrokkenheid\n{]}}
 
 \end{itemize*}
 
 
-\section{Differences with other annotation schemes}
-\subsection{Differences with the Corea annotation scheme}
+\section{Comparison with related annotation schemes}
+\subsection{Differences with the Corea annotation scheme for Dutch}
 Cf. \citet{bouma2007corea}
 
 \begin{itemize*}
@@ -308,21 +400,21 @@ Cf. \citet{bouma2007corea}
   classes; the specific antecedent of an anaphor is not annotated. The
   type of entity, the head of a mention, and the type of coreference
   relation are not part of the annotation.
-\item Mentions are manually corrected: all mentions that refer to an entity
-  are annotated, non-referential spans are not included as mentions.
+\item Mentions are manually corrected: all mentions that refer to a person or object
+  are annotated (including singletons), non-referential spans are not included as mentions.
 \item Relative pronouns are considered mentions and coreferent.
 
   Corea: \emph{{[}President Alejandro Toledo{]}\textsubscript{1} reisde dit weekend naar
   Seattle voor een gesprek met {[}Microsoft topman Bill Gates{]}\textsubscript{2} .
   {[}Gates, die al jaren bevriend is met {[}Toledo{]}\textsubscript{1} {]}\textsubscript{2} ,
   investeerde onlangs zo'n 550.000 Dollar in Peru .}
-  
+
   These guidelines: \emph{{[}President Alejandro Toledo{]}\textsubscript{1} reisde dit
   weekend naar Seattle voor een gesprek met {[}Microsoft topman Bill
   Gates{]}\textsubscript{2} . {[}Gates{]}\textsubscript{2} , {[}die{]}\textsubscript{2} al jaren bevriend is
   met {[}Toledo{]}\textsubscript{1} , investeerde onlangs zo'n 550.000 Dollar in
   Peru.}
-  
+
   Motivation: it can be difficult to identify the complete relative
   clause, due to discontinuity or long parenthetical remarks. Annotating
   the NP before the relative pronoun avoids a lot of difficult cases.
@@ -331,29 +423,29 @@ Cf. \citet{bouma2007corea}
 
     \begin{itemize*}
     \item Relative clauses can be discontinuous:
-    
+
       \emph{Ik kan in elk geval getrouw {[}de indrukken{]}\textsubscript{1} weergeven
       {[}die{]}\textsubscript{1} deze feiten hebben achtergelaten .}
-      
+
     \item Relative clause can be arbitrarily long:
-    
+
       \emph{En dit was {[}de Perry{]}\textsubscript{1} {[}die{]}\textsubscript{1} vroeg op die ochtend
       in mei , voordat de zon te hoog stond om nog te kunnen spelen , op de
       beste tennisbaan in het beste door de recessie getroffen vakantieoord
       in Antigua stond , met de Russische Dima aan de ene kant van het net
       en Perry aan de andere .}
-      
+
     \end{itemize*}
-    
+
 \item Obligatory reflexives are annotated:
 
     \emph{{[}Jan{]}\textsubscript{1} scheert
   {[}zich{]}\textsubscript{1}}
-  
+
 \end{itemize*}
 
 
-\subsection{Differences with the Newsreader annotation scheme}
+\subsection{Differences with the Dutch Newsreader annotation scheme}
 Cf. \citet{schoen2014newsreader}
 \begin{itemize*}
 \item Entities are not restricted to a set of predefined types
@@ -361,6 +453,33 @@ Cf. \citet{schoen2014newsreader}
 \item Relative pronouns, discontinuous NPs, and appositions are annotated
   differently.
 \end{itemize*}
+
+\subsection{The proposed annotation scheme of R\"osiger et al.~(2018)}
+\citet{roesiger2018literary} propose an annotation scheme for German literary texts
+which provided the inspiration for these annotation guidelines.
+
+Commonalities:
+\begin{itemize*}
+\item Mentions are manually corrected.
+\item Coreference annotation of entity clusters
+    instead of binary anaphora-antecedent links.
+    No annotation of link type.
+\item NP mentions in idiomatic expressions are excluded.
+\item Bridging relations are excluded.
+\end{itemize*}
+
+\filbreak
+Differences:
+\begin{itemize*}
+\item Singleton mentions are included.
+\item Non-nominal antecedents (VPs, clauses) are not annotated.
+\item Generic mentions/entities do not receive a special label.
+\item Group mentions/entities do not receive a special label.\\
+    No relations between entities are annotated.
+\item Subtoken annotation is not allowed, to be compatible with the CoNLL 2012 format.
+\item Discontinuous mentions are not allowed, for the same reason.
+\end{itemize*}
+
 
 \bibliographystyle{apalike}
 \bibliography{references}
