@@ -157,7 +157,7 @@ class Mention:
 				key=lambda x: int(x.get('begin')))]
 		if not self.relaxedtokens:
 			self.relaxedtokens = self.tokens
-		self.head = (node.find('.//node[@begin="%d"]' % headidx)
+		self.head = (node.find('.//node[@begin="%d"][@word]' % headidx)
 				if len(node) else node)
 		if node.get('pdtype') == 'pron' or node.get('vwtype') == 'bez':
 			self.type = 'pronoun'
@@ -1357,19 +1357,24 @@ def writeinfo(mentions, clusters, quotations, idx, prefix,
 					','.join(str(m) for m in cluster),
 					' '.join(mention.tokens).replace('\t', ' '))), file=out)
 	with open(prefix + '.mentions.tsv', 'w') as out:
-		print('id\tstart\tend\ttype\thead\tneclass\tperson\tquote\ttext',
-				file=out)
+		print('id\tstart\tend\ttype\thead\tneclass\tperson\tquote'
+				'\tgender\thuman\tnumber\tcluster\ttext', file=out)
 		for mention in mentions:
 			print('\t'.join((
 					str(mention.id),
 					str(idx[mention.sentno, mention.begin] + 1),
-					str(idx[mention.sentno, mention.end]),
+					str(idx[mention.sentno, mention.end - 1] + 1),
 					mention.type,
 					str(idx[mention.sentno,
 						int(mention.head.get('begin'))] + 1),
 					mention.head.get('neclass', '-'),
 					mention.features['person'] or '-',
 					mention.head.get('quotelabel'),  # is inside a quotation?
+					'\t'.join(
+						'-' if mention.features[key] is None
+						else str(mention.features[key])
+						for key in ('gender', 'human', 'number')),
+					str(mention.clusterid),
 					' '.join(mention.tokens).replace('\t', ' '),
 					)), file=out)
 	with open(prefix + '.links.tsv', 'w') as out:
