@@ -1055,16 +1055,20 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None):
 
 
 def parsesentid(path):
-	"""Given a filename, return tuple with numeric components for sorting."""
+	"""Given a filename, return tuple with numeric components for sorting.
+
+	Accepts three formats: 1.xml, 1-2.xml, abc.p.1.s.2.xml """
 	filename = os.path.basename(path)
-	x = tuple(map(int, re.findall('[0-9]+', filename.rsplit('.', 1)[0])))
+	x = tuple(map(int, re.findall(r'\d+', filename.rsplit('.', 1)[0])))
 	if len(x) == 1:
 		return 0, x[0]
-	elif len(x) == 2:
+	elif re.match(r'\d+-\d+.xml', path):
 		return x
+	elif re.match(r'.*p\.[0-9]+\.s\.[0-9]+\.xml', path):
+		return x[-2:]
 	else:
-		raise ValueError('expected sentence ID of the form sentno.xml '
-				'or parno-sentno.xml. Got: %s' % filename)
+		raise ValueError('expected sentence ID of the form sentno.xml, '
+				'parno-sentno.xml, p.parno.s.sentno.xml. Got: %s' % filename)
 
 
 def gettokens(tree, begin, end):
