@@ -42,13 +42,13 @@ import io
 import os
 import re
 import sys
+import getopt
 import tempfile
 import functools
 import subprocess
 from collections import defaultdict
 from itertools import islice
 from bisect import bisect
-from getopt import gnu_getopt
 from datetime import datetime
 from glob import glob
 from html import escape
@@ -1920,38 +1920,38 @@ def process(path, output, ngdata, gadata,
 def clindev(ngdata, gadata, goldmentions):
 	"""Run on CLIN26 shared task dev data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	os.system('mkdir -p results/' + timestamp)
-	for path in glob('../groref/clinDevData/*.coref_ne'):
+	path = os.path.join('results/clindev/', timestamp)
+	os.makedirs(path, exist_ok=False)
+	for conllfile in glob('../groref/clinDevData/*.coref_ne'):
 		dirname = os.path.join(
-				os.path.dirname(path),
-				os.path.basename(path).split('_')[0])
-		docname = os.path.basename(path)
-		outfilename = 'results/%s/%s' % (timestamp, docname)
-		with open(outfilename, 'w') as out:
+				os.path.dirname(conllfile),
+				os.path.basename(conllfile).split('_')[0])
+		docname = os.path.basename(conllfile)
+		with open(os.path.join(path, docname), 'w') as out:
 			process(dirname + '/*.xml', out, ngdata, gadata,
-					docname=docname, conllfile=path, goldmentions=goldmentions,
-					start=0, end=6)
+					docname=docname, conllfile=conllfile,
+					goldmentions=goldmentions, start=0, end=6)
 			# shared task says the first 7 sentences are annotated,
 			# but in many documents only the first 6 sentences are annotated.
-
-	with open('results/%s/blanc_scores' % timestamp, 'w') as out:
+	with open('%s/blanc_scores' % path, 'w') as out:
 		os.chdir('../groref/clin26-eval-master')
 		subprocess.call(
 				['bash', 'score_coref.sh',
 					'coref_ne', 'dev_corpora/coref_ne',
-					'../../dutchcoref/results/' + timestamp, 'blanc'],
+					'../../dutchcoref/' + path, 'blanc'],
 				stdout=out)
 	os.chdir('../../dutchcoref')
-	print(open('results/%s/blanc_scores' % timestamp).read())
+	with open('%s/blanc_scores' % path) as inp:
+		print(inp.read())
 
 
 def semeval(ngdata, gadata, goldmentions):
 	"""Run on semeval 2010 shared task dev data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	os.system('mkdir -p resultsemeval/' + timestamp)
-	outfilename = 'resultsemeval/%s/result.conll' % timestamp
+	path = os.path.join('results/semevaldev/', timestamp)
+	os.makedirs(path, exist_ok=False)
 	startcluster = 0
-	with open(outfilename, 'w') as out:
+	with open(os.path.join(path, 'result.conll'), 'w') as out:
 		for dirname in sorted(glob('data/semeval2010NLdevparses/*/'),
 				key=lambda x: int(x.rstrip('/').split('_')[1])):
 			docname = os.path.basename(dirname.rstrip('/'))
@@ -1962,16 +1962,16 @@ def semeval(ngdata, gadata, goldmentions):
 					startcluster=startcluster, goldmentions=goldmentions,
 					exclude=('relpronouns', 'reflectives', 'reciprocals',
 						'predicatives', 'appositives', 'npsingletons'))
-	with open('resultsemeval/%s/blanc_scores' % timestamp, 'w') as out:
+	with open('%s/blanc_scores' % path, 'w') as out:
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
 				'blanc',
 				'data/semeval2010/task01.posttask.v1.0/'
 					'corpora/training/nl.devel.txt.fixed',
-				'resultsemeval/%s/result.conll'
-				% timestamp],
+				'%s/result.conll' % path],
 				stdout=out)
-	print(open('resultsemeval/%s/blanc_scores' % timestamp).read())
+	with open('%s/blanc_scores' % path) as inp:
+		print(inp.read())
 
 
 def runtests(ngdata, gadata):
@@ -2021,9 +2021,13 @@ def runtests(ngdata, gadata):
 
 def main():
 	"""CLI"""
-	opts, args = gnu_getopt(sys.argv[1:], '', [
-		'help', 'verbose', 'clindev', 'semeval', 'test', 'goldmentions',
-		'fmt=', 'slice=', 'gold=', 'exclude=', 'outputprefix='])
+	longopts = ['fmt=', 'slice=', 'gold=', 'exclude=', 'outputprefix=',
+			'help', 'verbose', 'test', 'clindev', 'semeval', 'goldmentions']
+	try:
+		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
+	except getopt.GetoptError:
+		print(__doc__)
+		return
 	opts = dict(opts)
 	if '--help' in opts:
 		print(__doc__)
@@ -2042,6 +2046,9 @@ def main():
 		start, end = opts.get('--slice', ':').split(':')
 		start = int(start) if start else None
 		end = int(end) if end else None
+		if len(args) == 0:
+			print(__doc__)
+			return
 		path = args[0]
 		exclude = [a for a in opts.get('--exclude', '').split(',') if a]
 		if '--outputprefix' in opts:
