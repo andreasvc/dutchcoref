@@ -1781,30 +1781,43 @@ def conllclusterdict(conlldata):
 	"""Extract dict from CoNLL file mapping gold cluster IDs to spans."""
 	spansforcluster = {}
 	spans = set()
+	lineno = 1
 	for sentno, chunk in enumerate(conlldata):
 		scratch = {}
 		for idx, fields in enumerate(chunk):
+			lineno += 1
 			labels = fields[-1]
 			for a in labels.split('|'):
 				if a == '-' or a == '_':
 					continue
-				clusterid = int(a.strip('()'))
+				try:
+					clusterid = int(a.strip('()'))
+				except ValueError:
+					raise ValueError('Cannot parse cluster %r at line %d'
+							% (a.strip('()'), lineno))
 				if a.startswith('('):
-					scratch.setdefault(clusterid, []).append((sentno, idx))
+					scratch.setdefault(clusterid, []).append(
+							(sentno, idx, lineno))
 				if a.endswith(')'):
-					sentno, begin = scratch[int(a.strip('()'))].pop()
+					try:
+						sentno, begin, _ = scratch[int(a.strip('()'))].pop()
+					except KeyError:
+						raise ValueError(
+								'No opening paren for cluster %s at line %d'
+								% (a.strip('()'), lineno))
 					text = ' '.join(line[3] for line in chunk[begin:idx + 1])
 					span = (sentno, begin, idx + 1, text)
 					if span in spans:
 						debug('Warning: gold data has duplicate span %r '
-								'in cluster %d' % (span, clusterid))
+								'in cluster %d at line %d'
+								% (span[3], clusterid, lineno))
 					spans.add(span)
 					spansforcluster.setdefault(clusterid, set()).add(span)
-		if any(scratch.values()):
-			print({a: b for a, b in scratch.items() if b})
-			for line in chunk:
-				print('\t'.join(line))
-			raise ValueError('Unclosed paren? sentno=%d' % (sentno))
+		lineno += 1
+		for a, b in scratch.items():
+			if b:
+				raise ValueError('Unclosed paren for cluster %d at line %d'
+						% (a, b[0][2]))
 	return spansforcluster
 
 
