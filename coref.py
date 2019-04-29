@@ -1062,9 +1062,9 @@ def parsesentid(path):
 	x = tuple(map(int, re.findall(r'\d+', filename.rsplit('.', 1)[0])))
 	if len(x) == 1:
 		return 0, x[0]
-	elif re.match(r'\d+-\d+.xml', path):
+	elif re.match(r'\d+-\d+.xml', filename):
 		return x
-	elif re.match(r'.*p\.[0-9]+\.s\.[0-9]+\.xml', path):
+	elif re.match(r'.*p\.[0-9]+\.s\.[0-9]+\.xml', filename):
 		return x[-2:]
 	else:
 		raise ValueError('expected sentence ID of the form sentno.xml, '
