@@ -1780,7 +1780,7 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 def conllclusterdict(conlldata):
 	"""Extract dict from CoNLL file mapping gold cluster IDs to spans."""
 	spansforcluster = {}
-	spans = set()
+	spans = {}
 	lineno = 1
 	for sentno, chunk in enumerate(conlldata):
 		scratch = {}
@@ -1808,10 +1808,11 @@ def conllclusterdict(conlldata):
 					text = ' '.join(line[3] for line in chunk[begin:idx + 1])
 					span = (sentno, begin, idx + 1, text)
 					if span in spans:
-						debug('Warning: gold data has duplicate span %r '
-								'in cluster %d at line %d'
-								% (span[3], clusterid, lineno))
-					spans.add(span)
+						debug('Warning: duplicate span %r '
+								'in cluster %d and %d, sent %d, line %d'
+								% (span[3], clusterid, spans[span],
+									sentno + 1, lineno))
+					spans[span] = clusterid
 					spansforcluster.setdefault(clusterid, set()).add(span)
 		lineno += 1
 		for a, b in scratch.items():

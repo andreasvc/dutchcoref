@@ -190,3 +190,8 @@ https://bitbucket.org/robvanderg/groref
 and https://github.com/antske/coref_draft
 
 The UD conversion uses a slightly modified version of https://github.com/gossebouma/lassy2ud
+
+The number & gender data is derived from:
+
+Shane Bergsma and Dekang Lin (2006). Bootstrapping Path-Based Pronoun Resolution, In Proceedings of COLING/ACL.
+http://www.clsp.jhu.edu/~sbergsma/Gender/
