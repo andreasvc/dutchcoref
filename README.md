@@ -10,7 +10,7 @@ Get the repository and install the required packages:
     $ cd dutchcoref
     $ pip3 install -r requirements.txt
 
-Unless you are working on an already annotated or parsed corpus, you will want to
+Unless you are working on an already parsed corpus, you will want to
 install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUserGuide.html).
 
 To get parse tree visualizations in the HTML output,
@@ -51,11 +51,12 @@ Ik vroeg hem binnen te komen .
 $ mkdir example
 $ cat example.txt | Alpino number_analyses=1 end_hook=xml -parse -flag treebank example
 [...]
-$ python3 coref.py --verbose --fmt=booknlp /tmp/example
+$ python3 coref.py --verbose /tmp/example
 ```
 
 ![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/data/output.png "verbose output")
 
+$ python3 coref.py --fmt=booknlp /tmp/example
 ```
 #begin document (example);
 1       6-1     1       '       '       LET()   5       punct   -       14      -       B       -
@@ -95,6 +96,8 @@ $ python3 coref.py --verbose --fmt=booknlp /tmp/example
 ```
 
 ### Error analysis against a gold standard .conll file
+UPDATE: use https://github.com/andreasvc/berkeley-coreference-analyser
+
 The following creates lots of output; scroll to the end for the error analysis.
 Mention boundaries and links are printed in green if they are correct,
 yellow if in gold but missing from output,
@@ -121,19 +124,17 @@ Make sure you don't overwrite the gold standard conll file!
 
 
 ### Evaluation against a gold standard .conll file
-Get the scorer script: https://github.com/ns-moosavi/coval
+Get the scorer script: https://github.com/andreasvc/coval
+which is an improved version of: https://github.com/ns-moosavi/coval
 ```
 $ python3 coref.py mydocument/ --fmt=conll2012 >output.conll
 $ python3 ../coval/scorer.py mydocument.conll output.conll
-lea
-Recall: 48.98  Precision: 62.76  F1: 55.02
-muc
-Recall: 74.31  Precision: 73.58  F1: 73.94
-bcub
-Recall: 57.03  Precision: 70.77  F1: 63.16
-ceafe
-Recall: 79.99  Precision: 66.41  F1: 72.57
-CoNLL score: 69.89
+mentions   Recall: 90.52  Precision: 81.43  F1: 85.73
+muc        Recall: 79.44  Precision: 74.43  F1: 76.85
+bcub       Recall: 51.72  Precision: 55.65  F1: 53.61
+ceafe      Recall: 66.64  Precision: 46.58  F1: 54.83
+lea        Recall: 49.48  Precision: 52.74  F1: 51.05
+CoNLL score: 61.77
 ```
 
 
@@ -168,15 +169,17 @@ Annotation workflow
 1. Preprocess, tokenize and parse a text with Alpino to get a directory of parse trees
     in XML files.
 2. Run coreference resolution on the parse trees:
-    `python3 coref.py --fmt=conll2012 /path/to/text/ > text.conll`
+    `python3 coref.py --fmt=conll2012 path/to/parses/ > text.conll`
     (Forward slashes are required, also on Windows).
 3. Get the latest stable release of [CorefAnnotator](https://github.com/nilsreiter/CorefAnnotator/releases).
-    Run it with `java -jar CorefAnnotator-1.9.0-full.jar`
+    Run it with `java -jar CorefAnnotator-1.9.2-full.jar`
 4. Import the `.conll` file (CoNLL 2012 button under "Import from other formats").
 5. Read the [annotation guidelines](https://github.com/andreasvc/dutchcoref/raw/master/dutchcoref%20annotation%20guidelines.pdf) in this repository
 6. Correct the annotation; save regularly
     (in the .xmi format used by CorefAnnotator)
 7. When done, export to CoNLL 2012 format
+8. The CoNLL 2012 file exported by CorefAnnotator does not contain POS tags and parse trees;
+	to add those, run `addparsebits.py text.conll path/to/parses/`
 
 References
 ----------
