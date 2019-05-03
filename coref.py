@@ -1301,10 +1301,8 @@ def writetabular(trees, mentions,
 	doctokenid = 0
 	if fmt == 'semeval2010':
 		print('#begin document %s' % docname, file=file)
-	elif fmt == 'conll2012':
-		print('#begin document (%s); part %03d' % (docname, part), file=file)
 	else:
-		print('#begin document (%s);' % docname, file=file)
+		print('#begin document (%s); part %03d' % (docname, part), file=file)
 	for sentid, sent, sentlabels in zip(sentids, sentences, labels):
 		for tokenid, (token, label) in enumerate(zip(sent, sentlabels), 1):
 			doctokenid += 1
