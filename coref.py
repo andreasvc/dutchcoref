@@ -1587,6 +1587,8 @@ def readconll(conllfile, docname='-'):
 				break
 			elif line == '':
 				break
+	if not conlldata[-1]:  # remove empty sentence if applicable
+		conlldata.pop()
 	if not conlldata[0]:
 		raise ValueError('Could not read gold data from %r with docname %r' % (
 				conllfile, docname))
