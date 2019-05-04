@@ -1,14 +1,22 @@
-"""Take CoNLL 2012 files and directories with Alpino XML parse trees,
-and add POS tags and parse bits to the CoNLL 2012 files;
-CoNLL 2012 files are overwritten in-place!
+"""Add POS tags, parses, and NER to CoNLL 2012 files.
 
-Single file: addparsebits.py <conllfile> <parsesdir>
-All files in a directory: addparsebits.py <conllfilesdir> <parsesdir> --batch
+Situation: you have a CoNLL 2012 file with manually corrected coreference
+information, but the rest of the columns are missing. This tool extracts that
+information from other files and adds it to the manually corrected file.
+CoNLL 2012 files are overwritten in-place! (Make backups; use version control).
+
+Extract parses from Alpino XML trees:
+Single file: addparsebits.py alpino <conllfile> <parsesdir>
+Batch mode: addparsebits.py alpino <conllfilesdir> <parsesdir> --batch
+
+Extract parses from CoNLL 2012 files:
+addparsebits.py conll <conllgold> <conllparses>
 """
 import os
 import re
 import sys
 import glob
+import getopt
 from lxml import etree
 from discodop.tree import writebrackettree
 from discodop.treebank import AlpinoCorpusReader
@@ -44,7 +52,7 @@ def addner(block, chunk):
 			chunk[n][10] = '*)'
 
 
-def conv(conllfile, parsesdir):
+def convalpino(conllfile, parsesdir):
 	"""Add parse bits to a single file, overwrite in-place."""
 	conlldata = readconll(conllfile)
 	header = open(conllfile).readlines()[0].rstrip()
@@ -68,18 +76,54 @@ def conv(conllfile, parsesdir):
 		print('#end document', file=out)
 
 
+def convconll(goldconll, parsesconll):
+	"""Copy columns from parsesconll to goldconll file; overwrite in-place."""
+	goldconlldata = readconll(goldconll)
+	header = open(goldconll).readlines()[0].rstrip()
+	parsesconlldata = readconll(parsesconll)
+	if len(goldconlldata) != len(parsesconlldata):
+		raise ValueError('mismatch in number of sentences')
+	for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
+		if len(gchunk) != len(pchunk):
+			raise ValueError('Sentence length mismatch')
+		if len(pchunk[0]) < 10:
+			raise ValueError('Not enough fields for gold CoNLL 2012 file')
+		if len(gchunk[0]) < 10:
+			raise ValueError('Not enough fields for parses CoNLL 2012 file')
+	with open(goldconll, 'w') as out:
+		print(header, file=out)
+		for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
+			for gline, pline in zip(gchunk, pchunk):
+				gline[4] = pline[4]
+				gline[5] = pline[5]
+				gline[10] = pline[10]
+				print('\t'.join(gline), file=out)
+			print('', file=out)
+		print('#end document', file=out)
+
+
 def main():
 	"""CLI."""
-	if '--batch' in sys.argv:
-		conllfiles, parsesdir = sys.argv[1:]
-		for directory in glob.glob(parsesdir + '/*/'):
-			conllfile = (conllfiles + '/'
-					+ os.path.basename(directory.rstrip('/')) + '.conll')
+	try:
+		opts, args = getopt.gnu_getopt(sys.argv[1:], '', ['batch'])
+		cmd, goldconll, parses = args
+	except (getopt.GetoptError, ValueError):
+		print(__doc__)
+		return
+	opts = dict(opts)
+	if cmd == 'alpino' and '--batch' in opts:
+		for directory in glob.glob(os.path.join(parses, '*/')):
+			docid = os.path.basename(directory.rstrip('/'))
+			conllfile = os.path.join(goldconll, docid + '.conll')
 			if os.path.exists(conllfile):
-				conv(conllfile, directory)
+				convalpino(conllfile, directory)
+	elif cmd == 'alpino':
+		convalpino(goldconll, parses)
+	elif cmd == 'conll':
+		convconll(goldconll, parses)
 	else:
-		conllfile, parsesdir = sys.argv[1:]
-		conv(conllfile, parsesdir)
+		print(__doc__)
+		return
 
 
 if __name__ == '__main__':

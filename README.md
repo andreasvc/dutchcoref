@@ -179,7 +179,7 @@ Annotation workflow
     (in the .xmi format used by CorefAnnotator)
 7. When done, export to CoNLL 2012 format
 8. The CoNLL 2012 file exported by CorefAnnotator does not contain POS tags and parse trees;
-	to add those, run `addparsebits.py text.conll path/to/parses/`
+	to add those, run `addparsebits.py alpino text.conll path/to/parses/`
 
 References
 ----------
