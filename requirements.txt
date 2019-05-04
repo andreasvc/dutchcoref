@@ -2,3 +2,4 @@ lxml
 colorama
 ansi2html
 Flask
+pandas

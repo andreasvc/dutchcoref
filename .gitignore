@@ -1,4 +1,5 @@
 results/
+data/ngdata.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

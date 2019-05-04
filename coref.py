@@ -43,8 +43,8 @@ import os
 import re
 import sys
 import getopt
+import pandas
 import tempfile
-import functools
 import subprocess
 from collections import defaultdict
 from itertools import islice
@@ -1228,11 +1228,26 @@ def sameclause(node1, node2):
 	return node1 is node2
 
 
+def createngdatadf():
+	"""Create pickled version of ngdata DataFrame."""
+	with open('../groref/ngdata', 'rb') as inp:
+		df = pandas.DataFrame.from_dict(
+				{line[:line.index(b'\t')]:
+					[int(a) for a in line[line.index(b'\t') + 1:].split(b' ')]
+				for line in inp},
+				orient='index', columns=['male', 'female', 'neuter', 'plural'])
+	df.to_pickle('data/ngdata.pkl')
+	return df
+
+
 def readngdata():
 	"""Read noun phrase number-gender counts."""
-	# For faster loading, do not decode and parse into dict:
-	with open('../groref/ngdata', 'rb') as inp:
-		ngdata = inp.read()
+	if (os.path.exists('data/ngdata.pkl')
+			and os.stat('data/ngdata.pkl').st_mtime
+			> os.stat('../groref/ngdata').st_mtime):
+		ngdata = pandas.read_pickle('data/ngdata.pkl')
+	else:
+		ngdata = createngdatadf()
 	gadata = {}  # Format: {noun: (gender, animacy)}
 	with open('data/gadata', encoding='utf8') as inp:
 		for line in inp:
@@ -1250,19 +1265,14 @@ def readngdata():
 	return ngdata, gadata
 
 
-@functools.lru_cache()
 def nglookup(key, ngdata):
-	"""Search through tab-separated file stored as bytestring.
+	"""Look up key in ngdata DataFrame.
 
-	:returns: a dictionary with features."""  # FIXME: speed up
-	if not key:
+	:returns: a dictionary with features."""
+	key = key.lower().encode('utf8')
+	if not key or key not in ngdata.index:
 		return {}
-	i = ngdata.find(('\n%s\t' % key.lower()).encode('utf8'))
-	if i == -1:
-		return {}
-	j = ngdata.find('\n'.encode('utf8'), i + 1)
-	match = ngdata[i + len(key) + 2:j].decode('utf8')
-	genderdata = [int(x) for x in match.split(' ')]
+	genderdata = list(ngdata.loc[key, :])
 	if (genderdata[0] > sum(genderdata) / 3
 			and genderdata[1] > sum(genderdata) / 3):
 		return {'number': 'sg', 'gender': 'fm', 'human': 1}
