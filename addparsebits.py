@@ -17,10 +17,6 @@ import re
 import sys
 import glob
 import getopt
-from lxml import etree
-from discodop.tree import writebrackettree
-from discodop.treebank import AlpinoCorpusReader
-from discodop.treetransforms import raisediscnodes
 from coref import readconll
 
 
@@ -31,11 +27,10 @@ def splitparse(parse, chunk):
 		chunk[n][5] = parsebit
 
 
-def addner(block, chunk):
+def addner(tree, chunk):
 	"""Produce CoNLL 2012 start & end NER tags."""
 	# NB: neclass attributes occur only on tokens,
 	# will not produce correctly nested NER spans
-	tree = etree.fromstring(block)
 	for line in chunk:
 		line[10] = '*'
 	nerlabels = [token.get('neclass', '-') for token
@@ -54,22 +49,36 @@ def addner(block, chunk):
 
 def convalpino(conllfile, parsesdir):
 	"""Add parse bits to a single file, overwrite in-place."""
+	from lxml import etree
+	try:
+		from discodop.tree import writebrackettree
+		from discodop.treebank import AlpinoCorpusReader
+		from discodop.treetransforms import raisediscnodes
+	except ImportError:
+		print('Install https://github.com/andreasvc/disco-dop')
+		return
 	conlldata = readconll(conllfile)
 	header = open(conllfile).readlines()[0].rstrip()
 	treebank = AlpinoCorpusReader(parsesdir + '/*.xml',
 			morphology='replace',
 			headrules='../disco-dop/alpino.headrules')
+	for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
+		if len(chunk) != len(item.sent):
+			raise ValueError('length mismatch')
+		if len(chunk[0]) < 11:
+			raise ValueError('Not enough fields for gold CoNLL 2012 file')
 	with open(conllfile, 'w') as out:
 		print(header, file=out)
 		for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
-			if len(chunk) != len(item.sent):
-				raise ValueError('length mismatch')
 			raisediscnodes(item.tree)
 			for n, (_, postag) in enumerate(item.tree.pos()):
+				if len(chunk[n]) < 12:  # kludge
+					chunk[n] = chunk[n][:-1] + ['-', chunk[n][-1]]
 				# NB: parens as square brackets: N[eigen,...]
 				chunk[n][4] = postag
 			splitparse(writebrackettree(item.tree, item.sent), chunk)
-			addner(item.block, chunk)
+			xmltree = etree.fromstring(item.block)
+			addner(xmltree, chunk)
 			for line in chunk:
 				print('\t'.join(line), file=out)
 			print('', file=out)
@@ -86,9 +95,9 @@ def convconll(goldconll, parsesconll):
 	for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
 		if len(gchunk) != len(pchunk):
 			raise ValueError('Sentence length mismatch')
-		if len(pchunk[0]) < 10:
+		if len(pchunk[0]) < 12:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
-		if len(gchunk[0]) < 10:
+		if len(gchunk[0]) < 12:
 			raise ValueError('Not enough fields for parses CoNLL 2012 file')
 	with open(goldconll, 'w') as out:
 		print(header, file=out)
