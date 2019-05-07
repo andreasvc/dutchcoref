@@ -938,11 +938,11 @@ def relatedwords(mentions, clusters):
 	# select candidate pairs of nominal mentions that occur
 	# within a 5 sentence window.
 	for n, mention in enumerate(mentions):
-		if mention.type == 'nominal':
+		if mention.type == 'noun':
 			for other in mentions[n + 1:]:
 				if other.sentno > mention.sentno + 5:
 					break
-				if (other.type == 'nominal'
+				if (other.type == 'noun'
 						and other.clusterid != mention.clusterid
 						and checkrelatedwords(mention, other)):
 					if other.sentno < mention.sentno:
