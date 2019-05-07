@@ -931,6 +931,26 @@ def properheadmatch(mentions, clusters, relaxed=False):
 						merge(mention, other, sieve, mentions, clusters)
 
 
+def relatedwords(mentions, clusters):
+	"""Link mentions with synonym/hypernym nouns."""
+	sieve = 'related words'
+	debug(color(sieve, 'yellow'))
+	# select candidate pairs of nominal mentions that occur
+	# within a 5 sentence window.
+	for n, mention in enumerate(mentions):
+		if mention.type == 'nominal':
+			for other in mentions[n + 1:]:
+				if other.sentno > mention.sentno + 5:
+					break
+				if (other.type == 'nominal'
+						and other.clusterid != mention.clusterid
+						and checkrelatedwords(mention, other)):
+					if other.sentno < mention.sentno:
+						merge(other, mention, sieve, mentions, clusters)
+					else:
+						merge(mention, other, sieve, mentions, clusters)
+
+
 def resolvepronouns(mentions, clusters, quotations):
 	"""Find antecedents of unresolved pronouns with compatible features."""
 	debug(color('pronoun resolution', 'yellow'))
@@ -1050,6 +1070,7 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None):
 	strictheadmatch(mentions, clusters, 7)
 	properheadmatch(mentions, clusters)
 	properheadmatch(mentions, clusters, relaxed=True)
+	relatedwords(mentions, clusters)
 	resolvepronouns(mentions, clusters, quotations)
 	return mentions, clusters, quotations, idx
 
@@ -1226,6 +1247,14 @@ def sameclause(node1, node2):
 	elif index and node2.find('./node[@index="%s"]' % index) is not None:
 		return True
 	return node1 is node2
+
+
+def checkrelatedwords(mention1, mention2):
+	"""Test whether mentions are coreferent based on related nouns."""
+	head1 = mention1.node.head.get('lemma')
+	head2 = mention2.node.head.get('lemma')
+	...
+	return False
 
 
 def createngdatadf():
