@@ -34,7 +34,8 @@ def addner(tree, chunk):
 	for line in chunk:
 		line[10] = '*'
 	nerlabels = [token.get('neclass', '-') for token
-			in tree.findall('.//node[@word]')]
+			in sorted(tree.findall('.//node[@word]'),
+				key=lambda node: int(node.get('begin')))]
 	for n, ner in enumerate(nerlabels):
 		if ner == '-':
 			continue
