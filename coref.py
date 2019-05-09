@@ -1235,7 +1235,8 @@ def createngdatadf():
 				{line[:line.index(b'\t')]:
 					[int(a) for a in line[line.index(b'\t') + 1:].split(b' ')]
 				for line in inp},
-				orient='index', columns=['male', 'female', 'neuter', 'plural'])
+				orient='index')
+	df.columns = ['male', 'female', 'neuter', 'plural']
 	df.to_pickle('data/ngdata.pkl')
 	return df
 
