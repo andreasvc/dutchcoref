@@ -9,3 +9,4 @@ for filename in sys.argv[1:]:
 		conllclusterdict(readconll(filename))
 	except Exception as err:
 		print(err)
+		print('NB: Not checking for further errors in this file.')
