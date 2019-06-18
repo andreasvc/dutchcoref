@@ -443,6 +443,8 @@ def pleonasticpronoun(node):
 		if (node.get('index') and node.get('index')
 				in node.xpath('../node//node[@rel="sup"]/@index')):
 			return True
+		# FIXME: add rules to detect non-pleonastic use
+		return True  # assume pleonastic ...
 	if node.get('lemma') == 'het' and node.get('rel') == 'obj1':
 		head = node.find('../node[@rel="hd"]')
 		head = '' if head is None else head.get('lemma')
@@ -465,6 +467,8 @@ def pleonasticpronoun(node):
 					or (node.find('..//node[@word="er"]') is not None
 						and node.find('..//node[@word="over"]') is not None))):
 			return True
+		# FIXME: add rules to detect non-pleonastic use
+		return True  # assume pleonastic ...
 	return False
 
 
@@ -2089,7 +2093,7 @@ def main():
 		start, end = opts.get('--slice', ':').split(':')
 		start = int(start) if start else None
 		end = int(end) if end else None
-		if len(args) == 0:
+		if len(args) != 1:
 			print(__doc__)
 			return
 		path = args[0]

@@ -127,6 +127,8 @@ def main():
 			conllfile = os.path.join(goldconll, docid + '.conll')
 			if os.path.exists(conllfile):
 				convalpino(conllfile, directory)
+	elif cmd == 'conll' and '--batch' in opts:
+		raise NotImplementedError
 	elif cmd == 'alpino':
 		convalpino(goldconll, parses)
 	elif cmd == 'conll':
