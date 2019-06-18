@@ -43,14 +43,14 @@ def comparementions(gold, resp, goldspans, respspans,
 	standard, and red brackets are only found in our output."""
 	sentences = [[line[3] for line in sent] for sent in gold]
 	print(color('mentions in gold missing from response:', 'yellow'), file=out)
-	for _sentno, _begin, _end, text in goldspans - respspans:
-		print(text, file=out)
+	for sentno, begin, end, text in sorted(goldspans - respspans):
+		print('%3d %2d %2d %s' % (sentno, begin, end, text), file=out)
 	if len(goldspans - respspans) == 0:
 		print('(none)')
 	print('\n' + color('mentions in response but not in gold:', 'yellow'),
 			file=out)
-	for _sentno, _begin, _end, text in respspans - goldspans:
-		print(text, file=out)
+	for sentno, begin, end, text in sorted(respspans - goldspans):
+		print('%3d %2d %2d %s' % (sentno, begin, end, text), file=out)
 	if len(respspans - goldspans) == 0:
 		print('(none)')
 	print('', file=out)

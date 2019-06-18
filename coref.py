@@ -294,7 +294,8 @@ def getmentions(trees, ngdata, gadata):
 		candidates.extend(tree.xpath(
 				'.//node[@cat="mwu"]/node[@pt="spec"]/..'))
 		candidates.extend(tree.xpath('.//node[@pt="n"]'
-				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body"]'))
+				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body" '
+				'or @special="er_loc"]'))
 		candidates.extend(tree.xpath(
 				'.//node[@pdtype="pron" or @vwtype="bez"]'))
 		candidates.extend(tree.xpath(
@@ -335,8 +336,19 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata):
 			headidx = max(int(a.get('begin')) for a
 					in node.findall('.//node[@word]')
 					if int(a.get('begin')) < b)
+	# remove "vc" clause from NP:
+	# [Behrmans voorstel] om samen te eten
+	# [het feit] dat ...
+	vc = node.find('./node[@rel="vc"]')
+	if vc is not None and int(vc.get('begin')) < b:
+		b = int(vc.get('begin'))
+		if headidx > b:
+			headidx = max(int(a.get('begin')) for a
+					in node.findall('.//node[@word]')
+					if int(a.get('begin')) < b)
 	# Relative clauses: [de man] [die] ik eerder had gezien.
-	relpronoun = node.find('./node[@cat="rel"]/node[@wh="rel"]')
+	# [een buurt] [waar] volgens hem ondanks de Wende niets veranderd was.
+	relpronoun = node.find('./node[@cat="rel"]/node[@rel="rhd"]')
 	if relpronoun is not None and int(relpronoun.get('begin')) < b:
 		b = int(relpronoun.get('begin'))
 		if headidx > b:
@@ -1632,14 +1644,14 @@ def comparementions(conlldata, trees, mentions, goldspans, respspans,
 				key=lambda x: int(x.get('begin')))]
 			for _, tree in trees]
 	print(color('mentions in gold missing from response:', 'yellow'), file=out)
-	for _sentno, _begin, _end, text in goldspans - respspans:
-		print(text, file=out)
+	for sentno, begin, end, text in sorted(goldspans - respspans):
+		print('%3d %2d %2d %s' % (sentno, begin, end, text), file=out)
 	if len(goldspans - respspans) == 0:
 		print('(none)')
 	print('\n' + color('mentions in response but not in gold:', 'yellow'),
 			file=out)
-	for _sentno, _begin, _end, text in respspans - goldspans:
-		print(text, file=out)
+	for sentno, begin, end, text in sorted(respspans - goldspans):
+		print('%3d %2d %2d %s' % (sentno, begin, end, text), file=out)
 	if len(respspans - goldspans) == 0:
 		print('(none)')
 	print('', file=out)
