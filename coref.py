@@ -1330,6 +1330,8 @@ def writetabular(trees, mentions,
 	doctokenid = 0
 	if fmt == 'semeval2010':
 		print('#begin document %s' % docname, file=file)
+	elif part is None:  # CLIN evaluation scripts don't support part numbers
+		print('#begin document (%s);' % docname, file=file)
 	else:
 		print('#begin document (%s); part %03d' % (docname, part), file=file)
 	for sentid, sent, sentlabels in zip(sentids, sentences, labels):
@@ -1923,7 +1925,7 @@ def postprocess(exclude, mentions, clusters, goldmentions):
 
 
 def process(path, output, ngdata, gadata,
-		docname='-', conllfile=None, fmt=None,
+		docname='-', part=0, conllfile=None, fmt=None,
 		start=None, end=None, startcluster=0,
 		goldmentions=False, exclude=(), outputprefix=None):
 	"""Process a single directory with Alpino XML parses."""
@@ -1957,7 +1959,7 @@ def process(path, output, ngdata, gadata,
 					debugoutput=debugoutput),
 				file=output)
 	elif not VERBOSE:
-		writetabular(trees, mentions, docname=docname,
+		writetabular(trees, mentions, docname=docname, part=part,
 				file=output, fmt=fmt, startcluster=startcluster)
 	if outputprefix is not None:
 		writeinfo(mentions, clusters, quotations, idx, outputprefix, docname)
@@ -1976,7 +1978,7 @@ def clindev(ngdata, gadata, goldmentions):
 		docname = os.path.basename(conllfile)
 		with open(os.path.join(path, docname), 'w') as out:
 			process(dirname + '/*.xml', out, ngdata, gadata,
-					docname=docname, conllfile=conllfile,
+					docname=docname, part=None, conllfile=conllfile,
 					goldmentions=goldmentions, start=0, end=6)
 			# shared task says the first 7 sentences are annotated,
 			# but in many documents only the first 6 sentences are annotated.
