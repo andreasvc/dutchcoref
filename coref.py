@@ -428,7 +428,9 @@ def pleonasticpronoun(node):
 	# Examples from Lassy syntactic annotation manual.
 	if node.get('rel') in ('sup', 'pobj1'):
 		return True
-	if node.get('rel') == 'su' and node.get('lemma') == 'het':
+	if node.get('lemma') == 'dat' and node.get('vwtype') == 'aanw':
+		return True
+	if node.get('lemma') == 'het' and node.get('rel') == 'su':
 		head = node.find('../node[@rel="hd"]')
 		# het regent. / hoe gaat het?
 		if head.get('lemma') in WEATHERVERBS or head.get('lemma') == 'gaan':
@@ -441,7 +443,7 @@ def pleonasticpronoun(node):
 		if (node.get('index') and node.get('index')
 				in node.xpath('../node//node[@rel="sup"]/@index')):
 			return True
-	if node.get('rel') == 'obj1' and node.get('lemma') == 'het':
+	if node.get('lemma') == 'het' and node.get('rel') == 'obj1':
 		head = node.find('../node[@rel="hd"]')
 		head = '' if head is None else head.get('lemma')
 		# (60) de presidente had het warm
