@@ -118,8 +118,8 @@ class Mention:
 	:ivar antecedent: mention ID of antecedent of this mention, or None.
 	:ivar sieve: name of sieve responsible for linking this mention, or None.
 	"""
-	def __init__(self, mentionid, sentno, tree, node, begin, end, headidx,
-			tokens, ngdata, gadata):
+	def __init__(self, mentionid, sentno, parno, tree, node, begin, end,
+			headidx, tokens, ngdata, gadata):
 		"""Create a new mention.
 
 		:param mentionid: unique integer for this mention.
@@ -136,6 +136,7 @@ class Mention:
 		"""
 		self.id = mentionid
 		self.sentno = sentno
+		self.parno = parno
 		self.node = node
 		self.begin = begin
 		self.end = end
@@ -263,7 +264,7 @@ class Quotation:
 	:ivar addressee: detected addressee Mention object.
 	:ivar mentions: list of Mention objects occurring in this quote.
 	"""
-	def __init__(self, start, end, sentno, parno, text, sentbounds):
+	def __init__(self, start, end, sentno, parno, text, sentbounds, parafinal):
 		"""
 		:param start: global token start index.
 		:param end: global token end index.
@@ -271,22 +272,27 @@ class Quotation:
 		:param parno: paragraph number.
 		:param text: text of quote as string (including quote marks).
 		:param sentbounds: bool, whether quote starts+ends at sent boundaries.
+		:param parafinal: bool, whether quote is last sentence of paragraph.
 		"""
 		self.start, self.end = start, end
 		self.sentno = sentno
 		self.parno = parno
 		self.sentbounds = sentbounds
+		self.parafinal = parafinal
 		self.speaker = None
 		self.addressee = None
 		self.mentions = []
 		self.text = text
+
+	def __repr__(self):
+		return '%d %d %r' % (self.parno, self.sentno, self.text)
 
 
 def getmentions(trees, ngdata, gadata):
 	"""Collect mentions."""
 	debug(color('mention detection', 'yellow'))
 	mentions = []
-	for sentno, (_, tree) in enumerate(trees):
+	for sentno, ((parno, _), tree) in enumerate(trees):
 		candidates = []
 		candidates.extend(tree.xpath('.//node[@cat="np"]'))
 		# candidates.extend(tree.xpath(
@@ -303,12 +309,13 @@ def getmentions(trees, ngdata, gadata):
 		candidates.extend(tree.xpath('.//node[@pt="det" and @rel!="det"]'))
 		covered = set()
 		for candidate in candidates:
-			considermention(candidate, tree, sentno, mentions, covered,
+			considermention(candidate, tree, sentno, parno, mentions, covered,
 					ngdata, gadata)
 	return mentions
 
 
-def considermention(node, tree, sentno, mentions, covered, ngdata, gadata):
+def considermention(node, tree, sentno, parno, mentions, covered,
+		ngdata, gadata):
 	"""Decide whether a candidate mention should be added."""
 	if len(node) == 0 and 'word' not in node.keys():
 		return
@@ -401,14 +408,14 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata):
 			and head.get('pt') != 'ww'
 			):
 		mentions.append(Mention(
-				len(mentions), sentno, tree, node, a, b, headidx,
+				len(mentions), sentno, parno, tree, node, a, b, headidx,
 				tokens, ngdata, gadata))
 		covered.add(headidx)
 		# California in "San Jose, California"
 		if (node.get('cat') == 'mwu' and head.get('neclass') == 'LOC'
 				and ',' in tokens):
 			mentions.append(Mention(
-					len(mentions), sentno, tree, node,
+					len(mentions), sentno, parno, tree, node,
 					a + tokens.index(',') + 1, b, b - 1,
 					tokens[tokens.index(',') + 1:],
 					ngdata, gadata))
@@ -418,7 +425,7 @@ def considermention(node, tree, sentno, mentions, covered, ngdata, gadata):
 				a = int(cnj.get('begin'))
 				b = int(cnj.get('end'))
 				mentions.append(Mention(
-						len(mentions), sentno, tree, cnj,
+						len(mentions), sentno, parno, tree, cnj,
 						a, b, getheadidx(cnj),
 						gettokens(tree, a, b), ngdata, gadata))
 
@@ -509,7 +516,6 @@ def getquotations(trees):
 			i += 1
 	quotations = []
 	inquote = None
-	start = None
 	for i, token in enumerate(doc):
 		n = int(token.get('begin'))
 		if inquote and parbreak[i]:
@@ -519,7 +525,7 @@ def getquotations(trees):
 					sentnos[start], parnos[start],
 					' '.join(doc[i].get('word') for i
 						in range(start, end)),
-					True))
+					True, True))
 		if inquote is None and parbreak[i] and token.get('word') == '-':
 			# detect implied end of quote:
 			# - I like cats, he said
@@ -536,7 +542,7 @@ def getquotations(trees):
 						sentnos[start], parnos[start],
 						' '.join(doc[i].get('word') for i
 							in range(start, end)),
-						False))
+						False, True))
 				for x in range(start + 1, end):
 					doc[x].set('quotelabel', 'I')
 			else:
@@ -554,9 +560,10 @@ def getquotations(trees):
 					' '.join(doc[i].get('word') for i
 						in range(start, end)),
 					int(doc[start].get('begin')) == 0
-					and (i + 1 == len(doc)
-						or int(doc[i + 1].get('begin')) == 0
-						or int(doc[i + 2].get('begin')) == 0)))
+						and (i + 2 >= len(doc)
+							or int(doc[i + 1].get('begin')) == 0
+							or int(doc[i + 2].get('begin')) == 0),
+					i + 2 >= len(doc) or parbreak[i + 1] or parbreak[i + 2]))
 		elif token.get('quotelabel') is None:
 			token.set('quotelabel', 'I' if inquote else 'O')
 	return quotations, idx, doc
@@ -580,15 +587,58 @@ def speakeridentification(mentions, quotations, idx, doc):
 			'yellow'))
 	if not quotations:
 		return
-	tokenidx2quotation = {}
+	tokenidx2quotation = {i: quotation
+			for quotation in quotations
+				for i in range(quotation.start, quotation.end)}
+	# collect mentions within each quote
+	for mention in mentions:
+		if idx[mention.sentno, mention.begin] in tokenidx2quotation:
+			i = idx[mention.sentno, mention.begin]
+			tokenidx2quotation[i].mentions.append(mention)
+	# collect mentions within each paragraph
+	par2mention = defaultdict(list)
+	for mention in mentions:
+		if (mention.features['human']
+				and mention.head.get('quotelabel') != 'I'
+				and mention.head.get('vwtype') != 'bez'):
+			par2mention[mention.parno].append(mention)
+
+	# quote attribution sieves
+	vocative(quotations, doc, idx, tokenidx2quotation)
+	reportedspeech(mentions, quotations, doc, idx)
+	singularmentionspeaker(quotations, par2mention)
+	closestmentionbeforequote(quotations, par2mention, idx)
+	turntaking(quotations)
+
+	speakerconstraints(quotations, doc)
+
+
+def vocative(quotations, doc, idx, tokenidx2quotation):
+	"""Vocative => addressee; e.g. 'John, do the dishes.'"""
+	# vocative patterns from https://aclweb.org/anthology/E17-1044
 	for quotation in quotations:
-		for i in range(quotation.start, quotation.end):
-			tokenidx2quotation[i] = quotation
+		for mention in quotation.mentions:
+			if mention.features['human']:
+				try:
+					w1 = doc[idx[mention.sentno, mention.begin] - 1].get('word')
+					w2 = doc[idx[mention.sentno, mention.end]].get('word')
+				except (KeyError, IndexError):
+					continue
+				if ((w1 == ',' and w2 in '!?.,;')
+						or (w1 in '\'"' and w2 == ',')
+						or (w1 == ',' and w2 in '\'"')
+						or (w1 == 'oh' and w2 == '!')
+						or (w1.lower() == 'beste')):
+					quotation.addressee = mention
+					debug('detected vocative %s\n\taddressee %s' % (
+							color(quotation.text, 'green'), mention))
+					break
+
+
+def reportedspeech(mentions, quotations, doc, idx):
+	"""Link each subject of a reported speech verb to the closest quotation."""
 	qstarts = [q.start for q in quotations]
 	qends = [q.end for q in quotations]
-	# FIXME: never assign same speaker & addressee
-
-	# for each subject of a reported speech verb, link it to closest quotation
 	for mention in mentions:
 		if isspeaker(mention):
 			i = idx[mention.sentno, mention.begin]
@@ -598,8 +648,8 @@ def speakeridentification(mentions, quotations, idx, doc):
 			q1 = quotations[bisect(qends, i) - 1]
 			if i1 < q1.end <= i2 and i - q1.end <= 5 and q1.speaker is None:
 				q1.speaker = mention
-				debug('attributed %s\n\tto mention directly after: %s' % (
-						color(q1.text, 'green'), q1.speaker))
+				debug('%s is before reported speech verb\n\tspeaker: %s'
+						% (color(q1.text, 'green'), q1.speaker))
 			else:
 				# first quote to right of mention
 				x = bisect(qstarts, i)
@@ -607,10 +657,14 @@ def speakeridentification(mentions, quotations, idx, doc):
 				if (i1 <= q2.start < i2 and q2.start - i <= 5
 						and q2.speaker is None):
 					q2.speaker = mention
-					debug('attributed %s\n\tto mention directly before: %s' % (
-							color(q2.text, 'green'), q2.speaker))
+					debug('%s is after reported speech verb\n\tspeaker: %s'
+							% (color(q2.text, 'green'), q2.speaker))
+
+
+def turntaking(quotations):
+	"""Heuristics for consecutive quotations."""
 	for prev, quotation in zip(quotations, quotations[1:]):
-		# assume speaker is unchanged for consecutive quotations
+		# Assume speaker is unchanged for consecutive quotations
 		# in same paragraph when there is material outside quotes.
 		# "I don't know", he said. "It seems a bad idea."
 		if (quotation.speaker is None and prev.speaker is not None
@@ -619,65 +673,79 @@ def speakeridentification(mentions, quotations, idx, doc):
 				and not prev.sentbounds):
 			quotation.speaker = prev.speaker
 			quotation.addressee = prev.addressee
-			assert quotation.speaker is not quotation.addressee
-			debug('attributed %s\n\tto previous speaker %s' % (
-					color(quotation.text, 'green'), prev.speaker))
-		# consecutive quotations in different paragraphs are turn taking;
+			debug('%s is directly after previous quote\n'
+					'\tassuming same speaker %s'
+					% (color(quotation.text, 'green'), prev.speaker))
+		# Consecutive quotations in different paragraphs are turn taking;
 		# or when first quotation has no material outside quotation marks
 		# "How are you?" "I'm fine."
-		elif (quotation.speaker is None and prev.speaker is not None
-				and (quotation.parno == prev.parno + 1
-					or prev.sentbounds)):
-			quotation.speaker = prev.addressee
-			quotation.addressee = prev.speaker
-			assert quotation.speaker is not quotation.addressee
-			debug('attributed %s\n\tto previous addressee %s' % (
-					color(quotation.text, 'green'), prev.addressee))
-		# assume distinct consecutive speakers are addressing each other.
-		# coreference has not yet been established, use string match
-		elif (quotation.speaker is not None and prev.speaker is not None
-				and quotation.start - prev.end < 10
-				and quotation.speaker.tokens != prev.speaker.tokens):
-			quotation.addressee = prev.speaker
-			prev.addressee = quotation.speaker
-			assert quotation.speaker is not quotation.addressee
-			debug('%s %s\n\taddresses %s %s' % (
-					prev.speaker, color(prev.text, 'green'),
-					quotation.speaker, color(quotation.text, 'green')))
-	# For unattributed quotes without any material before or after the quote,
-	# assign closest human mention between quote and previous quote.
+		# By propagating speakers and addressees,
+		# we capture 2n and 2n+1 turntaking patterns (ABABAB...)
+		elif (quotation.parno == prev.parno + 1
+				or (quotation.parno == prev.parno
+					and quotation.sentno == prev.sentno + 1
+					and prev.sentbounds)):
+			if (quotation.speaker is None
+					and prev.addressee is not None
+					and prev.addressee != quotation.addressee):
+				quotation.speaker = prev.addressee
+				debug('assuming %s is spoken by\n\tprevious addressee %s' % (
+						color(quotation.text, 'green'), prev.addressee))
+			if (prev.speaker is None
+					and quotation.addressee is not None
+					and quotation.addressee != prev.addressee):
+				prev.speaker = quotation.addressee
+				debug('assuming %s is spoken by\n\taddressee %s of next quote'
+						% (color(prev.text, 'green'), quotation.addressee))
+			if (quotation.addressee is None
+					and prev.speaker is not None
+					and prev.speaker != quotation.speaker):
+				quotation.addressee = prev.speaker
+				debug('assuming %s is addressed to\n\tprevious speaker %s' % (
+						color(quotation.text, 'green'), prev.speaker))
+			if (prev.addressee is None
+					and quotation.speaker is not None
+					and quotation.speaker != prev.speaker):
+				prev.addressee = quotation.speaker
+				debug('assuming %s is addressed to\n\tspeaker %s of next quote'
+						% (color(prev.text, 'green'), quotation.speaker))
+
+
+def singularmentionspeaker(quotations, par2mention):
+	"""Attribute quote if there is a single human mention in paragraph."""
+	for quotation in quotations:
+		if (quotation.speaker is None
+				and len(par2mention[quotation.parno]) == 1):
+			quotation.speaker = par2mention[quotation.parno][0]
+			debug('attributed %s\n\tto singular non-quoted human mention '
+					'in paragraph: %s' % (color(quotation.text, 'green'),
+						quotation.speaker))
+
+
+def closestmentionbeforequote(quotations, par2mention, idx):
+	# For unattributed quotes at without material before or after quote in the
+	# sentence, assign closest human mention before quote in same paragraph.
 	# When there is material before or after the quote, it may not be a
 	# dialogue turn, e.g.
 	# 'Every happy family is alike,' according to Tolstoy's Anna Karenina.
 	# Only consider human mentions that are not possessive pronouns.
-	# mstarts = [idx[mention.sentno, mention.begin] for mention in mentions
-	# 		if mention.features['human'] == 1
-	# 		and mention.head.get('vwtype') != 'bez']
-	mends = [idx[mention.sentno, mention.end - 1] for mention in mentions
-			if mention.features['human'] == 1
-			and mention.head.get('vwtype') != 'bez']
 	for prev, quotation in zip([None] + quotations, quotations):
-		if quotation.speaker is not None or not quotation.sentbounds:
-			continue
-		# first mention to left of quote
-		i = bisect(mends, quotation.start) - 1
-		m1 = mentions[i] if 0 <= i < len(mentions) else None
-		if (m1 is not None
-				and m1.sentno + 1 == quotation.sentno
-				and (prev is None or prev.end <= idx[m1.sentno, m1.begin])):
-			quotation.speaker = m1
-			debug('attributed %s\n\tto closest mention before quote: %s' % (
-					color(quotation.text, 'green'), quotation.speaker))
-			assert quotation.speaker is not quotation.addressee
-		else:
-			# first mention to right of quote
-			# m2 = mentions[bisect(mstarts, quotation.end)]
-			pass
-	# collect mentions within each quote
-	for mention in mentions:
-		if idx[mention.sentno, mention.begin] in tokenidx2quotation:
-			i = idx[mention.sentno, mention.begin]
-			tokenidx2quotation[i].mentions.append(mention)
+		if quotation.speaker is None and quotation.sentbounds:
+			for mention in sorted(
+					par2mention[quotation.parno],
+					reverse=True, key=lambda m: m.end):
+				if (mention.sentno + 1 == quotation.sentno
+						and (prev is None
+							or prev.end <= idx[mention.sentno, mention.begin])
+						and quotation.addressee != mention):
+					quotation.speaker = mention
+					debug('assuming paragraph-final %s\n'
+							'\tspoken by closest mention before quote: %s' % (
+							color(quotation.text, 'green'), quotation.speaker))
+					break
+
+
+def speakerconstraints(quotations, doc):
 	# add speaker constraints
 	for prev, quotation in zip([None] + quotations, quotations):
 		if quotation.speaker is None:
@@ -730,14 +798,9 @@ def speakeridentification(mentions, quotations, idx, doc):
 							if b.features['person'] == person:
 								a.prohibit.add(b.id)
 								b.prohibit.add(a.id)
-	# breakdown of number of quotations per speaker
-	counts = defaultdict(int)
-	for quotation in quotations:
-		if quotation.speaker is None:
-			counts[-1] += 1
-		else:
-			counts[quotation.speaker.clusterid] += 1
 
+
+# end of dialogue related functions
 
 def stringmatch(mentions, clusters, relaxed=False):
 	"""Link mentions with matching strings;
@@ -1532,6 +1595,8 @@ def htmlvis(trees, mentions, clusters, quotations):
 				escape(xml.decode('utf8')),  # FIXME: highlight syntax?
 				dt))
 	doctokenid = 0
+	quotation = None
+	att = ''
 	output.append('<div class=main>\n')
 	for ((parno, sentno), sent) in zip(sentids, sentences):
 		if parno == 1 and sentno == 1:
@@ -1540,6 +1605,8 @@ def htmlvis(trees, mentions, clusters, quotations):
 			output.append('</p>\n<p>')
 		output.append('<span class=n onClick="toggle(\'t%d-%d\')">' % (
 				parno, sentno))
+		if quotation is not None:  # quotation spanning multiple sents
+			output.append('<span class=q%s>' % att)
 		for token in sent:
 			if doctokenid in qstarts:
 				quotation = quotations[qstarts[doctokenid]]
@@ -1556,7 +1623,10 @@ def htmlvis(trees, mentions, clusters, quotations):
 			output.append(' ' + token)
 			if doctokenid in qends:
 				output.append('</span>')
+				quotation = None
 			doctokenid += 1
+		if quotation is not None:  # quotation spanning multiple sents
+			output.append('</span>')
 		output.append('</span>\n')
 	output.append('\n</p></div>\n')
 	debugoutput = ''
@@ -1802,8 +1872,9 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 		if headidx >= end:
 			headidx = max(int(x.get('begin')) for x in node.findall('.//node')
 					if int(x.get('begin')) < end)
+		# NB: no paragraph number
 		mentions.append(Mention(
-				len(mentions), sentno, tree, node, begin, end, headidx,
+				len(mentions), sentno, 0, tree, node, begin, end, headidx,
 				text.split(' '), ngdata, gadata))
 	return mentions
 
