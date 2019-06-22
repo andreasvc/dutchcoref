@@ -1,5 +1,6 @@
 """Web interface for coreference system."""
 import io
+import re
 import sys
 import json
 import time
@@ -33,7 +34,7 @@ def results():
 	if len(text) > LIMIT:
 		return 'Too much text; limit: %d bytes' % LIMIT
 
-	parses = parse(text)
+	parses = parse(simplifyunicodespacepunct(text))
 	if parses is None:
 		return 'Parsing failed!'
 	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
@@ -93,6 +94,89 @@ def parse(text):
 		if interval < maxinterval:
 			interval += 1
 	return sorted(parses)
+
+
+def simplifyunicodespacepunct(text):
+	"""Turn various unicode whitespace and punctuation characters into simple
+	ASCII equivalents where appropriate, and discard control characters.
+
+	NB: this discards some information (e.g., left vs right quotes, dash vs
+	hyphens), but given that such information is not consistently encoded
+	across languages and texts, it is more reliable to normalize to a common
+	denominator.
+
+	>>> simplifyunicodespacepunct('‘De verraders’, riep de sjah.')
+	"'De verraders', riep de sjah."
+	"""
+	# Some exotic control codes not handled:
+	# U+0085 NEL: Next Line
+	# U+2028 LINE SEPARATOR
+	# U+2029 PARAGRAPH SEPARATOR
+
+	# Normalize spaces
+	# U+00A0 NO-BREAK SPACE
+	# U+2000 EN QUAD
+	# U+2001 EM QUAD
+	# U+2002 EN SPACE
+	# U+2003 EM SPACE
+	# U+2004 THREE-PER-EM SPACE
+	# U+2005 FOUR-PER-EM SPACE
+	# U+2006 SIX-PER-EM SPACE
+	# U+2007 FIGURE SPACE
+	# U+2008 PUNCTUATION SPACE
+	# U+2009 THIN SPACE
+	# U+200A HAIR SPACE
+	text = re.sub('[\u00a0\u2000-\u200a]', ' ', text)
+
+	# remove discretionary hyphen, soft space
+	# special case: treat soft hyphen at end of line as a regular hyphen,
+	# to ensure that it will be dehyphenated properly.
+	text = re.sub('\u00ad+\n', '-\n', text)
+	#      8 BACKSPACE
+	# U+00AD SOFT HYPHEN
+	# U+200B ZERO WIDTH SPACE
+	# U+2027 HYPHENATION POINT
+	text = re.sub('[\b\u00ad\u200b\u2027]', '', text)
+
+	# hyphens
+	# U+00B7 MIDDLE DOT
+	# U+2010 HYPHEN
+	# U+2011 NON-BREAKING HYPHEN
+	# U+2212 MINUS SIGN
+	text = re.sub('[\u00b7\u2010\u2011\u2212]', '-', text)
+	# dashes/bullet points
+	# U+2012 FIGURE DASH
+	# U+2013 EN DASH
+	# U+2014 EM DASH
+	# U+2015 HORIZONTAL BAR
+	# U+2022 BULLET
+	# U+2043 HYPHEN BULLET
+	text = re.sub('[\u2012-\u2015\u2022\u2043]', ' - ', text)
+
+	# U+2044 FRACTION SLASH
+	# U+2215 DIVISION SLASH
+	text = text.replace('[\u2044\u2215]', '/')  # e.g., 'he/she'
+
+	# single quotes:
+	# U+2018 left single quotation mark
+	# U+2019 right single quotation mark
+	# U+201A single low-9 quotation mark
+	# U+201B single high-reversed-9 quotation mark
+	# U+2039 single left-pointing angle quotation mark
+	# U+203A single right-pointing angle quotation mark
+	# U+02BC modifier letter apostrophe
+	text = re.sub('[\u2018-\u201b\u2039\u203a\u02bc]', "'", text)
+
+	# double quotes:
+	# U+201C left double quotation mark
+	# U+201D right double quotation mark
+	# U+201E double low-9 quotation mark
+	# U+201F double high-reversed-9 quotation mark
+	# U+00AB left-pointing double angle quotation mark
+	# U+00BB right-pointing double angle quotation mark
+	text = re.sub("[\u201c-\u201f\u00ab\u00bb]|''", '"', text)
+
+	return text
 
 
 logging.basicConfig()
