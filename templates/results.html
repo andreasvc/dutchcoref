@@ -20,12 +20,12 @@ pre {
 }
 pre { line-height: 11pt; }
 .ansi2html-content {
-	display: inline; white-space: pre-wrap; word-wrap: break-word;
-	background: black; }
+    display: inline; white-space: pre-wrap; word-wrap: break-word;
+    background: black; }
 .div_foreground { color: #AAAAAA; padding: .5em; }
 .div_background { background-color: #000000; }
 .div_foreground > .bold,.bold > .div_foreground, div.div_foreground
-	> pre > .bold { color: #FFFFFF; font-weight: normal; }
+    > pre > .bold { color: #FFFFFF; font-weight: normal; }
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi31 { color: #cd0000; }
@@ -36,33 +36,41 @@ pre { line-height: 11pt; }
 function highlight(ev) {
     var cls = ev.target.className;
     var elems = document.getElementsByClassName(cls)
-    for (var n in elems)
-        elems[n].style = 'background: yellow; ';
+    for (var n = 0; n < elems.length; n++)
+        elems[n].style.background = 'yellow';
 }
 function unhighlight(ev) {
     var cls = ev.target.className;
     var elems = document.getElementsByClassName(cls)
-    for (var n in elems)
-        elems[n].style = '';
+    for (var n = 0; n < elems.length; n++)
+        elems[n].style.background = '';
 }
 function addhighlighting() {
     var elems = document.getElementsByTagName('span');
-    for (var n in elems) {
+    for (var n = 0; n < elems.length; n++) {
         if (typeof elems[n].className !== 'undefined'
-				&& elems[n].className.charAt(0) == 'c') {
+                && elems[n].className.charAt(0) == 'c') {
+            elems[n].style = '';
             elems[n].onmouseover = highlight;
             elems[n].onmouseout = unhighlight;
         }
     }
 }
-function hl1(id) {
-    document.getElementById(id).style = 'background: lightblue; ';
+function hlcolor(id, color) {
+    var elem = document.getElementById(id);
+    if (typeof elem.style !== 'undefined') {
+        elem.style.borderColor = color;
+        elem.style.borderStyle = 'dotted';
+    } else {
+        elem.style = 'border-style: dotted; border-color: ' + color + ';';
+    }
 }
-function hl2(id) {
-    document.getElementById(id).style = 'background: lightcoral; ';
-}
+function hl1(id) { hlcolor(id, 'blue'); }
+function hl2(id) { hlcolor(id, 'coral'); }
 function nohl(id) {
-    document.getElementById(id).style = '';
+    var elem = document.getElementById(id);
+    elem.style.borderColor = '';
+    elem.style.borderStyle = '';
 }
 function toggle(id) {
         /* toggle element with id to be hidden or not. */
@@ -82,8 +90,8 @@ Click on a sentence to toggle the display of its parse tree.<br>
 Legend:
 <span class="n">[ Singleton ]</span>
 <span style="background: yellow">[ Coreference ]</span>
-<span style="background: lightblue">[ Speaker ]</span>
-<span style="background: lightcoral">[ Addressee ]</span>
+<span style="border-style: dotted; border-color: blue">[ Speaker ]</span>
+<span style="border-style: dotted; border-color: coral">[ Addressee ]</span>
 <span class="q">' Direct speech '</span>
 </div>
 

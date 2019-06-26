@@ -8,7 +8,7 @@ import logging
 import requests
 from lxml import etree
 from flask import Flask, Markup
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 import coref
 
 APP = Flask(__name__)
@@ -25,9 +25,11 @@ def index():
 	return render_template('index.html', limit=LIMIT)
 
 
-@APP.route('/coref', methods=('POST', ))
+@APP.route('/coref', methods=('POST', 'GET'))
 def results():
 	"""Get coreference and show results."""
+	if request.method == 'GET':
+		return redirect(url_for('index'))
 	if 'text' not in request.form:
 		return 'No text supplied'
 	text = request.form['text']
