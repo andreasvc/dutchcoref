@@ -178,6 +178,7 @@ class Mention:
 	def _detectfeatures(self, ngdata, gadata):
 		"""Set features for this mention based on linguistic features or
 		external dataset."""
+		firsttoken = self.node.find('.//node[@word][@begin="%d"]' % self.begin)
 		self.features['number'] = self.head.get(
 				'rnum', self.head.get('num'))
 		if self.features['number'] is None and 'getal' in self.head.keys():
@@ -213,9 +214,12 @@ class Mention:
 					and self.head.get('vwtype') == 'pers'):
 				self.features['human'] = 1
 		# nouns: use lexical resource
-		elif self.head.get('lemma', '').replace('_', '') in gadata:
+		elif (self.head.get('neclass') is None
+				and self.head.get('lemma', '').replace('_', '') in gadata):
 			self.features.update(galookup(self.head.get('lemma', ''), gadata))
-		elif self.tokens[0].lower() in gadata:  # e.g. "meneer Grey"
+		elif (len(self.tokens) > 1 and firsttoken is not None
+				and firsttoken.get('neclass') is None
+				and self.tokens[0].lower() in gadata):  # e.g. "meneer Grey"
 			self.features.update(galookup(self.tokens[0], gadata))
 		else:  # names: dict
 			if self.head.get('neclass') == 'PER':
@@ -599,6 +603,7 @@ def speakeridentification(mentions, quotations, idx, doc):
 	# collect mentions within each paragraph
 	par2mention = defaultdict(list)
 	for mention in mentions:
+		# Only consider human mentions that are not possessive pronouns.
 		if (mention.features['human']
 				and mention.head.get('quotelabel') != 'I'
 				and mention.head.get('vwtype') != 'bez'):
@@ -759,7 +764,6 @@ def closestmention(quotations, par2mention, idx):
 	# When there is material before or after the quote, it may not be a
 	# dialogue turn, e.g.
 	# 'Every happy family is alike,' according to Tolstoy's Anna Karenina.
-	# Only consider human mentions that are not possessive pronouns.
 	for prev, quotation in zip([None] + quotations, quotations):
 		if quotation.speaker is None and quotation.sentbounds:
 			# Find closest mention in sentence before or after quote
