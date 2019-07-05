@@ -290,6 +290,9 @@ def getmentions(trees, ngdata, gadata):
 	mentions = []
 	for sentno, ((parno, _), tree) in enumerate(trees):
 		candidates = []
+		# Order is significant.
+		candidates.extend(tree.xpath(
+				'.//node[@pdtype="pron" or @vwtype="bez"]'))
 		candidates.extend(tree.xpath('.//node[@cat="np"]'))
 		# candidates.extend(tree.xpath(
 		# 		'.//node[@cat="conj"]/node[@cat="np" or @pt="n"]/..'))
@@ -298,8 +301,6 @@ def getmentions(trees, ngdata, gadata):
 		candidates.extend(tree.xpath('.//node[@pt="n"]'
 				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body" '
 				'or @special="er_loc"]'))
-		candidates.extend(tree.xpath(
-				'.//node[@pdtype="pron" or @vwtype="bez"]'))
 		candidates.extend(tree.xpath(
 				'.//node[@pt="num" and @rel!="det" and @rel!="mod"]'))
 		candidates.extend(tree.xpath('.//node[@pt="det" and @rel!="det"]'))
@@ -613,8 +614,8 @@ def speakeridentification(mentions, quotations, idx, doc):
 	vocative(quotations, doc, idx, tokenidx2quotation)
 	reportedspeech(mentions, quotations, doc, idx)
 	singularmentionspeaker(quotations, par2mention)
-	closestmention(quotations, par2mention, idx)
 	splitquotes(quotations)
+	closestmention(quotations, par2mention, idx)
 	turntaking(quotations)
 	turntaking(quotations, strict=False)
 
@@ -669,6 +670,17 @@ def reportedspeech(mentions, quotations, doc, idx):
 							% (color(q2.text, 'green'), q2.speaker))
 
 
+def singularmentionspeaker(quotations, par2mention):
+	"""Attribute quote if there is a single human mention in paragraph."""
+	for quotation in quotations:
+		if (quotation.speaker is None
+				and len(par2mention[quotation.parno]) == 1):
+			quotation.speaker = par2mention[quotation.parno][0]
+			debug('attributed %s\n\tto singular non-quoted human mention '
+					'in paragraph: %s' % (color(quotation.text, 'green'),
+						quotation.speaker))
+
+
 def splitquotes(quotations):
 	"""Assume same speaker for consecutive quotations in same paragraph.
 
@@ -690,6 +702,33 @@ def splitquotes(quotations):
 						% (color(quotation.text, 'green'), prev.speaker))
 
 
+def closestmention(quotations, par2mention, idx):
+	# For unattributed quotes without material before or after quote in the
+	# sentence, assign closest human mention in same paragraph.
+	# When there is material before or after the quote, it may not be a
+	# dialogue turn, e.g.
+	# 'Every happy family is alike,' according to Tolstoy's Anna Karenina.
+	for prev, quotation in zip([None] + quotations, quotations):
+		if quotation.speaker is None and quotation.sentbounds:
+			# Find closest mention in sentence before or after quote
+			candidates = [mention for mention in par2mention[quotation.parno]
+					if ((quotation.sentno - mention.sentno == 1
+							or mention.sentno - quotation.endsentno == 1)
+						and (prev is None
+							or prev.end <= idx[mention.sentno, mention.begin])
+						and quotation.addressee != mention)]
+			for mention in sorted(
+					candidates,
+					key=lambda m: quotation.start - m.end
+						if quotation.start >= idx[m.sentno, m.end]
+						else idx[m.sentno, m.begin] - quotation.end):
+				quotation.speaker = mention
+				debug('assuming bare quotation %s\n'
+						'\tspoken by closest non-quoted human mention: %s' % (
+						color(quotation.text, 'green'), quotation.speaker))
+				break
+
+
 def turntaking(quotations, strict=True):
 	"""Heuristics for consecutive quotations.
 
@@ -708,7 +747,7 @@ def turntaking(quotations, strict=True):
 				or (not strict and quotation.parno == prev.parno + 1)
 				or (quotation.parno == prev.parno
 					and quotation.sentno == prev.sentno + 1
-					and prev.sentbounds)):
+					and quotation.sentbounds and prev.sentbounds)):
 			if (quotation.speaker is None
 					and prev.addressee is not None
 					and prev.addressee != quotation.addressee
@@ -747,46 +786,8 @@ def turntaking(quotations, strict=True):
 						% (color(prev.text, 'green'), quotation.speaker))
 
 
-def singularmentionspeaker(quotations, par2mention):
-	"""Attribute quote if there is a single human mention in paragraph."""
-	for quotation in quotations:
-		if (quotation.speaker is None
-				and len(par2mention[quotation.parno]) == 1):
-			quotation.speaker = par2mention[quotation.parno][0]
-			debug('attributed %s\n\tto singular non-quoted human mention '
-					'in paragraph: %s' % (color(quotation.text, 'green'),
-						quotation.speaker))
-
-
-def closestmention(quotations, par2mention, idx):
-	# For unattributed quotes without material before or after quote in the
-	# sentence, assign closest human mention in same paragraph.
-	# When there is material before or after the quote, it may not be a
-	# dialogue turn, e.g.
-	# 'Every happy family is alike,' according to Tolstoy's Anna Karenina.
-	for prev, quotation in zip([None] + quotations, quotations):
-		if quotation.speaker is None and quotation.sentbounds:
-			# Find closest mention in sentence before or after quote
-			candidates = [mention for mention in par2mention[quotation.parno]
-					if ((quotation.sentno - mention.sentno == 1
-							or mention.sentno - quotation.endsentno == 1)
-						and (prev is None
-							or prev.end <= idx[mention.sentno, mention.begin])
-						and quotation.addressee != mention)]
-			for mention in sorted(
-					candidates,
-					key=lambda m: quotation.start - m.end
-						if quotation.start >= idx[m.sentno, m.end]
-						else idx[m.sentno, m.begin] - quotation.end):
-				quotation.speaker = mention
-				debug('assuming bare quotation %s\n'
-						'\tspoken by closest non-quoted human mention: %s' % (
-						color(quotation.text, 'green'), quotation.speaker))
-				break
-
-
 def speakerconstraints(quotations, doc):
-	# add speaker constraints
+	"""Add speaker constraints."""
 	for prev, quotation in zip([None] + quotations, quotations):
 		if quotation.speaker is None:
 			debug('no speaker: %s' % color(quotation.text, 'green'))
@@ -796,7 +797,7 @@ def speakerconstraints(quotations, doc):
 			if quotation.addressee is not None:
 				doc[i].set('addressee', str(quotation.addressee.clusterid))
 		nominalmentions = [mention for mention in quotation.mentions
-				if mention.type != 'pronoun']
+				if mention.type == 'noun']
 		for mention in quotation.mentions:
 			if (mention.type == 'pronoun'
 					and mention.features['person'] in ('1', '2')):
@@ -1117,13 +1118,13 @@ def resolvepronouns(mentions, clusters, quotations):
 							len(clusters[other.clusterid]),
 							other))
 					continue
-				debug('\t%d %d %s %d %s prohibited=%d' % (
+				iscompatible = compatible(mention, other)
+				isprohibited = prohibited(mention, other, clusters)
+				debug('\t%d %d %s %d %s prohibited=%d compatible=%d' % (
 						other.sentno, other.begin, other.node.get('rel'),
-						len(clusters[other.clusterid]),
-						other,
-						int(prohibited(mention, other, clusters))))
-				if (compatible(mention, other)
-						and not prohibited(mention, other, clusters)):
+						len(clusters[other.clusterid]), other,
+						int(isprohibited), int(iscompatible)))
+				if (iscompatible and not isprohibited):
 					merge(other, mention, 'resolvepronouns',
 							mentions, clusters)
 					break
@@ -1251,7 +1252,7 @@ def mergefeatures(mention, other):
 	for key in mention.features:
 		if (key == 'person' or mention.features[key] == other.features[key]
 				or other.features[key] in (None, 'both')):
-			pass
+			pass  # only pronouns should have a 'person' attribute
 		elif mention.features[key] in (None, 'both'):
 			mention.features[key] = other.features[key]
 		elif key == 'human':
