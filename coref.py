@@ -213,14 +213,13 @@ class Mention:
 			elif (self.head.get('lemma') in ('hun', 'hen')
 					and self.head.get('vwtype') == 'pers'):
 				self.features['human'] = 1
-		# nouns: use lexical resource
-		elif (self.head.get('neclass') is None
-				and self.head.get('lemma', '').replace('_', '') in gadata):
+		# nouns: use lexical resource (also includes first names list)
+		elif self.head.get('lemma', '').replace('_', '') in gadata:
 			self.features.update(galookup(self.head.get('lemma', ''), gadata))
 		elif (len(self.tokens) > 1 and firsttoken is not None
 				and firsttoken.get('neclass') is None
 				and self.tokens[0].lower() in gadata):  # e.g. "meneer Grey"
-			self.features.update(galookup(self.tokens[0], gadata))
+			self.features.update(galookup(self.tokens[0].lower(), gadata))
 		else:  # names: dict
 			if self.head.get('neclass') == 'PER':
 				self.features['human'] = 1
@@ -615,7 +614,7 @@ def speakeridentification(mentions, quotations, idx, doc):
 	reportedspeech(mentions, quotations, doc, idx)
 	singularmentionspeaker(quotations, par2mention)
 	splitquotes(quotations)
-	closestmention(quotations, par2mention, idx)
+	previoussubject(quotations, par2mention, idx)
 	turntaking(quotations)
 	turntaking(quotations, strict=False)
 
@@ -702,7 +701,7 @@ def splitquotes(quotations):
 						% (color(quotation.text, 'green'), prev.speaker))
 
 
-def closestmention(quotations, par2mention, idx):
+def previoussubject(quotations, par2mention, idx):
 	# For unattributed quotes without material before or after quote in the
 	# sentence, assign closest human mention in same paragraph.
 	# When there is material before or after the quote, it may not be a
@@ -710,13 +709,13 @@ def closestmention(quotations, par2mention, idx):
 	# 'Every happy family is alike,' according to Tolstoy's Anna Karenina.
 	for prev, quotation in zip([None] + quotations, quotations):
 		if quotation.speaker is None and quotation.sentbounds:
-			# Find closest mention in sentence before or after quote
+			# Find mention in sentence before quote
 			candidates = [mention for mention in par2mention[quotation.parno]
-					if ((quotation.sentno - mention.sentno == 1
-							or mention.sentno - quotation.endsentno == 1)
+					if (quotation.sentno - 1 == mention.sentno
 						and (prev is None
 							or prev.end <= idx[mention.sentno, mention.begin])
-						and quotation.addressee != mention)]
+						and quotation.addressee != mention
+						and mention.node.get('rel') == 'su')]
 			for mention in sorted(
 					candidates,
 					key=lambda m: quotation.start - m.end
@@ -724,7 +723,7 @@ def closestmention(quotations, par2mention, idx):
 						else idx[m.sentno, m.begin] - quotation.end):
 				quotation.speaker = mention
 				debug('assuming bare quotation %s\n'
-						'\tspoken by closest non-quoted human mention: %s' % (
+						'\tspoken by subject of previous sentence: %s' % (
 						color(quotation.text, 'green'), quotation.speaker))
 				break
 
@@ -1053,7 +1052,7 @@ def properheadmatch(mentions, clusters, relaxed=False):
 						merge(mention, other, sieve, mentions, clusters)
 
 
-def resolvepronouns(mentions, clusters, quotations):
+def resolvepronouns(mentions, clusters, quotations, maxdist=15):
 	"""Find antecedents of unresolved pronouns with compatible features."""
 	debug(color('pronoun resolution', 'yellow'))
 	# Link all 1st/2nd person pronouns not in quotes
@@ -1076,10 +1075,13 @@ def resolvepronouns(mentions, clusters, quotations):
 				x.begin))
 	sortedmentionssentno = [mention.sentno for mention in sortedmentions]
 	for _, mention in representativementions(mentions, clusters):
+		# Select pronouns that are not relative pronouns or 1st/2nd person.
+		# Due to precise constructs, pronoun may already have a link, but still
+		# require an antecendent: He saw himself in the mirror.
 		if (mention.type == 'pronoun'
-				and len(clusters[mention.clusterid]) == 1
+				and mention.node.get('vwtype') != 'betr'  # no rel. pronouns
 				and mention.features['person'] not in ('1', '2')):
-			debug(mention.sentno, mention.begin, mention)
+			debug(mention.sentno, mention.begin, mention, mention.featrepr())
 			i = bisect(sortedmentionssentno, mention.sentno)
 			assert sortedmentionssentno[i - 1] == mention.sentno
 			# consider identical pronouns first (check with string match)
@@ -1087,8 +1089,10 @@ def resolvepronouns(mentions, clusters, quotations):
 			# 		key=lambda x: len(x.tokens) == len(mention.tokens) == 1
 			# 			and x.tokens[0].lower() != mention.tokens[0].lower()):
 			for other in reversed(sortedmentions[:i]):
-				if other.sentno < mention.sentno - 10:
+				if other.sentno < mention.sentno - maxdist:
 					break
+				if other.node.get('rel') in ('app', 'det'):
+					continue
 				# The antecedent should come before the anaphor,
 				# and should not contain the anaphor.
 				if (other.sentno == mention.sentno
@@ -1411,9 +1415,13 @@ def nglookup(key, ngdata):
 
 
 def galookup(key, gadata):
-	"""Look up word in gadata."""
+	"""Look up word in gadata.
+
+	:param key: a lemma; case is significant
+		(names are capitalized, nouns are lowercase)
+	"""
 	result = {}
-	key = key.lower().replace('_', '')
+	key = key.replace('_', '')
 	if key and key in gadata:
 		gender, animacy = gadata[key]
 		if animacy == 'human':
