@@ -157,7 +157,7 @@ class Mention:
 				key=lambda x: int(x.get('begin')))]
 		if not self.relaxedtokens:
 			self.relaxedtokens = self.tokens
-		self.head = (node.find('.//node[@begin="%d"][@word]' % headidx)
+		self.head = (tree.find('.//node[@begin="%d"][@word]' % headidx)
 				if len(node) else node)
 		if node.get('pdtype') == 'pron' or node.get('vwtype') == 'bez':
 			self.type = 'pronoun'
@@ -384,7 +384,7 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 	if tokens[-1] in ',\'"()':
 		tokens = tokens[:-1]
 		b -= 1
-	head = (node.find('.//node[@begin="%d"]' % headidx)
+	head = (tree.find('.//node[@begin="%d"]' % headidx)
 			if len(node) else node)
 	# various
 	if head.get('lemma') in ('aantal', 'keer', 'toekomst', 'manier'):
