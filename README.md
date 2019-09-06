@@ -56,8 +56,8 @@ $ python3 coref.py --verbose /tmp/example
 
 ![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/data/output.png "verbose output")
 
-$ python3 coref.py --fmt=booknlp /tmp/example
 ```
+$ python3 coref.py --fmt=booknlp /tmp/example
 #begin document (example);
 1       6-1     1       '       '       LET()   5       punct   -       14      -       B       -
 2       6-1     2       Ik      ik      VNW(pers,pron,nomin,vol,1,ev)   5       nsubj   -       14      -       I       (0)
@@ -124,8 +124,7 @@ Make sure you don't overwrite the gold standard conll file!
 
 
 ### Evaluation against a gold standard .conll file
-Get the scorer script: https://github.com/andreasvc/coval
-which is an improved version of: https://github.com/ns-moosavi/coval
+Get the evaluation tool: https://github.com/ns-moosavi/coval
 ```
 $ python3 coref.py mydocument/ --fmt=conll2012 >output.conll
 $ python3 ../coval/scorer.py mydocument.conll output.conll
