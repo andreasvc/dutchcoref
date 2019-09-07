@@ -88,7 +88,7 @@ function toggle(id) {
 <div class=main style="background: lightgray; border-style: dotted; padding: 8px; ">
 Move mouse over bracketed text to highlight coreference.
 Move mouse over direct speech to highlight speaker and addressee.
-Click on a sentence to toggle the display of its parse tree.<br>
+{% if parses %}Click on a sentence to toggle the display of its parse tree.{% endif %}<br>
 Legend:
 <span class="n">[ Singleton ]</span>
 <span style="background: yellow">[ Coreference ]</span>

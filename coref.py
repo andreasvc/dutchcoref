@@ -12,13 +12,13 @@ Options:
     --verbose       debug output instead of coreference output
     --gold=<file>   with --verbose, show error analysis against CoNLL file
     --goldmentions  instead of predicting mentions, use mentions in --gold file
-    --fmt=<minimal|semeval2010|conll2012|booknlp|html>
+    --fmt=<minimal|semeval2010|conll2012|booknlp|html|htmlp>
         output format:
             :minimal: doc ID, token ID, token, and coreference columns
             :booknlp: tabular format with universal dependencies and dialogue
                 information in addition to coreference.
-            :html: interactive HTML visualization with coreference and dialogue
-                information.
+            :html: interactive visualization of coreference and dialogue.
+            :htmlp: include parse trees (click on sentence to toggle).
     --outputprefix=<prefix>
         write conll/mention/cluster/link info to files
         prefix.{mentions,clusters,links,quotes}.tsv (tabular format)
@@ -53,7 +53,7 @@ from datetime import datetime
 from glob import glob
 from html import escape
 from lxml import etree
-from jinja2 import Template
+import jinja2
 import colorama
 import ansi2html
 
@@ -1090,7 +1090,7 @@ def resolvepronouns(mentions, clusters, quotations, maxdist=15):
 			# 			and x.tokens[0].lower() != mention.tokens[0].lower()):
 			for other in reversed(sortedmentions[:i]):
 				if other.sentno < mention.sentno - maxdist:
-					break
+					break  # IDEA: assign most common compatible cluster
 				if other.node.get('rel') in ('app', 'det'):
 					continue
 				# The antecedent should come before the anaphor,
@@ -1612,7 +1612,7 @@ def icarusallocation(mentions, clusters, docname='-', part=0, file=sys.stdout):
 	print('#end document', file=file)
 
 
-def htmlvis(trees, mentions, clusters, quotations):
+def htmlvis(trees, mentions, clusters, quotations, parses=True):
 	"""Visualize coreference in HTML document."""
 	output = []
 	sentences = [[a.get('word') for a
@@ -1642,39 +1642,39 @@ def htmlvis(trees, mentions, clusters, quotations):
 	except ImportError:
 		drawtrees = False
 	dt = ''
-	for (parno, sentno), tree in trees:
-		xml = etree.tostring(tree, encoding='utf8', pretty_print=True)
-		if drawtrees:
-			# discodop expects ElementTree instead of lxml tree
-			item = alpinotree(
-					ElementTree.fromstring(xml),
-					functions='add', morphology='no')
-			applypunct('move', item.tree, item.sent)
-			dt = DrawTree(item.tree, item.sent).text(
-						unicodelines=True, html=True, funcsep='-')
-		output.append('<div id=t%d-%d style="display: none; ">'
-				'<pre style="white-space: pre-wrap;">%s</pre>'
-				'<pre>%s</pre></div>' % (
-				parno, sentno,
-				escape(xml.decode('utf8')),  # FIXME: highlight syntax?
-				dt))
+	if parses:
+		from base64 import b64encode
+		for (parno, sentno), tree in trees:
+			xml = etree.tostring(tree, encoding='utf8', pretty_print=True)
+			if drawtrees:
+				# discodop expects ElementTree instead of lxml tree
+				item = alpinotree(
+						ElementTree.fromstring(xml),
+						functions='add', morphology='no')
+				applypunct('move', item.tree, item.sent)
+				dt = DrawTree(item.tree, item.sent).text(
+							unicodelines=True, html=True, funcsep='-')
+			output.append('<div id=t%d-%d style="display: none;"><pre>%s</pre>'
+					'<a href="data:text/plain;base64,%s">XML source</a></div>'
+					% (parno, sentno, dt, b64encode(xml).decode('utf8')))
 	doctokenid = 0
 	quotation = None
-	att = ''
+	quoteatt = parseatt = ''
 	output.append('<div class=main>\n')
 	for ((parno, sentno), sent) in zip(sentids, sentences):
 		if parno == 1 and sentno == 1:
 			output.append('<p>')
 		elif sentno == 1:
 			output.append('</p>\n<p>')
-		output.append('<span class=n onClick="toggle(\'t%d-%d\')">' % (
-				parno, sentno))
+		if parses:
+			parseatt = ' onClick="toggle(\'t%d-%d\')"' % (parno, sentno)
+		output.append('<span class=n%s>' % parseatt)
 		if quotation is not None:  # quotation spanning multiple sents
-			output.append('<span class=q%s>' % att)
+			output.append('<span class=q%s>' % quoteatt)
 		for token in sent:
 			if doctokenid in qstarts:
 				quotation = quotations[qstarts[doctokenid]]
-				over = out = att = ''
+				over = out = quoteatt = ''
 				if quotation.speaker is not None:
 					over += "hl1('m%d'); " % quotation.speaker.id
 					out += "nohl('m%d'); " % quotation.speaker.id
@@ -1682,8 +1682,8 @@ def htmlvis(trees, mentions, clusters, quotations):
 					over += "hl2('m%d'); " % quotation.addressee.id
 					out += "nohl('m%d'); " % quotation.addressee.id
 				if over:
-					att = ' onmouseover="%s" onmouseout="%s"' % (over, out)
-				output.append('<span class=q%s>' % att)
+					quoteatt = ' onmouseover="%s" onmouseout="%s"' % (over, out)
+				output.append('<span class=q%s>' % quoteatt)
 			output.append(' ' + token)
 			if doctokenid in qends:
 				output.append('</span>')
@@ -2066,7 +2066,7 @@ def process(path, output, ngdata, gadata,
 	"""Process a single directory with Alpino XML parses."""
 	if os.path.isdir(path):
 		path = os.path.join(path, '*.xml')
-	if fmt == 'html':
+	if fmt in ('html', 'htmlp'):
 		setverbose(VERBOSE, io.StringIO())
 	debug('processing:', path)
 	filenames = sorted(glob(path), key=parsesentid)[start:end]
@@ -2085,13 +2085,13 @@ def process(path, output, ngdata, gadata,
 		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
 	if fmt == 'booknlp':
 		getunivdeps(filenames, trees)
-	if fmt == 'html':
+	if fmt in ('html', 'htmlp'):
 		corefresults, debugoutput = htmlvis(
-				trees, mentions, clusters, quotations)
+				trees, mentions, clusters, quotations, parses=fmt == 'htmlp')
 		with open('templates/results.html') as inp:
-			template = Template(inp.read())
+			template = jinja2.Template(inp.read())
 		print(template.render(docname=docname, corefresults=corefresults,
-					debugoutput=debugoutput),
+					debugoutput=debugoutput, parses=fmt == 'htmlp'),
 				file=output)
 	elif not VERBOSE:
 		writetabular(trees, mentions, docname=docname, part=part,
