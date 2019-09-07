@@ -34,13 +34,15 @@ pre { line-height: 11pt; }
 </style>
 <script>
 function highlight(ev) {
-    var cls = ev.target.className;
+	ev.stopPropagation();
+    var cls = ev.currentTarget.className;
     var elems = document.getElementsByClassName(cls)
     for (var n = 0; n < elems.length; n++)
         elems[n].style.background = 'yellow';
 }
 function unhighlight(ev) {
-    var cls = ev.target.className;
+	ev.stopPropagation();
+    var cls = ev.currentTarget.className;
     var elems = document.getElementsByClassName(cls)
     for (var n = 0; n < elems.length; n++)
         elems[n].style.background = '';
