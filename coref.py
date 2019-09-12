@@ -1922,13 +1922,14 @@ def comparecoref(conlldata, mentions, clusters, goldspans, respspans,
 
 def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 	"""Extract gold mentions from annotated data."""
+	debug(color('Extracted gold mentions from CoNLL file', 'yellow'))
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
 	goldspans = {span for spans in goldspansforcluster.values()
 			for span in spans}
 	for sentno, begin, end, text in sorted(goldspans):
 		# smallest node spanning begin, end
-		tree = trees[sentno][1]
+		(parno, _sentno), tree = trees[sentno]
 		node = sorted((node for node in tree.findall('.//node')
 					if begin >= int(node.get('begin'))
 					and end <= int(node.get('end'))),
@@ -1937,9 +1938,8 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 		if headidx >= end:
 			headidx = max(int(x.get('begin')) for x in node.findall('.//node')
 					if int(x.get('begin')) < end)
-		# NB: no paragraph number
 		mentions.append(Mention(
-				len(mentions), sentno, 0, tree, node, begin, end, headidx,
+				len(mentions), sentno, parno, tree, node, begin, end, headidx,
 				text.split(' '), ngdata, gadata))
 	return mentions
 
