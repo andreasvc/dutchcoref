@@ -1751,7 +1751,6 @@ def readconll(conllfile, docname='-'):
 						conlldata[-1].append(line.strip().split())
 					else:
 						conlldata.append([])
-				break
 			elif line == '':
 				break
 	if not conlldata[-1]:  # remove empty sentence if applicable
