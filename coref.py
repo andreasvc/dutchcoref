@@ -377,12 +377,14 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 		headidx = a
 	tokens = gettokens(tree, a, b)
 	# Trim punctuation
-	if tokens[0] in ',\'"()':
+	if tokens and tokens[0] in ',\'"()':
 		tokens = tokens[1:]
 		a += 1
-	if tokens[-1] in ',\'"()':
+	if tokens and tokens[-1] in ',\'"()':
 		tokens = tokens[:-1]
 		b -= 1
+	if not tokens:  # mention cannot be only punctuation
+		return
 	head = (tree.find('.//node[@begin="%d"]' % headidx)
 			if len(node) else node)
 	# various
