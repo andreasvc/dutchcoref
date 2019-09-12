@@ -29,7 +29,7 @@
         <node begin="10" conjtype="neven" end="11" frame="conj(en)" his="normal" his_1="normal" id="19" lcat="vg" lemma="en" pos="vg" postag="VG(neven)" pt="vg" rel="crd" root="en" sense="en" word="en"/>
         <node begin="11" cat="np" end="13" id="20" rel="cnj">
           <node begin="11" end="12" frame="determiner(de)" his="normal" his_1="normal" id="21" infl="de" lcat="detp" lemma="de" lwtype="bep" naamval="stan" npagr="rest" pos="det" postag="LID(bep,stan,rest)" pt="lid" rel="det" root="de" sense="de" word="de"/>
-          <node begin="12" end="13" frame="proper_name(both)" genus="genus" getal="ev" graad="basis" his="name" his_1="not_begin" id="22" lcat="np" lemma="Löbecker" naamval="stan" neclass="MISC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,genus,stan)" pt="n" rel="hd" rnum="sg" root="Löbecker" sense="Löbecker" word="Löbecker"/>
+          <node begin="12" end="13" frame="proper_name(both)" genus="genus" getal="ev" graad="basis" his="name" his_1="not_begin" id="22" lcat="np" lemma="Lübecker" naamval="stan" neclass="MISC" ntype="eigen" num="both" pos="name" postag="N(eigen,ev,basis,genus,stan)" pt="n" rel="hd" rnum="sg" root="Lübecker" sense="Lübecker" word="Lübecker"/>
         </node>
       </node>
       <node begin="13" cat="np" end="17" id="23" rel="predc">
@@ -45,8 +45,8 @@
     </node>
     <node begin="17" end="18" frame="punct(punt)" his="normal" his_1="normal" id="30" lcat="punct" lemma="." pos="punct" postag="LET()" pt="let" rel="--" root="." sense="." special="punt" word="."/>
   </node>
-  <sentence sentid="123">Meest tot de verbeelding sprekende voorbeelden zijn de Florentijnse Medici&apos;s en de Löbecker firma van Hildebrand Veckinchusen .</sentence>
+  <sentence sentid="123">Meest tot de verbeelding sprekende voorbeelden zijn de Florentijnse Medici&apos;s en de Lübecker firma van Hildebrand Veckinchusen .</sentence>
   <comments>
-    <comment>Q#123|Meest tot de verbeelding sprekende voorbeelden zijn de Florentijnse Medici&apos;s en de Löbecker firma van Hildebrand Veckinchusen .|1|1|-1.5545488552599962</comment>
+    <comment>Q#123|Meest tot de verbeelding sprekende voorbeelden zijn de Florentijnse Medici&apos;s en de Lübecker firma van Hildebrand Veckinchusen .|1|1|-1.5545488552599962</comment>
   </comments>
 </alpino_ds>
