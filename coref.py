@@ -1440,7 +1440,9 @@ def galookup(key, gadata):
 
 def writetabular(trees, mentions,
 		docname='-', part=0, file=sys.stdout, fmt=None, startcluster=0):
-	"""Write output in tabular format."""
+	"""Write output in tabular format.
+
+	:param file: results are written to this file-like object."""
 	sentences = [sorted(tree.iterfind('.//node[@word]'),
 				key=lambda x: int(x.get('begin')))
 			for _, tree in trees]
@@ -1651,7 +1653,7 @@ def htmlvis(trees, mentions, clusters, quotations, parses=True):
 			if drawtrees:
 				# discodop expects ElementTree instead of lxml tree
 				item = alpinotree(
-						ElementTree.fromstring(xml),
+						(xml, ElementTree.fromstring(xml)),
 						functions='add', morphology='no')
 				applypunct('move', item.tree, item.sent)
 				dt = DrawTree(item.tree, item.sent).text(

@@ -63,7 +63,8 @@ def parse(text):
 		_doc, _p, a, _s, b = label.rsplit('.', 5)
 		return int(a), int(b)
 
-	command = {'request': 'parse', 'data_type': 'text', 'timeout': 60}
+	command = {'request': 'parse', 'data_type': 'text', 'timeout': 60,
+			'ud': False}
 	data = '%s\n%s' % (json.dumps(command), text)
 	log.info('submitting parse')
 	resp = requests.post(ALPINOAPI, data=data.encode('utf8'))
@@ -87,7 +88,7 @@ def parse(text):
 		log.info('got %d results; code=%s status=%s finished=%s',
 				len(result['batch']), result['code'],
 				result['status'], result['finished'])
-		# log.info(resp.content)
+		# log.info(resp.content.decode('utf8'))
 		parses.extend((
 				parselabel(line['label']), line['alpino_ds'].encode('utf8'))
 				for line in result['batch']
