@@ -173,7 +173,7 @@ Annotation workflow
 3. Get the latest stable release of [CorefAnnotator](https://github.com/nilsreiter/CorefAnnotator/releases).
     Run it with `java -jar CorefAnnotator-1.9.2-full.jar`
 4. Import the `.conll` file (CoNLL 2012 button under "Import from other formats").
-5. Read the [annotation guidelines](https://github.com/andreasvc/dutchcoref/raw/master/dutchcoref%20annotation%20guidelines.pdf) in this repository
+5. Read the [annotation guidelines](https://github.com/andreasvc/dutchcoref/raw/master/annotationguidelines.pdf) in this repository
 6. Correct the annotation; save regularly
     (in the .xmi format used by CorefAnnotator)
 7. When done, export to CoNLL 2012 format
