@@ -113,7 +113,7 @@ $ python3 coref.py mydocument/ --gold=mydocument.conll --verbose --fmt=html >out
 ```
 See https://andreasvc.github.io/voskuil.html for an example of the HTML visualization.
 
-For further analysis with other tools, use the option `--outputprefix' to dump information
+For further analysis with other tools, use the option `--outputprefix` to dump information
 on clusters, mentions, links and quotations:
 ```
 $ python3 coref.py mydocument/ --fmt=booknlp --outputprefix=output

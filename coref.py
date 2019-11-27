@@ -34,9 +34,9 @@ Options:
             :predicatives: nominal predicatives
 
 Instead of specifying a directory and gold file, can use the following presets:
-    --clindev     run on CLIN26 shared task development data
-    --semeval     run on SemEval 2010 development data
-    --test        run tests
+    --clin=<dev|test>     run on CLIN26 shared task data
+    --semeval=<dev|test>  run on SemEval 2010 data
+    --test                run tests
 """
 import io
 import os
@@ -97,6 +97,8 @@ WEATHERVERBS = ('dooien gieten hagelen miezeren misten motregenen onweren '
 		'weerlichten winteren zomeren').split()
 VERBOSE = False
 DEBUGFILE = sys.stdout
+BASEDIR = os.path.dirname(os.path.abspath(__file__))
+PARENTDIR = os.path.dirname(BASEDIR)
 
 
 class Mention:
@@ -459,6 +461,8 @@ def pleonasticpronoun(node):
 				in node.xpath('../node//node[@rel="sup"]/@index')):
 			return True
 		# FIXME: add rules to detect non-pleonastic use
+		# e.g.: add rule: "Het is [NP-mention]" is ok
+		# but not "Het is ADJ", "Het is alsof ..."
 		return True  # assume pleonastic ...
 	if node.get('lemma') == 'het' and node.get('rel') == 'obj1':
 		head = node.find('../node[@rel="hd"]')
@@ -1358,32 +1362,32 @@ def sameclause(node1, node2):
 
 def createngdatadf():
 	"""Create pickled version of ngdata DataFrame."""
-	with open('../groref/ngdata', 'rb') as inp:
+	with open(os.path.join(PARENTDIR, 'groref/ngdata'), 'rb') as inp:
 		df = pandas.DataFrame.from_dict(
 				{line[:line.index(b'\t')]:
 					[int(a) for a in line[line.index(b'\t') + 1:].split(b' ')]
 				for line in inp},
 				orient='index')
 	df.columns = ['male', 'female', 'neuter', 'plural']
-	df.to_pickle('data/ngdata.pkl')
+	df.to_pickle(os.path.join(BASEDIR, 'data/ngdata.pkl'))
 	return df
 
 
 def readngdata():
 	"""Read noun phrase number-gender counts."""
-	if (os.path.exists('data/ngdata.pkl')
-			and os.stat('data/ngdata.pkl').st_mtime
-			> os.stat('../groref/ngdata').st_mtime):
-		ngdata = pandas.read_pickle('data/ngdata.pkl')
+	if (os.path.exists(os.path.join(BASEDIR, 'data/ngdata.pkl'))
+			and os.stat(os.path.join(BASEDIR, 'data/ngdata.pkl')).st_mtime
+			> os.stat(os.path.join(PARENTDIR, 'groref/ngdata')).st_mtime):
+		ngdata = pandas.read_pickle(os.path.join(BASEDIR, 'data/ngdata.pkl'))
 	else:
 		ngdata = createngdatadf()
 	gadata = {}  # Format: {noun: (gender, animacy)}
-	with open('data/gadata', encoding='utf8') as inp:
+	with open(os.path.join(BASEDIR, 'data/gadata'), encoding='utf8') as inp:
 		for line in inp:
 			a, b, c = line.rstrip('\n').split('\t')
 			gadata[a] = b, c
 	# https://www.meertens.knaw.nl/nvb/
-	with open('data/Top_eerste_voornamen_NL_2010.csv',
+	with open(os.path.join(BASEDIR, 'data/Top_eerste_voornamen_NL_2010.csv'),
 			encoding='latin1') as inp:
 		for line in islice(inp, 2, None):
 			fields = line.split(';')
@@ -1616,8 +1620,14 @@ def icarusallocation(mentions, clusters, docname='-', part=0, file=sys.stdout):
 	print('#end document', file=file)
 
 
-def htmlvis(trees, mentions, clusters, quotations, parses=True):
-	"""Visualize coreference in HTML document."""
+def htmlvis(trees, mentions, clusters, quotations, parses=True, coreffmt=None):
+	"""Visualize coreference in HTML document.
+
+	:param parses: if True, include parse tree visualizations;
+		disable for larger texts.
+	:param coreffmt: if not None, coreftabular will contain the output
+		in this tabular format; cf. writetabular.
+	:returns: tuple (corefhtml, coreftabular, debugoutput)"""
 	output = []
 	sentences = [[a.get('word') for a
 			in sorted(tree.iterfind('.//node[@word]'),
@@ -1697,11 +1707,18 @@ def htmlvis(trees, mentions, clusters, quotations, parses=True):
 			output.append('</span>')
 		output.append('</span>\n')
 	output.append('\n</p></div>\n')
-	debugoutput = ''
+	corefhtml = ''.join(output)
+	debugoutput = coreftabular = ''
 	if VERBOSE:
 		conv = ansi2html.Ansi2HTMLConverter(scheme='xterm', dark_bg=True)
 		debugoutput = conv.convert(DEBUGFILE.getvalue(), full=False)
-	return ''.join(output), debugoutput
+	if coreffmt is not None:
+		with io.StringIO() as out:
+			writetabular(trees, mentions,
+					# docname=docname, part=part, startcluster=startcluster
+					file=out, fmt=coreffmt)
+			coreftabular = out.getvalue()
+	return corefhtml, coreftabular, debugoutput
 
 
 def getunivdeps(filenames, trees):
@@ -1951,9 +1968,14 @@ def conllclusterdict(conlldata):
 	spansforcluster = {}
 	spans = {}
 	lineno = 1
+	# "minimal" format has doc id, token no, token form, coref (no part number)
+	# conll2012 has doc id, part no, token no, token form, [...], coref
+	tokenidx = 2 if len(conlldata[0][0]) == 4 else 3
 	for sentno, chunk in enumerate(conlldata):
 		scratch = {}
 		for idx, fields in enumerate(chunk):
+			# FIXME: line numbers are wrong when file has multiple
+			# documents/empty lines
 			lineno += 1
 			labels = fields[-1]
 			for a in labels.split('|'):
@@ -1974,12 +1996,13 @@ def conllclusterdict(conlldata):
 						raise ValueError(
 								'No opening paren for cluster %s at line %d'
 								% (a.strip('()'), lineno))
-					text = ' '.join(line[3] for line in chunk[begin:idx + 1])
+					text = ' '.join(line[tokenidx]
+							for line in chunk[begin:idx + 1])
 					span = (sentno, begin, idx + 1, text)
 					if span in spans:
 						debug('Warning: duplicate span %r '
 								'in cluster %d and %d, sent %d, line %d'
-								% (span[3], clusterid, spans[span],
+								% (span[tokenidx], clusterid, spans[span],
 									sentno + 1, lineno))
 					spans[span] = clusterid
 					spansforcluster.setdefault(clusterid, set()).add(span)
@@ -2089,14 +2112,14 @@ def process(path, output, ngdata, gadata,
 	if fmt == 'booknlp':
 		getunivdeps(filenames, trees)
 	if fmt in ('html', 'htmlp'):
-		corefresults, debugoutput = htmlvis(
+		corefhtml, _coreftabular, debugoutput = htmlvis(
 				trees, mentions, clusters, quotations, parses=fmt == 'htmlp')
-		with open('templates/results.html') as inp:
+		with open(os.path.join(BASEDIR, 'templates/results.html')) as inp:
 			template = jinja2.Template(inp.read())
-		print(template.render(docname=docname, corefresults=corefresults,
+		print(template.render(docname=docname, corefhtml=corefhtml,
 					debugoutput=debugoutput, parses=fmt == 'htmlp'),
 				file=output)
-	elif not VERBOSE:
+	elif not VERBOSE or output != sys.stdout:
 		writetabular(trees, mentions, docname=docname, part=part,
 				file=output, fmt=fmt, startcluster=startcluster)
 	if outputprefix is not None:
@@ -2104,27 +2127,40 @@ def process(path, output, ngdata, gadata,
 	return len(clusters)
 
 
-def clindev(ngdata, gadata, goldmentions):
+def clintask(ngdata, gadata, goldmentions, subset='dev'):
 	"""Run on CLIN26 shared task dev data and evaluate."""
+	debug('CLIN26 entity coreference; %s' % subset)
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	path = os.path.join('results/clindev/', timestamp)
+	path = 'results/clin%s/%s' % (subset, timestamp)
 	os.makedirs(path, exist_ok=False)
-	for conllfile in glob('../groref/clinDevData/*.coref_ne'):
-		dirname = os.path.join(
-				os.path.dirname(conllfile),
-				os.path.basename(conllfile).split('_')[0])
+	if subset == 'dev':
+		conllfiles = 'dev_corpora/coref_ne'
+		parsesdir = '../groref/clinDevData'
+	elif subset in ('boeing', 'gm', 'stock'):
+		conllfiles = 'eval_corpora/%s/coref_ne' % subset
+		parsesdir = 'data/clinTestData/%s' % subset
+	else:
+		raise ValueError
+	pattern = '../groref/clin26-eval-master/%s/*.coref_ne' % conllfiles
+	for conllfile in glob(pattern):
 		docname = os.path.basename(conllfile)
+		shortdocname = docname.split('_')[0]
+		dirname = os.path.join(parsesdir, shortdocname)
 		with open(os.path.join(path, docname), 'w') as out:
 			process(dirname + '/*.xml', out, ngdata, gadata,
-					docname=docname, part=None, conllfile=conllfile,
-					goldmentions=goldmentions, start=0, end=6)
+					docname=docname, part=None,
+					conllfile=conllfile if goldmentions or VERBOSE else None,
+					goldmentions=goldmentions,
+					start=0, end=6 if subset == 'dev' else 7)
 			# shared task says the first 7 sentences are annotated,
-			# but in many documents only the first 6 sentences are annotated.
+			# but in many documents of the dev set only the first 6 sentences
+			# are annotated.
 	with open('%s/blanc_scores' % path, 'w') as out:
 		os.chdir('../groref/clin26-eval-master')
 		subprocess.call(
 				['bash', 'score_coref.sh',
-					'coref_ne', 'dev_corpora/coref_ne',
+					'coref_ne',
+					conllfiles,
 					'../../dutchcoref/' + path, 'blanc'],
 				stdout=out)
 	os.chdir('../../dutchcoref')
@@ -2132,20 +2168,28 @@ def clindev(ngdata, gadata, goldmentions):
 		print(inp.read())
 
 
-def semeval(ngdata, gadata, goldmentions):
-	"""Run on semeval 2010 shared task dev data and evaluate."""
+def semeval(ngdata, gadata, goldmentions, subset='dev'):
+	"""Run on semeval 2010 shared task data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	path = os.path.join('results/semevaldev/', timestamp)
+	path = 'results/semeval%s/%s' % (subset, timestamp)
 	os.makedirs(path, exist_ok=False)
 	startcluster = 0
+	parsesdir = 'data/semeval2010NL%sparses/*/' % subset
+	if subset == 'dev':
+		conllfile = ('data/semeval2010/task01.posttask.v1.0/corpora/training/'
+				'nl.devel.txt.fixed')
+	elif subset == 'test':
+		conllfile = ('data/semeval2010/task01.posttask.v1.0/corpora/test/'
+				'nl.test.txt.fixed')
+	else:
+		raise ValueError
 	with open(os.path.join(path, 'result.conll'), 'w') as out:
-		for dirname in sorted(glob('data/semeval2010NLdevparses/*/'),
+		for dirname in sorted(glob(parsesdir),
 				key=lambda x: int(x.rstrip('/').split('_')[1])):
 			docname = os.path.basename(dirname.rstrip('/'))
 			startcluster += process(dirname, out, ngdata, gadata,
 					fmt='semeval2010', docname=docname,
-					conllfile='data/semeval2010/task01.posttask.v1.0/'
-						'corpora/training/nl.devel.txt.fixed',
+					conllfile=conllfile if goldmentions or VERBOSE else None,
 					startcluster=startcluster, goldmentions=goldmentions,
 					exclude=('relpronouns', 'reflectives', 'reciprocals',
 						'predicatives', 'appositives', 'npsingletons'))
@@ -2153,8 +2197,7 @@ def semeval(ngdata, gadata, goldmentions):
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
 				'blanc',
-				'data/semeval2010/task01.posttask.v1.0/'
-					'corpora/training/nl.devel.txt.fixed',
+				conllfile,
 				'%s/result.conll' % path],
 				stdout=out)
 	with open('%s/blanc_scores' % path) as inp:
@@ -2209,7 +2252,7 @@ def runtests(ngdata, gadata):
 def main():
 	"""CLI"""
 	longopts = ['fmt=', 'slice=', 'gold=', 'exclude=', 'outputprefix=',
-			'help', 'verbose', 'test', 'clindev', 'semeval', 'goldmentions']
+			'clin=', 'semeval=', 'verbose', 'goldmentions', 'help', 'test']
 	try:
 		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
 	except getopt.GetoptError:
@@ -2223,10 +2266,16 @@ def main():
 		setverbose(True, sys.stdout)
 		sys.argv.remove('--verbose')
 	ngdata, gadata = readngdata()
-	if '--clindev' in opts:
-		clindev(ngdata, gadata, '--goldmentions' in opts)
+	if opts.get('--clin') == 'test':
+		clintask(ngdata, gadata, '--goldmentions' in opts, subset='boeing')
+		clintask(ngdata, gadata, '--goldmentions' in opts, subset='gm')
+		clintask(ngdata, gadata, '--goldmentions' in opts, subset='stock')
+	elif '--clin' in opts:
+		clintask(ngdata, gadata, '--goldmentions' in opts,
+				subset=opts['--clin'])
 	elif '--semeval' in opts:
-		semeval(ngdata, gadata, '--goldmentions' in opts)
+		semeval(ngdata, gadata, '--goldmentions' in opts,
+				subset=opts['--semeval'])
 	elif '--test' in opts:
 		runtests(ngdata, gadata)
 	else:

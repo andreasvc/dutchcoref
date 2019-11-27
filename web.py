@@ -43,10 +43,13 @@ def results():
 	coref.setverbose(True, io.StringIO())
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata)
-	corefresults, debugoutput = coref.htmlvis(
-			trees, mentions, clusters, quotations, parses=True)
+	corefhtml, coreftabular, debugoutput = coref.htmlvis(
+			trees, mentions, clusters, quotations,
+			parses=True, coreffmt='minimal')
 	return render_template('results.html', docname='',
-			corefresults=Markup(corefresults), debugoutput=Markup(debugoutput),
+			corefhtml=Markup(corefhtml),
+			coreftabular=coreftabular,
+			debugoutput=Markup(debugoutput),
 			parses=True)
 
 

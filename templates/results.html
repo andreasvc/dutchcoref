@@ -95,7 +95,12 @@ Legend:
 <span class="q">' Direct speech '</span>
 </div>
 
-{{ corefresults }}
+{{ corefhtml }}
+
+{% if coreftabular %}
+<div>
+<pre>{{ coreftabular }}</pre></div>
+{% endif %}
 
 {% if debugoutput %}
 <div class="div_foreground div_background main">
