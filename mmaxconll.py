@@ -15,6 +15,8 @@ from lxml import etree
 def getspan(markable, idxmap, words):
 	"""Convert an MMAX span into integer indices."""
 	start = end = span = markable.attrib['span']
+	# if the span is discontinuous, look for the componenent
+	# with the head and return that as the (minimal) span.
 	if ',' in span:
 		head = markable.get('head', '').lower()
 		for component in span.split(','):
@@ -31,10 +33,10 @@ def getspan(markable, idxmap, words):
 	return idxmap[start], idxmap[end]
 
 
-def getmarkables(words, nplevel, idxmap):
+def getmarkables(words, nplevel, idxmap, skiptypes=('bridge', )):
 	"""Add start and end tags of markables to the respective tokens."""
 	seen = set()  # don't add same span twice
-	inspan = set()  # track which token ids are in spans
+	inspan = set()  # track which token ids are in spans (except for last idx)
 	for markable in nplevel:
 		try:
 			start, end = getspan(markable, idxmap, words)
@@ -44,7 +46,8 @@ def getmarkables(words, nplevel, idxmap):
 			continue
 		seen.add((start, end))
 		inspan.update(range(start, end))  # NB: do not include end!
-		# TODO: filter for type of links
+		if markable.get('type') in skiptypes:
+			continue
 		if 'ref' in markable.attrib and markable.get('ref') != 'empty':
 			mid = markable.attrib['ref']
 		elif 'id' in markable.attrib:
@@ -97,11 +100,10 @@ def writeconll(words, sentends, doc, inspan, out):
 	for m, word in enumerate(words):
 		print(doc, n, word.text, word.get('coref', '-'), sep='\t', file=out)
 		n += 1
-		if m in sentends:
-			# ignore sent break if any span still open
-			if m not in inspan:
-				print(file=out)
-				n = 0
+		# ignore sent break if any span still open
+		if m in sentends and m not in inspan:
+			print(file=out)
+			n = 0
 	print('#end document', file=out)
 
 
