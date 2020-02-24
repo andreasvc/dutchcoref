@@ -1774,8 +1774,8 @@ def readconll(conllfile, docname='-'):
 				break
 	if not conlldata[-1]:  # remove empty sentence if applicable
 		conlldata.pop()
-	if not conlldata[0]:
-		raise ValueError('Could not read gold data from %r with docname %r' % (
+	if not conlldata:
+		raise ValueError('Could not read conll file %r with docname %r' % (
 				conllfile, docname))
 	return conlldata
 
@@ -2096,6 +2096,8 @@ def process(path, output, ngdata, gadata,
 		setverbose(VERBOSE, io.StringIO())
 	debug('processing:', path)
 	filenames = sorted(glob(path), key=parsesentid)[start:end]
+	if not filenames:
+		raise ValueError('no parse trees found: %s' % path)
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
 	if conllfile is not None:
@@ -2131,7 +2133,8 @@ def clintask(ngdata, gadata, goldmentions, subset='dev'):
 	"""Run on CLIN26 shared task dev data and evaluate."""
 	debug('CLIN26 entity coreference; %s' % subset)
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	path = 'results/clin%s/%s' % (subset, timestamp)
+	path = 'results/clin%s/%s%s' % (subset, timestamp,
+			'_gold' if goldmentions else '')
 	os.makedirs(path, exist_ok=False)
 	if subset == 'dev':
 		conllfiles = 'dev_corpora/coref_ne'
@@ -2140,9 +2143,12 @@ def clintask(ngdata, gadata, goldmentions, subset='dev'):
 		conllfiles = 'eval_corpora/%s/coref_ne' % subset
 		parsesdir = 'data/clinTestData/%s' % subset
 	else:
-		raise ValueError
+		raise ValueError('specify dev, boeing, gm, or stock.')
 	pattern = '../groref/clin26-eval-master/%s/*.coref_ne' % conllfiles
-	for conllfile in glob(pattern):
+	files = glob(pattern)
+	if not files:
+		raise ValueError('conll files not found: %s' % pattern)
+	for conllfile in files:
 		docname = os.path.basename(conllfile)
 		shortdocname = docname.split('_')[0]
 		dirname = os.path.join(parsesdir, shortdocname)
@@ -2171,10 +2177,10 @@ def clintask(ngdata, gadata, goldmentions, subset='dev'):
 def semeval(ngdata, gadata, goldmentions, subset='dev'):
 	"""Run on semeval 2010 shared task data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-	path = 'results/semeval%s/%s' % (subset, timestamp)
+	path = 'results/semeval%s/%s%s' % (subset, timestamp,
+			'_gold' if goldmentions else '')
 	os.makedirs(path, exist_ok=False)
 	startcluster = 0
-	parsesdir = 'data/semeval2010NL%sparses/*/' % subset
 	if subset == 'dev':
 		conllfile = ('data/semeval2010/task01.posttask.v1.0/corpora/training/'
 				'nl.devel.txt.fixed')
@@ -2182,10 +2188,16 @@ def semeval(ngdata, gadata, goldmentions, subset='dev'):
 		conllfile = ('data/semeval2010/task01.posttask.v1.0/corpora/test/'
 				'nl.test.txt.fixed')
 	else:
-		raise ValueError
+		raise ValueError('specify dev or test.')
+	if not os.path.exists(conllfile):
+		raise ValueError('CoNLL file not found: %s' % conllfile)
+	parsesdir = 'data/semeval2010NL%sparses/*/' % subset
+	parses = sorted(glob(parsesdir),
+				key=lambda x: int(x.rstrip('/').split('_')[1]))
+	if not parses:
+		raise ValueError('parses not found: %s' % parsesdir)
 	with open(os.path.join(path, 'result.conll'), 'w') as out:
-		for dirname in sorted(glob(parsesdir),
-				key=lambda x: int(x.rstrip('/').split('_')[1])):
+		for dirname in parses:
 			docname = os.path.basename(dirname.rstrip('/'))
 			startcluster += process(dirname, out, ngdata, gadata,
 					fmt='semeval2010', docname=docname,
