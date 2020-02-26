@@ -1,9 +1,13 @@
-"""Convert SoNaR coreference annotations to CoNLL 2012 format.
+"""Convert Corea/SoNaR coreference annotations to CoNLL 2012 format.
 
 Usage: mmaxconll.py <inputdir> [outputfile]
 
-inputdir should have directories called Basedata and Markables.
+inputdir is searched recursively for Basedata/ and Markables/ subdirectories.
 output is written on stdout if no output is specified."""
+# Notes:
+# The following files in Corea contain XML syntax errors:
+# Med/Markables/s236_coref_level.xml
+# Med/Markables/s397_coref_level.xml
 import os
 import re
 import sys
@@ -57,7 +61,7 @@ def getmarkables(words, nplevel, idxmap, skiptypes=('bridge', )):
 		if ';' in mid:  # ignore all but first reference
 			mid = mid[:mid.index(';')]
 		if not re.match(r'markable_[0-9]+$', mid):
-			raise ValueError
+			continue
 		mid = mid.split('_')[1]
 		cur = words[start].get('coref', '')
 		if start == end:
@@ -117,6 +121,8 @@ def conv(fname, inputdir, out):
 	elif os.path.exists('%s/Markables/%s_coref_level.xml' % (inputdir, doc)):
 		nplevel = etree.parse('%s/Markables/%s_coref_level.xml'
 				% (inputdir, doc)).getroot()
+	else:
+		return  # no annotations exist for this file
 	if os.path.exists('%s/Markables/%s_sentence_level.xml' % (inputdir, doc)):
 		sentence = etree.parse('%s/Markables/%s_sentence_level.xml'
 				% (inputdir, doc)).getroot()
@@ -136,21 +142,17 @@ def main():
 	try:
 		_opts, args = getopt.gnu_getopt(sys.argv[1:], '', [])
 	except getopt.GetoptError as err:
-		print(err, __doc__, sep='\n')
-		return
+		args = None
 	if not args or len(args) > 2:
 		print(err, __doc__, sep='\n')
 		return
-	inputdir = args[0]
 	out = None if len(args) == 1 else open(args[1], 'w', encoding='utf8')
-	pattern = '%s/Basedata/*.xml' % inputdir
-	fnames = sorted(glob.glob(pattern))
-	if not fnames:
-		print('no files found matching: %s' % pattern)
-		return
 	try:
-		for fname in fnames:
-			conv(fname, inputdir, out)
+		for dirpath, dirnames, _ in os.walk(args[0]):
+			if 'Basedata' in dirnames and 'Markables' in dirnames:
+				pattern = '%s/Basedata/*.xml' % dirpath
+				for fname in sorted(glob.glob(pattern)):
+					conv(fname, dirpath, out)
 	finally:
 		if out:
 			out.close()
