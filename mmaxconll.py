@@ -13,6 +13,7 @@ import re
 import sys
 import glob
 import getopt
+from collections import defaultdict
 from lxml import etree
 
 
@@ -37,12 +38,50 @@ def getspan(markable, idxmap, words):
 	return idxmap[start], idxmap[end]
 
 
-def getmarkables(words, nplevel, idxmap, skiptypes=('bridge', )):
+def getclusters(words, nplevel, idxmap, skiptypes=('bridge', )):
+	"""Convert coreference chain links into clusters."""
+	# A table of reference chains (anaphor -> antecedent)
+	forwardrefs = defaultdict(list)
+	for markable in nplevel:
+		ref = markable.get('ref')
+		if ref is not None and ref != 'empty':
+			for ref1 in ref.split(';'):
+				forwardrefs[ref1].append(markable.get('id'))
+	# Get transitive closure
+	sets = []
+	for markable in sorted(nplevel,
+			key=lambda m: int(m.get('id').split('_')[1])):
+		if 'ref' not in markable.attrib or markable.get('ref') == 'empty':
+			refset = set()
+			stack = [markable.get('id')]
+			while stack:
+				mid = stack.pop()
+				if mid not in refset:
+					refset.add(mid)
+					stack.extend(forwardrefs.get(mid, []))
+			sets.append(refset)
+	# Assign each markable to an ID of its coreference cluster
+	cluster = {}
+	for n, refset in enumerate(sets):
+		for mid in refset:
+			# if mid in cluster:
+			# 	raise ValueError
+			cluster[mid] = n
+	for markable in nplevel:
+		mid = markable.get('id')
+		# if mid not in cluster:
+		# 	raise ValueError
+	return cluster
+
+
+def addclusters(words, nplevel, idxmap, cluster, skiptypes=('bridge', )):
 	"""Add start and end tags of markables to the respective tokens."""
 	seen = set()  # don't add same span twice
 	inspan = set()  # track which token ids are in spans (except for last idx)
+	missing = len(cluster)
 	for markable in nplevel:
 		try:
+
 			start, end = getspan(markable, idxmap, words)
 		except KeyError:  # ignore spans referring to non-existing tokens
 			continue
@@ -52,26 +91,20 @@ def getmarkables(words, nplevel, idxmap, skiptypes=('bridge', )):
 		inspan.update(range(start, end))  # NB: do not include end!
 		if markable.get('type') in skiptypes:
 			continue
-		if 'ref' in markable.attrib and markable.get('ref') != 'empty':
-			mid = markable.attrib['ref']
-		elif 'id' in markable.attrib:
-			mid = markable.attrib['id']
+		elif markable.get('id') in cluster:
+			cid = cluster[markable.get('id')]
 		else:
-			raise ValueError
-		if ';' in mid:  # ignore all but first reference
-			mid = mid[:mid.index(';')]
-		if not re.match(r'markable_[0-9]+$', mid):
-			continue
-		mid = mid.split('_')[1]
+			cid = missing
+			missing += 1
 		cur = words[start].get('coref', '')
 		if start == end:
-			coref = ('%s|(%s)' % (cur, mid)) if cur else ('(%s)' % mid)
+			coref = ('%s|(%s)' % (cur, cid)) if cur else ('(%s)' % cid)
 			words[start].set('coref', coref)
 		else:
-			coref = ('%s|(%s' % (cur, mid)) if cur else ('(%s' % mid)
+			coref = ('%s|(%s' % (cur, cid)) if cur else ('(%s' % cid)
 			words[start].set('coref', coref)
 			cur = words[end].get('coref', '')
-			coref = ('%s|%s)' % (cur, mid)) if cur else ('%s)' % mid)
+			coref = ('%s|%s)' % (cur, cid)) if cur else ('%s)' % cid)
 			words[end].set('coref', coref)
 	return inspan
 
@@ -132,7 +165,8 @@ def conv(fname, inputdir, out):
 	# this maps ID labels to integer indices.
 	idxmap = {word.attrib['id']: n
 			for n, word in enumerate(words)}
-	inspan = getmarkables(words, nplevel, idxmap)
+	cluster = getclusters(words, nplevel, idxmap)
+	inspan = addclusters(words, nplevel, idxmap, cluster)
 	sentends = getsents(words, sentence, idxmap)
 	writeconll(words, sentends, doc, inspan, out)
 
@@ -144,7 +178,7 @@ def main():
 	except getopt.GetoptError as err:
 		args = None
 	if not args or len(args) > 2:
-		print(err, __doc__, sep='\n')
+		print(__doc__, sep='\n')
 		return
 	out = None if len(args) == 1 else open(args[1], 'w', encoding='utf8')
 	try:
