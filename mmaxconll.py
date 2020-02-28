@@ -61,16 +61,12 @@ def getclusters(words, nplevel, idxmap, skiptypes=('bridge', )):
 					stack.extend(forwardrefs.get(mid, []))
 			sets.append(refset)
 	# Assign each markable to an ID of its coreference cluster
+	# NB: in our conversion, a markable can only be part of a single
+	# cluster.
 	cluster = {}
 	for n, refset in enumerate(sets):
 		for mid in refset:
-			# if mid in cluster:
-			# 	raise ValueError
 			cluster[mid] = n
-	for markable in nplevel:
-		mid = markable.get('id')
-		# if mid not in cluster:
-		# 	raise ValueError
 	return cluster
 
 
@@ -186,6 +182,8 @@ def main():
 			if 'Basedata' in dirnames and 'Markables' in dirnames:
 				pattern = '%s/Basedata/*.xml' % dirpath
 				for fname in sorted(glob.glob(pattern)):
+					if fname.endswith('Basedata/dummyfile_words.xml'):
+						continue
 					conv(fname, dirpath, out)
 	finally:
 		if out:
