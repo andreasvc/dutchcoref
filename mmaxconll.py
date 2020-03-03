@@ -75,12 +75,13 @@ def addclusters(words, nplevel, idxmap, cluster, skiptypes=('bridge', )):
 	seen = set()  # don't add same span twice
 	inspan = set()  # track which token ids are in spans (except for last idx)
 	missing = len(cluster)
+	markables = []
 	for markable in nplevel:
 		try:
-
-			start, end = getspan(markable, idxmap, words)
+			markables.append((*getspan(markable, idxmap, words), markable))
 		except KeyError:  # ignore spans referring to non-existing tokens
 			continue
+	for start, end, markable in sorted(markables, key=lambda m: m[1] - m[0]):
 		if (start, end) in seen:
 			continue
 		seen.add((start, end))
@@ -95,13 +96,12 @@ def addclusters(words, nplevel, idxmap, cluster, skiptypes=('bridge', )):
 		cur = words[start].get('coref', '')
 		if start == end:
 			coref = ('%s|(%s)' % (cur, cid)) if cur else ('(%s)' % cid)
-			words[start].set('coref', coref)
 		else:
-			coref = ('%s|(%s' % (cur, cid)) if cur else ('(%s' % cid)
+			coref = ('(%s|%s' % (cid, cur)) if cur else ('(%s' % cid)
 			words[start].set('coref', coref)
 			cur = words[end].get('coref', '')
 			coref = ('%s|%s)' % (cur, cid)) if cur else ('%s)' % cid)
-			words[end].set('coref', coref)
+		words[end].set('coref', coref)
 	return inspan
 
 
