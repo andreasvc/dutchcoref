@@ -182,6 +182,18 @@ Annotation workflow
 
 References
 ----------
+If you use this code for research, please cite the following paper:
+
+    @article{vancranenburgh2019coref,
+      author={Andreas van Cranenburgh},
+      year={2019},
+      title={A {Dutch} coreference resolution system with an evaluation on literary fiction},
+      journal={Computational Linguistics in the Netherlands Journal},
+      volume={9},
+      pages={27--54},
+      url={https://clinjournal.org/clinj/article/view/91},
+    }
+
 This code base is a Dutch implementation of the Stanford Multi-Pass Sieve
 Coreference System for English:
 
