@@ -214,12 +214,8 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 					sent, sdocname, fname, lassymap, lassyrmap)
 
 		# collect unaligned sonar tokens
-		alignedtokens = {wordid
-				for sent in lassymap.values()
-					for _sdocname, sonartoks in sent
-						for wordid in sonartoks}
 		for word in words:
-			if word.get('id') not in alignedtokens:
+			if word.get('id') not in lassyrmap:
 				word.set('action', 'skip')
 				sonarunaligned.append((sdocname, word.get('id')))
 				print('unaligned sonar token:', word.text, word.get('id'),
@@ -429,6 +425,8 @@ def conv(fname, inputdir, out, lassypath, sonarnerpath, outpath, lassymap,
 		# lxml unescapes once, this takes care of the second time
 		if '&amp;' in word.text:
 			word.text = word.text.replace('&amp;', '&')
+		if r'\[' in word.text or r'\]' in word.text:
+			word.text = word.text.replace(r'\[', '[').replace(r'\]', ']')
 	sdocname = os.path.basename(fname).replace('_words.xml', '')
 	if os.path.exists('%s/Markables/%s_np_level.xml' % (inputdir, sdocname)):
 		nplevel = etree.parse('%s/Markables/%s_np_level.xml'
