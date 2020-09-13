@@ -144,6 +144,12 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 		if not lassytrees:
 			raise ValueError('no trees found at %s' % lassypath)
 
+		# correct errors in Sonar
+		if sdocname == 'dpc-eup-000015-nl-sen':
+			words[idxmap['word_675']].text = ']'
+		if sdocname == 'WS-U-E-A-0000000036':
+			words[idxmap['word_26']].text = 'Spee'
+
         # We take the order of sentences and tokens in Sonar as canonical,
         # while we take the sentence and token boundaries from Lassy.
 		offsets = []
@@ -156,7 +162,7 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 
 		seen = set()
 		sonarmap = {}
-		lassyrmap = {}
+		lassyrevmap = {}
 		sents = [(fname, gettokens(tree, 0, 999))
 				for fname, tree in lassytrees.items()]
 		queue = sorted(sents, key=lambda x: parsesentid(x[0]))
@@ -186,7 +192,7 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 			sentends.add(offsetidx[m + len(signature)] - 1)
 			sonarmap[offsetidx[m + len(signature)] - 1] = fname
 			aligntokens(words[offsetidx[m]:offsetidx[m + len(signature)]],
-					sent, sdocname, fname, lassymap, lassyrmap)
+					sent, sdocname, fname, lassymap, lassyrevmap)
 			m += len(signature)
 
 		# second pass: align any lassy sent which has not been aligned yet
@@ -198,7 +204,8 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 				if m == -1:
 					print('could not align sentence: %r\n%s'
 							% (signature, fname))
-					lassyunaligned.append(fname)
+					lassyunaligned.append((
+							os.path.basename(fname), ' '.join(sent)))
 					break
 				if (m not in seen
 						and m in offsetidx
@@ -211,13 +218,13 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 			sentends.add(offsetidx[m + len(signature)] - 1)
 			sonarmap[offsetidx[m + len(signature)] - 1] = fname
 			aligntokens(words[offsetidx[m]:offsetidx[m + len(signature)]],
-					sent, sdocname, fname, lassymap, lassyrmap)
+					sent, sdocname, fname, lassymap, lassyrevmap)
 
 		# collect unaligned sonar tokens
 		for word in words:
-			if word.get('id') not in lassyrmap:
+			if word.get('id') not in lassyrevmap:
 				word.set('action', 'skip')
-				sonarunaligned.append((sdocname, word.get('id')))
+				sonarunaligned.append((sdocname, word.get('id'), word.text))
 				print('unaligned sonar token:', word.text, word.get('id'),
 						sep='\t', file=sys.stderr)
 
@@ -240,7 +247,7 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 
 		if sonarnerpath:
 			addnertolassy(sonarnerpath, outpath, sdocname, ldocname,
-					words, idxmap, lassytrees, lassynewids, lassyrmap)
+					words, idxmap, lassytrees, lassynewids, lassyrevmap)
 
 	else:  # SoNaR
 		for markable in sentence:
@@ -252,12 +259,13 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 
 
 def aligntokens(sonartokens, lassytokens, sdocname, fname,
-		lassymap, lassyrmap):
+		lassymap, lassyrevmap):
 	"""Align sonar tokens to lassy tokens; modifies sonar tokens in-place with
 	an attribute "merge" if a token should merge with the next token.
 
-	Example:
-		"NWO / RU / Meertens instituut" => "NWO/RU/Meertens instituut"
+	Examples (sonar => lassy):
+		merge NWO / RU / Meertens instituut => NWO/RU/Meertens instituut
+		split Matthaeus"opleidingsprogramma => Matthaeus " opleidingsprogramma
 	"""
 	offsetidx = []
 	toksignature = ''
@@ -265,7 +273,7 @@ def aligntokens(sonartokens, lassytokens, sdocname, fname,
 	for n, token in enumerate(lassytokens):
 		offsetidx.extend(n for _ in token + ' ')
 		toksignature += token + ' '
-		lassymap[fname].append((sdocname, []))
+		lassymap[fname].append([sdocname, [], '', ''])
 	toksignature = toksignature[:-1]
 
 	lassyoffset = 0
@@ -273,33 +281,50 @@ def aligntokens(sonartokens, lassytokens, sdocname, fname,
 		if toksignature[lassyoffset:].startswith(token.text + ' '):
 			lassymap[fname][offsetidx[lassyoffset]][1].append(
 					token.get('id'))
-			lassyrmap[token.get('id')] = (fname, offsetidx[lassyoffset])
+			lassymap[fname][offsetidx[lassyoffset]][3] += token.text
+			lassyrevmap[token.get('id')] = (fname, offsetidx[lassyoffset])
 			lassyoffset += len(token.text) + 1
 		elif toksignature[lassyoffset:].startswith(token.text):
-			# merge sonar token
-			if not toksignature[lassyoffset:].endswith(token.text):
+			# last token of sentence
+			if toksignature[lassyoffset:].endswith(token.text):
+				lassymap[fname][offsetidx[lassyoffset]][1].append(
+						token.get('id'))
+				lassymap[fname][offsetidx[lassyoffset]][3] = token.text
+			else:  # merge sonar token w/next sonar token
 				token.set('action', 'merge')
-			lassymap[fname][offsetidx[lassyoffset]][1].append(
-					token.get('id'))
-			lassyrmap[token.get('id')] = (fname, offsetidx[lassyoffset])
+				lassymap[fname][offsetidx[lassyoffset]][1].append(
+						token.get('id'))
+				lassymap[fname][offsetidx[lassyoffset]][2] = 'merge'
+				lassymap[fname][offsetidx[lassyoffset]][3] += token.text + ' '
+			lassyrevmap[token.get('id')] = (fname, offsetidx[lassyoffset])
 			lassyoffset += len(token.text)
 		# split sonar token
-		elif toksignature[lassyoffset:].replace(' ', '').startswith(token.text):
-			orig = lassyoffset
-			lassymap[fname][offsetidx[lassyoffset]][1].append(
-					token.get('id'))
-			lassyrmap[token.get('id')] = (fname, offsetidx[lassyoffset])
+		elif toksignature[lassyoffset:].replace(' ', '').startswith(
+				token.text):
+			origlassyoffset = prevlassyoffset = lassyoffset
 			for char in token.text:
 				if toksignature[lassyoffset] == char:
 					lassyoffset += 1
 				elif (toksignature[lassyoffset] == ' '
 						and toksignature[lassyoffset + 1] == char):
-					lassyoffset += 2
-					lassymap[fname][offsetidx[lassyoffset]][1].append(
+					lassymap[fname][offsetidx[prevlassyoffset]][1].append(
 							token.get('id'))
+					lassymap[fname][offsetidx[prevlassyoffset]][2] = 'split'
+					lassymap[fname][offsetidx[prevlassyoffset]][3] = (
+							toksignature[prevlassyoffset:lassyoffset])
+					prevlassyoffset = lassyoffset + 1
+					lassyoffset += 2
 				else:
 					raise ValueError
-			token.set('action', 'split %s' % toksignature[orig:lassyoffset])
+			ltokenidx = offsetidx[prevlassyoffset]
+			lassymap[fname][ltokenidx][1].append(token.get('id'))
+			lassymap[fname][ltokenidx][2] = 'split'
+			lassymap[fname][ltokenidx][3] = toksignature[
+					prevlassyoffset:lassyoffset]
+			lassyrevmap[token.get('id')] = (fname, ltokenidx)
+			token.set('action', 'split %s'
+					% toksignature[origlassyoffset:lassyoffset])
+			lassyoffset += 1
 		else:
 			raise ValueError('could not align tokens\n'
 					'sonar: %s\nlassy: %s' % (
@@ -309,24 +334,26 @@ def aligntokens(sonartokens, lassytokens, sdocname, fname,
 def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
 		outpath):
 	"""Dump map of reordered lassy sents, and map of word/token boundaries"""
-	with open(os.path.join(outpath, 'sentmap.tsv'), 'w'
-			) as out1, open(os.path.join(outpath, 'tokmap.tsv'), 'w') as out2:
-		print('orig', 'new', sep='\t', file=out1)
+	with open(os.path.join(outpath, 'sentmap.tsv'), 'w') as sentmap, \
+			open(os.path.join(outpath, 'tokmap.tsv'), 'w') as tokmap:
+		print('orig', 'new', sep='\t', file=sentmap)
 		print('lassysentid', 'lassytokenid', 'sonar_doc', 'sonar_word_id',
-				sep='\t', file=out2)
+				'action', 'token', sep='\t', file=tokmap)
 		for fname, (ldocname, parno, sentno) in lassynewids.items():
 			print('%s\t%s/%03d-%03d.xml' % (fname, ldocname, parno, sentno),
-					file=out1)
-			for tokidx, (sdocname, sonar_word_ids) in enumerate(lassymap[fname]):
-				# (sentid, tokidx) => (sdocname, sonar_word_ids)
+					file=sentmap)
+			for tokidx, (sdocname, sword_ids, action, token) in enumerate(
+					lassymap[fname]):
+				# (sentid, tokidx) => (sdocname, sword_ids, token)
 				print(os.path.basename(fname), tokidx,
-						sdocname, ','.join(sonar_word_ids),
-						sep='\t', file=out2)
-	with open(os.path.join(outpath, 'lassy_unaligned_sents.txt'), 'w') as out:
-		out.writelines(sentid + '\n' for sentid in lassyunaligned)
+						sdocname, ','.join(sword_ids), action, token,
+						sep='\t', file=tokmap)
+	with open(os.path.join(outpath, 'lassy_unaligned_sents.tsv'), 'w') as out:
+		out.writelines('%s\t%s\n' % (sentid, sent)
+				for sentid, sent in lassyunaligned)
 	with open(os.path.join(outpath, 'sonar_unaligned_tokens.tsv'), 'w') as out:
-		out.writelines('%s\t%s\n' % (sdocname, wordid)
-				for sdocname, wordid in sonarunaligned)
+		out.writelines('%s\t%s\t%s\n' % (sdocname, wordid, word)
+				for sdocname, wordid, word in sonarunaligned)
 
 
 def writeconll(words, sentends, docname, inspan, out):
@@ -382,7 +409,7 @@ def simplify(corefcol):
 
 
 def addnertolassy(sonarnerpath, outpath, sdocname, ldocname, words,
-		idxmap, lassytrees, lassynewids, lassyrmap):
+		idxmap, lassytrees, lassynewids, lassyrevmap):
 	"""Reads SoNaR NER annotations and adds them to Lassy Small trees;
 	writes re-numbered Lassy Small trees to <outdir>/lassy_renumbered/"""
 	labelmap = {
@@ -402,9 +429,9 @@ def addnertolassy(sonarnerpath, outpath, sdocname, ldocname, words,
 		for markable in markables:
 			start, end = getspan(markable, idxmap, words)
 			for word in words[start:end + 1]:
-				if word.get('id') not in lassyrmap:
+				if word.get('id') not in lassyrevmap:
 					continue
-				fname, tokidx = lassyrmap[word.get('id')]
+				fname, tokidx = lassyrevmap[word.get('id')]
 				tree = lassytrees[fname]
 				word = tree.find('.//node[@begin="%d"][@word]' % tokidx)
 				word.set('neclass', labelmap[label])
