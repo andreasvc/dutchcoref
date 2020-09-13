@@ -82,7 +82,8 @@ def getclusters(nplevel):
 	return cluster
 
 
-def addclusters(words, nplevel, idxmap, cluster, skiptypes=('bridge', )):
+def addclusters(words, nplevel, idxmap, cluster, sentends,
+		skiptypes=('bridge', )):
 	"""Add start and end tags of markables to the respective tokens."""
 	seen = set()  # don't add same span twice
 	inspan = set()  # track which token ids are in spans (except for last idx)
@@ -108,12 +109,14 @@ def addclusters(words, nplevel, idxmap, cluster, skiptypes=('bridge', )):
 		cur = words[start].get('coref', '')
 		if start == end:
 			coref = ('%s|(%s)' % (cur, cid)) if cur else ('(%s)' % cid)
-		else:
+			words[start].set('coref', coref)
+		# skip spans that cross sentence boundaries
+		elif not any(n in sentends for n in range(start, end)):
 			coref = ('(%s|%s' % (cid, cur)) if cur else ('(%s' % cid)
 			words[start].set('coref', coref)
 			cur = words[end].get('coref', '')
 			coref = ('%s|%s)' % (cur, cid)) if cur else ('%s)' % cid)
-		words[end].set('coref', coref)
+			words[end].set('coref', coref)
 	return inspan
 
 
@@ -176,6 +179,8 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 		m = 0
 		while m < len(sdoc):
 			for n, (fname, sent) in enumerate(queue):
+				if fname.endswith('WR-P-P-C-0000000054.txt-17.10.xml'):
+					continue
 				signature = ''.join(sent)
 				if (sdoc[m:].startswith(signature)
 						and m not in seen
@@ -201,6 +206,8 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 			m = -1
 			while True:
 				m = sdoc.find(signature, m + 1)
+				if fname.endswith('WR-P-P-C-0000000054.txt-17.10.xml'):
+					m = -1
 				if m == -1:
 					print('could not align sentence: %r\n%s'
 							% (signature, fname))
@@ -224,6 +231,7 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 		for word in words:
 			if word.get('id') not in lassyrevmap:
 				word.set('action', 'skip')
+				idxmap.pop(word.get('id'))  # block spans with this token
 				sonarunaligned.append((sdocname, word.get('id'), word.text))
 				print('unaligned sonar token:', word.text, word.get('id'),
 						sep='\t', file=sys.stderr)
@@ -356,7 +364,7 @@ def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
 				for sdocname, wordid, word in sonarunaligned)
 
 
-def writeconll(words, sentends, docname, inspan, out):
+def writeconll(words, sentends, docname, out):
 	"""Write tokens and coreference information in CoNLL format."""
 	n = 0
 	queue = []
@@ -385,8 +393,7 @@ def writeconll(words, sentends, docname, inspan, out):
 			corefcol = word.get('coref', '-')
 		print(docname, n, wordtext, corefcol, sep='\t', file=out)
 		n += 1
-		# ignore sent break if any span still open
-		if m in sentends and m not in inspan:
+		if m in sentends:
 			print(file=out)
 			n = 0
 	print('#end document', file=out)
@@ -427,7 +434,10 @@ def addnertolassy(sonarnerpath, outpath, sdocname, ldocname, words,
 			continue
 		markables = etree.parse(markablefile).getroot()
 		for markable in markables:
-			start, end = getspan(markable, idxmap, words)
+			try:
+				start, end = getspan(markable, idxmap, words)
+			except KeyError:  # ignore spans referring to non-existing tokens
+				continue
 			for word in words[start:end + 1]:
 				if word.get('id') not in lassyrevmap:
 					continue
@@ -473,19 +483,22 @@ def conv(fname, inputdir, out, lassypath, sonarnerpath, outpath, lassymap,
 	# some of the sonar docnames are missing a dash;
 	# for consistency, we keep track of both sdocname and ldocname
 	# in the output, we use the lassy docname which has the dash consistently.
-	ldocname = sdocname
-	if re.match(r'wiki\d+', ldocname):
-		ldocname = 'wiki-' + ldocname[4:]
+	ldocname = normalizedocname(sdocname)
 	# word IDs may be missing or contain decimals;
 	# this maps ID labels to integer indices.
 	idxmap = {word.attrib['id']: n
 			for n, word in enumerate(words)}
 	cluster = getclusters(nplevel)
-	inspan = addclusters(words, nplevel, idxmap, cluster)
 	sentends = getsents(words, sentence, idxmap, sdocname, ldocname,
 			lassypath, sonarnerpath, outpath, lassymap, lassynewids,
 			lassyunaligned, sonarunaligned)
-	writeconll(words, sentends, ldocname, inspan, out)
+	addclusters(words, nplevel, idxmap, cluster, sentends)
+	writeconll(words, sentends, ldocname, out)
+
+
+def normalizedocname(docname):
+	"""Add dash that is missing from some of the sonar docnames."""
+	return re.sub(r'wiki(\d+)', r'wiki-\1', docname)
 
 
 def main():
@@ -519,7 +532,7 @@ def main():
 		for dirpath, dirnames, _ in os.walk(args[0]):
 			if 'Basedata' in dirnames and 'Markables' in dirnames:
 				pattern = os.path.join(dirpath, 'Basedata', '*.xml')
-				for fname in sorted(glob(pattern)):
+				for fname in sorted(glob(pattern), key=normalizedocname):
 					if fname.endswith('Basedata/dummyfile_words.xml'):
 						continue
 					conv(fname, dirpath, out, lassypath, sonarnerpath,
