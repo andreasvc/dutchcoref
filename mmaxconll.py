@@ -531,7 +531,7 @@ def makesplit(fname, outpath):
 				with open(conllfile) as inp:
 					out.write(inp.read())
 				os.symlink(
-						os.path.join(outpath, 'lassy_renumbered', doc),
+						os.path.join('..', 'lassy_renumbered', doc),
 						os.path.join(outpath, name, doc))
 
 
