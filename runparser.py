@@ -36,10 +36,10 @@ def parseclindata(pattern, outdir):
 	os.mkdir(outdir)
 	os.chdir(outdir)
 	for n, conllfile in enumerate(filenames, 1):
-		data = readconll(conllfile)
+		data = next(iter(readconll(conllfile).values()))
 		fname = os.path.basename(conllfile)
 		docname = fname[:fname.index('_')]
-		tokenidx = 2
+		tokenidx = 3
 		print('Parsing %d/%d: %s' % (n, len(filenames), docname))
 		parse(data, docname, tokenidx)
 	os.chdir(origdir)
@@ -54,9 +54,10 @@ def parsesemeval(path, outdir):
 	with open(path) as inp:
 		data = inp.read()
 	docnames = re.findall(r'#begin document ([\w_]+)', data)
+	docs = readconll(path)
 	for n, docname in enumerate(docnames, 1):
-		data = readconll(path, docname)
-		tokenidx = 1
+		data = docs[docname, 0]
+		tokenidx = 2
 		print('Parsing %d/%d: %s' % (n, len(docnames), docname))
 		parse(data, docname, tokenidx)
 	os.chdir(origdir)

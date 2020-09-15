@@ -1,9 +1,9 @@
 """Convert Corea/SoNaR coreference annotations to CoNLL 2012 format.
 
-Usage: mmaxconll.py [options] <inputdir> [outputdir]
+Usage: mmaxconll.py [options] <inputdir> <outputdir>
 
 inputdir is searched recursively for Basedata/ and Markables/ subdirectories.
-outputdir should not exist; if not specified, output is written on stdout.
+outputdir should not exist.
 
 Options:
   --lassy=<path>     Specify path to Lassy Small Treebank/ directory. Sentence
@@ -15,7 +15,10 @@ Options:
                      coreference annotations.
   --sonarner=<path>  Specify path to SoNaR NE annotations. Named entities will
                      be added to Lassy trees as neclass attributes on tokens.
-"""
+  --split=<file>     Specify a CSV file describing a train/dev/test split.
+                     Splits Lassy trees across train, dev and test directories,
+                     with corresponding .conll files. For SoNaR, use:
+https://gist.github.com/CorbenPoot/ee1c97209cb9c5fc50f9528c7fdcdc93"""
 # Notes:
 # The following files in Corea contain XML syntax errors:
 # Med/Markables/s236_coref_level.xml
@@ -86,7 +89,6 @@ def addclusters(words, nplevel, idxmap, cluster, sentends,
 		skiptypes=('bridge', )):
 	"""Add start and end tags of markables to the respective tokens."""
 	seen = set()  # don't add same span twice
-	inspan = set()  # track which token ids are in spans (except for last idx)
 	missing = len(cluster)
 	markables = []
 	for markable in nplevel:
@@ -98,7 +100,6 @@ def addclusters(words, nplevel, idxmap, cluster, sentends,
 		if (start, end) in seen:
 			continue
 		seen.add((start, end))
-		inspan.update(range(start, end))  # NB: do not include end!
 		if markable.get('type') in skiptypes:
 			continue
 		elif markable.get('id') in cluster:
@@ -117,13 +118,17 @@ def addclusters(words, nplevel, idxmap, cluster, sentends,
 			cur = words[end].get('coref', '')
 			coref = ('%s|%s)' % (cur, cid)) if cur else ('%s)' % cid)
 			words[end].set('coref', coref)
-	return inspan
 
 
 def parsesentid(fname):
 	"""Create sort key with padding from Lassy filename."""
 	return (tuple(map(int, re.findall(r'\d+', os.path.basename(fname))))
 			+ (0, 0, 0, 0, 0, 0, 0))[:7]
+
+
+def normalizedocname(docname):
+	"""Add dash that is missing from some of the sonar docnames."""
+	return re.sub(r'wiki(\d+)', r'wiki-\1', docname)
 
 
 def getsents(words, sentence, idxmap, sdocname, ldocname,
@@ -153,8 +158,8 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 		if sdocname == 'WS-U-E-A-0000000036':
 			words[idxmap['word_26']].text = 'Spee'
 
-        # We take the order of sentences and tokens in Sonar as canonical,
-        # while we take the sentence and token boundaries from Lassy.
+		# We take the order of sentences and tokens in Sonar as canonical,
+		# while we take the sentence and token boundaries from Lassy.
 		offsets = []
 		sdoc = ''
 		for word in words:
@@ -186,19 +191,20 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 						and m not in seen
 						and m in offsetidx
 						and m + len(signature) in offsetidx):
+					queue.pop(n)
+					seen.update(range(m, m + len(signature)))
+					# add lassy sent boundary at corresponding sonar word idx
+					sentends.add(offsetidx[m + len(signature)] - 1)
+					sonarmap[offsetidx[m + len(signature)] - 1] = fname
+					start, end = offsetidx[m], offsetidx[m + len(signature)]
+					aligntokens(words[start:end], sent, sdocname, fname,
+							lassymap, lassyrevmap)
+					m += len(signature)
 					break
-			else:
+			else:  # for ends without break
 				print('unalignable sonar tokens starting from ',
 						sdoc[m:m + 100], '...', file=sys.stderr)
-				break
-			queue.pop(n)
-			seen.update(range(m, m + len(signature)))
-			# add lassy sent boundary at corresponding sonar word idx
-			sentends.add(offsetidx[m + len(signature)] - 1)
-			sonarmap[offsetidx[m + len(signature)] - 1] = fname
-			aligntokens(words[offsetidx[m]:offsetidx[m + len(signature)]],
-					sent, sdocname, fname, lassymap, lassyrevmap)
-			m += len(signature)
+				break  # break out of while loop
 
 		# second pass: align any lassy sent which has not been aligned yet
 		for fname, sent in queue:
@@ -224,8 +230,9 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 			# add lassy sent boundary at corresponding sonar word idx
 			sentends.add(offsetidx[m + len(signature)] - 1)
 			sonarmap[offsetidx[m + len(signature)] - 1] = fname
-			aligntokens(words[offsetidx[m]:offsetidx[m + len(signature)]],
-					sent, sdocname, fname, lassymap, lassyrevmap)
+			start, end = offsetidx[m], offsetidx[m + len(signature)]
+			aligntokens(words[start:end], sent, sdocname, fname,
+					lassymap, lassyrevmap)
 
 		# collect unaligned sonar tokens
 		for word in words:
@@ -254,9 +261,16 @@ def getsents(words, sentence, idxmap, sdocname, ldocname,
 				lassynewids[fname] = ldocname, parno, sentno
 
 		if sonarnerpath:
-			addnertolassy(sonarnerpath, outpath, sdocname, ldocname,
-					words, idxmap, lassytrees, lassynewids, lassyrevmap)
+			addnertolassy(sonarnerpath, sdocname, words, idxmap, lassytrees,
+					lassyrevmap)
 
+		for fname, (ldocname1, parno, sentno) in lassynewids.items():
+			if ldocname1 != ldocname:
+				continue
+			newdir = os.path.join(outpath, 'lassy_renumbered', ldocname)
+			os.makedirs(newdir, exist_ok=True)
+			lassytrees[fname].write('%s/%03d-%03d.xml'
+					% (newdir, parno, sentno))
 	else:  # SoNaR
 		for markable in sentence:
 			try:
@@ -294,7 +308,7 @@ def aligntokens(sonartokens, lassytokens, sdocname, fname,
 			lassyoffset += len(token.text) + 1
 		elif toksignature[lassyoffset:].startswith(token.text):
 			# last token of sentence
-			if toksignature[lassyoffset:].endswith(token.text):
+			if toksignature[lassyoffset:] == token.text:
 				lassymap[fname][offsetidx[lassyoffset]][1].append(
 						token.get('id'))
 				lassymap[fname][offsetidx[lassyoffset]][3] = token.text
@@ -339,84 +353,8 @@ def aligntokens(sonartokens, lassytokens, sdocname, fname,
 					' '.join(w.text for w in sonartokens), toksignature))
 
 
-def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
-		outpath):
-	"""Dump map of reordered lassy sents, and map of word/token boundaries"""
-	with open(os.path.join(outpath, 'sentmap.tsv'), 'w') as sentmap, \
-			open(os.path.join(outpath, 'tokmap.tsv'), 'w') as tokmap:
-		print('orig', 'new', sep='\t', file=sentmap)
-		print('lassysentid', 'lassytokenid', 'sonar_doc', 'sonar_word_id',
-				'action', 'token', sep='\t', file=tokmap)
-		for fname, (ldocname, parno, sentno) in lassynewids.items():
-			print('%s\t%s/%03d-%03d.xml' % (fname, ldocname, parno, sentno),
-					file=sentmap)
-			for tokidx, (sdocname, sword_ids, action, token) in enumerate(
-					lassymap[fname]):
-				# (sentid, tokidx) => (sdocname, sword_ids, token)
-				print(os.path.basename(fname), tokidx,
-						sdocname, ','.join(sword_ids), action, token,
-						sep='\t', file=tokmap)
-	with open(os.path.join(outpath, 'lassy_unaligned_sents.tsv'), 'w') as out:
-		out.writelines('%s\t%s\n' % (sentid, sent)
-				for sentid, sent in lassyunaligned)
-	with open(os.path.join(outpath, 'sonar_unaligned_tokens.tsv'), 'w') as out:
-		out.writelines('%s\t%s\t%s\n' % (sdocname, wordid, word)
-				for sdocname, wordid, word in sonarunaligned)
-
-
-def writeconll(words, sentends, docname, out):
-	"""Write tokens and coreference information in CoNLL format."""
-	n = 0
-	queue = []
-	print('#begin document (%s); part 000' % docname, file=out)
-	for m, word in enumerate(words):
-		if word.get('action') == 'merge':
-			queue.append(word)
-			continue
-		elif word.get('action') == 'skip':
-			continue  # FIXME: close any coref tags...
-		elif word.get('action', '').startswith('split'):
-			subwords = word.get('action').split(' ')[1:]
-			for subword in subwords[:-1]:
-				print(docname, n, subword, '-', sep='\t', file=out)
-				n += 1
-			wordtext = subwords[-1]
-			corefcol = word.get('coref', '-')
-		elif queue:
-			queue.append(word)
-			wordtext = ''.join(w.text for w in queue)
-			corefcol = simplify('|'.join(w.get('coref') for w in queue
-					if w.get('coref'))) or '-'
-			queue = []
-		else:
-			wordtext = word.text
-			corefcol = word.get('coref', '-')
-		print(docname, n, wordtext, corefcol, sep='\t', file=out)
-		n += 1
-		if m in sentends:
-			print(file=out)
-			n = 0
-	print('#end document', file=out)
-
-
-def simplify(corefcol):
-	"""Take the coref column for a sequence of merged tokens and
-	simplify it.
-
-	>>> simplify('(23|23)|23)')
-	'(23)|23)'
-	"""
-	coreftags = corefcol.split('|')
-	for n, a in enumerate(coreftags):
-		if a.startswith('(') and not a.endswith(')'):
-			if a[1:] + ')' in coreftags:
-				coreftags[n] += ')'
-				coreftags[coreftags.index(a[1:] + ')')] = ''
-	return '|'.join(a for a in coreftags if a)
-
-
-def addnertolassy(sonarnerpath, outpath, sdocname, ldocname, words,
-		idxmap, lassytrees, lassynewids, lassyrevmap):
+def addnertolassy(sonarnerpath, sdocname, words, idxmap, lassytrees,
+		lassyrevmap):
 	"""Reads SoNaR NER annotations and adds them to Lassy Small trees;
 	writes re-numbered Lassy Small trees to <outdir>/lassy_renumbered/"""
 	labelmap = {
@@ -445,15 +383,62 @@ def addnertolassy(sonarnerpath, outpath, sdocname, ldocname, words,
 				tree = lassytrees[fname]
 				word = tree.find('.//node[@begin="%d"][@word]' % tokidx)
 				word.set('neclass', labelmap[label])
-	for fname, (ldocname1, parno, sentno) in lassynewids.items():
-		if ldocname1 != ldocname:
+
+
+def simplify(corefcol):
+	"""Take the coref column for a sequence of merged tokens and
+	simplify it.
+
+	>>> simplify('(23|23)|23)')
+	'(23)|23)'
+	"""
+	coreftags = corefcol.split('|')
+	for n, a in enumerate(coreftags):
+		if a.startswith('(') and not a.endswith(')'):
+			if a[1:] + ')' in coreftags:
+				coreftags[n] += ')'
+				coreftags[coreftags.index(a[1:] + ')')] = ''
+	return '|'.join(a for a in coreftags if a)
+
+
+def writeconll(words, sentends, docname, out):
+	"""Write tokens and coreference information in CoNLL 2012 format."""
+	part = tokenid = 0
+	queue = []
+	print('#begin document (%s); part 000' % docname, file=out)
+	for n, word in enumerate(words):
+		if word.get('action') == 'skip':
 			continue
-		newdir = os.path.join(outpath, 'lassy_renumbered', ldocname)
-		os.makedirs(newdir, exist_ok=True)
-		lassytrees[fname].write('%s/%03d-%03d.xml' % (newdir, parno, sentno))
+		elif word.get('action') == 'merge':
+			queue.append(word)
+			continue
+		elif word.get('action', '').startswith('split'):
+			subwords = word.get('action').split(' ')[1:]
+			for subword in subwords[:-1]:
+				print(docname, part, tokenid, subword, *(['-'] * 6), '*',
+						'-', sep='\t', file=out)
+				tokenid += 1
+			wordtext = subwords[-1]
+			corefcol = word.get('coref', '-')
+		elif queue:
+			queue.append(word)
+			wordtext = ''.join(w.text for w in queue)
+			corefcol = simplify('|'.join(w.get('coref') for w in queue
+					if w.get('coref'))) or '-'
+			queue = []
+		else:
+			wordtext = word.text
+			corefcol = word.get('coref', '-')
+		print(docname, part, tokenid, wordtext, *(['-'] * 6), '*',
+				corefcol, sep='\t', file=out)
+		tokenid += 1
+		if n in sentends:
+			print(file=out)
+			tokenid = 0
+	print('#end document', file=out)
 
 
-def conv(fname, inputdir, out, lassypath, sonarnerpath, outpath, lassymap,
+def conv(fname, inputdir, lassypath, sonarnerpath, outpath, lassymap,
 		lassynewids, lassyunaligned, sonarunaligned):
 	"""Convert a set of files for a single MMAX document to CoNLL."""
 	words = etree.parse(fname).getroot()
@@ -493,58 +478,98 @@ def conv(fname, inputdir, out, lassypath, sonarnerpath, outpath, lassymap,
 			lassypath, sonarnerpath, outpath, lassymap, lassynewids,
 			lassyunaligned, sonarunaligned)
 	addclusters(words, nplevel, idxmap, cluster, sentends)
-	writeconll(words, sentends, ldocname, out)
+	conllfile = os.path.join(outpath, 'coref', ldocname + '.conll')
+	with open(conllfile, 'w') as out:
+		writeconll(words, sentends, ldocname, out)
+	if lassypath:  # add columns with POS, NER, and parse tree to CoNLL file
+		from addparsebits import convalpino
+		parsesdir = os.path.join(outpath, 'lassy_renumbered', ldocname)
+		convalpino(conllfile, parsesdir)
 
 
-def normalizedocname(docname):
-	"""Add dash that is missing from some of the sonar docnames."""
-	return re.sub(r'wiki(\d+)', r'wiki-\1', docname)
+def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
+		outpath):
+	"""Dump map of reordered lassy sents, and map of word/token boundaries"""
+	with open(os.path.join(outpath, 'sentmap.tsv'), 'w') as sentmap, \
+			open(os.path.join(outpath, 'tokmap.tsv'), 'w') as tokmap:
+		print('orig', 'new', sep='\t', file=sentmap)
+		print('lassysentid', 'lassytokenid', 'sonar_doc', 'sonar_word_id',
+				'action', 'token', sep='\t', file=tokmap)
+		for fname, (ldocname, parno, sentno) in lassynewids.items():
+			print('%s\t%s/%03d-%03d.xml' % (fname, ldocname, parno, sentno),
+					file=sentmap)
+			for tokidx, (sdocname, sword_ids, action, token) in enumerate(
+					lassymap[fname]):
+				# (sentid, tokidx) => (sdocname, sword_ids)
+				print(os.path.basename(fname), tokidx,
+						sdocname, ','.join(sword_ids), action, token,
+						sep='\t', file=tokmap)
+	with open(os.path.join(outpath, 'lassy_unaligned_sents.tsv'), 'w') as out:
+		out.writelines('%s\t%s\n' % (sentid, sent)
+				for sentid, sent in lassyunaligned)
+	with open(os.path.join(outpath, 'sonar_unaligned_tokens.tsv'), 'w') as out:
+		out.writelines('%s\t%s\t%s\n' % (sdocname, wordid, word)
+				for sdocname, wordid, word in sonarunaligned)
+
+
+def makesplit(fname, outpath):
+	"""Divide CoNLL file and trees in train/dev/test according to CSV file."""
+	with open(fname) as inp:
+		lines = [line.strip().split(',') for line in inp]
+	if not all(b in {'dev', 'test', 'train'} for _, b in lines):
+		raise ValueError('second column should only contain: dev, test, train')
+	split = {name: {normalizedocname(a) for a, b in lines if b == name}
+			for name in ('dev', 'test', 'train')}
+	if (split['dev'] & split['train']) or (split['train'] & split['test']):
+		raise ValueError('overlap in dev/train or train/test')
+
+	for name, docs in split.items():
+		os.mkdir(os.path.join(outpath, name))
+		with open('%s/%s.conll' % (outpath, name), 'w') as out:
+			for doc in docs:
+				conllfile = os.path.join(outpath, 'coref', doc + '.conll')
+				with open(conllfile) as inp:
+					out.write(inp.read())
+				os.symlink(
+						os.path.join(outpath, 'lassy_renumbered', doc),
+						os.path.join(outpath, name, doc))
 
 
 def main():
 	"""CLI."""
 	try:
 		opts, args = getopt.gnu_getopt(
-				sys.argv[1:], '', ['lassy=', 'sonarner='])
+				sys.argv[1:], '', ['lassy=', 'sonarner=', 'split='])
 		opts = dict(opts)
 	except getopt.GetoptError:
 		args = None
-	if not args or len(args) > 2:
+	if not args or len(args) != 2:
 		print(__doc__, sep='\n')
 		return
+	inpath, outpath = args
+	os.makedirs(os.path.join(outpath, 'coref'), exist_ok=False)
+	lassymap = lassynewids = lassyunaligned = sonarunaligned = None
 	lassypath = opts.get('--lassy')
 	sonarnerpath = opts.get('--sonarner')
-	if len(args) == 2:
-		outpath = args[1]
-		os.mkdir(outpath)
-		if lassypath:
-			outfile = os.path.join(outpath, 'sonar1-aligned.conll')
-		else:
-			outfile = os.path.join(outpath, 'sonar1.conll')
-	out = None if len(args) == 1 else open(outfile, 'w', encoding='utf8')
-	lassymap = lassynewids = lassyunaligned = sonarunaligned = None
 	if lassypath:
 		lassymap = defaultdict(list)
 		lassynewids = {}
 		lassyunaligned = []
 		sonarunaligned = []
-	try:
-		for dirpath, dirnames, _ in os.walk(args[0]):
-			if 'Basedata' in dirnames and 'Markables' in dirnames:
-				pattern = os.path.join(dirpath, 'Basedata', '*.xml')
-				for fname in sorted(glob(pattern), key=normalizedocname):
-					if fname.endswith('Basedata/dummyfile_words.xml'):
-						continue
-					conv(fname, dirpath, out, lassypath, sonarnerpath,
-							outpath, lassymap, lassynewids,
-							lassyunaligned, sonarunaligned)
-					# print('converted', os.path.basename(fname), file=sys.stderr)
-	finally:
-		if out:
-			out.close()
+	for dirpath, dirnames, _ in os.walk(inpath):
+		if 'Basedata' in dirnames and 'Markables' in dirnames:
+			pattern = os.path.join(dirpath, 'Basedata', '*.xml')
+			for fname in sorted(glob(pattern), key=normalizedocname):
+				if fname.endswith('Basedata/dummyfile_words.xml'):
+					continue
+				conv(fname, dirpath, lassypath, sonarnerpath,
+						outpath, lassymap, lassynewids,
+						lassyunaligned, sonarunaligned)
 	if '--lassy' in opts:
 		dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
 				outpath)
+	if '--split' in opts:
+		makesplit(opts.get('--split'), outpath)
 
 
 if __name__ == '__main__':

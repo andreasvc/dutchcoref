@@ -10,7 +10,9 @@ Options:
     --help          this message
     --slice=N:M     restrict input with a Python slice of sentence numbers
     --verbose       debug output instead of coreference output
-    --gold=<file>   with --verbose, show error analysis against CoNLL file
+    --gold=<file>   with --verbose, show error analysis against CoNLL file;
+                    this file has to contain documents matching the basenames
+                    of the input dirs
     --goldmentions  instead of predicting mentions, use mentions in --gold file
     --fmt=<minimal|semeval2010|conll2012|booknlp|html|htmlp>
         output format:
@@ -285,7 +287,7 @@ class Quotation:
 		return '%d %d %r' % (self.parno, self.sentno, self.text)
 
 
-def getmentions(trees, ngdata, gadata):
+def getmentions(trees, ngdata, gadata, includerelclause):
 	"""Collect mentions."""
 	debug(color('mention detection', 'yellow'))
 	mentions = []
@@ -308,12 +310,12 @@ def getmentions(trees, ngdata, gadata):
 		covered = set()
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, parno, mentions, covered,
-					ngdata, gadata)
+					ngdata, gadata, includerelclause)
 	return mentions
 
 
 def considermention(node, tree, sentno, parno, mentions, covered,
-		ngdata, gadata):
+		ngdata, gadata, includerelclause):
 	"""Decide whether a candidate mention should be added."""
 	if len(node) == 0 and 'word' not in node.keys():
 		return
@@ -338,28 +340,33 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 	if indices != list(range(a, b)):
 		b = min(n for n in range(a, b) if n not in indices)
 		if headidx > b:
-			headidx = max(int(a.get('begin')) for a
+			headidx = max(int(token.get('begin')) for token
 					in node.findall('.//node[@word]')
-					if int(a.get('begin')) < b)
+					if int(token.get('begin')) < b)
 	# remove "vc" clause from NP:
 	# [Behrmans voorstel] om samen te eten
 	# [het feit] dat ...
 	vc = node.find('./node[@rel="vc"]')
-	if vc is not None and int(vc.get('begin')) < b:
-		b = int(vc.get('begin'))
-		if headidx > b:
-			headidx = max(int(a.get('begin')) for a
-					in node.findall('.//node[@word]')
-					if int(a.get('begin')) < b)
+	if not includerelclause and vc is not None:
+		# get actual token indices, because span of vc may be incorrect
+		vcindices = sorted(int(token.get('begin')) for token
+				in (vc.findall('.//node[@word]') if len(vc) else [vc]))
+		if min(vcindices) < b:
+			b = min(vcindices)
+			if headidx > b:
+				headidx = max(int(token.get('begin')) for token
+						in node.findall('.//node[@word]')
+						if int(token.get('begin')) < b)
 	# Relative clauses: [de man] [die] ik eerder had gezien.
 	# [een buurt] [waar] volgens hem ondanks de Wende niets veranderd was.
 	relpronoun = node.find('./node[@cat="rel"]/node[@rel="rhd"]')
-	if relpronoun is not None and int(relpronoun.get('begin')) < b:
+	if (not includerelclause and relpronoun is not None
+			and int(relpronoun.get('begin')) < b):
 		b = int(relpronoun.get('begin'))
 		if headidx > b:
-			headidx = max(int(a.get('begin')) for a
+			headidx = max(int(token.get('begin')) for token
 					in node.findall('.//node[@word]')
-					if int(a.get('begin')) < b)
+					if int(token.get('begin')) < b)
 	# Appositives: "[Jan], [de schilder]"
 	if len(node) > 1 and node[1].get('rel') == 'app':
 		if (node[1].get('ntype') != 'eigen'
@@ -1160,10 +1167,11 @@ def resolvepronouns(mentions, clusters, quotations, maxdist=15):
 							mentions, clusters)
 
 
-def resolvecoreference(trees, ngdata, gadata, mentions=None):
+def resolvecoreference(trees, ngdata, gadata, mentions=None,
+		includerelclause=False):
 	"""Get mentions and apply coreference sieves."""
 	if mentions is None:
-		mentions = getmentions(trees, ngdata, gadata)
+		mentions = getmentions(trees, ngdata, gadata, includerelclause)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE:
@@ -1480,7 +1488,7 @@ def writetabular(trees, mentions,
 						sep='\t', file=file)
 			elif fmt == 'conll2012':
 				print(docname, part, tokenid - 1, token.get('word'),
-						*(['-'] * 5), '*', label,
+						*(['-'] * 6), '*', label,
 						sep='\t', file=file)
 			elif fmt == 'semeval2010':
 				print(tokenid, token.get('word'), label,
@@ -1722,61 +1730,66 @@ def htmlvis(trees, mentions, clusters, quotations, parses=True, coreffmt=None):
 
 
 def getunivdeps(filenames, trees):
-	"""Convert Alpino trees to UD trees and store head/label in attributes."""
-	with tempfile.NamedTemporaryFile(mode='w') as out:
-		out.write('<collection>')
-		out.writelines('<doc href="%s"/>\n' % filename
-				for filename in filenames)
-		out.write('</collection>')
-		out.flush()
-		conll = subprocess.check_output(
-				('xqilla -v ENHANCED yes -v DIR %s -v MODE conll '
-				'universal_dependencies_2.2.xq' % out.name).split())
-	conll = re.sub(r'<pre><code.*?</sentence>\n|[ \t]+!\n\s+</code></pre>',
-			'', conll.decode('utf8'))
-	for (_, tree), chunk in zip(trees, conll.split('\n\n')):
+	"""Convert Alpino trees to UD trees and store head/label in attributes.
+
+	Trees that fail to convert are skipped."""
+	try:
+		conllu = subprocess.check_output(
+				'alud',
+				input='\n'.join(filenames) + '\n',
+				encoding='utf8')
+	except FileNotFoundError:
+		raise ValueError('Install https://github.com/rug-compling/alud')
+	for (_, tree), chunk in zip(trees, conllu.split('\n\n')):
 		tokens = sorted(tree.iterfind('.//node[@word]'),
 					key=lambda x: int(x.get('begin')))
-		chunk = [line.split('\t') for line in chunk.splitlines()]
+		chunk = [line.split('\t') for line in chunk.splitlines()
+				if not line.startswith('#')]
 		if len(tokens) != len(chunk):
-			raise ValueError('sentence length mismatch.')
+			continue  # sentence length mismatch; probably failed to convert
 		for token, line in zip(tokens, chunk):
 			token.set('UDparent', line[6] if len(line) > 7 else '-')
 			token.set('UDlabel', line[7] if len(line) > 7 else '-')
 
 
-def readconll(conllfile, docname='-'):
-	"""Read conll data as list of lists: conlldata[sentno][tokenno][col].
+def readconll(conllfile):
+	"""Read conll data as dict of list of lists.
 
-	If multiple "#begin document docname" lines are found,
-	only return chunks with matching docname; otherwise, return all chunks.
-	"""
-	conlldata = [[]]
+	i.e., conlldata[docname, part][sentno][tokenno][col]
+	Part is 0 if unspecified. Adds orignal line number as first column."""
+	conlldata = {}
+	lineno = 0  # 1-indexed line numbers
 	with open(conllfile) as inp:
-		if inp.read().count('#begin document') == 1:
-			docname = '-'
-		inp.seek(0)
 		while True:
 			line = inp.readline()
-			if (line.startswith('#begin document') and (docname == '-'
-					or line.split()[2].strip('();') == docname)):
+			lineno += 1
+			if line.startswith('#begin document '):
+				label = line.split()[2].strip('();')
+				part = int(line.split()[-1]) if len(line.split()) > 3 else 0
+				docname = (label, part)
+				conlldata[docname] = [[]]
 				while True:
 					line = inp.readline()
+					lineno += 1
 					if line.startswith('#end document') or line == '':
 						break
-					if line.startswith('#'):
+					elif line.startswith('#'):
 						pass
 					elif line.strip():
-						conlldata[-1].append(line.strip().split())
+						conlldata[docname][-1].append(
+							[lineno] + line.strip().split())
 					else:
-						conlldata.append([])
+						conlldata[docname].append([])
+				# remove empty sentence if applicable
+				if not conlldata[docname][-1]:
+					conlldata[docname].pop()
+				if not conlldata[docname]:
+					raise ValueError('docname %r of conll file %r is empty' % (
+							docname, conllfile))
 			elif line == '':
 				break
-	if not conlldata[-1]:  # remove empty sentence if applicable
-		conlldata.pop()
 	if not conlldata:
-		raise ValueError('Could not read conll file %r with docname %r' % (
-				conllfile, docname))
+		raise ValueError('Could not read conll file %r' % conllfile)
 	return conlldata
 
 
@@ -1967,16 +1980,14 @@ def conllclusterdict(conlldata):
 	"""Extract dict from CoNLL file mapping gold cluster IDs to spans."""
 	spansforcluster = {}
 	spans = {}
-	lineno = 1
 	# "minimal" format has doc id, token no, token form, coref (no part number)
 	# conll2012 has doc id, part no, token no, token form, [...], coref
-	tokenidx = 2 if len(conlldata[0][0]) == 4 else 3
+	# all offset by 1 because we add line numbers
+	tokenidx = 3 if len(conlldata[0][0]) == 5 else 4
 	for sentno, chunk in enumerate(conlldata):
 		scratch = {}
 		for idx, fields in enumerate(chunk):
-			# FIXME: line numbers are wrong when file has multiple
-			# documents/empty lines
-			lineno += 1
+			lineno = int(fields[0])
 			labels = fields[-1]
 			for a in labels.split('|'):
 				if a == '-' or a == '_':
@@ -2002,11 +2013,10 @@ def conllclusterdict(conlldata):
 					if span in spans:
 						debug('Warning: duplicate span %r '
 								'in cluster %d and %d, sent %d, line %d'
-								% (span[tokenidx], clusterid, spans[span],
+								% (text, clusterid, spans[span],
 									sentno + 1, lineno))
 					spans[span] = clusterid
 					spansforcluster.setdefault(clusterid, set()).add(span)
-		lineno += 1
 		for a, b in scratch.items():
 			if b:
 				raise ValueError('Unclosed paren for cluster %d at line %d'
@@ -2101,12 +2111,13 @@ def process(path, output, ngdata, gadata,
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
 	if conllfile is not None:
-		conlldata = readconll(conllfile, docname)[start:end]
+		conlldata = readconll(conllfile)[docname, part or 0][start:end]
 	mentions = None
 	if goldmentions:
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
 	mentions, clusters, quotations, idx = resolvecoreference(
-			trees, ngdata, gadata, mentions)
+			trees, ngdata, gadata, mentions,
+			includerelclause='relpronouns' in exclude)
 	postprocess(exclude, mentions, clusters, goldmentions)
 	if conllfile is not None and VERBOSE:
 		debug(color('evaluating against:', 'yellow'), conllfile, docname)
@@ -2297,25 +2308,24 @@ def main():
 		if len(args) != 1:
 			print(__doc__)
 			return
-		path = args[0]
+		pattern = args[0]
 		exclude = [a for a in opts.get('--exclude', '').split(',') if a]
+		out = sys.stdout
 		if '--outputprefix' in opts:
 			ext = '.html' if opts.get('--fmt') == 'html' else '.conll'
-			with open(opts['--outputprefix'] + ext, 'w') as out:
-				process(path, out, ngdata, gadata,
+			out = open(opts['--outputprefix'] + ext, 'w')
+		try:
+			for path in sorted(glob(pattern)):
+				process(path, sys.stdout, ngdata, gadata,
 						fmt=opts.get('--fmt'), start=start, end=end,
 						docname=os.path.basename(path.rstrip('/')),
 						conllfile=opts.get('--gold'),
 						goldmentions='--goldmentions' in opts,
 						outputprefix=opts.get('--outputprefix'),
 						exclude=exclude)
-		else:
-			process(path, sys.stdout, ngdata, gadata,
-					fmt=opts.get('--fmt'), start=start, end=end,
-					docname=os.path.basename(path.rstrip('/')),
-					conllfile=opts.get('--gold'),
-					goldmentions='--goldmentions' in opts,
-					exclude=exclude)
+		finally:
+			if out is not sys.stdout:
+				out.close()
 
 
 if __name__ == '__main__':

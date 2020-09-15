@@ -156,6 +156,13 @@ With `--fmt=booknlp`, the output contains the following columns:
 12. Whether token is part of direct speech (B, I) or not (O)
 13. Coreference cluster in CoNLL notation
 
+For the UD conversion, you need https://github.com/rug-compling/alud
+Make sure to set a $GOPATH and add $GOPATH/bin to your $PATH, e.g.:
+
+	export GOPATH=$HOME/.local/go
+	export PATH=$GOPATH/bin/:$HOME/.local/bin:$PATH
+
+
 Web demo
 --------
 The web demo accepts short pieces of text, takes care of parsing, and presents
@@ -202,8 +209,6 @@ Heeyoung Lee, Angel Chang, Yves Peirsman, Nathanael Chambers, Mihai Surdeanu, an
 See also these previous implementations
 https://bitbucket.org/robvanderg/groref
 and https://github.com/antske/coref_draft
-
-The UD conversion uses a slightly modified version of https://github.com/gossebouma/lassy2ud
 
 The number & gender data is derived from:
 

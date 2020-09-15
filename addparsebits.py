@@ -24,7 +24,7 @@ def splitparse(parse, chunk):
 	"""Split bracketed parse tree into parse bits."""
 	result = re.sub(r'\([^\s()]+ [^\s()]+\)([^(]*)', r'*\1\n', parse)
 	for n, parsebit in enumerate(result.replace(' ', '').strip().splitlines()):
-		chunk[n][5] = parsebit
+		chunk[n][6] = parsebit
 
 
 def addner(tree, chunk):
@@ -32,7 +32,7 @@ def addner(tree, chunk):
 	# NB: neclass attributes occur only on tokens,
 	# will not produce correctly nested NER spans
 	for line in chunk:
-		line[10] = '*'
+		line[11] = '*'
 	nerlabels = [token.get('neclass', '-') for token
 			in sorted(tree.findall('.//node[@word]'),
 				key=lambda node: int(node.get('begin')))]
@@ -41,15 +41,17 @@ def addner(tree, chunk):
 			continue
 		elif n == 0 or nerlabels[n - 1] != ner:
 			if n == len(chunk) - 1 or nerlabels[n + 1] != ner:
-				chunk[n][10] = '(%s)' % ner
+				chunk[n][11] = '(%s)' % ner
 			else:
-				chunk[n][10] = '(%s*' % ner
+				chunk[n][11] = '(%s*' % ner
 		elif n == len(chunk) - 1 or nerlabels[n + 1] != ner:
-			chunk[n][10] = '*)'
+			chunk[n][11] = '*)'
 
 
 def convalpino(conllfile, parsesdir):
-	"""Add parse bits to a single file, overwrite in-place."""
+	"""Add parse bits to a single file, overwrite in-place.
+
+	File should contain only a single document."""
 	from lxml import etree
 	try:
 		from discodop.tree import writebrackettree
@@ -58,7 +60,7 @@ def convalpino(conllfile, parsesdir):
 	except ImportError:
 		print('Install https://github.com/andreasvc/disco-dop')
 		return
-	conlldata = readconll(conllfile)
+	conlldata = next(iter(readconll(conllfile).values()))
 	header = open(conllfile).readlines()[0].rstrip()
 	treebank = AlpinoCorpusReader(parsesdir + '/*.xml',
 			morphology='replace',
@@ -66,48 +68,50 @@ def convalpino(conllfile, parsesdir):
 	for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
 		if len(chunk) != len(item.sent):
 			raise ValueError('length mismatch')
-		if len(chunk[0]) < 11:
+		if len(chunk[0]) < 12:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
 	with open(conllfile, 'w') as out:
 		print(header, file=out)
 		for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
 			raisediscnodes(item.tree)
 			for n, (_, postag) in enumerate(item.tree.pos()):
-				if len(chunk[n]) < 12:  # kludge
+				if len(chunk[n]) < 13:  # kludge
 					chunk[n] = chunk[n][:-1] + ['-', chunk[n][-1]]
 				# NB: parens as square brackets: N[eigen,...]
-				chunk[n][4] = postag
+				chunk[n][5] = postag
 			splitparse(writebrackettree(item.tree, item.sent), chunk)
 			xmltree = etree.fromstring(item.block)
 			addner(xmltree, chunk)
 			for line in chunk:
-				print('\t'.join(line), file=out)
+				print('\t'.join(line[1:]), file=out)
 			print('', file=out)
 		print('#end document', file=out)
 
 
 def convconll(goldconll, parsesconll):
-	"""Copy columns from parsesconll to goldconll file; overwrite in-place."""
-	goldconlldata = readconll(goldconll)
-	header = open(goldconll).readlines()[0].rstrip()
-	parsesconlldata = readconll(parsesconll)
+	"""Copy columns from parsesconll to goldconll file; overwrite in-place.
+
+	Files should contain only a single document."""
+	goldconlldata = next(iter(readconll(goldconll).values()))
+	header = open(goldconll).readline().rstrip()
+	parsesconlldata = next(iter(readconll(parsesconll).values()))
 	if len(goldconlldata) != len(parsesconlldata):
 		raise ValueError('mismatch in number of sentences')
 	for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
 		if len(gchunk) != len(pchunk):
 			raise ValueError('Sentence length mismatch')
-		if len(pchunk[0]) < 12:
+		if len(pchunk[0]) < 13:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
-		if len(gchunk[0]) < 12:
+		if len(gchunk[0]) < 13:
 			raise ValueError('Not enough fields for parses CoNLL 2012 file')
 	with open(goldconll, 'w') as out:
 		print(header, file=out)
 		for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
 			for gline, pline in zip(gchunk, pchunk):
-				gline[4] = pline[4]
 				gline[5] = pline[5]
-				gline[10] = pline[10]
-				print('\t'.join(gline), file=out)
+				gline[6] = pline[6]
+				gline[11] = pline[11]
+				print('\t'.join(gline[1:]), file=out)
 			print('', file=out)
 		print('#end document', file=out)
 

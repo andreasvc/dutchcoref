@@ -16,23 +16,27 @@ from coref import conllclusterdict, readconll, color
 
 def compare(cmd, goldfile, respfile, hidecorrectlinks=False, out=sys.stdout):
 	"""Compare mentions and links across CoNLL 2012 files."""
-	gold = readconll(goldfile, '-')
-	resp = readconll(respfile, '-')
 	print('comparing gold file:', goldfile, file=out)
 	print('against system output:', respfile, file=out)
-	goldspansforcluster = conllclusterdict(gold)
-	respspansforcluster = conllclusterdict(resp)
-	goldspans = {span for spans in goldspansforcluster.values()
-			for span in spans}
-	respspans = {span for spans in respspansforcluster.values()
-			for span in spans}
-	if cmd == 'mentions':
-		comparementions(gold, resp, goldspans, respspans, out=out)
-	elif cmd == 'links':
-		comparecoref(resp, goldspans, respspans, goldspansforcluster,
-				respspansforcluster, hidecorrectlinks, out)
-	else:
-		raise ValueError('unknown cmd: %s' % cmd)
+	golddocs = readconll(goldfile)
+	respdocs = readconll(respfile)
+	for docname in gold:
+		print('\ndocument:', *docname, end='')
+		gold = golddocs[docname]
+		resp = respdocs[docname]
+		goldspansforcluster = conllclusterdict(gold)
+		respspansforcluster = conllclusterdict(resp)
+		goldspans = {span for spans in goldspansforcluster.values()
+				for span in spans}
+		respspans = {span for spans in respspansforcluster.values()
+				for span in spans}
+		if cmd == 'mentions':
+			comparementions(gold, resp, goldspans, respspans, out=out)
+		elif cmd == 'links':
+			comparecoref(resp, goldspans, respspans, goldspansforcluster,
+					respspansforcluster, hidecorrectlinks, out)
+		else:
+			raise ValueError('unknown cmd: %s' % cmd)
 
 
 def comparementions(gold, resp, goldspans, respspans,
@@ -41,7 +45,8 @@ def comparementions(gold, resp, goldspans, respspans,
 	mention detection sieve and the 'gold' standard. Green brackets are
 	correct, yellow brackets are mention boundaries only found in the gold
 	standard, and red brackets are only found in our output."""
-	sentences = [[line[3] for line in sent] for sent in gold]
+	tokidx = 3 if len(gold[0][0]) == 5 else 4
+	sentences = [[line[tokidx] for line in sent] for sent in gold]
 	print(color('mentions in gold missing from response:', 'yellow'), file=out)
 	for sentno, begin, end, text in sorted(goldspans - respspans):
 		print('%3d %2d %2d %s' % (sentno, begin, end, text), file=out)

@@ -8,6 +8,7 @@ Options:
                     directory of Alpino parses (containing directories with
 					same basename as CoNLL files, containing XML parses)"""
 
+
 def getstats(args, parsesdir=None):
 	"""Print stats for a list of CoNLL 2012 files."""
 	import os
@@ -18,8 +19,11 @@ def getstats(args, parsesdir=None):
 	pronouns = nominals = names = 0
 	ngdata, gadata = coref.readngdata()
 	for fname in args:
+		data = []
 		try:
-			data = coref.readconll(fname)
+			# treat all documents as a single document
+			for doc in coref.readconll(fname).values():
+				data.extend(doc)
 			goldspansforcluster = coref.conllclusterdict(data)
 		except Exception as err:
 			print('file:', fname)
