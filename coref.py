@@ -45,16 +45,14 @@ import os
 import re
 import sys
 import getopt
-import pandas
-import tempfile
 import subprocess
 from collections import defaultdict
 from itertools import islice
 from bisect import bisect
 from datetime import datetime
 from glob import glob
-from html import escape
 from lxml import etree
+import pandas
 import jinja2
 import colorama
 import ansi2html
