@@ -20,7 +20,7 @@ def compare(cmd, goldfile, respfile, hidecorrectlinks=False, out=sys.stdout):
 	print('against system output:', respfile, file=out)
 	golddocs = readconll(goldfile)
 	respdocs = readconll(respfile)
-	for docname in gold:
+	for docname in golddocs:
 		print('\ndocument:', *docname, end='')
 		gold = golddocs[docname]
 		resp = respdocs[docname]
