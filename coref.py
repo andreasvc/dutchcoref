@@ -30,7 +30,7 @@ Options:
             :singletons: mentions without any coreference links
             :npsingletons: non-name mentions without any coreference links
             :relpronouns: relative pronouns
-            :reflectives: reflective pronouns
+            :reflexives: reflexive pronouns
             :reciprocals: reciprocal pronouns
             :appositives: appositives NPs
             :predicatives: nominal predicatives
@@ -962,7 +962,7 @@ def preciseconstructs(mentions, clusters):
 				and (mention.sentno, mention.begin, mention.end)
 				in reflpronouns):
 			merge(reflpronouns[mention.sentno, mention.begin, mention.end],
-					mention, 'precise:reflective', mentions, clusters)
+					mention, 'precise:reflexive', mentions, clusters)
 		if (mention.node.get('vwtype') == 'recip'
 				and (mention.sentno, mention.begin, mention.end)
 				in recippronouns):
@@ -2072,7 +2072,7 @@ def postprocess(exclude, mentions, clusters, goldmentions):
 			'npsingletons': lambda m: (len(clusters[m.clusterid]) == 1
 				and m.type != 'name'),
 			'relpronouns': lambda m: m.node.get('vwtype') == 'betr',
-			'reflectives': lambda m: m.node.get('vwtype') == 'refl',
+			'reflexives': lambda m: m.node.get('vwtype') == 'refl',
 			'reciprocals': lambda m: m.node.get('vwtype') == 'recip',
 			'appositives': lambda m: m.node.get('rel') == 'app',
 			'predicatives': lambda m: m.node.get('rel') == 'predc',
@@ -2212,7 +2212,7 @@ def semeval(ngdata, gadata, goldmentions, subset='dev'):
 					fmt='semeval2010', docname=docname,
 					conllfile=conllfile if goldmentions or VERBOSE else None,
 					startcluster=startcluster, goldmentions=goldmentions,
-					exclude=('relpronouns', 'reflectives', 'reciprocals',
+					exclude=('relpronouns', 'reflexives', 'reciprocals',
 						'predicatives', 'appositives', 'npsingletons'))
 	with open('%s/blanc_scores' % path, 'w') as out:
 		subprocess.call([
