@@ -45,7 +45,7 @@ def results():
 			trees, ngdata, gadata)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations,
-			parses=True, coreffmt='minimal')
+			parses=True, coreffmt='conll2012')
 	return render_template('results.html', docname='',
 			corefhtml=Markup(corefhtml),
 			coreftabular=coreftabular,

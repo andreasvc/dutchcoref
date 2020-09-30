@@ -11,12 +11,12 @@ Options:
     --slice=N:M     restrict input with a Python slice of sentence numbers
     --verbose       debug output instead of coreference output
     --gold=<file>   with --verbose, show error analysis against CoNLL file;
-                    this file has to contain documents matching the basenames
-                    of the input dirs
+                    this file has to contain the document matching the basename
+                    of the input dir
     --goldmentions  instead of predicting mentions, use mentions in --gold file
-    --fmt=<minimal|semeval2010|conll2012|booknlp|html|htmlp>
+    --fmt=<conll2012|semeval2010|booknlp|html|htmlp>
         output format:
-            :minimal: doc ID, token ID, token, and coreference columns
+			:conll2012: tabular format (default)
             :booknlp: tabular format with universal dependencies and dialogue
                 information in addition to coreference.
             :html: interactive visualization of coreference and dialogue.
@@ -26,18 +26,22 @@ Options:
         prefix.{mentions,clusters,links,quotes}.tsv (tabular format)
         prefix.conll (--fmt), and prefix.icarus (ICARUS allocation format)
     --exclude=<item1,item2,...>
-        exclude given types of mentions/links from output:
+        exclude given types of mentions from output:
             :singletons: mentions without any coreference links
             :npsingletons: non-name mentions without any coreference links
-            :relpronouns: relative pronouns
-            :reflexives: reflexive pronouns
+			:relpronouns: relative pronouns
+            :reflexives: obligatory reflexive pronouns
             :reciprocals: reciprocal pronouns
             :appositives: appositives NPs
             :predicatives: nominal predicatives
+			:relpronounsplit: relative clause boundary includes whole clause
+    --excludelinks=<item1,item2,...>
+        similar to --excludementions, but only removes links to given mentions.
 
 Instead of specifying a directory and gold file, can use the following presets:
     --clin=<dev|test>     run on CLIN26 shared task data
     --semeval=<dev|test>  run on SemEval 2010 data
+	--sonar=<dev|test>    run on SoNaR data
     --test                run tests
 """
 import io
@@ -58,13 +62,13 @@ import colorama
 import ansi2html
 
 TITLES = (
-		'dr. drs. ing. ir. mr. lic. prof. mevr. mw. bacc. kand. dr.h.c. ds. '
-		'bc. dr drs ing ir mr lic prof mevr mw bacc kand dr.h.c ds bc '
-		'mevrouw meneer heer doctor professor').split()
+		'dr drs ing ir mr lic prof mevr mw bacc kand dr.h.c ds bc '
+		'bsc msc ma ba bv nv b.v n.v mevrouw meneer heer doctor professor'
+		).split()
 STOPWORDS = (
 		# List of Dutch Stop words (http://www.ranks.nl/stopwords/dutch)
 		'aan af al als bij dan dat de die dit een en er had heb hem het hij '
-		'hoe hun ik in is je kan me men met mij nog nu of ons ook te tot uit '
+		'hoe ik in is je kan me men met mij nog nu of ons ook te tot uit '
 		'van was wat we wel wij zal ze zei zij zo zou ').split() + TITLES
 
 # Reported speech verbs as they appear in the "root" attribute.
@@ -168,9 +172,11 @@ class Mention:
 			self.type = 'name'
 		else:
 			self.type = 'noun'
+		# main modifiers: nouns, adjectives. we also add possessive pronouns.
 		self.mainmod = [a.get('word') for a
 				in (node.findall('.//node[@word]') if len(node) else (node, ))
-				if a.get('rel') == 'mod' or a.get('pt') in ('adj', 'n')
+				if (a.get('rel') == 'mod' or a.get('pt') in ('adj', 'n')
+					or a.get('vwtype') == 'bez')
 				and begin <= int(a.get('begin')) < end]
 		self.features = {
 				'human': None, 'gender': None,
@@ -187,6 +193,8 @@ class Mention:
 			self.features['number'] = {
 					'ev': 'sg', 'mv': 'pl', 'getal': 'both'
 					}[self.head.get('getal')]
+		if len(self.node) > 1 and self.node[0].get('rel') == 'cnj':
+			self.features['number'] = 'pl'
 
 		if self.head.get('genus') in ('masc', 'fem'):
 			self.features['gender'] = self.head.get('genus')[0]
@@ -233,7 +241,7 @@ class Mention:
 			if result:
 				self.features.update(result)
 			elif (self.head.get('neclass') == 'PER'
-					and self.tokens[0] not in STOPWORDS):
+					and self.tokens[0].lower().strip('.') not in STOPWORDS):
 				# Assume first token is first name.
 				self.features.update(nglookup(self.tokens[0], ngdata))
 
@@ -285,7 +293,7 @@ class Quotation:
 		return '%d %d %r' % (self.parno, self.sentno, self.text)
 
 
-def getmentions(trees, ngdata, gadata, includerelclause):
+def getmentions(trees, ngdata, gadata, relpronounsplit):
 	"""Collect mentions."""
 	debug(color('mention detection', 'yellow'))
 	mentions = []
@@ -298,7 +306,7 @@ def getmentions(trees, ngdata, gadata, includerelclause):
 		# candidates.extend(tree.xpath(
 		# 		'.//node[@cat="conj"]/node[@cat="np" or @pt="n"]/..'))
 		candidates.extend(tree.xpath(
-				'.//node[@cat="mwu"]/node[@pt="spec"]/..'))
+				'.//node[@cat="mwu"]/node[@pt="spec" or @ntype="eigen"]/..'))
 		candidates.extend(tree.xpath('.//node[@pt="n"]'
 				'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body" '
 				'or @special="er_loc"]'))
@@ -308,12 +316,12 @@ def getmentions(trees, ngdata, gadata, includerelclause):
 		covered = set()
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, parno, mentions, covered,
-					ngdata, gadata, includerelclause)
+					ngdata, gadata, relpronounsplit)
 	return mentions
 
 
 def considermention(node, tree, sentno, parno, mentions, covered,
-		ngdata, gadata, includerelclause):
+		ngdata, gadata, relpronounsplit):
 	"""Decide whether a candidate mention should be added."""
 	if len(node) == 0 and 'word' not in node.keys():
 		return
@@ -345,7 +353,7 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 	# [Behrmans voorstel] om samen te eten
 	# [het feit] dat ...
 	vc = node.find('./node[@rel="vc"]')
-	if not includerelclause and vc is not None:
+	if relpronounsplit and vc is not None:
 		# get actual token indices, because span of vc may be incorrect
 		vcindices = sorted(int(token.get('begin')) for token
 				in (vc.findall('.//node[@word]') if len(vc) else [vc]))
@@ -358,7 +366,7 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 	# Relative clauses: [de man] [die] ik eerder had gezien.
 	# [een buurt] [waar] volgens hem ondanks de Wende niets veranderd was.
 	relpronoun = node.find('./node[@cat="rel"]/node[@rel="rhd"]')
-	if (not includerelclause and relpronoun is not None
+	if (relpronounsplit and relpronoun is not None
 			and int(relpronoun.get('begin')) < b):
 		b = int(relpronoun.get('begin'))
 		if headidx > b:
@@ -366,22 +374,27 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 					in node.findall('.//node[@word]')
 					if int(token.get('begin')) < b)
 	# Appositives: "[Jan], [de schilder]"
-	if len(node) > 1 and node[1].get('rel') == 'app':
-		if (node[1].get('ntype') != 'eigen'
+	if len(node) > 1 and node[-1].get('rel') == 'app':
+		if (len(node) == 2
+				and node[1].get('ntype') != 'eigen'
 				and node[1].get('pt') != 'spec'
 				and (node[1].get('cat') != 'mwu'
 					or node[1][0].get('pt') != 'spec')):
 			node = node[0]
 			b = int(node.get('end'))
 		else:  # but: "[acteur John Cleese]"; head: Cleese.
-			h1 = getheadidx(node[1])
+			h1 = getheadidx(node[-1])
 			if h1 < b:
 				headidx = h1
 	# mevrouw [Steele] => [mevrouw Steele]
 	if (node.get('rel') == 'nucl' and a
-			and gettokens(tree, a - 1, a)[0].lower() in TITLES):
+			and gettokens(tree, a - 1, a)[0].lower().strip('.') in TITLES):
 		a -= 1
 		headidx = a
+	# [ook Perry] => [Perry]
+	x = node.find('.//node[@word][@begin="%d"]' % a)
+	if x is not None and x.get('pt') == 'bw':
+		a += 1
 	tokens = gettokens(tree, a, b)
 	# Trim punctuation
 	if tokens and tokens[0] in ',\'"()':
@@ -392,18 +405,21 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 		b -= 1
 	if not tokens:  # mention cannot be only punctuation
 		return
-	head = (tree.find('.//node[@begin="%d"]' % headidx)
+	head = (tree.find('.//node[@begin="%d"][@word]' % headidx)
 			if len(node) else node)
 	# various
 	if head.get('lemma') in ('aantal', 'keer', 'toekomst', 'manier'):
 		return
 	if pleonasticpronoun(node):
 		return
+	x = node.find('./node[@pt="tw"]')
+	if x is not None and x.get('word').isnumeric():
+		return
 	if (headidx not in covered
 			# discard measure phrases
 			# and node.find('.//node[@num="meas"]') is None
 			and node.get('num') != "meas"
-			and node.find('./node[@pt="tw"]') is None
+			# and node.find('./node[@pt="tw"]') is None
 			# and not tokens[0].isnumeric()
 			# "a few" ...
 			and (node.get('cat') != 'np' or node.get('rel') != 'det')
@@ -421,6 +437,8 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 			# 	or node[0].get('pos') not in ('adj', 'noun'))
 			# het fietsen
 			and head.get('pt') != 'ww'
+			# tien kilometer joggen
+			and node.find('./node[@pt="ww"][@wvorm="inf"]') is None
 			):
 		mentions.append(Mention(
 				len(mentions), sentno, parno, tree, node, a, b, headidx,
@@ -435,10 +453,8 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 					tokens[tokens.index(',') + 1:],
 					ngdata, gadata))
 		elif len(node) > 1 and node[0].get('rel') == 'cnj':
-			mentions[-1].features['number'] = 'pl'
 			for cnj in node.findall('./node[@rel="cnj"]'):
-				a = int(cnj.get('begin'))
-				b = int(cnj.get('end'))
+				a, b = int(cnj.get('begin')), int(cnj.get('end'))
 				mentions.append(Mention(
 						len(mentions), sentno, parno, tree, cnj,
 						a, b, getheadidx(cnj),
@@ -993,14 +1009,16 @@ def strictheadmatch(mentions, clusters, sieve):
 			for cluster in clusters]
 	for n, mention in representativementions(mentions, clusters):
 		if mention.type != 'pronoun' and checkconstraints(mention, clusters):
-			nonstop = {a for a in mention.tokens if a not in STOPWORDS}
+			nonstop = {a for a in mention.tokens
+					if a.lower().strip('.') not in STOPWORDS}
 			head = mention.head.get('word')
 			for othercluster, otherheads in zip(clusters[:n], heads):
 				# entity head match
 				match = othercluster is not None and head in otherheads
 				if match and (sieve == 5 or sieve == 6):
 					other = mentions[min(othercluster)]
-					if other.type == 'pronoun':
+					if (other.type == 'pronoun'
+							or other.node.get('cat') == 'conj'):
 						continue
 					# word inclusion
 					othernonstop = {token
@@ -1010,7 +1028,8 @@ def strictheadmatch(mentions, clusters, sieve):
 				if match and (sieve == 5 or sieve == 7):
 					for m in othercluster:
 						other = mentions[m]
-						if other.type == 'pronoun':
+						if (other.type == 'pronoun'
+								or other.node.get('cat') == 'conj'):
 							continue
 						# compatible modifiers only
 						if all(token in other.tokens
@@ -1023,8 +1042,7 @@ def strictheadmatch(mentions, clusters, sieve):
 				if match:
 					merge(other, mention, 'strictheadmatch:%d' % sieve,
 							mentions, clusters)
-					heads[mention.clusterid] = heads[
-							mention.clusterid] | otherheads
+					heads[mention.clusterid] |= otherheads
 
 
 def properheadmatch(mentions, clusters, relaxed=False):
@@ -1037,15 +1055,19 @@ def properheadmatch(mentions, clusters, relaxed=False):
 			for clusterid, cluster in enumerate(clusters)
 			if cluster is not None}
 	for _, mention in representativementions(mentions, clusters):
-		if (mention.head.get('neclass') not in (None, 'LOC')
+		# restrict to person named entities because only for person names
+		# it is common to use only first or last name.
+		if (mention.head.get('neclass') == 'PER'
 				and checkconstraints(mention, clusters)):
-			nonstop = {a for a in mention.tokens if a not in STOPWORDS}
+			nonstop = {a for a in mention.tokens
+					if a.lower().strip('.') not in STOPWORDS}
 			# NB: also looks forward!
 			# [John, John Smith, Mr Smith] will form a cluster
 			for other in mentions:
 				if (other.head.get('neclass') != mention.head.get('neclass')
 						or mention.clusterid == other.clusterid
-						or iwithini(mention, other)):
+						or iwithini(mention, other)
+						or other.node.get('cat') == 'conj'):
 					continue
 				if relaxed:
 					# word inclusion
@@ -1166,10 +1188,10 @@ def resolvepronouns(mentions, clusters, quotations, maxdist=15):
 
 
 def resolvecoreference(trees, ngdata, gadata, mentions=None,
-		includerelclause=False):
+		relpronounsplit=True):
 	"""Get mentions and apply coreference sieves."""
 	if mentions is None:
-		mentions = getmentions(trees, ngdata, gadata, includerelclause)
+		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE:
@@ -1223,7 +1245,9 @@ def getheadidx(node):
 	if len(node) == 0:
 		return int(node.get('begin'))
 	for child in node:
-		if child.get('rel') in ('hd', 'whd', 'rhd', 'crd', 'cmp'):
+		# if child.get('rel') in ('hd', 'whd', 'rhd', 'crd', 'cmp'):
+		# conjunctions are tricky; we select the head of the first conjunct.
+		if child.get('rel') in ('hd', 'whd', 'rhd', 'cnj', 'body'):
 			return getheadidx(child)
 	# default to last child as head
 	return getheadidx(node[-1])
@@ -1256,8 +1280,9 @@ def merge(mention1, mention2, sieve, mentions, clusters):
 		mentions[m].clusterid = mention1.clusterid
 	mention2.antecedent = mention1.id
 	mention2.sieve = sieve
-	debug('Linked  %d %d %s %s\n\t%d %d %s %s' % (
+	debug('Linked  %d %d %s %s cluster=%d\n\t%d %d %s %s' % (
 			mention1.sentno, mention1.begin, mention1, mention1.featrepr(),
+			mention1.clusterid,
 			mention2.sentno, mention2.begin, mention2, mention2.featrepr()))
 
 
@@ -1319,8 +1344,13 @@ def iwithini(mention, other):
 
 
 def checkconstraints(mention, clusters):
-	"""Block coreference for first mention of indefinite NP or bare plural."""
-	if len(clusters[mention.clusterid]) > 1:
+	"""Block coreference for conjuctions and first mention of indefinite NP
+	or bare plural."""
+	# conjunctions; don't want to link "John and Mary" (head=John), with "John"
+	if mention.node.get('cat') == 'conj':
+		return False
+	# not first mention
+	if min(clusters[mention.clusterid]) != mention.id:
 		return True
 	# indefinite pronoun/article
 	if (mention.node.get('cat') == 'np'
@@ -1449,51 +1479,49 @@ def galookup(key, gadata):
 
 
 def writetabular(trees, mentions,
-		docname='-', part=0, file=sys.stdout, fmt=None, startcluster=0):
+		docname='-', part=0, file=sys.stdout, fmt='conll2012', startcluster=0):
 	"""Write output in tabular format.
 
 	:param file: results are written to this file-like object."""
+	if fmt not in ('conll2012', 'semeval2010', 'booknlp', 'html', 'htmlp'):
+		raise ValueError('unrecognized format: %r' % fmt)
 	sentences = [sorted(tree.iterfind('.//node[@word]'),
 				key=lambda x: int(x.get('begin')))
 			for _, tree in trees]
 	sentids = ['%d-%d' % (parno, sentno) for (parno, sentno), _ in trees]
-	labels = [[''] * len(sent) for sent in sentences]
+	coreflabels = [[''] * len(sent) for sent in sentences]
 	for mention in sortmentions(mentions):
 		if mention.filter:
 			continue
-		labels[mention.sentno][mention.begin] = '|(%d%s%s' % (
+		coreflabels[mention.sentno][mention.begin] = '|(%d%s%s' % (
 				mention.clusterid + startcluster,
 				')' if mention.begin == mention.end - 1 else '',
-				labels[mention.sentno][mention.begin])
+				coreflabels[mention.sentno][mention.begin])
 		if mention.begin != mention.end - 1:
-			labels[mention.sentno][mention.end - 1] = '|%d)%s' % (
+			coreflabels[mention.sentno][mention.end - 1] = '|%d)%s' % (
 					mention.clusterid + startcluster,
-					labels[mention.sentno][mention.end - 1])
-	labels = [[a.lstrip('|') or '-' for a in coreflabels]
-			for n, coreflabels in enumerate(labels, 1)]
-	doctokenid = 0
+					coreflabels[mention.sentno][mention.end - 1])
+	coreflabels = [
+			[coreflabel.lstrip('|') or '-' for coreflabel in sentcoreflabels]
+			for n, sentcoreflabels in enumerate(coreflabels, 1)]
 	if fmt == 'semeval2010':
 		print('#begin document %s' % docname, file=file)
 	elif part is None:  # CLIN evaluation scripts don't support part numbers
 		print('#begin document (%s);' % docname, file=file)
 	else:
 		print('#begin document (%s); part %03d' % (docname, part), file=file)
-	for sentid, sent, sentlabels in zip(sentids, sentences, labels):
-		for tokenid, (token, label) in enumerate(zip(sent, sentlabels), 1):
-			doctokenid += 1
-			if fmt is None or fmt == 'minimal':
-				print(docname, doctokenid, token.get('word'), label,
-						sep='\t', file=file)
-			elif fmt == 'conll2012':
-				print(docname, part, tokenid - 1, token.get('word'),
-						*(['-'] * 6), '*', label,
+	for sentid, sent, sentlabels in zip(sentids, sentences, coreflabels):
+		for tokenid, (token, coreflabel) in enumerate(zip(sent, sentlabels)):
+			if fmt == 'conll2012':
+				print(docname, part, tokenid, token.get('word'),
+						*(['-'] * 6), '*', coreflabel,
 						sep='\t', file=file)
 			elif fmt == 'semeval2010':
-				print(tokenid, token.get('word'), label,
+				print(tokenid + 1, token.get('word'), coreflabel,
 						sep='\t', file=file)
 			elif fmt == 'booknlp':
 				print(
-						doctokenid,
+						docname,
 						sentid,
 						tokenid,
 						token.get('word'),
@@ -1505,7 +1533,7 @@ def writetabular(trees, mentions,
 						token.get('speaker', '-'),  # clusterid
 						token.get('addressee', '-'),  # clusterid
 						token.get('quotelabel', '-'),  # B, I, O
-						label,
+						coreflabel,
 						sep='\t', file=file)
 		print('', file=file)
 	if fmt == 'semeval2010':
@@ -1762,9 +1790,9 @@ def readconll(conllfile):
 			line = inp.readline()
 			lineno += 1
 			if line.startswith('#begin document '):
-				label = line.split()[2].strip('();')
+				doclabel = line.split()[2].strip('();')
 				part = int(line.split()[-1]) if len(line.split()) > 3 else 0
-				docname = (label, part)
+				docname = (doclabel, part)
 				conlldata[docname] = [[]]
 				while True:
 					line = inp.readline()
@@ -1974,37 +2002,37 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 	return mentions
 
 
-def conllclusterdict(conlldata):
-	"""Extract dict from CoNLL file mapping gold cluster IDs to spans."""
+def conllclusterdict(conlldata, tokenidx=4):
+	"""Extract dict from CoNLL file mapping gold cluster IDs to spans.
+
+	:param tokenidx: 1-based column index of word token; use 2 for semeval2010.
+	"""
 	spansforcluster = {}
 	spans = {}
-	# "minimal" format has doc id, token no, token form, coref (no part number)
-	# conll2012 has doc id, part no, token no, token form, [...], coref
-	# all offset by 1 because we add line numbers
-	tokenidx = 3 if len(conlldata[0][0]) == 5 else 4
 	for sentno, chunk in enumerate(conlldata):
-		scratch = {}
+		stacks = {}
 		for idx, fields in enumerate(chunk):
 			lineno = int(fields[0])
-			labels = fields[-1]
-			for a in labels.split('|'):
-				if a == '-' or a == '_':
+			coreflabels = fields[-1]
+			for coreflabel in coreflabels.split('|'):
+				if coreflabel == '-' or coreflabel == '_':
 					continue
 				try:
-					clusterid = int(a.strip('()'))
+					clusterid = int(coreflabel.strip('()'))
 				except ValueError:
 					raise ValueError('Cannot parse cluster %r at line %d'
-							% (a.strip('()'), lineno))
-				if a.startswith('('):
-					scratch.setdefault(clusterid, []).append(
+							% (coreflabel.strip('()'), lineno))
+				if coreflabel.startswith('('):
+					stacks.setdefault(clusterid, []).append(
 							(sentno, idx, lineno))
-				if a.endswith(')'):
+				if coreflabel.endswith(')'):
 					try:
-						sentno, begin, _ = scratch[int(a.strip('()'))].pop()
+						sentno, begin, _ = stacks[
+								int(coreflabel.strip('()'))].pop()
 					except KeyError:
 						raise ValueError(
 								'No opening paren for cluster %s at line %d'
-								% (a.strip('()'), lineno))
+								% (coreflabel.strip('()'), lineno))
 					text = ' '.join(line[tokenidx]
 							for line in chunk[begin:idx + 1])
 					span = (sentno, begin, idx + 1, text)
@@ -2015,10 +2043,10 @@ def conllclusterdict(conlldata):
 									sentno + 1, lineno))
 					spans[span] = clusterid
 					spansforcluster.setdefault(clusterid, set()).add(span)
-		for a, b in scratch.items():
-			if b:
+		for clusterid, stack in stacks.items():
+			if stack:
 				raise ValueError('Unclosed paren for cluster %d at line %d'
-						% (a, b[0][2]))
+						% (clusterid, stack[0][2]))
 	return spansforcluster
 
 
@@ -2065,25 +2093,26 @@ def color(text, c):
 	raise ValueError
 
 
-def postprocess(exclude, mentions, clusters, goldmentions):
+def postprocess(exclude, mentions, clusters, linksonly):
 	"""Filter certain mentions/links."""
 	tests = {
 			'singletons': lambda m: len(clusters[m.clusterid]) == 1,
 			'npsingletons': lambda m: (len(clusters[m.clusterid]) == 1
 				and m.type != 'name'),
 			'relpronouns': lambda m: m.node.get('vwtype') == 'betr',
-			'reflexives': lambda m: m.node.get('vwtype') == 'refl',
+			'reflexives': lambda m: m.node.get('rel') == 'se',
 			'reciprocals': lambda m: m.node.get('vwtype') == 'recip',
 			'appositives': lambda m: m.node.get('rel') == 'app',
 			'predicatives': lambda m: m.node.get('rel') == 'predc',
 			}
+	exclude = [a for a in exclude if a != 'relpronounsplit']
 	for kind in exclude:
 		if kind not in tests:
 			raise ValueError('unrecognized --exclude argument: %s' % kind)
 	if exclude:
 		for mention in mentions:
 			if any(tests[kind](mention) for kind in exclude):
-				if goldmentions:
+				if linksonly:
 					# Remove links but keep gold mention
 					if mention.clusterid != mention.id:
 						clusters[mention.clusterid].remove(mention.id)
@@ -2096,7 +2125,7 @@ def postprocess(exclude, mentions, clusters, goldmentions):
 def process(path, output, ngdata, gadata,
 		docname='-', part=0, conllfile=None, fmt=None,
 		start=None, end=None, startcluster=0,
-		goldmentions=False, exclude=(), outputprefix=None):
+		goldmentions=False, exclude=(), excludelinks=(), outputprefix=None):
 	"""Process a single directory with Alpino XML parses."""
 	if os.path.isdir(path):
 		path = os.path.join(path, '*.xml')
@@ -2115,8 +2144,9 @@ def process(path, output, ngdata, gadata,
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
 	mentions, clusters, quotations, idx = resolvecoreference(
 			trees, ngdata, gadata, mentions,
-			includerelclause='relpronouns' in exclude)
+			relpronounsplit='relpronounsplit' not in exclude)
 	postprocess(exclude, mentions, clusters, goldmentions)
+	postprocess(excludelinks, mentions, clusters, True)
 	if conllfile is not None and VERBOSE:
 		debug(color('evaluating against:', 'yellow'), conllfile, docname)
 		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
@@ -2163,7 +2193,7 @@ def clintask(ngdata, gadata, goldmentions, subset='dev'):
 		dirname = os.path.join(parsesdir, shortdocname)
 		with open(os.path.join(path, docname), 'w') as out:
 			process(dirname + '/*.xml', out, ngdata, gadata,
-					docname=docname, part=None,
+					docname=docname, part=None, fmt='conll2012',
 					conllfile=conllfile if goldmentions or VERBOSE else None,
 					goldmentions=goldmentions,
 					start=0, end=6 if subset == 'dev' else 7)
@@ -2213,7 +2243,8 @@ def semeval(ngdata, gadata, goldmentions, subset='dev'):
 					conllfile=conllfile if goldmentions or VERBOSE else None,
 					startcluster=startcluster, goldmentions=goldmentions,
 					exclude=('relpronouns', 'reflexives', 'reciprocals',
-						'predicatives', 'appositives', 'npsingletons'))
+						'predicatives', 'appositives', 'npsingletons',
+						'relpronounsplit'))
 	with open('%s/blanc_scores' % path, 'w') as out:
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
@@ -2222,6 +2253,41 @@ def semeval(ngdata, gadata, goldmentions, subset='dev'):
 				'%s/result.conll' % path],
 				stdout=out)
 	with open('%s/blanc_scores' % path) as inp:
+		print(inp.read())
+
+
+def sonar(ngdata, gadata, goldmentions, subset='dev'):
+	"""Run on SoNaR data and evaluate."""
+	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+	path = 'results/sonar%s/%s%s' % (subset, timestamp,
+			'_gold' if goldmentions else '')
+	os.makedirs(path, exist_ok=False)
+	startcluster = 0
+	conllfile = 'data/sonar/%s.conll' % subset
+	if subset not in ('dev', 'test'):
+		raise ValueError('specify dev or test.')
+	if not os.path.exists(conllfile):
+		raise ValueError('CoNLL file not found: %s' % conllfile)
+	parsesdir = 'data/sonar/%s/*/' % subset
+	parses = sorted(glob(parsesdir))
+	if not parses:
+		raise ValueError('parses not found: %s' % parsesdir)
+	with open(os.path.join(path, 'result.conll'), 'w') as out:
+		for dirname in parses:
+			docname = os.path.basename(dirname.rstrip('/'))
+			startcluster += process(dirname, out, ngdata, gadata,
+					fmt='conll2012', docname=docname,
+					conllfile=conllfile if goldmentions or VERBOSE else None,
+					startcluster=startcluster, goldmentions=goldmentions,
+					exclude=('relpronouns', 'relpronounsplit'),
+					excludelinks=('reflexives', ))
+	with open('%s/scores.txt' % path, 'w') as out:
+		subprocess.call([
+				'../coval/scorer.py',
+				conllfile,
+				'%s/result.conll' % path],
+				stdout=out)
+	with open('%s/scores.txt' % path) as inp:
 		print(inp.read())
 
 
@@ -2272,8 +2338,9 @@ def runtests(ngdata, gadata):
 
 def main():
 	"""CLI"""
-	longopts = ['fmt=', 'slice=', 'gold=', 'exclude=', 'outputprefix=',
-			'clin=', 'semeval=', 'verbose', 'goldmentions', 'help', 'test']
+	longopts = ['fmt=', 'slice=', 'gold=', 'outputprefix=',
+			'exclude=', 'excludelinks=', 'clin=', 'semeval=', 'sonar=',
+			'verbose', 'goldmentions', 'help', 'test']
 	try:
 		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
 	except getopt.GetoptError:
@@ -2297,6 +2364,8 @@ def main():
 	elif '--semeval' in opts:
 		semeval(ngdata, gadata, '--goldmentions' in opts,
 				subset=opts['--semeval'])
+	elif '--sonar' in opts:
+		sonar(ngdata, gadata, '--goldmentions' in opts, subset=opts['--sonar'])
 	elif '--test' in opts:
 		runtests(ngdata, gadata)
 	else:
@@ -2306,21 +2375,23 @@ def main():
 		if len(args) != 1:
 			print(__doc__)
 			return
-		pattern = args[0]
+		path = args[0]
 		exclude = [a for a in opts.get('--exclude', '').split(',') if a]
+		excludelinks = [a for a in opts.get('--excludelinks', '').split(',')
+				if a]
 		out = sys.stdout
 		if '--outputprefix' in opts:
-			ext = '.html' if opts.get('--fmt') == 'html' else '.conll'
+			ext = '.html' if opts.get('--fmt') in (
+					'html', 'htmlp') else '.conll'
 			out = open(opts['--outputprefix'] + ext, 'w')
 		try:
-			for path in sorted(glob(pattern)):
-				process(path, sys.stdout, ngdata, gadata,
-						fmt=opts.get('--fmt'), start=start, end=end,
-						docname=os.path.basename(path.rstrip('/')),
-						conllfile=opts.get('--gold'),
-						goldmentions='--goldmentions' in opts,
-						outputprefix=opts.get('--outputprefix'),
-						exclude=exclude)
+			process(path, out, ngdata, gadata,
+					fmt=opts.get('--fmt', 'conll2012'), start=start, end=end,
+					docname=os.path.basename(path.rstrip('/')),
+					conllfile=opts.get('--gold'),
+					goldmentions='--goldmentions' in opts,
+					outputprefix=opts.get('--outputprefix'),
+					exclude=exclude, excludelinks=excludelinks)
 		finally:
 			if out is not sys.stdout:
 				out.close()

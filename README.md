@@ -59,38 +59,38 @@ $ python3 coref.py --verbose /tmp/example
 ```
 $ python3 coref.py --fmt=booknlp /tmp/example
 #begin document (example);
-1       6-1     1       '       '       LET()   5       punct   -       14      -       B       -
-2       6-1     2       Ik      ik      VNW(pers,pron,nomin,vol,1,ev)   5       nsubj   -       14      -       I       (0)
-3       6-1     3       ben     zijn    WW(pv,tgw,ev)   5       cop     -       14      -       I       -
-4       6-1     4       de      de      LID(bep,stan,rest)      5       det     -       14      -       I       (0
-5       6-1     5       directeur       directeur       N(soort,ev,basis,zijd,stan)     0       root    -       14      -       I       0
-6       6-1     6       van     van     VZ(init)        7       case    -       14      -       I       0
-7       6-1     7       Fecalo  Fecalo  N(eigen,ev,basis,zijd,stan)     5       nmod    ORG     14      -       I       0)|(1)
-8       6-1     8       ,       ,       LET()   5       punct   -       14      -       I       -
-9       6-1     9       van     van     VZ(init)        10      case    -       14      -       I       -
-10      6-1     10      hierachter      hierachter      BW()    5       nmod    -       14      -       I       -
-11      6-1     11      ,       ,       LET()   5       punct   -       14      -       I       -
-12      6-1     12      '       '       LET()   5       punct   -       14      -       I       -
-13      6-1     13      zei     zeggen  WW(pv,verl,ev)  5       parataxis       -       -       -       O       -
-14      6-1     14      hij     hij     VNW(pers,pron,nomin,vol,3,ev,masc)      13      nsubj   -       -       -       O       (0)
-15      6-1     15      .       .       LET()   5       punct   -       -       -       O       -
+example  6-1  0   '       '       LET()   5       punct   -       14      -       B       -
+example  6-1  1   Ik      ik      VNW(pers,pron,nomin,vol,1,ev)   5       nsubj   -       14      -       I       (0)
+example  6-1  2   ben     zijn    WW(pv,tgw,ev)   5       cop     -       14      -       I       -
+example  6-1  3   de      de      LID(bep,stan,rest)      5       det     -       14      -       I       (0
+example  6-1  4   directeur       directeur       N(soort,ev,basis,zijd,stan)     0       root    -       14      -       I       0
+example  6-1  5   van     van     VZ(init)        7       case    -       14      -       I       0
+example  6-1  6   Fecalo  Fecalo  N(eigen,ev,basis,zijd,stan)     5       nmod    ORG     14      -       I       0)|(1)
+example  6-1  7   ,       ,       LET()   5       punct   -       14      -       I       -
+example  6-1  8   van     van     VZ(init)        10      case    -       14      -       I       -
+example  6-1  9   hierachter      hierachter      BW()    5       nmod    -       14      -       I       -
+example  6-1  10  ,       ,       LET()   5       punct   -       14      -       I       -
+example  6-1  11  '       '       LET()   5       punct   -       14      -       I       -
+example  6-1  12  zei     zeggen  WW(pv,verl,ev)  5       parataxis       -       -       -       O       -
+example  6-1  13  hij     hij     VNW(pers,pron,nomin,vol,3,ev,masc)      13      nsubj   -       -       -       O       (0)
+example  6-1  14  .       .       LET()   5       punct   -       -       -       O       -
 
-16      6-2     1       '       '       LET()   6       punct   -       14      -       B       -
-17      6-2     2       Mag     mogen   WW(pv,tgw,ev)   6       aux     -       14      -       I       -
-18      6-2     3       ik      ik      VNW(pers,pron,nomin,vol,1,ev)   6       nsubj   -       14      -       I       (0)
-19      6-2     4       u       u       VNW(pers,pron,nomin,vol,2b,getal)       6       iobj    -       14      -       I       (5)
-20      6-2     5       iets    iets    VNW(onbep,pron,stan,vol,3o,ev)  6       obj     -       14      -       I       -
-21      6-2     6       vragen  vragen  WW(inf,vrij,zonder)     0       root    -       14      -       I       -
-22      6-2     7       ?       ?       LET()   6       punct   -       14      -       I       -
-23      6-2     8       '       '       LET()   6       punct   -       14      -       I       -
+example  6-2  0   '       '       LET()   6       punct   -       14      -       B       -
+example  6-2  1   Mag     mogen   WW(pv,tgw,ev)   6       aux     -       14      -       I       -
+example  6-2  2   ik      ik      VNW(pers,pron,nomin,vol,1,ev)   6       nsubj   -       14      -       I       (0)
+example  6-2  3   u       u       VNW(pers,pron,nomin,vol,2b,getal)       6       iobj    -       14      -       I       (5)
+example  6-2  4   iets    iets    VNW(onbep,pron,stan,vol,3o,ev)  6       obj     -       14      -       I       -
+example  6-2  5   vragen  vragen  WW(inf,vrij,zonder)     0       root    -       14      -       I       -
+example  6-2  6   ?       ?       LET()   6       punct   -       14      -       I       -
+example  6-2  7   '       '       LET()   6       punct   -       14      -       I       -
 
-24      7-1     1       Ik      ik      VNW(pers,pron,nomin,vol,1,ev)   2       nsubj   -       -       -       O       (6)
-25      7-1     2       vroeg   vragen  WW(pv,verl,ev)  0       root    -       -       -       O       -
-26      7-1     3       hem     hem     VNW(pers,pron,obl,vol,3,ev,masc)        2       iobj    -       -       -       O       (0)
-27      7-1     4       binnen  binnen  VZ(fin) 6       compound:prt    -       -       -       O       -
-28      7-1     5       te      te      VZ(init)        6       mark    -       -       -       O       -
-29      7-1     6       komen   binnen_komen    WW(inf,vrij,zonder)     2       xcomp   -       -       -       O       -
-30      7-1     7       .       .       LET()   2       punct   -       -       -       O       -
+example  7-1  0   Ik      ik      VNW(pers,pron,nomin,vol,1,ev)   2       nsubj   -       -       -       O       (6)
+example  7-1  1   vroeg   vragen  WW(pv,verl,ev)  0       root    -       -       -       O       -
+example  7-1  2   hem     hem     VNW(pers,pron,obl,vol,3,ev,masc)        2       iobj    -       -       -       O       (0)
+example  7-1  3   binnen  binnen  VZ(fin) 6       compound:prt    -       -       -       O       -
+example  7-1  4   te      te      VZ(init)        6       mark    -       -       -       O       -
+example  7-1  5   komen   binnen_komen    WW(inf,vrij,zonder)     2       xcomp   -       -       -       O       -
+example  7-1  6   .       .       LET()   2       punct   -       -       -       O       -
 
 #end document
 ```
@@ -128,11 +128,12 @@ Get the evaluation tool: https://github.com/ns-moosavi/coval
 ```
 $ python3 coref.py mydocument/ --fmt=conll2012 >output.conll
 $ python3 ../coval/scorer.py mydocument.conll output.conll
-mentions   Recall: 90.52  Precision: 81.43  F1: 85.73
-muc        Recall: 79.44  Precision: 74.43  F1: 76.85
-bcub       Recall: 51.72  Precision: 55.65  F1: 53.61
-ceafe      Recall: 66.64  Precision: 46.58  F1: 54.83
-lea        Recall: 49.48  Precision: 52.74  F1: 51.05
+            recall  precision     F1
+mentions     90.52      81.43  85.73
+muc          79.44      74.43  76.85
+bcub         51.72      55.65  53.61
+ceafe        66.64      46.58  54.83
+lea          49.48      52.74  51.05
 CoNLL score: 61.77
 ```
 
@@ -141,7 +142,7 @@ Column types
 ------------
 With `--fmt=booknlp`, the output contains the following columns:
 
-1. Global token number
+1. Document label
 2. Sentence ID
 3. Token number within sentence
 4. Token
@@ -175,7 +176,7 @@ Annotation workflow
 1. Preprocess, tokenize and parse a text with Alpino to get a directory of parse trees
     in XML files.
 2. Run coreference resolution on the parse trees:
-    `python3 coref.py --fmt=conll2012 path/to/parses/ > text.conll`
+    `python3 coref.py path/to/parses/text/ > text.conll`
     (Forward slashes are required, also on Windows).
 3. Get the latest stable release of [CorefAnnotator](https://github.com/nilsreiter/CorefAnnotator/releases).
     Run it with `java -jar CorefAnnotator-1.9.2-full.jar`
@@ -185,7 +186,7 @@ Annotation workflow
     (in the .xmi format used by CorefAnnotator)
 7. When done, export to CoNLL 2012 format
 8. The CoNLL 2012 file exported by CorefAnnotator does not contain POS tags and parse trees;
-	to add those, run `addparsebits.py alpino text.conll path/to/parses/`
+	to add those, run `addparsebits.py alpino text.conll path/to/parses/text/`
 
 References
 ----------

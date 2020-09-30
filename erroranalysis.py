@@ -21,7 +21,7 @@ def compare(cmd, goldfile, respfile, hidecorrectlinks=False, out=sys.stdout):
 	golddocs = readconll(goldfile)
 	respdocs = readconll(respfile)
 	for docname in golddocs:
-		print('\ndocument:', *docname, end='')
+		print('\ndocument:', *docname)
 		gold = golddocs[docname]
 		resp = respdocs[docname]
 		goldspansforcluster = conllclusterdict(gold)
@@ -116,7 +116,7 @@ def comparecoref(resp, goldspans, respspans,
 		b = clustersforspan(resp, span2)
 		return a and b and not a.isdisjoint(b)
 
-	print('\n' + color('coreference clusters:', 'yellow'), file=out)
+	print(color('coreference clusters:', 'yellow'), file=out)
 	# iterate over clusters in gold, report first mention
 	for clusterid, spans in goldspansforcluster.items():
 		# skip clusters that are singleton in both response and gold
