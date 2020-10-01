@@ -21,36 +21,41 @@ def getstats(args, parsesdir=None):
 	for fname in args:
 		data = []
 		try:
-			# treat all documents as a single document
-			for doc in coref.readconll(fname).values():
-				data.extend(doc)
-			goldspansforcluster = coref.conllclusterdict(data)
+			docs = coref.readconll(fname)
 		except Exception as err:
 			print('file:', fname)
 			print(err)
-		docname = os.path.splitext(fname)[0]
-		if parsesdir is not None:
-			# given docname.conll, read <parsesdir>/<docname>/*.xml
-			path = os.path.join(parsesdir, docname, '*.xml')
-			filenames = sorted(glob(path), key=coref.parsesentid)
-			if len(data) != len(filenames):
-				raise ValueError('sentences in CoNLL (%d) '
-						'and number of .xml parses (%d) not equal' %
-						(len(data), len(filenames)))
-			trees = [(coref.parsesentid(filename), etree.parse(filename))
-					for filename in filenames]
-			mentions = coref.extractmentionsfromconll(
-					data, trees, ngdata, gadata)
-			pronouns += sum(m.type == 'pronoun' for m in mentions)
-			nominals += sum(m.type == 'noun' for m in mentions)
-			names += sum(m.type == 'name' for m in mentions)
-		sents += len(data)
-		tokens += sum(len(sent) for sent in data)
-		nummentions += len({span for spans in goldspansforcluster.values()
-				for span in spans})
-		numentities += len(goldspansforcluster)
-		numlinks += sum(int((len(cluster) * (len(cluster) - 1)) / 2)
-				for cluster in goldspansforcluster.values())
+			return
+		for (docname, part), data in docs.items():
+			try:
+				goldspansforcluster = coref.conllclusterdict(data)
+			except Exception as err:
+				print('file:', fname)
+				print(err)
+				return
+			if parsesdir is not None:
+				# given docname, read <parsesdir>/<docname>/*.xml
+				path = os.path.join(parsesdir, docname, '*.xml')
+				filenames = sorted(glob(path), key=coref.parsesentid)
+				if len(data) != len(filenames):
+					raise ValueError('filename: %s; document %s %s; '
+							'sentences in CoNLL (%d) '
+							'and number of .xml parses (%d) not equal' %
+							(fname, docname, part, len(data), len(filenames)))
+				trees = [(coref.parsesentid(filename), etree.parse(filename))
+						for filename in filenames]
+				mentions = coref.extractmentionsfromconll(
+						data, trees, ngdata, gadata)
+				pronouns += sum(m.type == 'pronoun' for m in mentions)
+				nominals += sum(m.type == 'noun' for m in mentions)
+				names += sum(m.type == 'name' for m in mentions)
+			sents += len(data)
+			tokens += sum(len(sent) for sent in data)
+			nummentions += len({span for spans in goldspansforcluster.values()
+					for span in spans})
+			numentities += len(goldspansforcluster)
+			numlinks += sum(int((len(cluster) * (len(cluster) - 1)) / 2)
+					for cluster in goldspansforcluster.values())
 	print('sents:', sents)
 	print('tokens:', tokens)
 	print('mentions:', nummentions)
