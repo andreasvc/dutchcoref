@@ -152,8 +152,6 @@ class CorefFeatures:
 					# current context; but this means previous mentions must
 					# have already been resolved.
 					result.append((
-							# mention.sentno, int(mention.head.get('begin')),
-							# other.sentno, int(other.head.get('begin')),
 							mention.sentno, mention.begin, mention.end,
 							other.sentno, other.begin, other.end,
 							len(other.tokens),  # antecedent mention width

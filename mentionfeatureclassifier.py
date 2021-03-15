@@ -20,7 +20,7 @@ import bert
 
 DENSE_LAYER_SIZES = [500, 150, 150]
 DROPOUT_RATE = 0.2
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.001
 BATCH_SIZE = 32
 EPOCHS = 100
 PATIENCE = 15
@@ -103,7 +103,6 @@ class MentionFeatures:
 			# collecting additional features
 			# FIXME: feature: is mention part of another mention?
 			result.append((
-					# mention.sentno, int(mention.head.get('begin')),
 					mention.sentno, mention.begin, mention.end,
 					# additional features
 					mention.node.get('rel') == 'su',
@@ -118,9 +117,6 @@ class MentionFeatures:
 		numotherfeats = len(result[0]) - 3
 		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
-			# select the BERT token representation of the head of the mention:
-			# msent, mhead = featvec[:2]
-			# buf[n, :vectors[0].shape[-1]] = vectors[msent][mhead]
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			buf[n, :vectors[0].shape[-1]] = vectors[
