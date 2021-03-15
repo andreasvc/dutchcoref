@@ -1,6 +1,9 @@
 import numpy as np
 import torch
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel, logging
+
+
+logging.set_verbosity_error()
 
 
 def loadmodel(name):
@@ -13,7 +16,24 @@ def loadmodel(name):
 def encode_sentences(sentences, tokenizer, model, layer=9):
 	"""Encode tokens with BERT.
 
-	:returns: a tensor of shape (n_sentences, sent_length, hidden_size=768)
+	:returns: a list with n_sentences items;
+		each item is an array of shape (sent_length, hidden_size=768).
+
+	Layer 9 is the most useful for coreference, according to
+	https://www.aclweb.org/anthology/2020.findings-emnlp.389.pdf"""
+	result = []
+	# Encode 25 sentences at a time:
+	for n in range(0, len(sentences), 25):
+		for sent in _encode_sentences(
+				sentences[n:n + 25], tokenizer, model, layer):
+			result.append(sent)
+	return result
+
+
+def _encode_sentences(sentences, tokenizer, model, layer=9):
+	"""Encode tokens with BERT.
+
+	:returns: an array of shape (n_sentences, sent_length, hidden_size=768)
 
 	Layer 9 is the most useful for coreference, according to
 	https://www.aclweb.org/anthology/2020.findings-emnlp.389.pdf"""
@@ -41,13 +61,13 @@ def encode_sentences(sentences, tokenizer, model, layer=9):
 	with torch.no_grad():
 		# torch tensor of shape (n_sentences, sent_length, hidden_size=768)
 		outputs = model(tokens_tensor, output_hidden_states=True)
-		bert_output = outputs.hidden_states[layer]
+		bert_output = outputs.hidden_states[layer].numpy()
 
 	# Add up tensors for subtokens coming from same word
 	max_sentence_length = max(len(s) for s in sentences)
-	bert_final = torch.tensor(np.zeros((bert_output.shape[0],
-										max_sentence_length,
-										bert_output.shape[2])))
+	bert_final = np.zeros((bert_output.shape[0],
+			max_sentence_length,
+			bert_output.shape[2]))
 	for sent_id in range(len(sentences)):
 		counts = np.zeros(len(sentences[sent_id]))
 		for tok_id, word_id in enumerate(indices_flat[sent_id]):

@@ -6,6 +6,8 @@ Example: pronounresolution.py train/*.conll dev/*.conll parses/
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
+
 import sys
 # from collections import Counter
 from glob import glob
@@ -171,20 +173,15 @@ class CorefFeatures:
 		vectors = bert.encode_sentences(
 				sentences, self.tokenizer, self.bertmodel)
 		numotherfeats = len(result[0]) - 6
-		buf = np.zeros((len(result), 2 * vectors.shape[-1] + numotherfeats))
+		buf = np.zeros((len(result), 2 * vectors[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
-			# select the BERT token representation of the head of the mention:
-			# msent, mhead = featvec[:2]
-			# osent, ohead = featvec[2:4]
-			# buf[n, :vectors.shape[-1]] = vectors[msent, mhead]
-			# buf[n, vectors.shape[-1]:-numotherfeats] = vectors[osent, ohead]
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			osent, obegin, oend = featvec[3:6]
-			buf[n, :vectors.shape[-1]] = vectors[
-					msent, mbegin:mend].mean(axis=0)
-			buf[n, vectors.shape[-1]:-numotherfeats] = vectors[
-					osent, obegin:oend].mean(axis=0)
+			buf[n, :vectors[0].shape[-1]] = vectors[
+					msent][mbegin:mend].mean(axis=0)
+			buf[n, vectors[0].shape[-1]:-numotherfeats] = vectors[
+					osent][obegin:oend].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 

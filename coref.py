@@ -426,7 +426,7 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 	"""Decide whether a candidate mention should be added."""
 	if len(node) == 0 and 'word' not in node.keys():
 		return
-	a, b, headidx, tokens = adjustmentionspan(node, tree)
+	a, b, headidx, tokens = adjustmentionspan(node, tree, relpronounsplit)
 	if not tokens:  # mention cannot be only punctuation
 		return
 	head = (tree.find('.//node[@begin="%d"][@word]' % headidx)

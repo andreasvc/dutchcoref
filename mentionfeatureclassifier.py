@@ -6,6 +6,8 @@ Example: mentionfeatureclassifier.py train/*.conll dev/*.conll parses/
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
+
 import sys
 from glob import glob
 from lxml import etree
@@ -111,18 +113,18 @@ class MentionFeatures:
 		# NB: this encodes each sentence independently
 		vectors = bert.encode_sentences(
 				sentences, self.tokenizer, self.bertmodel)
-		buf = np.zeros((len(result), vectors.shape[-1]))
+		buf = np.zeros((len(result), vectors[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
-		buf = np.zeros((len(result), vectors.shape[-1] + numotherfeats))
+		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# select the BERT token representation of the head of the mention:
 			# msent, mhead = featvec[:2]
-			# buf[n, :vectors.shape[-1]] = vectors[msent, mhead]
+			# buf[n, :vectors[0].shape[-1]] = vectors[msent][mhead]
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
-			buf[n, :vectors.shape[-1]] = vectors[
-					msent, mbegin:mend].mean(axis=0)
+			buf[n, :vectors[0].shape[-1]] = vectors[
+					msent][mbegin:mend].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 

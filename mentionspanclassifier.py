@@ -6,6 +6,8 @@ Example: mentionspanclassifier.py train/*.conll dev/*.conll parses/
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
+
 import sys
 from glob import glob
 from lxml import etree
@@ -100,12 +102,14 @@ class MentionDetection:
 			self.labels.append(True)  # True = mention
 			self.spans.append((sentno, begin, end, ' '.join(mention.tokens)))
 		# add other mention candidates that can be extracted
-		# from the parse tree:
+		# from the parse tree
+		allspans = set(goldspans)
 		for sentno, (_, tree) in enumerate(trees):
 			for candidate in getmentioncandidates(tree):
 				begin, end, _headidx, tokens = adjustmentionspan(
 						candidate, tree, True)
-				if (sentno, begin, end) not in goldspans:
+				if (sentno, begin, end) not in allspans and end > begin:
+					allspans.add((sentno, begin, end))
 					result.append((
 						sentno, begin, end,
 						# additional features (should be same as above)
@@ -119,18 +123,15 @@ class MentionDetection:
 		# NB: this encodes each sentence independently
 		vectors = bert.encode_sentences(
 				sentences, self.tokenizer, self.bertmodel)
-		buf = np.zeros((len(result), vectors.shape[-1]))
+		buf = np.zeros((len(result), vectors[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
-		buf = np.zeros((len(result), vectors.shape[-1] + numotherfeats))
+		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
-			# select the BERT token representation of the head of the mention:
-			# msent, mhead = featvec[:2]
-			# buf[n, :vectors.shape[-1]] = vectors[msent, mhead]
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
-			buf[n, :vectors.shape[-1]] = vectors[
-					msent, mbegin:mend].mean(axis=0)
+			buf[n, :vectors[0].shape[-1]] = vectors[
+					msent][mbegin:mend].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 
@@ -233,7 +234,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	print()
 	print(classification_report(
 			np.array(y_val, dtype=bool),
-			probs > 0.5,
+			probs[:, 0] > 0.5,
 			target_names=['nonmention', 'mention']))
 
 
@@ -248,7 +249,7 @@ def predict(trees, ngdata, gadata):
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X)
 	mentions = []
-	for (sentno, begin, end, text), pred in zip(spans, probs > 0.5):
+	for (sentno, begin, end, text), pred in zip(spans, probs[:, 0] > 0.5):
 		if not pred:
 			continue
 		# smallest node spanning begin, end
