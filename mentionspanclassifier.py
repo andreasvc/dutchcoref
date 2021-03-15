@@ -123,15 +123,17 @@ class MentionDetection:
 		# NB: this encodes each sentence independently
 		vectors = bert.encode_sentences(
 				sentences, self.tokenizer, self.bertmodel)
-		buf = np.zeros((len(result), vectors[0].shape[-1]))
+		buf = np.zeros((len(result), 2 * vectors[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
 		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
-			# mean of BERT token representations of the tokens in the mentions.
+			# first and last BERT token representations of the mentions.
 			msent, mbegin, mend = featvec[:3]
 			buf[n, :vectors[0].shape[-1]] = vectors[
-					msent][mbegin:mend].mean(axis=0)
+                    msent][mbegin]
+			buf[n, vectors[0].shape[-1]:-numotherfeats] = vectors[
+					msent][mend - 1].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 
