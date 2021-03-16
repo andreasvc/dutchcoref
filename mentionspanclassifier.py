@@ -87,7 +87,7 @@ class MentionDetection:
 		self.tokenizer = tokenizer
 		self.bertmodel = bertmodel
 
-	def add(self, trees, mentions=None):
+	def add(self, trees, mentions=None, embeddings=None):
 		result = []
 		goldspans = {
 				(mention.sentno, mention.begin, mention.end): mention
@@ -118,21 +118,22 @@ class MentionDetection:
 					self.labels.append(False)  # False = nonmention
 					self.spans.append((sentno, begin, end,
 							' '.join(gettokens(tree, begin, end))))
-		# now use BERT to obtain vectors for the text of these spans
-		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-		# NB: this encodes each sentence independently
-		vectors = bert.encode_sentences(
-				sentences, self.tokenizer, self.bertmodel)
-		buf = np.zeros((len(result), 2 * vectors[0].shape[-1]))
+		if embeddings is None:
+			# now use BERT to obtain vectors for the text of these spans
+			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+			# NB: this encodes each sentence independently
+			embeddings = bert.encode_sentences(
+					sentences, self.tokenizer, self.bertmodel)
+		buf = np.zeros((len(result), 2 * embeddings[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
-		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
+		buf = np.zeros((len(result), embeddings[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# first and last BERT token representations of the mentions.
 			msent, mbegin, mend = featvec[:3]
-			buf[n, :vectors[0].shape[-1]] = vectors[
+			buf[n, :embeddings[0].shape[-1]] = embeddings[
                     msent][mbegin]
-			buf[n, vectors[0].shape[-1]:-numotherfeats] = vectors[
+			buf[n, embeddings[0].shape[-1]:-numotherfeats] = embeddings[
 					msent][mend - 1].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
@@ -240,12 +241,12 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			target_names=['nonmention', 'mention']))
 
 
-def predict(trees, ngdata, gadata):
+def predict(trees, embeddings, ngdata, gadata):
 	"""Load mention classfier, get candidate mentions, and return predicted
 	mentions."""
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+	tokenizer = bertmodel = None
 	data = MentionDetection(tokenizer, bertmodel)
-	data.add(trees)
+	data.add(trees, embeddings=embeddings)
 	X, _y, spans = data.getvectors()
 	model = build_mlp_model([X.shape[-1]], 1)
 	model.load_weights(MODELFILE).expect_partial()

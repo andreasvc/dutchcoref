@@ -100,7 +100,7 @@ class CorefFeatures:
 		self.tokenizer = tokenizer
 		self.bertmodel = bertmodel
 
-	def add(self, trees, mentions):
+	def add(self, trees, mentions, embeddings=None):
 		# global token index
 		i = 0
 		idx = {}  # map (sentno, tokenno) to global token index
@@ -165,20 +165,22 @@ class CorefFeatures:
 							))
 					nn -= 1
 				self.anaphordata.append((a, len(self.coreferent), mention))
-		# now use BERT to obtain vectors for the text of these mentions
-		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-		# NB: this encodes each sentence independently
-		vectors = bert.encode_sentences(
-				sentences, self.tokenizer, self.bertmodel)
+		if embeddings is None:
+			# now use BERT to obtain vectors for the text of these mentions
+			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+			# NB: this encodes each sentence independently
+			embeddings = bert.encode_sentences(
+					sentences, self.tokenizer, self.bertmodel)
 		numotherfeats = len(result[0]) - 6
-		buf = np.zeros((len(result), 2 * vectors[0].shape[-1] + numotherfeats))
+		buf = np.zeros((len(result),
+				2 * embeddings[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			osent, obegin, oend = featvec[3:6]
-			buf[n, :vectors[0].shape[-1]] = vectors[
+			buf[n, :embeddings[0].shape[-1]] = embeddings[
 					msent][mbegin:mend].mean(axis=0)
-			buf[n, vectors[0].shape[-1]:-numotherfeats] = vectors[
+			buf[n, embeddings[0].shape[-1]:-numotherfeats] = embeddings[
 					osent][obegin:oend].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
@@ -317,13 +319,13 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			100 * metrics.accuracy_score(y_true, pred))
 
 
-def predict(trees, mentions):
+def predict(trees, mentions, embeddings):
 	"""Load pronoun resolver, get features for trees, and return a list of
 	mention pairs (anaphor, antecedent) which are predicted to be
 	coreferent."""
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+	tokenizer = bertmodel = None
 	data = CorefFeatures(tokenizer, bertmodel)
-	data.add(trees, mentions)
+	data.add(trees, mentions, embeddings=embeddings)
 	X, y, antecedents, anaphordata = data.getvectors()
 	model = build_mlp_model([X.shape[-1]])
 	model.load_weights(MODELFILE).expect_partial()

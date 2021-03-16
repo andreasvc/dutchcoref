@@ -1110,7 +1110,7 @@ def properheadmatch(mentions, clusters, relaxed=False):
 
 
 def resolvepronouns(trees, mentions, clusters, quotations,
-		maxdist=None, neuralpron=False):
+		maxdist=None, embeddings=None):
 	"""Find antecedents of unresolved pronouns with compatible features."""
 	maxdist = maxdist or 15
 	debug(color('pronoun resolution', 'yellow'))
@@ -1123,9 +1123,9 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 					and a.head.get('quotelabel') == 'O']
 			for a in pronouns[1:]:
 				merge(pronouns[0], a, 'resolvepronouns', mentions, clusters)
-	if neuralpron:
+	if embeddings is not None:
 		import pronounresolution
-		result = pronounresolution.predict(trees, mentions)
+		result = pronounresolution.predict(trees, mentions, embeddings)
 		for mention, other in result:
 			merge(mention, other, 'resolvepronouns.neural',
 					mentions, clusters)
@@ -1140,7 +1140,7 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 				x.begin))
 	sortedmentionssentno = [mention.sentno for mention in sortedmentions]
 	for _, mention in representativementions(
-			mentions, clusters) if not neuralpron else ():
+			mentions, clusters) if embeddings is None else ():
 		# Select pronouns that are not relative pronouns or 1st/2nd person.
 		# Due to precise constructs, pronoun may already have a link, but still
 		# require an antecendent: He saw himself in the mirror.
@@ -1225,14 +1225,20 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 def resolvecoreference(trees, ngdata, gadata, mentions=None,
 		maxprondist=None, relpronounsplit=True, neural=()):
 	"""Get mentions and apply coreference sieves."""
+	if neural:
+		import bert
+		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		embeddings = bert.encode_sentences(sentences, tokenizer, bertmodel)
 	if mentions is None and 'span' in neural:
 		import mentionspanclassifier
-		mentions = mentionspanclassifier.predict(trees, ngdata, gadata)
+		mentions = mentionspanclassifier.predict(
+				trees, embeddings, ngdata, gadata)
 	elif mentions is None:
 		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	if 'feat' in neural:
 		import mentionfeatureclassifier
-		mentionfeatureclassifier.predict(trees, mentions)
+		mentionfeatureclassifier.predict(trees, mentions, embeddings)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE:
@@ -1253,7 +1259,7 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 	properheadmatch(mentions, clusters, relaxed=True)
 	resolvepronouns(
 			trees, mentions, clusters, quotations,
-			maxprondist, 'pron' in neural)
+			maxprondist, embeddings if 'pron' in neural else None)
 	return mentions, clusters, quotations, idx
 
 

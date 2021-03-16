@@ -86,7 +86,7 @@ class MentionFeatures:
 		self.tokenizer = tokenizer
 		self.bertmodel = bertmodel
 
-	def add(self, trees, mentions):
+	def add(self, trees, mentions, embeddings=None):
 		result = []
 		# collect mention features
 		for n, mention in enumerate(mentions):
@@ -107,19 +107,20 @@ class MentionFeatures:
 					# additional features
 					mention.node.get('rel') == 'su',
 					))
-		# now use BERT to obtain vectors for the text of these mentions
-		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-		# NB: this encodes each sentence independently
-		vectors = bert.encode_sentences(
-				sentences, self.tokenizer, self.bertmodel)
-		buf = np.zeros((len(result), vectors[0].shape[-1]))
+		if embeddings is None:
+			# now use BERT to obtain vectors for the text of these mentions
+			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+			# NB: this encodes each sentence independently
+			embeddings = bert.encode_sentences(
+					sentences, self.tokenizer, self.bertmodel)
+		buf = np.zeros((len(result), embeddings[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
-		buf = np.zeros((len(result), vectors[0].shape[-1] + numotherfeats))
+		buf = np.zeros((len(result), embeddings[0].shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
-			buf[n, :vectors[0].shape[-1]] = vectors[
+			buf[n, :embeddings[0].shape[-1]] = embeddings[
 					msent][mbegin:mend].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
@@ -222,12 +223,12 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			target_names=['nonhuman', 'human', 'female', 'male', 'neuter']))
 
 
-def predict(trees, mentions):
+def predict(trees, mentions, embeddings):
 	"""Load mentions classfier, get features for mentions, and update features
 	of mentions."""
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+	tokenizer = bertmodel = None
 	data = MentionFeatures(tokenizer, bertmodel)
-	data.add(trees, mentions)
+	data.add(trees, mentions, embeddings)
 	X, y, mentions = data.getvectors()
 	model = build_mlp_model([X.shape[-1]], y.shape[-1])
 	model.load_weights(MODELFILE).expect_partial()
