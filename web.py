@@ -33,6 +33,7 @@ def results():
 	if 'text' not in request.form:
 		return 'No text supplied'
 	text = request.form['text']
+	neural = [a for a in ('span', 'feat', 'pron') if request.form.get(a)]
 	if len(text) > LIMIT:
 		return 'Too much text; limit: %d bytes' % LIMIT
 
@@ -42,7 +43,7 @@ def results():
 	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
 	coref.setverbose(True, io.StringIO())
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
-			trees, ngdata, gadata)
+			trees, ngdata, gadata, neural=neural)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations,
 			parses=True, coreffmt='conll2012')
