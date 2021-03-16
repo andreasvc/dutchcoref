@@ -1225,7 +1225,10 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 def resolvecoreference(trees, ngdata, gadata, mentions=None,
 		maxprondist=None, relpronounsplit=True, neural=()):
 	"""Get mentions and apply coreference sieves."""
-	if mentions is None:
+	if mentions is None and 'span' in neural:
+		import mentionspanclassifier
+		mentions = mentionspanclassifier.predict(trees, ngdata, gadata)
+	elif mentions is None:
 		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	if 'feat' in neural:
 		import mentionfeatureclassifier
@@ -2188,9 +2191,6 @@ def process(path, output, ngdata, gadata,
 	mentions = None
 	if goldmentions:
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
-	elif 'span' in neural:
-		import mentionspanclassifier
-		mentions = mentionspanclassifier.predict(trees, ngdata, gadata)
 	mentions, clusters, quotations, idx = resolvecoreference(
 			trees, ngdata, gadata, mentions, maxprondist,
 			relpronounsplit='relpronounsplit' not in exclude,
