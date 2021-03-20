@@ -1,3 +1,6 @@
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModel, logging

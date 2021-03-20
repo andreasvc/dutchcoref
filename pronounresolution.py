@@ -16,11 +16,11 @@ from sklearn import metrics
 import numpy as np
 import keras
 from coref import (readconll, parsesentid, readngdata,
-		conllclusterdict, getheadidx, Mention, gettokens)
+		conllclusterdict, getheadidx, Mention, gettokens, sameclause)
 import bert
 
 # NB: if MAXPRONDIST is changed, delete the .npy files
-MAXPRONDIST = 10  # max number of mentions between pronoun and candidate
+MAXPRONDIST = 20  # max number of mentions between pronoun and candidate
 DENSE_LAYER_SIZES = [500, 150, 150]
 DROPOUT_RATE = 0.2
 LEARNING_RATE = 0.001
@@ -58,7 +58,6 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 				text.split(' '), ngdata, gadata)
 		mention.clusterid = clusterid
 		mentions.append(mention)
-	mentions.sort(key=lambda x: (x.sentno, x.begin))
 	return mentions
 
 
@@ -111,10 +110,13 @@ class CorefFeatures:
 				idx[sentno, n] = i
 				i += 1
 		result = []
+		mentions = sorted(mentions, key=lambda m: (m.sentno, m.begin))
 		# collect mentions and candidate antecedents
 		for n, mention in enumerate(mentions):
 			if (mention.type == 'pronoun'
-					and mention.node.get('vwtype') != 'betr'  # no rel. pronouns
+					# no relative/reciprocal/reflexive pronouns
+					and mention.node.get('vwtype') not in (
+						'betr', 'recip', 'refl')
 					and mention.features['person'] not in ('1', '2')):
 
 				a = len(self.coreferent)
@@ -143,6 +145,21 @@ class CorefFeatures:
 				# how frequent is this mention in the context?
 				# freq = Counter(other.clusterid for other in mentions[nn:n])
 				for other in mentions[nn + 1:n][::-1]:
+					if other.node.get('rel') in ('app', 'det'):
+						continue
+					# The antecedent should come before the anaphor,
+					# and should not contain the anaphor.
+					if (other.sentno == mention.sentno
+							and (other.begin >= mention.begin
+								# allow: [de raket met [haar] massa van 750 ton]
+								or (mention.head.get('vwtype') != 'bez'
+									and other.end >= mention.end))):
+						continue
+					if (mention.head.get('vwtype') != 'bez'  # co-arguments
+							and sameclause(other.node, mention.node)
+							and other.node.find('..//node[@id="%s"]'
+							% mention.node.get('id')) is not None):
+						continue
 					iscoreferent = mention.clusterid == other.clusterid
 					self.coreferent.append(iscoreferent)
 					self.antecedents.append(other)
@@ -161,6 +178,11 @@ class CorefFeatures:
 							checkfeat(mention, other, 'gender'),  # compatible feature
 							checkfeat(mention, other, 'human'),  # compatible feature
 							checkfeat(mention, other, 'number'),  # compatible feature
+							other.features['person'] == '1',
+							other.features['person'] == '2',
+							other.features['person'] == '3',
+							mention.head.get('quotelabel') == 'O',  # not part of direct speech
+							other.head.get('quotelabel') == 'O',  # not part of direct speech
 							# freq[other.clusterid] / sum(freq.values()).  # salience
 							))
 					nn -= 1
@@ -285,7 +307,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	probs = model.predict(X_val)
 	pred = probs > MENTION_SCORE_THRESHOLD
 	print('(pronoun, candidate) pair classification scores:')
-	print(metrics.classification_report(y_val, pred))  # mention-pair scores
+	print(metrics.classification_report(y_val, pred))
 
 	# The above are scores for mention pairs. To get actual pronoun accuracy,
 	# select a best candidate for each pronoun and evaluate on that.
@@ -312,7 +334,8 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 		pred.append(antecedent.clusterid
 				if probs[a:b].max() > MENTION_SCORE_THRESHOLD else -1)
 		y_true.append(anaphor.clusterid)
-		print(' '.join(anaphor.tokens), '->',
+		print(f'{int(pred[-1] == y_true[-1])} {probs[a:b].max():.3f}',
+				' '.join(anaphor.tokens), '->',
 				(' '.join(antecedent.tokens)
 				if probs[a:b].max() > MENTION_SCORE_THRESHOLD else '(none)'))
 	print('Pronoun resolution accuracy:',
