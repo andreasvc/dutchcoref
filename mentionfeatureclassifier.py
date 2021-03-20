@@ -2,6 +2,10 @@
 
 Usage: mentionfeatureclassifier.py <train> <validation> <parsesdir>
 Example: mentionfeatureclassifier.py train/*.conll dev/*.conll parses/
+
+Options:
+    --export=<filename>   export features to TSV file for annotation
+    --import=<filename>   import annotated features from TSV file
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -10,8 +14,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
 
 import sys
 from glob import glob
+import getopt
 from lxml import etree
 import numpy as np
+import pandas as pd
 import keras
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
@@ -29,7 +35,8 @@ MODELFILE = 'mentionfeatclassif.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
-def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
+def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
+		annotations=None, exportfile=None):
 	"""Extract gold mentions from annotated data and merge features.
 
 	:returns: mentions sorted by sentno, begin; including gold clusterid
@@ -53,12 +60,27 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 			mention = Mention(
 					len(mentions), sentno, parno, tree, node, begin, end,
 					headidx, text.split(' '), ngdata, gadata)
-			mention.singleton = len(spans) == 1
+			if (annotations is not None
+					and (filename, sentno, begin, end) in annotations):
+				mention.features['gender'] = annotations[
+						filename, sentno, begin, end]
+				# human feature is implied by gender feature
+				if mention.features['gender'] == 'n':
+					mention.features['human'] = 0
+				else:  # f, m, mf
+					mention.features['human'] = 1
 			if firstment is None:
 				firstment = mention
 			else:
 				mergefeatures(firstment, mention)
 			mentions.append(mention)
+		if exportfile is not None:
+			print(filename, firstment.sentno, firstment.begin, firstment.end,
+					firstment.features['gender'] or '',
+					', '.join(text for _, _, _, text in sorted(spans)),
+					' '.join(gettokens(firstment.node.getroottree().getroot(),
+						0, 9999)),
+					sep='\t', file=exportfile)
 	# sort by sentence, then from longest to shortest span
 	mentions.sort(key=lambda x: (x.sentno, x.begin - x.end))
 	for n, mention in enumerate(mentions):
@@ -66,7 +88,7 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 	return mentions
 
 
-def loadmentions(conllfile, parsesdir):
+def loadmentions(conllfile, parsesdir, annotations, exportfile):
     ngdata, gadata = readngdata()
     # assume single document
     conlldata = next(iter(readconll(conllfile).values()))
@@ -74,7 +96,9 @@ def loadmentions(conllfile, parsesdir):
     trees = [(parsesentid(filename), etree.parse(filename))
             for filename in filenames]
     # extract gold mentions with gold clusters
-    mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
+    mentions = extractmentionsfromconll(
+			os.path.splitext(os.path.basename(conllfile))[0],
+			conlldata, trees, ngdata, gadata, annotations, exportfile)
     return trees, mentions
 
 
@@ -89,7 +113,13 @@ class MentionFeatures:
 	def add(self, trees, mentions, embeddings=None):
 		result = []
 		# collect mention features
-		for n, mention in enumerate(mentions):
+		for mention in mentions:
+			# the features of pronouns are grammatically marked so it
+			# _probably_ doesn't make sense to train/predict them. however,
+			# this should be confirmed since hij/zij can be used for inanimate
+			# referents.
+			if mention.type == 'pronoun':
+				continue
 			# feature indicators: ['nh', 'h', 'f', 'm', 'n']
 			# multiple values can be True!
 			label = np.zeros(5)
@@ -131,7 +161,8 @@ class MentionFeatures:
 				self.mentions)
 
 
-def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel):
+def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel,
+		annotations=None, exportfile=None):
 	# NB: assumes the input files don't change;
 	# otherwise, manually delete cached file!
 	if os.path.exists(cachefile):
@@ -145,7 +176,8 @@ def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel):
 		for n, conllfile in enumerate(files, 1):
 			parses = os.path.join(parsesdir,
 					os.path.basename(conllfile.rsplit('.', 1)[0]))
-			trees, mentions = loadmentions(conllfile, parses)
+			trees, mentions = loadmentions(conllfile, parses,
+					annotations=annotations, exportfile=exportfile)
 			data.add(trees, mentions)
 			print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
 		X, y, mentions = data.getvectors()
@@ -160,7 +192,7 @@ def build_mlp_model(input_shape, num_labels):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.Input(shape=input_shape),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(0.2, seed=7),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),
@@ -185,11 +217,17 @@ def build_mlp_model(input_shape, num_labels):
 	return model
 
 
-def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
+def train(trainfiles, validationfiles, parsesdir, annotations, exportfile,
+		tokenizer, bertmodel):
+	if exportfile is not None:
+		print('filename', 'sentno', 'begin', 'end', 'gender', 'mentions',
+				'sentence', sep='\t', file=exportfile)
 	X_train, y_train, _mentions = getfeatures(
-			trainfiles, parsesdir, 'mentfeattrain.npy', tokenizer, bertmodel)
+			trainfiles, parsesdir, 'mentfeattrain.npy',
+			tokenizer, bertmodel, annotations, exportfile)
 	X_val, y_val, _mentions = getfeatures(
-			validationfiles, parsesdir, 'mentfeatval.npy', tokenizer, bertmodel)
+			validationfiles, parsesdir, 'mentfeatval.npy',
+			tokenizer, bertmodel, annotations, exportfile)
 	print('training data', X_train.shape)
 	print('validation data', X_val.shape)
 	classif_model = build_mlp_model([X_train.shape[-1]], y_val.shape[-1])
@@ -211,16 +249,27 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 			validation_data=(X_val, y_val), verbose=1)
 
 
-def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
+def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 	X_val, y_val, mentions = getfeatures(
-			validationfiles, parsesdir, 'mentfeatval.npy', tokenizer, bertmodel)
+			validationfiles, parsesdir, 'mentfeatval.npy', tokenizer, bertmodel,
+			annotations, None)
 	model = build_mlp_model([X_val.shape[-1]], y_val.shape[-1])
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X_val)
+	print('feat=prob/gold')
+	for mention, p, g in zip(mentions, probs, np.array(y_val, dtype=int)):
+		print(f'nh={p[0]:.3f}/{g[0]} '
+				f'h={p[1]:.3f}/{g[1]} '
+				f'f={p[2]:.3f}/{g[2]} '
+				f'm={p[3]:.3f}/{g[3]} '
+				f'n={p[4]:.3f}/{g[4]} '
+				f'{" ".join(mention.tokens)}')
+	print()
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			np.array([a > 0.5 for a in probs], dtype=bool),
-			target_names=['nonhuman', 'human', 'female', 'male', 'neuter']))
+			target_names=['nonhuman', 'human', 'female', 'male', 'neuter'],
+			zero_division=0))
 
 
 def predict(trees, mentions, embeddings):
@@ -251,10 +300,32 @@ def predict(trees, mentions, embeddings):
 
 def main():
 	"""CLI."""
+	longopts = ['import=', 'export=', 'help']
+	try:
+		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
+	except getopt.GetoptError:
+		print(__doc__)
+		return
+	opts = dict(opts)
+	if '--help' in opts or len(args) != 3:
+		print(__doc__)
+		return
+	trainfiles, validationfiles, parsesdir = args
 	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
-	_, trainfiles, validationfiles, parsesdir = sys.argv
-	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel)
-	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)
+	annotations = None
+	if opts.get('--import'):
+		annotations = pd.read_csv(opts.get('--import'), sep='\t',
+				dtype={'gender': str}, keep_default_na=False).set_index(
+				['filename', 'sentno', 'begin', 'end'])['gender'].to_dict()
+	try:
+		exportfile = (open(opts.get('--export'), 'w')
+				if opts.get('--export') else None)
+		train(trainfiles, validationfiles, parsesdir,
+				annotations, exportfile, tokenizer, bertmodel)
+		evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel)
+	finally:
+		if opts.get('--export'):
+			exportfile.close()
 
 
 if __name__ == '__main__':
