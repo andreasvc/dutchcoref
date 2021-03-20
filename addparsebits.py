@@ -67,10 +67,13 @@ def convalpino(conllfile, parsesdir):
 			headrules='../disco-dop/alpino.headrules')
 	for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
 		if len(chunk) != len(item.sent):
+			for fields in chunk:
+				print(fields)
+			print(item.sent)
 			raise ValueError('length mismatch')
 		if len(chunk[0]) < 12:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
-	with open(conllfile, 'w') as out:
+	with open(conllfile + '.tmp', 'w') as out:
 		print(header, file=out)
 		for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
 			raisediscnodes(item.tree)
@@ -86,34 +89,42 @@ def convalpino(conllfile, parsesdir):
 				print('\t'.join(line[1:]), file=out)
 			print('', file=out)
 		print('#end document', file=out)
+	os.rename(conllfile + '.tmp', conllfile)
 
 
 def convconll(goldconll, parsesconll):
-	"""Copy columns from parsesconll to goldconll file; overwrite in-place.
-
-	Files should contain only a single document."""
-	goldconlldata = next(iter(readconll(goldconll).values()))
-	header = open(goldconll).readline().rstrip()
-	parsesconlldata = next(iter(readconll(parsesconll).values()))
-	if len(goldconlldata) != len(parsesconlldata):
-		raise ValueError('mismatch in number of sentences')
-	for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
-		if len(gchunk) != len(pchunk):
-			raise ValueError('Sentence length mismatch')
-		if len(pchunk[0]) < 13:
-			raise ValueError('Not enough fields for gold CoNLL 2012 file')
-		if len(gchunk[0]) < 13:
-			raise ValueError('Not enough fields for parses CoNLL 2012 file')
-	with open(goldconll, 'w') as out:
-		print(header, file=out)
-		for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
-			for gline, pline in zip(gchunk, pchunk):
-				gline[5] = pline[5]
-				gline[6] = pline[6]
-				gline[11] = pline[11]
-				print('\t'.join(gline[1:]), file=out)
-			print('', file=out)
-		print('#end document', file=out)
+	"""Copy columns from parsesconll to goldconll file; overwrite in-place."""
+	goldconlldata = readconll(goldconll)
+	parsesconlldata = readconll(parsesconll)
+	if goldconlldata.viewkeys() != parsesconlldata.viewkeys():
+		raise ValueError('mismatch in documents or doc labels')
+	for docname in goldconlldata:
+		gdoc = goldconlldata[docname]
+		pdoc = parsesconlldata[docname]
+		if len(gdoc) != len(pdoc):
+			raise ValueError('mismatch in number of sentences')
+		for gchunk, pchunk in zip(gdoc, pdoc):
+			if len(gchunk) != len(pchunk):
+				raise ValueError('Sentence length mismatch')
+			if len(pchunk[0]) < 13:
+				raise ValueError('Not enough fields in parses CoNLL 2012 file')
+	with open(goldconll + '.tmp', 'w') as out:
+		for docname in goldconlldata:
+			print('#begin document %s' % docname, file=out)
+			for gchunk, pchunk in zip(goldconlldata, parsesconlldata):
+				for gline, pline in zip(gchunk, pchunk):
+					if len(gline) < 13:
+						# NB: assumes first 4 columns match CoNLL 2012 format!
+						gline[:] = (gline[:-1]
+								+ ['-'] * (13 - len(gline))
+								+ gline[-1:])
+					gline[5] = pline[5]
+					gline[6] = pline[6]
+					gline[11] = pline[11]
+					print('\t'.join(gline[1:]), file=out)
+				print('', file=out)
+			print('#end document', file=out)
+	os.rename(goldconll + '.tmp', goldconll)
 
 
 def main():

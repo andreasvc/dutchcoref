@@ -26,7 +26,7 @@ def getstats(args, parsesdir=None):
 			print('file:', fname)
 			print(err)
 			return
-		for (docname, part), data in docs.items():
+		for docname, data in docs.items():
 			try:
 				goldspansforcluster = coref.conllclusterdict(data)
 			except Exception as err:
@@ -38,10 +38,10 @@ def getstats(args, parsesdir=None):
 				path = os.path.join(parsesdir, docname, '*.xml')
 				filenames = sorted(glob(path), key=coref.parsesentid)
 				if len(data) != len(filenames):
-					raise ValueError('filename: %s; document %s %s; '
+					raise ValueError('filename: %s; document %s '
 							'sentences in CoNLL (%d) '
 							'and number of .xml parses (%d) not equal' %
-							(fname, docname, part, len(data), len(filenames)))
+							(fname, docname, len(data), len(filenames)))
 				trees = [(coref.parsesentid(filename), etree.parse(filename))
 						for filename in filenames]
 				mentions = coref.extractmentionsfromconll(

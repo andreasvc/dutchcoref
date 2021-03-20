@@ -6,7 +6,7 @@ setverbose(True, sys.stdout)
 for filename in sys.argv[1:]:
 	try:
 		for docname, conlldata in readconll(filename).items():
-			print('\n', filename, *docname)
+			print('\n', filename, docname)
 			conllclusterdict(conlldata)
 	except Exception as err:
 		print(err)

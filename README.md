@@ -192,15 +192,17 @@ References
 ----------
 If you use this code for research, please cite the following paper:
 
-    @article{vancranenburgh2019coref,
-      author={Andreas van Cranenburgh},
-      year={2019},
-      title={A {Dutch} coreference resolution system with an evaluation on literary fiction},
-      journal={Computational Linguistics in the Netherlands Journal},
-      volume={9},
-      pages={27--54},
-      url={https://clinjournal.org/clinj/article/view/91},
-    }
+```bibtex
+@article{vancranenburgh2019coref,
+	author={Andreas van Cranenburgh},
+	year={2019},
+	title={A {Dutch} coreference resolution system with an evaluation on literary fiction},
+	journal={Computational Linguistics in the Netherlands Journal},
+	volume={9},
+	pages={27--54},
+	url={https://clinjournal.org/clinj/article/view/91},
+}
+```
 
 This code base is a Dutch implementation of the Stanford Multi-Pass Sieve
 Coreference System for English:
@@ -213,5 +215,5 @@ and https://github.com/antske/coref_draft
 
 The number & gender data is derived from:
 
-Shane Bergsma and Dekang Lin (2006). Bootstrapping Path-Based Pronoun Resolution, In Proceedings of COLING/ACL.
-http://www.clsp.jhu.edu/~sbergsma/Gender/
+Shane Bergsma and Dekang Lin (2006). Bootstrapping Path-Based Pronoun Resolution, In Proceedings of COLING/ACL. https://www.aclweb.org/anthology/P11-1079
+Data: https://cemantix.org/conll/2012/data.html

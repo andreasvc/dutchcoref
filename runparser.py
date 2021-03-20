@@ -56,7 +56,7 @@ def parsesemeval(path, outdir):
 	docnames = re.findall(r'#begin document ([\w_]+)', data)
 	docs = readconll(path)
 	for n, docname in enumerate(docnames, 1):
-		data = docs[docname, 0]
+		data = docs[docname]
 		tokenidx = 2
 		print('Parsing %d/%d: %s' % (n, len(docnames), docname))
 		parse(data, docname, tokenidx)
