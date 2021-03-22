@@ -44,7 +44,7 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
 	for clusterid, spans in goldspansforcluster.items():
-		firstment = None
+		firstment = annotatedfeat = None
 		for sentno, begin, end, text in sorted(spans):
 			# smallest node spanning begin, end
 			(parno, _sentno), tree = trees[sentno]
@@ -67,10 +67,19 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 				# human feature is implied by gender feature
 				if mention.features['gender'] == 'n':
 					mention.features['human'] = 0
-				else:  # f, m, mf
+				elif mention.features['gender'] in ('f', 'm', 'fm'):
 					mention.features['human'] = 1
+				else:
+					raise ValueError(('annotated gender for %r'
+							' has unrecognized value %r; '
+							'should be one of f, m, n, or fm.') % (
+							(filename, sentno, begin, end),
+							mention.features['gender']))
+				annotatedfeat = mention.features
 			if firstment is None:
 				firstment = mention
+			elif annotatedfeat is not None:
+				mention.features.update(firstment.features)
 			else:
 				mergefeatures(firstment, mention)
 			mentions.append(mention)
