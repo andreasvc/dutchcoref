@@ -187,6 +187,8 @@ class CorefFeatures:
 							))
 					nn -= 1
 				self.anaphordata.append((a, len(self.coreferent), mention))
+		if not result:
+			return
 		if embeddings is None:
 			# now use BERT to obtain vectors for the text of these mentions
 			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
@@ -349,6 +351,8 @@ def predict(trees, mentions, embeddings):
 	tokenizer = bertmodel = None
 	data = CorefFeatures(tokenizer, bertmodel)
 	data.add(trees, mentions, embeddings=embeddings)
+	if not data.result:
+		return []
 	X, y, antecedents, anaphordata = data.getvectors()
 	model = build_mlp_model([X.shape[-1]])
 	model.load_weights(MODELFILE).expect_partial()
