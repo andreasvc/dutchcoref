@@ -12,9 +12,11 @@ import sys
 # from collections import Counter
 from glob import glob
 from lxml import etree
+import random as python_random
 from sklearn import metrics
 import numpy as np
 import keras
+import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata,
 		conllclusterdict, getheadidx, Mention, gettokens, sameclause)
 import bert
@@ -247,22 +249,22 @@ def build_mlp_model(input_shape):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.Input(shape=input_shape),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),
 			keras.layers.Activation('relu'),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[1], name='dense1'),
 			keras.layers.BatchNormalization(name='bn1'),
 			keras.layers.Activation('relu'),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(DROPOUT_RATE),
 
 			# keras.layers.Dense(DENSE_LAYER_SIZES[2], name='dense2'),
 			# keras.layers.BatchNormalization(name='bn2'),
 			# keras.layers.Activation('relu'),
-			# keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			# keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(
 				1, name='output',
@@ -273,6 +275,9 @@ def build_mlp_model(input_shape):
 
 
 def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
+	np.random.seed(1)
+	python_random.seed(1)
+	tf.random.set_seed(1)
 	X_train, y_train, _clusters, _indices = getfeatures(
 			trainfiles, parsesdir, 'prontrain.npy', tokenizer, bertmodel)
 	X_val, y_val, _clusters, _indices = getfeatures(

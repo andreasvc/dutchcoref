@@ -13,12 +13,14 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
 
 import sys
-from glob import glob
 import getopt
+from glob import glob
+import random as python_random
 from lxml import etree
 import numpy as np
 import pandas as pd
 import keras
+import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		parsesentid, Mention, mergefeatures, gettokens)
@@ -201,22 +203,22 @@ def build_mlp_model(input_shape, num_labels):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.Input(shape=input_shape),
-			keras.layers.Dropout(0.2, seed=7),
+			keras.layers.Dropout(0.2),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),
 			keras.layers.Activation('relu'),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[1], name='dense1'),
 			keras.layers.BatchNormalization(name='bn1'),
 			keras.layers.Activation('relu'),
-			keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			keras.layers.Dropout(DROPOUT_RATE),
 
 			# keras.layers.Dense(DENSE_LAYER_SIZES[2], name='dense2'),
 			# keras.layers.BatchNormalization(name='bn2'),
 			# keras.layers.Activation('relu'),
-			# keras.layers.Dropout(DROPOUT_RATE, seed=7),
+			# keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(
 				num_labels, name='output',
@@ -228,6 +230,9 @@ def build_mlp_model(input_shape, num_labels):
 
 def train(trainfiles, validationfiles, parsesdir, annotations, exportfile,
 		tokenizer, bertmodel):
+	np.random.seed(1)
+	python_random.seed(1)
+	tf.random.set_seed(1)
 	if exportfile is not None:
 		print('filename', 'sentno', 'begin', 'end', 'gender', 'mentions',
 				'sentence', sep='\t', file=exportfile)
