@@ -1,7 +1,7 @@
 """Train pronoun resolution model.
 
 Usage: pronounresolution.py <train> <validation> <parsesdir>
-Example: pronounresolution.py train/*.conll dev/*.conll parses/
+Example: pronounresolution.py 'train/*.conll' 'dev/*.conll' parses/
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow

@@ -27,11 +27,11 @@ Options:
         prefix.conll (--fmt), and prefix.icarus (ICARUS allocation format)
     --maxprondist=n
         the maximum distance in sentences between pronoun and antecedent.
-    --neural=<mentdet,mentfeat,pron>
-		enable one or more neural components:
+    --neural=<span,feat,pron>
+        enable one or more neural components:
             :span: see mentionspanclassifier.py
-			:feat: see mentionfeatureclassifier.py
-			:pron: see pronounresolution.py
+            :feat: see mentionfeatureclassifier.py
+            :pron: see pronounresolution.py
     --exclude=<item1,item2,...>
         exclude given types of mentions from output:
             :singletons: mentions without any coreference links

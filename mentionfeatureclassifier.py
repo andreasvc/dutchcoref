@@ -1,11 +1,14 @@
 """Mention feature classifier.
 
 Usage: mentionfeatureclassifier.py <train> <validation> <parsesdir>
-Example: mentionfeatureclassifier.py train/*.conll dev/*.conll parses/
+Example: mentionfeatureclassifier.py 'train/*.conll' 'dev/*.conll' parses/
 
 Options:
-    --export=<filename>   export features to TSV file for annotation
-    --import=<filename>   import annotated features from TSV file
+    --import=<dir>  import annotated features from TSV files;
+                    the annotations for an entity will override the detected
+                    features of all its mentions.
+    --export=<dir>  export detected features to TSV files for annotation;
+                    when this option is enabled, no training is done.
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -37,15 +40,18 @@ MODELFILE = 'mentionfeatclassif.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
-def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
+def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 		annotations=None, exportfile=None):
 	"""Extract gold mentions from annotated data and merge features.
 
 	:returns: mentions sorted by sentno, begin; including gold clusterid
 		and detected features for the cluster."""
+	if exportfile is not None:
+		print('filename', 'sentno', 'begin', 'end', 'gender', 'mentions',
+				'sentence', sep='\t', file=exportfile)
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
-	for clusterid, spans in goldspansforcluster.items():
+	for _clusterid, spans in goldspansforcluster.items():
 		firstment = annotatedfeat = None
 		for sentno, begin, end, text in sorted(spans):
 			# smallest node spanning begin, end
@@ -63,9 +69,9 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 					len(mentions), sentno, parno, tree, node, begin, end,
 					headidx, text.split(' '), ngdata, gadata)
 			if (annotations is not None
-					and (filename, sentno, begin, end) in annotations):
+					and (name, sentno, begin, end) in annotations):
 				mention.features['gender'] = annotations[
-						filename, sentno, begin, end]
+						name, sentno, begin, end]
 				# human feature is implied by gender feature
 				if mention.features['gender'] == 'n':
 					mention.features['human'] = 0
@@ -75,7 +81,7 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 					raise ValueError(('annotated gender for %r'
 							' has unrecognized value %r; '
 							'should be one of f, m, n, or fm.') % (
-							(filename, sentno, begin, end),
+							(name, sentno, begin, end),
 							mention.features['gender']))
 				annotatedfeat = mention.features
 			if firstment is None:
@@ -86,7 +92,7 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 				mergefeatures(firstment, mention)
 			mentions.append(mention)
 		if exportfile is not None:
-			print(filename, firstment.sentno, firstment.begin, firstment.end,
+			print(name, firstment.sentno, firstment.begin, firstment.end,
 					firstment.features['gender'] or '',
 					', '.join(text for _, _, _, text in sorted(spans)),
 					' '.join(gettokens(firstment.node.getroottree().getroot(),
@@ -99,18 +105,25 @@ def extractmentionsfromconll(filename, conlldata, trees, ngdata, gadata,
 	return mentions
 
 
-def loadmentions(conllfile, parsesdir, annotations, exportfile):
-    ngdata, gadata = readngdata()
-    # assume single document
-    conlldata = next(iter(readconll(conllfile).values()))
-    filenames = sorted(glob(os.path.join(parsesdir, '*.xml')), key=parsesentid)
-    trees = [(parsesentid(filename), etree.parse(filename))
-            for filename in filenames]
-    # extract gold mentions with gold clusters
-    mentions = extractmentionsfromconll(
-			os.path.splitext(os.path.basename(conllfile))[0],
-			conlldata, trees, ngdata, gadata, annotations, exportfile)
-    return trees, mentions
+def loadmentions(conllfile, parsesdir, ngdata, gadata,
+		annotations, exportpath=None):
+	# assume single document
+	conlldata = next(iter(readconll(conllfile).values()))
+	filenames = sorted(glob(os.path.join(parsesdir, '*.xml')), key=parsesentid)
+	trees = [(parsesentid(filename), etree.parse(filename))
+			for filename in filenames]
+	name = os.path.splitext(os.path.basename(conllfile))[0]
+	try:
+		exportfile = open(os.path.join(exportpath, name) + '.tsv',
+				'w') if exportpath else None
+		# extract gold mentions with gold clusters
+		mentions = extractmentionsfromconll(
+				name, conlldata, trees, ngdata, gadata, annotations,
+				exportfile)
+	finally:
+		if exportfile is not None:
+			exportfile.close()
+	return trees, mentions
 
 
 class MentionFeatures:
@@ -172,8 +185,8 @@ class MentionFeatures:
 				self.mentions)
 
 
-def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel,
-		annotations=None, exportfile=None):
+def getfeatures(pattern, parsesdir, cachefile, tokenizer, bertmodel,
+		annotations=None):
 	# NB: assumes the input files don't change;
 	# otherwise, manually delete cached file!
 	if os.path.exists(cachefile):
@@ -183,12 +196,15 @@ def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel,
 			mentions = np.load(inp, allow_pickle=True)
 	else:
 		data = MentionFeatures(tokenizer, bertmodel)
-		files = glob(files)
+		ngdata, gadata = readngdata()
+		files = glob(pattern)
+		if not files:
+			raise ValueError('pattern did not match any files: %s' % pattern)
 		for n, conllfile in enumerate(files, 1):
 			parses = os.path.join(parsesdir,
 					os.path.basename(conllfile.rsplit('.', 1)[0]))
-			trees, mentions = loadmentions(conllfile, parses,
-					annotations=annotations, exportfile=exportfile)
+			trees, mentions = loadmentions(conllfile, parses, ngdata, gadata,
+					annotations=annotations)
 			data.add(trees, mentions)
 			print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
 		X, y, mentions = data.getvectors()
@@ -228,20 +244,17 @@ def build_mlp_model(input_shape, num_labels):
 	return model
 
 
-def train(trainfiles, validationfiles, parsesdir, annotations, exportfile,
+def train(trainfiles, validationfiles, parsesdir, annotations,
 		tokenizer, bertmodel):
 	np.random.seed(1)
 	python_random.seed(1)
 	tf.random.set_seed(1)
-	if exportfile is not None:
-		print('filename', 'sentno', 'begin', 'end', 'gender', 'mentions',
-				'sentence', sep='\t', file=exportfile)
 	X_train, y_train, _mentions = getfeatures(
 			trainfiles, parsesdir, 'mentfeattrain.npy',
-			tokenizer, bertmodel, annotations, exportfile)
+			tokenizer, bertmodel, annotations)
 	X_val, y_val, _mentions = getfeatures(
 			validationfiles, parsesdir, 'mentfeatval.npy',
-			tokenizer, bertmodel, annotations, exportfile)
+			tokenizer, bertmodel, annotations)
 	print('training data', X_train.shape)
 	print('validation data', X_val.shape)
 	classif_model = build_mlp_model([X_train.shape[-1]], y_val.shape[-1])
@@ -265,8 +278,8 @@ def train(trainfiles, validationfiles, parsesdir, annotations, exportfile,
 
 def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 	X_val, y_val, mentions = getfeatures(
-			validationfiles, parsesdir, 'mentfeatval.npy', tokenizer, bertmodel,
-			annotations, None)
+			validationfiles, parsesdir, 'mentfeatval.npy',
+			tokenizer, bertmodel, annotations)
 	model = build_mlp_model([X_val.shape[-1]], y_val.shape[-1])
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X_val)
@@ -325,21 +338,31 @@ def main():
 		print(__doc__)
 		return
 	trainfiles, validationfiles, parsesdir = args
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 	annotations = None
 	if opts.get('--import'):
-		annotations = pd.read_csv(opts.get('--import'), sep='\t',
-				dtype={'gender': str}, keep_default_na=False).set_index(
+		annotations = pd.concat([
+				pd.read_csv(
+					fname, sep='\t',
+					dtype={'gender': str}, keep_default_na=False)
+				for fname in glob(opts.get('--import'))]).set_index(
 				['filename', 'sentno', 'begin', 'end'])['gender'].to_dict()
-	try:
-		exportfile = (open(opts.get('--export'), 'w')
-				if opts.get('--export') else None)
+	if opts.get('--export'):
+		exportpath = opts.get('--export')
+		ngdata, gadata = readngdata()
+		for pattern in (trainfiles, validationfiles):
+			files = glob(pattern)
+			if not files:
+				raise ValueError('pattern did not match any files: %s' % pattern)
+			for conllfile in files:
+				parses = os.path.join(parsesdir,
+						os.path.basename(conllfile.rsplit('.', 1)[0]))
+				_ = loadmentions(conllfile, parses, ngdata, gadata,
+						annotations=annotations, exportpath=exportpath)
+	else:
+		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 		train(trainfiles, validationfiles, parsesdir,
-				annotations, exportfile, tokenizer, bertmodel)
+				annotations, tokenizer, bertmodel)
 		evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel)
-	finally:
-		if opts.get('--export'):
-			exportfile.close()
 
 
 if __name__ == '__main__':
