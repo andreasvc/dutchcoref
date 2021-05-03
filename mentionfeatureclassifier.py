@@ -310,10 +310,14 @@ def predict(trees, mentions, embeddings):
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X)
 	for row, mention in zip(probs, mentions):
+		if mention.type == 'pronoun':
+			continue
 		if row[0] > 0.5 and row[1] < 0.5:
 			mention.features['human'] = 0
-		if row[0] < 0.5 and row[1] > 0.5:
+		elif row[0] < 0.5 and row[1] > 0.5:
 			mention.features['human'] = 1
+		else:
+			mention.features['human'] = None
 		gend = ''
 		if row[2] > 0.5:
 			gend += 'f'
@@ -321,7 +325,9 @@ def predict(trees, mentions, embeddings):
 			gend += 'm'
 		if row[4] > 0.5:
 			gend += 'n'
-		if gend:
+		if gend == '' or gend == 'fmn':
+			mention.features['gender'] = None
+		else:
 			mention.features['gender'] = gend
 
 
