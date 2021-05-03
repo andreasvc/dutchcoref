@@ -1,7 +1,7 @@
 """Mention span classifier (mention/nonmention).
 
 Usage: mentionspanclassifier.py <train> <validation> <parsesdir>
-Example: mentionspanclassifier.py train/*.conll dev/*.conll parses/
+Example: mentionspanclassifier.py 'train/*.conll' 'dev/*.conll' parses/
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow

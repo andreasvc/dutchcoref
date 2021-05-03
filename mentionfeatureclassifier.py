@@ -325,10 +325,12 @@ def predict(trees, mentions, embeddings):
 			gend += 'm'
 		if row[4] > 0.5:
 			gend += 'n'
-		if gend == '' or gend == 'fmn':
-			mention.features['gender'] = None
-		else:
+		if gend != '' and gend != 'fmn':
 			mention.features['gender'] = gend
+		elif mention.features['human']:
+			mention.features['gender'] = 'fm'
+		else:
+			mention.features['gender'] = None
 
 
 def main():
