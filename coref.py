@@ -335,6 +335,10 @@ def getmentions(trees, ngdata, gadata, relpronounsplit):
 		for candidate in candidates:
 			considermention(candidate, tree, sentno, parno, mentions, covered,
 					ngdata, gadata, relpronounsplit)
+	# sort by sentence and start token, then from longest to shortest span
+	mentions.sort(key=lambda x: (x.sentno, x.begin, x.begin - x.end))
+	for n, mention in enumerate(mentions):
+		mention.id = mention.clusterid = n  # fix mention IDs after sorting
 	return mentions
 
 
@@ -1146,6 +1150,7 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 		# require an antecendent: He saw himself in the mirror.
 		if (mention.type == 'pronoun'
 				and mention.node.get('vwtype') != 'betr'  # no rel. pronouns
+				and mention.node.get('vwtype') != 'recip'  # no recip. pronouns
 				and mention.features['person'] not in ('1', '2')):
 			debug(mention.sentno, mention.begin, mention, mention.featrepr())
 			i = bisect(sortedmentionssentno, mention.sentno)
@@ -2069,7 +2074,7 @@ def conllclusterdict(conlldata, tokenidx=4):
 	for sentno, chunk in enumerate(conlldata):
 		stacks = {}
 		for idx, fields in enumerate(chunk):
-			lineno = int(fields[0])
+			lineno = fields[0]
 			coreflabels = fields[-1]
 			for coreflabel in coreflabels.split('|'):
 				if coreflabel == '-' or coreflabel == '_':
