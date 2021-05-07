@@ -138,12 +138,6 @@ class MentionFeatures:
 		result = []
 		# collect mention features
 		for mention in mentions:
-			# the features of pronouns are grammatically marked so it
-			# _probably_ doesn't make sense to train/predict them. however,
-			# this should be confirmed since hij/zij can be used for inanimate
-			# referents.
-			if mention.type == 'pronoun':
-				continue
 			# feature indicators: ['nh', 'h', 'f', 'm', 'n']
 			# multiple values can be True!
 			label = np.zeros(5)
@@ -310,8 +304,6 @@ def predict(trees, mentions, embeddings):
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X)
 	for row, mention in zip(probs, mentions):
-		if mention.type == 'pronoun':
-			continue
 		if row[0] > 0.5 and row[1] < 0.5:
 			mention.features['human'] = 0
 		elif row[0] < 0.5 and row[1] > 0.5:
