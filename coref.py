@@ -1344,27 +1344,39 @@ def mergefeatures(mention, other):
 	"""Update the features of the first mention with those of second.
 	In case one is more specific than the other, keep specific value.
 	In case of conflict, keep both values."""
+	orig = mention.featrepr()
+	changed = False
 	for key in mention.features:
 		if (key == 'person' or mention.features[key] == other.features[key]
 				or other.features[key] in (None, 'both')):
 			pass  # only pronouns should have a 'person' attribute
 		elif mention.features[key] in (None, 'both'):
 			mention.features[key] = other.features[key]
+			changed = True
 		elif key == 'human':
 			mention.features[key] = None
+			changed = True
 		elif key == 'number':
 			mention.features[key] = 'both'
+			changed = True
 		elif key == 'gender':
 			if other.features[key] in mention.features[key]:  # (fm, m) => m
 				mention.features[key] = other.features[key]
+				changed = True
 			elif mention.features[key] in other.features[key]:  # (m, fm) => m
 				pass
+				changed = True
 			elif (len(other.features[key]) == len(mention.features[key])
 					== 1):  # (f, m) => fm
 				mention.features[key] = ''.join(sorted((
 						other.features[key], mention.features[key])))
+				changed = True
 			else:  # e.g. (fm, n) => unknown
 				mention.features[key] = None
+				changed = True
+	if changed:
+		debug('merge features', mention, orig, other, other.featrepr())
+		debug('into', mention.featrepr())
 	other.features.update((a, b) for a, b in mention.features.items()
 			if a != 'person')
 
