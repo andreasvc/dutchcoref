@@ -139,6 +139,7 @@ class Mention:
 			this mention occurs in.
 		:param tree: lxml.ElementTree with Alpino XML parse tree of sentence
 		:param node: node in tree covering this mention
+			(although begin and end may describe a smaller span)
 		:param begin: start index in sentence of mention (0-indexed)
 		:param end: end index in sentence of mention (exclusive)
 		:param headidx: index in sentence of head word of mention
@@ -254,11 +255,11 @@ class Mention:
 
 	def featrepr(self, extended=False):
 		"""String representations of features."""
-		result = ' '.join('%s=%s' % (a, '?' if b is None else b)
+		result = ' '.join('%s=%s' % (a[0], '?' if b is None else b)
 					for a, b in self.features.items())
-		result += ' inquote=%d' % int(self.head.get('quotelabel') == 'I')
+		result += ' q=%d' % int(self.head.get('quotelabel') == 'I')
 		if extended:
-			result += ' neclass=%s head=%s' % (
+			result += ' ne=%s hd=%s' % (
 					self.head.get('neclass'), self.head.get('word'))
 		return result
 
@@ -305,15 +306,16 @@ class Quotation:
 		return '%d %d %r' % (self.parno, self.sentno, self.text)
 
 
-def getmentioncandidates(tree):
+def getmentioncandidates(tree, conj=False):
 	"""Extract mention candidates for a given sentence."""
 	candidates = []
 	# Order is significant.
 	candidates.extend(tree.xpath(
 			'.//node[@pdtype="pron" or @vwtype="bez"]'))
 	candidates.extend(tree.xpath('.//node[@cat="np"]'))
-	# candidates.extend(tree.xpath(
-	# 		'.//node[@cat="conj"]/node[@cat="np" or @pt="n"]/..'))
+	if conj:
+		candidates.extend(tree.xpath(
+				'.//node[@cat="conj"]/node[@cat="np" or @pt="n"]/..'))
 	candidates.extend(tree.xpath(
 			'.//node[@cat="mwu"]/node[@pt="spec" or @ntype="eigen"]/..'))
 	candidates.extend(tree.xpath('.//node[@pt="n"]'
@@ -475,18 +477,24 @@ def considermention(node, tree, sentno, parno, mentions, covered,
 		# California in "San Jose, California"
 		if (node.get('cat') == 'mwu' and head.get('neclass') == 'LOC'
 				and ',' in tokens):
-			mentions.append(Mention(
-					len(mentions), sentno, parno, tree, node,
-					a + tokens.index(',') + 1, b, b - 1,
-					tokens[tokens.index(',') + 1:],
-					ngdata, gadata))
+			headidx = b - 1
+			if headidx not in covered:
+				mentions.append(Mention(
+						len(mentions), sentno, parno, tree, node,
+						a + tokens.index(',') + 1, b, b - 1,
+						tokens[tokens.index(',') + 1:],
+						ngdata, gadata))
+				covered.add(headidx)
 		elif len(node) > 1 and node[0].get('rel') == 'cnj':
 			for cnj in node.findall('./node[@rel="cnj"]'):
 				a, b = int(cnj.get('begin')), int(cnj.get('end'))
-				mentions.append(Mention(
-						len(mentions), sentno, parno, tree, cnj,
-						a, b, getheadidx(cnj),
-						gettokens(tree, a, b), ngdata, gadata))
+				headidx = getheadidx(cnj)
+				if headidx not in covered:
+					mentions.append(Mention(
+							len(mentions), sentno, parno, tree, cnj,
+							a, b, headidx,
+							gettokens(tree, a, b), ngdata, gadata))
+					covered.add(headidx)
 
 
 def pleonasticpronoun(node):
@@ -1129,7 +1137,7 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 				merge(pronouns[0], a, 'resolvepronouns', mentions, clusters)
 	if embeddings is not None:
 		import pronounresolution
-		result = pronounresolution.predict(trees, mentions, embeddings)
+		result = pronounresolution.predict(trees, embeddings, mentions)
 		for mention, other in result:
 			merge(mention, other, 'resolvepronouns.neural',
 					mentions, clusters)
@@ -1228,13 +1236,8 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 
 
 def resolvecoreference(trees, ngdata, gadata, mentions=None,
-		maxprondist=None, relpronounsplit=True, neural=()):
+		maxprondist=None, relpronounsplit=True, neural=(), embeddings=None):
 	"""Get mentions and apply coreference sieves."""
-	if neural:
-		import bert
-		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
-		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-		embeddings = bert.encode_sentences(sentences, tokenizer, bertmodel)
 	if mentions is None and 'span' in neural:
 		import mentionspanclassifier
 		mentions = mentionspanclassifier.predict(
@@ -1243,12 +1246,13 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	if 'feat' in neural:
 		import mentionfeatureclassifier
-		mentionfeatureclassifier.predict(trees, mentions, embeddings)
+		mentionfeatureclassifier.predict(trees, embeddings, mentions)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE:
 		for mention in mentions:
-			debug(mention, mention.featrepr(extended=True),
+			debug('%3d %2d %s %s' % (mention.sentno, mention.begin, mention,
+					mention.featrepr(extended=True)),
 					# nglookup(' '.join(mention.tokens).lower(), ngdata),
 					# nglookup(mention.tokens[0].lower(), ngdata),
 					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
@@ -1324,7 +1328,10 @@ def merge(mention1, mention2, sieve, mentions, clusters):
 		return
 	if mention1.clusterid > mention2.clusterid:
 		mention1, mention2 = mention2, mention1
+	featrepr1 = mention1.featrepr()
+	featrepr2 = mention2.featrepr()
 	mergefeatures(mention1, mention2)
+	newfeatrepr1 = mention1.featrepr()
 	mention1.prohibit.update(mention2.prohibit)
 	cluster1 = clusters[mention1.clusterid]
 	cluster2 = clusters[mention2.clusterid]
@@ -1334,49 +1341,40 @@ def merge(mention1, mention2, sieve, mentions, clusters):
 		mentions[m].clusterid = mention1.clusterid
 	mention2.antecedent = mention1.id
 	mention2.sieve = sieve
-	debug('Linked  %d %d %s %s cluster=%d\n\t%d %d %s %s' % (
-			mention1.sentno, mention1.begin, mention1, mention1.featrepr(),
+	mergemsg = ('\nmerged feats: %s' % newfeatrepr1
+				if featrepr1 != newfeatrepr1 else '')
+	debug('Linked %3d %2d %s %s cluster=%d\n%10d %2d %s %s%s' % (
+			mention1.sentno, mention1.begin, featrepr1, mention1,
 			mention1.clusterid,
-			mention2.sentno, mention2.begin, mention2, mention2.featrepr()))
+			mention2.sentno, mention2.begin, featrepr2, mention2,
+			mergemsg))
 
 
 def mergefeatures(mention, other):
 	"""Update the features of the first mention with those of second.
 	In case one is more specific than the other, keep specific value.
 	In case of conflict, keep both values."""
-	orig = mention.featrepr()
-	changed = False
 	for key in mention.features:
 		if (key == 'person' or mention.features[key] == other.features[key]
 				or other.features[key] in (None, 'both')):
 			pass  # only pronouns should have a 'person' attribute
 		elif mention.features[key] in (None, 'both'):
 			mention.features[key] = other.features[key]
-			changed = True
 		elif key == 'human':
 			mention.features[key] = None
-			changed = True
 		elif key == 'number':
 			mention.features[key] = 'both'
-			changed = True
 		elif key == 'gender':
 			if other.features[key] in mention.features[key]:  # (fm, m) => m
 				mention.features[key] = other.features[key]
-				changed = True
 			elif mention.features[key] in other.features[key]:  # (m, fm) => m
 				pass
-				changed = True
 			elif (len(other.features[key]) == len(mention.features[key])
 					== 1):  # (f, m) => fm
 				mention.features[key] = ''.join(sorted((
 						other.features[key], mention.features[key])))
-				changed = True
 			else:  # e.g. (fm, n) => unknown
 				mention.features[key] = None
-				changed = True
-	if changed:
-		debug('merge features', mention, orig, other, other.featrepr())
-		debug('into', mention.featrepr())
 	other.features.update((a, b) for a, b in mention.features.items()
 			if a != 'person')
 
@@ -2211,13 +2209,18 @@ def process(path, output, ngdata, gadata,
 		raise ValueError('no parse trees found: %s' % path)
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
-	mentions = None
+	mentions = embeddings = None
 	if goldmentions:
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
+	if neural:
+		import bert
+		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
+		embeddings = bert.getvectors(
+				os.path.dirname(path), trees, tokenizer, bertmodel)
 	mentions, clusters, quotations, idx = resolvecoreference(
 			trees, ngdata, gadata, mentions, maxprondist,
 			relpronounsplit='relpronounsplit' not in exclude,
-			neural=neural)
+			neural=neural, embeddings=embeddings)
 	postprocess(exclude, mentions, clusters, goldmentions)
 	postprocess(excludelinks, mentions, clusters, True)
 	if conlldata is not None and VERBOSE:

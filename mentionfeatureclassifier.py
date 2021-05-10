@@ -33,8 +33,8 @@ DENSE_LAYER_SIZES = [500, 150, 150]
 DROPOUT_RATE = 0.2
 LEARNING_RATE = 0.001
 BATCH_SIZE = 32
-EPOCHS = 100
-PATIENCE = 15
+EPOCHS = 100  # maximum number of epochs
+PATIENCE = 15  # stop after this number of epochs wo/improvement
 LAMBD = 0.1  # L2 regularization
 MODELFILE = 'mentionfeatclassif.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
@@ -47,8 +47,8 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 	:returns: mentions sorted by sentno, begin; including gold clusterid
 		and detected features for the cluster."""
 	if exportfile is not None:
-		print('filename', 'sentno', 'begin', 'end', 'gender', 'mentions',
-				'sentence', sep='\t', file=exportfile)
+		print('filename', 'sentno', 'begin', 'end', 'gender', 'number',
+				'mentions', 'sentence', sep='\t', file=exportfile)
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
 	for _clusterid, spans in goldspansforcluster.items():
@@ -70,8 +70,7 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 					headidx, text.split(' '), ngdata, gadata)
 			if (annotations is not None
 					and (name, sentno, begin, end) in annotations):
-				mention.features['gender'] = annotations[
-						name, sentno, begin, end]
+				mention.features.update(annotations[name, sentno, begin, end])
 				# human feature is implied by gender feature
 				if mention.features['gender'] == 'n':
 					mention.features['human'] = 0
@@ -94,6 +93,7 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 		if exportfile is not None:
 			print(name, firstment.sentno, firstment.begin, firstment.end,
 					firstment.features['gender'] or '',
+					firstment.features['number'] or '',
 					', '.join(text for _, _, _, text in sorted(spans)),
 					' '.join(gettokens(firstment.node.getroottree().getroot(),
 						0, 9999)),
@@ -127,25 +127,35 @@ def loadmentions(conllfile, parsesdir, ngdata, gadata,
 
 
 class MentionFeatures:
-	def __init__(self, tokenizer, bertmodel):
+	def __init__(self):
 		self.result = []  # collected feature vectors for mentions
 		self.labels = []  # the target labels for the mentions
 		self.mentions = []  # the mention objects
-		self.tokenizer = tokenizer
-		self.bertmodel = bertmodel
 
-	def add(self, trees, mentions, embeddings=None):
+	def add(self, trees, embeddings, mentions):
+		# global token index
+		i = 0
+		idx = {}  # map (sentno, tokenno) to global token index
+		for sentno, (_, tree) in enumerate(trees):
+			for n, token in enumerate(sorted(
+					tree.iterfind('.//node[@word]'),
+					key=lambda x: int(x.get('begin')))):
+				idx[sentno, n] = i
+				i += 1
 		result = []
 		# collect mention features
 		for mention in mentions:
-			# feature indicators: ['nh', 'h', 'f', 'm', 'n']
+			# feature indicators: ['nh', 'h', 'f', 'm', 'n', 'sg', 'pl']
 			# multiple values can be True!
-			label = np.zeros(5)
+			# if a feature is unknown, all of its possible values will be False
+			label = np.zeros(7)
 			label[0] = mention.features['human'] == 0
 			label[1] = mention.features['human'] == 1
 			label[2] = 'f' in (mention.features['gender'] or '')
 			label[3] = 'm' in (mention.features['gender'] or '')
 			label[4] = 'n' in (mention.features['gender'] or '')
+			label[5] = mention.features['number'] == 'sg'
+			label[6] = mention.features['number'] == 'pl'
 			self.labels.append(label)
 			self.mentions.append(mention)
 			# collecting additional features
@@ -154,13 +164,9 @@ class MentionFeatures:
 					mention.sentno, mention.begin, mention.end,
 					# additional features
 					mention.node.get('rel') == 'su',
+					# does this NP contain another NP?
+					mention.node.find('.//node[@cat="np"]') is not None,
 					))
-		if embeddings is None:
-			# now use BERT to obtain vectors for the text of these mentions
-			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-			# NB: this encodes each sentence independently
-			embeddings = bert.encode_sentences(
-					sentences, self.tokenizer, self.bertmodel)
 		buf = np.zeros((len(result), embeddings[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
 		numotherfeats = len(result[0]) - 3
@@ -169,7 +175,7 @@ class MentionFeatures:
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			buf[n, :embeddings[0].shape[-1]] = embeddings[
-					msent][mbegin:mend].mean(axis=0)
+					idx[msent, mbegin]:idx[msent, mend - 1] + 1].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 
@@ -179,33 +185,21 @@ class MentionFeatures:
 				self.mentions)
 
 
-def getfeatures(pattern, parsesdir, cachefile, tokenizer, bertmodel,
-		annotations=None):
-	# NB: assumes the input files don't change;
-	# otherwise, manually delete cached file!
-	if os.path.exists(cachefile):
-		with open(cachefile, 'rb') as inp:
-			X = np.load(inp)
-			y = np.load(inp)
-			mentions = np.load(inp, allow_pickle=True)
-	else:
-		data = MentionFeatures(tokenizer, bertmodel)
-		ngdata, gadata = readngdata()
-		files = glob(pattern)
-		if not files:
-			raise ValueError('pattern did not match any files: %s' % pattern)
-		for n, conllfile in enumerate(files, 1):
-			parses = os.path.join(parsesdir,
-					os.path.basename(conllfile.rsplit('.', 1)[0]))
-			trees, mentions = loadmentions(conllfile, parses, ngdata, gadata,
-					annotations=annotations)
-			data.add(trees, mentions)
-			print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
-		X, y, mentions = data.getvectors()
-		with open(cachefile, 'wb') as out:
-			np.save(out, X)
-			np.save(out, y)
-			np.save(out, mentions)
+def getfeatures(pattern, parsesdir, tokenizer, bertmodel, annotations=None):
+	data = MentionFeatures()
+	ngdata, gadata = readngdata()
+	files = glob(pattern)
+	if not files:
+		raise ValueError('pattern did not match any files: %s' % pattern)
+	for n, conllfile in enumerate(files, 1):
+		parses = os.path.join(parsesdir,
+				os.path.basename(conllfile.rsplit('.', 1)[0]))
+		trees, mentions = loadmentions(conllfile, parses, ngdata, gadata,
+				annotations=annotations)
+		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
+		data.add(trees, embeddings, mentions)
+		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
+	X, y, mentions = data.getvectors()
 	return X, y, mentions
 
 
@@ -244,11 +238,9 @@ def train(trainfiles, validationfiles, parsesdir, annotations,
 	python_random.seed(1)
 	tf.random.set_seed(1)
 	X_train, y_train, _mentions = getfeatures(
-			trainfiles, parsesdir, 'mentfeattrain.npy',
-			tokenizer, bertmodel, annotations)
+			trainfiles, parsesdir, tokenizer, bertmodel, annotations)
 	X_val, y_val, _mentions = getfeatures(
-			validationfiles, parsesdir, 'mentfeatval.npy',
-			tokenizer, bertmodel, annotations)
+			validationfiles, parsesdir, tokenizer, bertmodel, annotations)
 	print('training data', X_train.shape)
 	print('validation data', X_val.shape)
 	classif_model = build_mlp_model([X_train.shape[-1]], y_val.shape[-1])
@@ -272,8 +264,7 @@ def train(trainfiles, validationfiles, parsesdir, annotations,
 
 def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 	X_val, y_val, mentions = getfeatures(
-			validationfiles, parsesdir, 'mentfeatval.npy',
-			tokenizer, bertmodel, annotations)
+			validationfiles, parsesdir, tokenizer, bertmodel, annotations)
 	model = build_mlp_model([X_val.shape[-1]], y_val.shape[-1])
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X_val)
@@ -284,21 +275,23 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 				f'f={p[2]:.3f}/{g[2]} '
 				f'm={p[3]:.3f}/{g[3]} '
 				f'n={p[4]:.3f}/{g[4]} '
+				f'sg={p[5]:.3f}/{g[5]} '
+				f'pl={p[6]:.3f}/{g[6]} '
 				f'{" ".join(mention.tokens)}')
 	print()
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			np.array([a > 0.5 for a in probs], dtype=bool),
-			target_names=['nonhuman', 'human', 'female', 'male', 'neuter'],
+			target_names=['nonhuman', 'human', 'female', 'male', 'neuter',
+				'singular', 'plural'],
 			zero_division=0))
 
 
-def predict(trees, mentions, embeddings):
+def predict(trees, embeddings, mentions):
 	"""Load mentions classfier, get features for mentions, and update features
 	of mentions."""
-	tokenizer = bertmodel = None
-	data = MentionFeatures(tokenizer, bertmodel)
-	data.add(trees, mentions, embeddings)
+	data = MentionFeatures()
+	data.add(trees, embeddings, mentions)
 	X, y, mentions = data.getvectors()
 	model = build_mlp_model([X.shape[-1]], y.shape[-1])
 	model.load_weights(MODELFILE).expect_partial()
@@ -323,6 +316,12 @@ def predict(trees, mentions, embeddings):
 			mention.features['gender'] = 'fm'
 		else:
 			mention.features['gender'] = None
+		if row[5] > 0.5 and row[6] < 0.5:
+			mention.features['number'] = 'sg'
+		elif row[5] < 0.5 and row[6] > 0.5:
+			mention.features['number'] = 'pl'
+		else:
+			mention.features['number'] = None
 
 
 def main():
@@ -340,12 +339,14 @@ def main():
 	trainfiles, validationfiles, parsesdir = args
 	annotations = None
 	if opts.get('--import'):
+		fnames = glob(os.path.join(opts.get('--import'), '*.tsv'))
 		annotations = pd.concat([
 				pd.read_csv(
 					fname, sep='\t',
 					dtype={'gender': str}, keep_default_na=False)
-				for fname in glob(opts.get('--import'))]).set_index(
-				['filename', 'sentno', 'begin', 'end'])['gender'].to_dict()
+				for fname in fnames]).set_index(
+				['filename', 'sentno', 'begin', 'end'])[
+					['gender', 'number']].T.to_dict()
 	if opts.get('--export'):
 		exportpath = opts.get('--export')
 		ngdata, gadata = readngdata()

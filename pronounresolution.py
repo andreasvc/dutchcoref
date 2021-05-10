@@ -18,19 +18,21 @@ import numpy as np
 import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata,
-		conllclusterdict, getheadidx, Mention, gettokens, sameclause)
+		conllclusterdict, getheadidx, Mention, sameclause)
 import bert
 
-# NB: if MAXPRONDIST is changed, delete the .npy files
 MAXPRONDIST = 20  # max number of mentions between pronoun and candidate
 DENSE_LAYER_SIZES = [500, 150, 150]
 DROPOUT_RATE = 0.2
 LEARNING_RATE = 0.001
 BATCH_SIZE = 32
 EPOCHS = 100
-PATIENCE = 15
+PATIENCE = 5
 LAMBD = 0.1  # L2 regularization
-MENTION_SCORE_THRESHOLD = 0.01
+
+# do not link anaphor if all scores of candidates are below this value.
+# the model does not have to be re-trained if this value is changed.
+MENTION_PAIR_THRESHOLD = 0.2
 MODELFILE = 'pronounmodel.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
@@ -93,26 +95,25 @@ def checkfeat(mention, other, key):
 
 
 class CorefFeatures:
-	def __init__(self, tokenizer, bertmodel):
+	def __init__(self):
 		self.result = []  # collected features for pairs
 		self.coreferent = []  # the target: pair is coreferent (1) or not (0)
 		self.antecedents = []  # the candidate antecedent mention in each pair
 		self.anaphordata = []  # row indices for each anaphor and its candidates
-		self.tokenizer = tokenizer
-		self.bertmodel = bertmodel
 
-	def add(self, trees, mentions, embeddings=None):
+	def add(self, trees, embeddings, mentions):
 		# global token index
 		i = 0
 		idx = {}  # map (sentno, tokenno) to global token index
-		for sentno, ((parno, psentno), tree) in enumerate(trees):
-			for n, token in enumerate(sorted(
+		for sentno, (_, tree) in enumerate(trees):
+			for n, _token in enumerate(sorted(
 					tree.iterfind('.//node[@word]'),
 					key=lambda x: int(x.get('begin')))):
 				idx[sentno, n] = i
 				i += 1
 		result = []
 		mentions = sorted(mentions, key=lambda m: (m.sentno, m.begin))
+		# globalfreq = Counter(other.clusterid for other in mentions)
 		# collect mentions and candidate antecedents
 		for n, mention in enumerate(mentions):
 			if (mention.type == 'pronoun'
@@ -146,7 +147,10 @@ class CorefFeatures:
 
 				# how frequent is this mention in the context?
 				# freq = Counter(other.clusterid for other in mentions[nn:n])
-				for other in mentions[nn + 1:n][::-1]:
+				# consider all candidates, but in reverse order
+				# (closest antecedent first)
+				for m, other in list(enumerate(mentions[nn + 1:n],
+						nn + 1))[::-1]:
 					if other.node.get('rel') in ('app', 'det'):
 						continue
 					# The antecedent should come before the anaphor,
@@ -166,48 +170,65 @@ class CorefFeatures:
 					self.coreferent.append(iscoreferent)
 					self.antecedents.append(other)
 					# FIXME: feature: is mention part of another mention?
-					# FIXME: distance features should be encoded as a histogram
-					# FIXME: 'salience': how frequent is antecedent in current
-					# current context; but this means previous mentions must
-					# have already been resolved.
-					result.append((
+					# FIXME: 'salience features: how frequent is antecedent
+					# entity in current context or in the whole document;
+					# this means previous mentions must have already been
+					# resolved.
+					feats = (
 							mention.sentno, mention.begin, mention.end,
 							other.sentno, other.begin, other.end,
-							len(other.tokens),  # antecedent mention width
-							mention.sentno - other.sentno,  # sent distance
-							idx[mention.sentno, mention.begin]
-								- idx[other.sentno, other.begin],  # word distance
-							checkfeat(mention, other, 'gender'),  # compatible feature
-							checkfeat(mention, other, 'human'),  # compatible feature
-							checkfeat(mention, other, 'number'),  # compatible feature
+							other.type == 'pronoun',
+							other.type == 'noun',
+							other.type == 'name',
+							mention.head.get('rel') == other.head.get('rel'),
+							# feature compatibility
+							checkfeat(mention, other, 'gender'),
+							checkfeat(mention, other, 'human'),
+							checkfeat(mention, other, 'number'),
+							mention.features['person'] == '3',
 							other.features['person'] == '1',
 							other.features['person'] == '2',
 							other.features['person'] == '3',
-							mention.head.get('quotelabel') == 'O',  # not part of direct speech
-							other.head.get('quotelabel') == 'O',  # not part of direct speech
-							# freq[other.clusterid] / sum(freq.values()).  # salience
-							))
+							other.features['person'] is not None
+								and (mention.features['person']
+									!= other.features['person']),
+							# is mention part of direct speech?
+							mention.head.get('quotelabel') == 'O',
+							other.head.get('quotelabel') == 'O',
+							# number of times the cluster of this antecedent
+							# occurs in the candidates
+							# freq[other.clusterid] / sum(freq.values()),
+							# number of mentions in antecedent cluster
+							# in whole document
+							# globalfreq[other.clusterid]
+							# 	/ sum(globalfreq.values()),
+							)
+					sentdist = mention.sentno - other.sentno  # dist in sents
+					mentdist = n - m  # distance in number of mentions
+					antwidth = len(other.tokens)  # antecedent mention width
+					for x in (sentdist, mentdist, antwidth):
+						# bin distances into:
+						# [0,1,2,3,4,5-7,8-15,16-31,32-63,64+]
+						# following https://aclweb.org/anthology/P16-1061
+						feats += (x == 0, x == 1, x == 2, x == 3, x == 4,
+								5 <= x <= 7, 8 <= x <= 15, 16 <= x <= 31,
+								32 <= x <= 63, x >= 64)
+					result.append(feats)
 					nn -= 1
 				self.anaphordata.append((a, len(self.coreferent), mention))
 		if not result:
 			return
-		if embeddings is None:
-			# now use BERT to obtain vectors for the text of these mentions
-			sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
-			# NB: this encodes each sentence independently
-			embeddings = bert.encode_sentences(
-					sentences, self.tokenizer, self.bertmodel)
 		numotherfeats = len(result[0]) - 6
 		buf = np.zeros((len(result),
-				2 * embeddings[0].shape[-1] + numotherfeats))
+				2 * embeddings.shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			osent, obegin, oend = featvec[3:6]
-			buf[n, :embeddings[0].shape[-1]] = embeddings[
-					msent][mbegin:mend].mean(axis=0)
-			buf[n, embeddings[0].shape[-1]:-numotherfeats] = embeddings[
-					osent][obegin:oend].mean(axis=0)
+			buf[n, :embeddings.shape[-1]] = embeddings[
+					idx[msent, mbegin]:idx[msent, mend - 1] + 1].mean(axis=0)
+			buf[n, embeddings.shape[-1]:-numotherfeats] = embeddings[
+					idx[osent, obegin]:idx[osent, oend - 1] + 1].mean(axis=0)
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 
@@ -218,30 +239,21 @@ class CorefFeatures:
 				self.anaphordata)
 
 
-def getfeatures(files, parsesdir, cachefile, tokenizer, bertmodel):
+def getfeatures(pattern, parsesdir, tokenizer, bertmodel):
 	# NB: assumes the input files don't change;
 	# otherwise, manually delete cached file!
-	if os.path.exists(cachefile):
-		with open(cachefile, 'rb') as inp:
-			X = np.load(inp)
-			y = np.load(inp)
-			antecedents = np.load(inp, allow_pickle=True)
-			anaphordata = np.load(inp, allow_pickle=True)
-	else:
-		data = CorefFeatures(tokenizer, bertmodel)
-		files = glob(files)
-		for n, conllfile in enumerate(files, 1):
-			parses = os.path.join(parsesdir,
-					os.path.basename(conllfile.rsplit('.', 1)[0]))
-			trees, mentions = loadmentions(conllfile, parses)
-			data.add(trees, mentions)
-			print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
-		X, y, antecedents, anaphordata = data.getvectors()
-		with open(cachefile, 'wb') as out:
-			np.save(out, X)
-			np.save(out, y)
-			np.save(out, antecedents)
-			np.save(out, anaphordata)
+	data = CorefFeatures()
+	files = glob(pattern)
+	if not files:
+		raise ValueError('pattern did not match any files: %s' % pattern)
+	for n, conllfile in enumerate(files, 1):
+		parses = os.path.join(parsesdir,
+				os.path.basename(conllfile.rsplit('.', 1)[0]))
+		trees, mentions = loadmentions(conllfile, parses)
+		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
+		data.add(trees, embeddings, mentions)
+		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
+	X, y, antecedents, anaphordata = data.getvectors()
 	return X, y, antecedents, anaphordata
 
 
@@ -279,9 +291,9 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 	python_random.seed(1)
 	tf.random.set_seed(1)
 	X_train, y_train, _clusters, _indices = getfeatures(
-			trainfiles, parsesdir, 'prontrain.npy', tokenizer, bertmodel)
+			trainfiles, parsesdir, tokenizer, bertmodel)
 	X_val, y_val, _clusters, _indices = getfeatures(
-			validationfiles, parsesdir, 'pronval.npy', tokenizer, bertmodel)
+			validationfiles, parsesdir, tokenizer, bertmodel)
 	print('training data', X_train.shape)
 	print('validation data', X_val.shape)
 
@@ -307,18 +319,12 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 
 def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	X_val, y_val, antecedents, anaphordata = getfeatures(
-			validationfiles, parsesdir, 'pronval.npy', tokenizer, bertmodel)
+			validationfiles, parsesdir, tokenizer, bertmodel)
 	model = build_mlp_model([X_val.shape[-1]])
 	model.load_weights(MODELFILE).expect_partial()
 
 	probs = model.predict(X_val)
-	pred = probs > MENTION_SCORE_THRESHOLD
-	print('(pronoun, candidate) pair classification scores:')
-	print(metrics.classification_report(y_val, pred))
 
-	# The above are scores for mention pairs. To get actual pronoun accuracy,
-	# select a best candidate for each pronoun and evaluate on that.
-	# NB: if none of the candidates is likely enough, predict -1.
 	y_true = []
 	pred = []
 	for a, b, anaphor in anaphordata:
@@ -333,32 +339,37 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 		if a == b:  # a pronoun with no candidates ...
 			continue
 		# select closest predicted antecedent candidate
-		# predlabel = list(probs[a:b] > MENTION_SCORE_THRESHOLD)
+		# predlabel = list(probs[a:b] > MENTION_PAIR_THRESHOLD)
 		# pred.append(antecedents[a:][predlabel.index(1)].clusterid
 		# 		if 1 in predlabel else -1)
 		# select most likely antecedent
-		antecedent = antecedents[a:][probs[a:b].argmax()]
+		antecedent = antecedents[a + probs[a:b].argmax()]
+		# NB: if none of the candidates is likely enough, predict -1.
 		pred.append(antecedent.clusterid
-				if probs[a:b].max() > MENTION_SCORE_THRESHOLD else -1)
+				if probs[a:b].max() > MENTION_PAIR_THRESHOLD else -1)
 		y_true.append(anaphor.clusterid)
 		print(f'{int(pred[-1] == y_true[-1])} {probs[a:b].max():.3f}',
 				' '.join(anaphor.tokens), '->',
 				(' '.join(antecedent.tokens)
-				if probs[a:b].max() > MENTION_SCORE_THRESHOLD else '(none)'))
-	print('Pronoun resolution accuracy:',
-			100 * metrics.accuracy_score(y_true, pred))
+				if probs[a:b].max() > MENTION_PAIR_THRESHOLD else '(none)'))
+	pairpred = probs > MENTION_PAIR_THRESHOLD
+	print('(pronoun, candidate) pair classification scores:')
+	print(metrics.classification_report(y_val, pairpred))
+	# The above are scores for mention pairs. To get actual pronoun accuracy,
+	# select a best candidate for each pronoun and evaluate on that.
+	print('Pronoun resolution accuracy: %5.2f'
+			% (100 * metrics.accuracy_score(y_true, pred)))
 
 
-def predict(trees, mentions, embeddings):
+def predict(trees, embeddings, mentions):
 	"""Load pronoun resolver, get features for trees, and return a list of
 	mention pairs (anaphor, antecedent) which are predicted to be
 	coreferent."""
-	tokenizer = bertmodel = None
-	data = CorefFeatures(tokenizer, bertmodel)
-	data.add(trees, mentions, embeddings=embeddings)
+	data = CorefFeatures()
+	data.add(trees, embeddings, mentions)
 	if not data.result:
 		return []
-	X, y, antecedents, anaphordata = data.getvectors()
+	X, _y, antecedents, anaphordata = data.getvectors()
 	model = build_mlp_model([X.shape[-1]])
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X)
@@ -367,8 +378,8 @@ def predict(trees, mentions, embeddings):
 		if a == b:  # a pronoun with no candidates ...
 			continue
 		# select most likely antecedent
-		if probs[a:b].max() > MENTION_SCORE_THRESHOLD:
-			antecedent = antecedents[a:][probs[a:b].argmax()]
+		if probs[a:b].max() > MENTION_PAIR_THRESHOLD:
+			antecedent = antecedents[a + probs[a:b].argmax()]
 			result.append((anaphor, antecedent))
 	return result
 

@@ -42,8 +42,14 @@ def results():
 		return 'Parsing failed!'
 	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
 	coref.setverbose(True, io.StringIO())
+	embeddings = None
+	if neural:
+		import bert
+		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
+		embeddings = bert.getvectors(
+				'', trees, tokenizer, bertmodel, cache=False)
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
-			trees, ngdata, gadata, neural=neural)
+			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations,
 			parses=True, coreffmt='conll2012')

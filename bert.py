@@ -4,7 +4,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModel, logging
-
+from coref import gettokens
 
 logging.set_verbosity_error()
 
@@ -14,6 +14,30 @@ def loadmodel(name):
 	tokenizer = AutoTokenizer.from_pretrained(name)
 	bertmodel = AutoModel.from_pretrained(name)
 	return tokenizer, bertmodel
+
+
+def getvectors(parses, trees, tokenizer, model, cache=True):
+	"""Encode sentences in `trees` and cache in file next to directory
+	with parses."""
+	cachefile = parses + '.bertvectors.npy'
+	if (cache and os.path.exists(cachefile) and os.stat(cachefile).st_mtime
+			> os.stat(parses).st_mtime):
+		embeddings = np.load(cachefile)
+	else:
+		# now use BERT to obtain vectors for the text of these spans
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		# NB: this encodes each sentence independently
+		# embeddings = encode_sentences(sentences, tokenizer, model)
+		result = []
+		for n in range(len(sentences)):
+			# FIXME: encode multiple sentences at a time without padding
+			for sent in _encode_sentences(
+					sentences[n:n + 1], tokenizer, model):
+				result.extend(sent)
+		embeddings = np.array(result)
+		if cache:
+			np.save(cachefile, embeddings)
+	return embeddings
 
 
 def encode_sentences(sentences, tokenizer, model, layer=9):
@@ -29,8 +53,8 @@ def encode_sentences(sentences, tokenizer, model, layer=9):
 	for n in range(0, len(sentences), 25):
 		for sent in _encode_sentences(
 				sentences[n:n + 25], tokenizer, model, layer):
-			result.append(sent)
-	return result
+			result.extend(sent)
+	return np.array(result)
 
 
 def _encode_sentences(sentences, tokenizer, model, layer=9):
