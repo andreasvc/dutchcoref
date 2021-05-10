@@ -380,6 +380,8 @@ def adjustmentionspan(node, tree, relpronounsplit):
 				in (vc.findall('.//node[@word]') if len(vc) else [vc]))
 		if min(vcindices) < b:
 			b = min(vcindices)
+			if a == b:  # vc in first position
+				return a, b, headidx, []
 			if headidx > b:
 				headidx = max(int(token.get('begin')) for token
 						in node.findall('.//node[@word]')
@@ -390,6 +392,8 @@ def adjustmentionspan(node, tree, relpronounsplit):
 	if (relpronounsplit and relpronoun is not None
 			and int(relpronoun.get('begin')) < b):
 		b = int(relpronoun.get('begin'))
+		if a == b:
+			return a, b, headidx, []
 		if headidx > b:
 			headidx = max(int(token.get('begin')) for token
 					in node.findall('.//node[@word]')

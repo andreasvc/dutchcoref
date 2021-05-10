@@ -134,8 +134,9 @@ class MentionDetection:
 		# collect features for spans
 		for n, (sentno, begin, end) in enumerate(order, len(self.spans)):
 			(node, headidx, tokens) = allspans[sentno, begin, end]
-			head = (node.find('..//node[@begin="%d"][@word]' % headidx)
-                                if len(node) else node)
+			head = (node.getroottree().find(
+					'.//node[@begin="%d"][@word]' % headidx)
+                    if len(node) else node)
 			result.append((
 				sentno, begin, end,
 				# additional features
