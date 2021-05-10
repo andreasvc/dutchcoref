@@ -69,7 +69,10 @@ def loadmentions(conllfile, parsesdir):
 	ngdata, gadata = readngdata()
 	# assume single document
 	conlldata = next(iter(readconll(conllfile).values()))
-	filenames = sorted(glob(os.path.join(parsesdir, '*.xml')), key=parsesentid)
+	pattern = os.path.join(parsesdir, '*.xml')
+	filenames = sorted(glob(pattern), key=parsesentid)
+	if not filenames:
+		raise ValueError('parse trees not found: %s' % pattern)
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
 	# extract gold mentions with gold clusters
