@@ -14,8 +14,8 @@ import coref
 APP = Flask(__name__)
 DEBUG = False
 LIMIT = 5000  # maximum number of bytes of input to accept
-STANDALONE = __name__ == '__main__'
 ALPINOAPI = 'http://127.0.0.1:11200/json'
+BERTMODEL = TOKENIZER = None
 
 
 @APP.route('/')
@@ -28,6 +28,7 @@ def index():
 @APP.route('/coref', methods=('POST', 'GET'))
 def results():
 	"""Get coreference and show results."""
+	global BERTMODEL, TOKENIZER
 	if request.method == 'GET':
 		return redirect(url_for('index'))
 	if 'text' not in request.form:
@@ -44,10 +45,15 @@ def results():
 	coref.setverbose(True, io.StringIO())
 	embeddings = None
 	if neural:
-		import bert
-		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
+		if BERTMODEL is None:
+			try:
+				TOKENIZER, BERTMODEL = bert.loadmodel(
+						'GroNLP/bert-base-dutch-cased')
+			except Exception as err:
+				print(err)
+				return 'BERT model not available'
 		embeddings = bert.getvectors(
-				'', trees, tokenizer, bertmodel, cache=False)
+				'', trees, TOKENIZER, BERTMODEL, cache=False)
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
@@ -200,8 +206,12 @@ log.handlers[0].setFormatter(logging.Formatter(
 		fmt='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
 log.info('loading.')
 ngdata, gadata = coref.readngdata()
+try:
+	import bert
+except Exception as err:
+	print(err)
 log.info('done.')
-if STANDALONE:
+if __name__ == '__main__':
 	from getopt import gnu_getopt, GetoptError
 	try:
 		opts, _args = gnu_getopt(sys.argv[1:], '',
