@@ -2283,6 +2283,8 @@ def clintask(ngdata, gadata, goldmentions, neural, subset='dev'):
 			# but in many documents of the dev set only the first 6 sentences
 			# are annotated.
 	with open('%s/blanc_scores' % path, 'w') as out:
+		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
+		print(getcmdlines(neural), end='', flush=True, file=out)
 		os.chdir('../groref/clin26-eval-master')
 		subprocess.call(
 				['bash', 'score_coref.sh',
@@ -2332,6 +2334,8 @@ def semeval(ngdata, gadata, goldmentions, neural, subset='dev'):
 						'reciprocals', 'predicatives', 'appositives',
 						'npsingletons', 'relpronounsplit'))
 	with open('%s/blanc_scores' % path, 'w') as out:
+		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
+		print(getcmdlines(neural), end='', flush=True, file=out)
 		subprocess.call([
 				'../groref/conll_scorer/scorer.pl',
 				'blanc',
@@ -2372,6 +2376,8 @@ def sonar(ngdata, gadata, goldmentions, neural, subset='dev'):
 					neural=neural, exclude=('relpronouns', 'relpronounsplit'),
 					excludelinks=('reflexives', ))
 	with open('%s/scores.txt' % path, 'w') as out:
+		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
+		print(getcmdlines(neural), end='', flush=True, file=out)
 		subprocess.call([
 				'../coval/scorer.py',
 				conllfile,
@@ -2379,6 +2385,28 @@ def sonar(ngdata, gadata, goldmentions, neural, subset='dev'):
 				stdout=out)
 	with open('%s/scores.txt' % path) as inp:
 		print(inp.read())
+
+
+def getcmdlines(neural):
+	"""Collect command line options used for training neural modules."""
+	cmdlines = {'span': 'mentionspanclassif.txt',
+			'feat': 'mentionfeatclassif.txt', 'pron': 'pronounmodel.txt'}
+	result = []
+	for a in neural:
+		try:
+			timestamp = datetime.fromtimestamp(os.path.getmtime(cmdlines[a])
+					).strftime('%Y-%m-%d %H:%M:%S: ')
+			with open(cmdlines[a], encoding='utf8') as inp:
+				result.append(timestamp + inp.read())
+		except FileNotFoundError:
+			pass
+	return ''.join(result)
+
+
+def getcommit():
+	"""Return commit hash of git repository in working directory."""
+	gitcmd = ['git', 'describe', '--dirty', '--always']
+	return subprocess.check_output(gitcmd, text=True).strip()
 
 
 def runtests(ngdata, gadata):

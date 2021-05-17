@@ -318,6 +318,8 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 	classif_model.fit(x=X_train, y=y_train, epochs=EPOCHS,
 			batch_size=BATCH_SIZE, callbacks=callbacks,
 			validation_data=(X_val, y_val), verbose=1)
+	with open(MODELFILE.replace('.pt', '.txt'), 'w', encoding='utf8') as out:
+		print(' '.join(sys.argv), file=out)
 
 
 def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):

@@ -248,6 +248,8 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 	classif_model.fit(x=X_train, y=y_train, epochs=EPOCHS,
 			batch_size=BATCH_SIZE, callbacks=callbacks,
 			validation_data=(X_val, y_val), verbose=1)
+	with open(MODELFILE.replace('.pt', '.txt'), 'w', encoding='utf8') as out:
+		print(' '.join(sys.argv), file=out)
 
 
 def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
@@ -300,6 +302,13 @@ def predict(trees, embeddings, ngdata, gadata):
 		candidates = list(candidates)
 		a, b = candidates[0][4], candidates[-1][4] + 1
 		best = probs[a:b, 0].argmax()
+		for n in range(a, b if VERBOSE else a):
+			sentno, headidx, begin, end, _n, text = candidates[n - a]
+			debug('\t%2d %s %g%s' % (begin, text, probs[n, 0],
+					' %s %g best' % (
+						'<>'[int(probs[a + best, 0] > MENTION_THRESHOLD)],
+						MENTION_THRESHOLD)
+						if n == a + best else ''))
 		if probs[a + best, 0] <= MENTION_THRESHOLD:
 			continue
 		sentno, headidx, begin, end, _n, text = candidates[best]
@@ -312,13 +321,6 @@ def predict(trees, embeddings, ngdata, gadata):
 		mentions.append(Mention(
 				len(mentions), sentno, parno, tree, node, begin, end, headidx,
 				text.split(' '), ngdata, gadata))
-		for n in range(a, b if VERBOSE else a):
-			sentno, headidx, begin, end, _n, text = candidates[n - a]
-			debug('\t%2d %s %g%s' % (begin, text, probs[n, 0],
-					' %s %g best' % (
-						'<>'[int(probs[a + best, 0] > MENTION_THRESHOLD)],
-						MENTION_THRESHOLD)
-						if n == a + best else ''))
 	return mentions
 
 
