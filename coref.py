@@ -1253,7 +1253,7 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 		mentionfeatureclassifier.predict(trees, embeddings, mentions)
 	clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
-	if VERBOSE:
+	if VERBOSE and 'feat' not in neural:
 		for mention in mentions:
 			debug('%3d %2d %s %s' % (mention.sentno, mention.begin, mention,
 					mention.featrepr(extended=True)),

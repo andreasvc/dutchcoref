@@ -19,7 +19,7 @@ import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		parsesentid, Mention, getmentioncandidates,
-		adjustmentionspan)
+		adjustmentionspan, color, debug, VERBOSE)
 import bert
 
 DENSE_LAYER_SIZES = [500, 150, 150]
@@ -286,6 +286,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 def predict(trees, embeddings, ngdata, gadata):
 	"""Load mention classfier, get candidate mentions, and return predicted
 	mentions."""
+	debug(color('mention span detection', 'yellow'))
 	data = MentionDetection()
 	data.add(trees, embeddings)
 	X, _y, spans = data.getvectors()
@@ -293,7 +294,9 @@ def predict(trees, embeddings, ngdata, gadata):
 	model.load_weights(MODELFILE).expect_partial()
 	probs = model.predict(X)
 	mentions = []
-	for _, candidates in groupby(spans, key=lambda x: (x[0], x[1])):
+	for (sentno, headidx), candidates in groupby(
+			spans, key=lambda x: (x[0], x[1])):
+		debug('%3d %2d' % (sentno, headidx))
 		candidates = list(candidates)
 		a, b = candidates[0][4], candidates[-1][4] + 1
 		best = probs[a:b, 0].argmax()
@@ -309,6 +312,13 @@ def predict(trees, embeddings, ngdata, gadata):
 		mentions.append(Mention(
 				len(mentions), sentno, parno, tree, node, begin, end, headidx,
 				text.split(' '), ngdata, gadata))
+		for n in range(a, b if VERBOSE else a):
+			sentno, headidx, begin, end, _n, text = candidates[n - a]
+			debug('\t%2d %s %g%s' % (begin, text, probs[n, 0],
+					' %s %g best' % (
+						'<>'[int(probs[a + best, 0] > MENTION_THRESHOLD)],
+						MENTION_THRESHOLD)
+						if n == a + best else ''))
 	return mentions
 
 

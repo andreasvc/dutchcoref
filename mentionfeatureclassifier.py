@@ -26,7 +26,7 @@ import keras
 import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
-		parsesentid, Mention, mergefeatures, gettokens)
+		parsesentid, Mention, mergefeatures, gettokens, color, debug, VERBOSE)
 import bert
 
 DENSE_LAYER_SIZES = [500, 150, 150]
@@ -293,6 +293,7 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 def predict(trees, embeddings, mentions):
 	"""Load mentions classfier, get features for mentions, and update features
 	of mentions."""
+	debug(color('mention feature detection', 'yellow'))
 	data = MentionFeatures()
 	data.add(trees, embeddings, mentions)
 	X, y, mentions = data.getvectors()
@@ -325,6 +326,16 @@ def predict(trees, embeddings, mentions):
 			mention.features['number'] = 'pl'
 		else:
 			mention.features['number'] = None
+		if VERBOSE:
+			debug('%3d %2d %s ' % (mention.sentno, mention.begin, mention),
+					# mention.featrepr(extended=True)),
+					f'nh={row[0]:.3f} '
+					f'h={row[1]:.3f} '
+					f'f={row[2]:.3f} '
+					f'm={row[3]:.3f} '
+					f'n={row[4]:.3f} '
+					f'sg={row[5]:.3f} '
+					f'pl={row[6]:.3f} ')
 
 
 def main():

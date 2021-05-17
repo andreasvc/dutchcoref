@@ -18,7 +18,7 @@ import numpy as np
 import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata,
-		conllclusterdict, getheadidx, Mention, sameclause)
+		conllclusterdict, getheadidx, Mention, sameclause, debug, VERBOSE)
 import bert
 
 MAXPRONDIST = 20  # max number of mentions between pronoun and candidate
@@ -152,8 +152,8 @@ class CorefFeatures:
 				# freq = Counter(other.clusterid for other in mentions[nn:n])
 				# consider all candidates, but in reverse order
 				# (closest antecedent first)
-				for m, other in list(enumerate(mentions[nn + 1:n],
-						nn + 1))[::-1]:
+				for m, other in list(enumerate(mentions[nn:n],
+						nn))[::-1]:
 					if other.node.get('rel') in ('app', 'det'):
 						continue
 					# The antecedent should come before the anaphor,
@@ -378,12 +378,23 @@ def predict(trees, embeddings, mentions):
 	probs = model.predict(X)
 	result = []
 	for a, b, anaphor in anaphordata:
+		debug(anaphor.sentno, anaphor.begin, anaphor, anaphor.featrepr())
 		if a == b:  # a pronoun with no candidates ...
 			continue
 		# select most likely antecedent
-		if probs[a:b].max() > MENTION_PAIR_THRESHOLD:
-			antecedent = antecedents[a + probs[a:b].argmax()]
+		best = a + probs[a:b].argmax()
+		if probs[best] > MENTION_PAIR_THRESHOLD:
+			antecedent = antecedents[best]
 			result.append((anaphor, antecedent))
+		for n in range(a, b if VERBOSE else a):
+			debug('\t%d %d %s %s p=%g%s' % (
+					antecedents[n].sentno, antecedents[n].begin,
+					antecedents[n].node.get('rel'), antecedents[n],
+					probs[n],
+					' %s %g best' % (
+						'<>'[int(probs[best] > MENTION_PAIR_THRESHOLD)],
+						MENTION_PAIR_THRESHOLD)
+						if n == best else ''))
 	return result
 
 
