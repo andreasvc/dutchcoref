@@ -35,6 +35,8 @@ def getstats(args, parsesdir=None):
 				return
 			if parsesdir is not None:
 				# given docname, read <parsesdir>/<docname>/*.xml
+				if docname.startswith('('):
+					docname = docname.split(';')[0].strip('()')
 				path = os.path.join(parsesdir, docname, '*.xml')
 				filenames = sorted(glob(path), key=coref.parsesentid)
 				if len(data) != len(filenames):
