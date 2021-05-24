@@ -73,6 +73,7 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 			mention = Mention(
 					len(mentions), sentno, parno, tree, node, begin, end,
 					headidx, text.split(' '), ngdata, gadata)
+			mention.origfeat = mention.features.copy()
 			if (annotations is not None
 					and (name, sentno, begin, end) in annotations):
 				mention.features.update(annotations[name, sentno, begin, end])
@@ -278,6 +279,17 @@ def train(trainfiles, validationfiles, parsesdir, annotations, restrict,
 
 
 def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
+	def featvals(mention):
+		return [
+				mention.origfeat['human'] == 0,
+				mention.origfeat['human'] == 1,
+				'f' in (mention.origfeat['gender'] or ''),
+				'm' in (mention.origfeat['gender'] or ''),
+				'n' in (mention.origfeat['gender'] or ''),
+				mention.origfeat['number'] == 'sg',
+				mention.origfeat['number'] == 'pl',
+				]
+
 	X_val, y_val, mentions = getfeatures(
 			validationfiles, parsesdir, tokenizer, bertmodel, annotations)
 	model = build_mlp_model([X_val.shape[-1]], y_val.shape[-1])
@@ -293,12 +305,19 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 				f'sg={p[5]:.3f}/{g[5]} '
 				f'pl={p[6]:.3f}/{g[6]} '
 				f'{" ".join(mention.tokens)}')
-	print()
+	target_names = ['nonhuman', 'human', 'female', 'male', 'neuter',
+				'singular', 'plural']
+	print('\nperformance of features detected with ngdata/gadata:')
+	print(classification_report(
+			np.array(y_val, dtype=bool),
+			np.array([featvals(mention) for mention in mentions], dtype=bool),
+			target_names=target_names,
+			zero_division=0))
+	print('\nperformance of feature classifier:')
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			np.array([a > 0.5 for a in probs], dtype=bool),
-			target_names=['nonhuman', 'human', 'female', 'male', 'neuter',
-				'singular', 'plural'],
+			target_names=target_names,
 			zero_division=0))
 
 
