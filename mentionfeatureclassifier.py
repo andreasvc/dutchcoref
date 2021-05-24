@@ -9,6 +9,10 @@ Options:
                     features of all its mentions.
     --export=<dir>  export detected features to TSV files for annotation;
                     when this option is enabled, no training is done.
+    --restrict=N    restrict training data to the first N% of each file.
+	--eval=<test>   report evaluation on this set instead of validation.
+					(NB: this is only meaningful if annotated features are
+					imported for this test set).
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -26,7 +30,8 @@ import keras
 import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
-		parsesentid, Mention, mergefeatures, gettokens, color, debug, VERBOSE)
+		parsesentid, Mention, mergefeatures, gettokens, initialsegment,
+		color, debug, VERBOSE)
 import bert
 
 DENSE_LAYER_SIZES = [500, 150, 150]
@@ -106,9 +111,12 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 
 
 def loadmentions(conllfile, parsesdir, ngdata, gadata,
-		annotations, exportpath=None):
+		annotations, exportpath=None, restrict=None):
 	# assume single document
 	conlldata = next(iter(readconll(conllfile).values()))
+	if restrict:
+		n = initialsegment(conllfile, restrict)
+		conlldata = conlldata[:n]
 	pattern = os.path.join(parsesdir, '*.xml')
 	filenames = sorted(glob(pattern), key=parsesentid)
 	if not filenames:
@@ -188,7 +196,8 @@ class MentionFeatures:
 				self.mentions)
 
 
-def getfeatures(pattern, parsesdir, tokenizer, bertmodel, annotations=None):
+def getfeatures(pattern, parsesdir, tokenizer, bertmodel,
+		annotations=None, restrict=None):
 	data = MentionFeatures()
 	ngdata, gadata = readngdata()
 	files = glob(pattern)
@@ -198,7 +207,7 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, annotations=None):
 		parses = os.path.join(parsesdir,
 				os.path.basename(conllfile.rsplit('.', 1)[0]))
 		trees, mentions = loadmentions(conllfile, parses, ngdata, gadata,
-				annotations=annotations)
+				annotations=annotations, restrict=restrict)
 		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
 		data.add(trees, embeddings, mentions)
 		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
@@ -235,13 +244,14 @@ def build_mlp_model(input_shape, num_labels):
 	return model
 
 
-def train(trainfiles, validationfiles, parsesdir, annotations,
+def train(trainfiles, validationfiles, parsesdir, annotations, restrict,
 		tokenizer, bertmodel):
 	np.random.seed(1)
 	python_random.seed(1)
 	tf.random.set_seed(1)
 	X_train, y_train, _mentions = getfeatures(
-			trainfiles, parsesdir, tokenizer, bertmodel, annotations)
+			trainfiles, parsesdir, tokenizer, bertmodel, annotations,
+			restrict=restrict)
 	X_val, y_val, _mentions = getfeatures(
 			validationfiles, parsesdir, tokenizer, bertmodel, annotations)
 	print('training data', X_train.shape)
@@ -342,7 +352,7 @@ def predict(trees, embeddings, mentions):
 
 def main():
 	"""CLI."""
-	longopts = ['import=', 'export=', 'help']
+	longopts = ['import=', 'export=', 'restrict=', 'eval=', 'help']
 	try:
 		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
 	except getopt.GetoptError:
@@ -353,7 +363,9 @@ def main():
 		print(__doc__)
 		return
 	trainfiles, validationfiles, parsesdir = args
-	annotations = None
+	annotations = restrict = None
+	if opts.get('--restrict'):
+		restrict = int(opts.get('--restrict'))
 	if opts.get('--import'):
 		fnames = glob(os.path.join(opts.get('--import'), '*.tsv'))
 		annotations = pd.concat([
@@ -378,8 +390,9 @@ def main():
 	else:
 		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 		train(trainfiles, validationfiles, parsesdir,
-				annotations, tokenizer, bertmodel)
-		evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel)
+				annotations, restrict, tokenizer, bertmodel)
+		evalfiles = opts.get('--eval', validationfiles)
+		evaluate(evalfiles, parsesdir, annotations, tokenizer, bertmodel)
 
 
 if __name__ == '__main__':

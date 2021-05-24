@@ -1885,6 +1885,32 @@ def readconll(conllfile):
 	return conlldocs
 
 
+def initialsegment(fname, percentage):
+	"""Read CoNLL file and return sentence number that covers
+	given percentage of tokens."""
+	with open(fname) as inp:
+		tottokens = 0
+		for line in inp:
+			if (line.strip()
+					and not line.startswith('#begin doc')
+					and not line.startswith('#end doc')):
+				tottokens += 1
+		inp.seek(0)
+		numtokens = numsents = 0
+		result = {}
+		for line in inp:
+			line = line.strip()
+			if (line
+					and not line.startswith('#begin doc')
+					and not line.startswith('#end doc')):
+				numtokens += 1
+			elif not line:
+				numsents += 1
+				if numtokens >= percentage / 100 * tottokens:
+					break
+	return numsents
+
+
 def getmatchingdoc(conlldocs, docname):
 	"""Return matching document from conll file."""
 	label = docname

@@ -2,6 +2,10 @@
 
 Usage: pronounresolution.py <train> <validation> <parsesdir>
 Example: pronounresolution.py 'train/*.conll' 'dev/*.conll' parses/
+
+Options:
+    --restrict=N    restrict training data to the first N% of each file.
+	--eval=<test>   report evaluation on this set instead of validation
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -9,6 +13,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '4'
 
 import sys
+import getopt
 # from collections import Counter
 from glob import glob
 from lxml import etree
@@ -17,7 +22,7 @@ from sklearn import metrics
 import numpy as np
 import keras
 import tensorflow as tf
-from coref import (readconll, parsesentid, readngdata,
+from coref import (readconll, parsesentid, readngdata, initialsegment,
 		conllclusterdict, getheadidx, Mention, sameclause, debug, VERBOSE)
 import bert
 
@@ -65,10 +70,13 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 	return mentions
 
 
-def loadmentions(conllfile, parsesdir):
+def loadmentions(conllfile, parsesdir, restrict=None):
 	ngdata, gadata = readngdata()
 	# assume single document
 	conlldata = next(iter(readconll(conllfile).values()))
+	if restrict:
+		n = initialsegment(conllfile, restrict)
+		conlldata = conlldata[:n]
 	pattern = os.path.join(parsesdir, '*.xml')
 	filenames = sorted(glob(pattern), key=parsesentid)
 	if not filenames:
@@ -242,9 +250,7 @@ class CorefFeatures:
 				self.anaphordata)
 
 
-def getfeatures(pattern, parsesdir, tokenizer, bertmodel):
-	# NB: assumes the input files don't change;
-	# otherwise, manually delete cached file!
+def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
 	data = CorefFeatures()
 	files = glob(pattern)
 	if not files:
@@ -252,7 +258,7 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel):
 	for n, conllfile in enumerate(files, 1):
 		parses = os.path.join(parsesdir,
 				os.path.basename(conllfile.rsplit('.', 1)[0]))
-		trees, mentions = loadmentions(conllfile, parses)
+		trees, mentions = loadmentions(conllfile, parses, restrict=restrict)
 		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
 		data.add(trees, embeddings, mentions)
 		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
@@ -289,12 +295,13 @@ def build_mlp_model(input_shape):
 	return model
 
 
-def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
+def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
+		restrict):
 	np.random.seed(1)
 	python_random.seed(1)
 	tf.random.set_seed(1)
 	X_train, y_train, _clusters, _indices = getfeatures(
-			trainfiles, parsesdir, tokenizer, bertmodel)
+			trainfiles, parsesdir, tokenizer, bertmodel, restrict=restrict)
 	X_val, y_val, _clusters, _indices = getfeatures(
 			validationfiles, parsesdir, tokenizer, bertmodel)
 	print('training data', X_train.shape)
@@ -309,7 +316,7 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel):
 			keras.callbacks.EarlyStopping(
 				monitor='val_loss', patience=PATIENCE,
 				restore_best_weights=True),
-            keras.callbacks.ModelCheckpoint(
+			keras.callbacks.ModelCheckpoint(
 				MODELFILE, monitor='val_loss', verbose=0,
 				save_best_only=True, mode='min',
 				save_weights_only=True),
@@ -401,10 +408,26 @@ def predict(trees, embeddings, mentions):
 
 
 def main():
+	"""CLI."""
+	longopts = ['restrict=', 'eval=', 'help']
+	try:
+		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
+	except getopt.GetoptError:
+		print(__doc__)
+		return
+	opts = dict(opts)
+	if '--help' in opts or len(args) != 3:
+		print(__doc__)
+		return
+	trainfiles, validationfiles, parsesdir = args
+	restrict = None
+	if opts.get('--restrict'):
+		restrict = int(opts.get('--restrict'))
 	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
-	_, trainfiles, validationfiles, parsesdir = sys.argv
-	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel)
-	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)
+	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
+			restrict)
+	evalfiles = opts.get('--eval', validationfiles)
+	evaluate(evalfiles, parsesdir, tokenizer, bertmodel)
 
 
 if __name__ == '__main__':
