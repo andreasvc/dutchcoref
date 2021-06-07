@@ -10,9 +10,9 @@ Options:
     --export=<dir>  export detected features to TSV files for annotation;
                     when this option is enabled, no training is done.
     --restrict=N    restrict training data to the first N% of each file.
-	--eval=<test>   report evaluation on this set instead of validation.
-					(NB: this is only meaningful if annotated features are
-					imported for this test set).
+    --eval=<test>   report evaluation on this set instead of validation.
+                    (NB: this is only meaningful if annotated features are
+                    imported for this test set).
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -46,14 +46,11 @@ BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
 def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
-		annotations=None, exportfile=None):
+		annotations=None, export=None):
 	"""Extract gold mentions from annotated data and merge features.
 
 	:returns: mentions sorted by sentno, begin; including gold clusterid
 		and detected features for the cluster."""
-	if exportfile is not None:
-		print('filename', 'sentno', 'begin', 'end', 'gender', 'number',
-				'mentions', 'sentence', sep='\t', file=exportfile)
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
 	for _clusterid, spans in goldspansforcluster.items():
@@ -96,14 +93,14 @@ def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
 			else:
 				mergefeatures(firstment, mention)
 			mentions.append(mention)
-		if exportfile is not None:
-			print(name, firstment.sentno, firstment.begin, firstment.end,
+		if export is not None:
+			export.append(
+					(name, firstment.sentno, firstment.begin, firstment.end,
 					firstment.features['gender'] or '',
 					firstment.features['number'] or '',
 					', '.join(text for _, _, _, text in sorted(spans)),
 					' '.join(gettokens(firstment.node.getroottree().getroot(),
-						0, 9999)),
-					sep='\t', file=exportfile)
+						0, 9999))))
 	# sort by sentence, then from longest to shortest span
 	mentions.sort(key=lambda x: (x.sentno, x.begin - x.end))
 	for n, mention in enumerate(mentions):
@@ -125,16 +122,20 @@ def loadmentions(conllfile, parsesdir, ngdata, gadata,
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
 	name = os.path.splitext(os.path.basename(conllfile))[0]
+	export = [] if exportpath else None
 	try:
-		exportfile = open(os.path.join(exportpath, name) + '.tsv',
-				'w') if exportpath else None
 		# extract gold mentions with gold clusters
 		mentions = extractmentionsfromconll(
-				name, conlldata, trees, ngdata, gadata, annotations,
-				exportfile)
-	finally:
-		if exportfile is not None:
-			exportfile.close()
+				name, conlldata, trees, ngdata, gadata, annotations, export)
+	except Exception:
+		print('issue with', conllfile)
+		raise
+	if exportpath:
+		df = pd.DataFrame(export,
+				columns=['filename', 'sentno', 'begin', 'end', 'gender',
+					'number', 'mentions', 'sentence'])
+		df.to_csv(os.path.join(exportpath, name) + '.tsv',
+				sep='\t', index=False)
 	return trees, mentions
 
 
@@ -149,7 +150,7 @@ class MentionFeatures:
 		i = 0
 		idx = {}  # map (sentno, tokenno) to global token index
 		for sentno, (_, tree) in enumerate(trees):
-			for n, token in enumerate(sorted(
+			for n, _token in enumerate(sorted(
 					tree.iterfind('.//node[@word]'),
 					key=lambda x: int(x.get('begin')))):
 				idx[sentno, n] = i
@@ -312,13 +313,15 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 			np.array(y_val, dtype=bool),
 			np.array([featvals(mention) for mention in mentions], dtype=bool),
 			target_names=target_names,
-			zero_division=0))
+			zero_division=0,
+			digits=3))
 	print('\nperformance of feature classifier:')
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			np.array([a > 0.5 for a in probs], dtype=bool),
 			target_names=target_names,
-			zero_division=0))
+			zero_division=0,
+			digits=3))
 
 
 def predict(trees, embeddings, mentions):
@@ -387,13 +390,18 @@ def main():
 		restrict = int(opts.get('--restrict'))
 	if opts.get('--import'):
 		fnames = glob(os.path.join(opts.get('--import'), '*.tsv'))
-		annotations = pd.concat([
-				pd.read_csv(
-					fname, sep='\t',
-					dtype={'gender': str}, keep_default_na=False)
-				for fname in fnames]).set_index(
+		result = []
+		for fname in fnames:
+			try:
+				result.append(pd.read_csv(
+						fname, sep='\t',
+						dtype={'gender': str}, keep_default_na=False))
+			except Exception:
+				print('issue with', fname)
+				raise
+		annotations = pd.concat(result).set_index(
 				['filename', 'sentno', 'begin', 'end'])[
-					['gender', 'number']].T.to_dict()
+				['gender', 'number']].T.to_dict()
 	if opts.get('--export'):
 		exportpath = opts.get('--export')
 		ngdata, gadata = readngdata()
