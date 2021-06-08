@@ -123,7 +123,7 @@ class Mention:
 	:ivar type: one of ('name', 'noun', 'pronoun')
 	:ivar mainmod: list of string tokens that modify the head noun
 	:ivar features: dict with following keys and possible values:
-		:number: ('sg', 'pl', both, None); None means unknown.
+		:number: ('sg', 'pl', 'both', None); None means unknown.
 		:gender: ('m', 'f', 'n', 'fm', 'mn', 'fn', None)
 		:human: (0, 1, None)
 		:person: (1, 2, 3, None); only for pronouns.
@@ -1897,7 +1897,6 @@ def initialsegment(fname, percentage):
 				tottokens += 1
 		inp.seek(0)
 		numtokens = numsents = 0
-		result = {}
 		for line in inp:
 			line = line.strip()
 			if (line
@@ -2080,14 +2079,20 @@ def comparecoref(conlldata, mentions, clusters, goldspans, respspans,
 							file=out)
 
 
-def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
-	"""Extract gold mentions from annotated data."""
+def extractmentionsfromconll(conlldata, trees, ngdata, gadata,
+		goldclusters=False):
+	"""Extract gold mentions from annotated data.
+
+	:param goldclusters: if True, copy gold clusterid;
+		by default, clusterid will be equal to mention ID.
+	:returns: mentions sorted by sentno, begin."""
 	debug(color('Extracted gold mentions from CoNLL file', 'yellow'))
 	mentions = []
 	goldspansforcluster = conllclusterdict(conlldata)
-	goldspans = {span for spans in goldspansforcluster.values()
-			for span in spans}
-	for sentno, begin, end, text in sorted(goldspans):
+	goldspans = {span + (clusterid, )
+			for clusterid, spans in goldspansforcluster.items()
+				for span in spans}
+	for sentno, begin, end, text, clusterid in sorted(goldspans):
 		# smallest node spanning begin, end
 		(parno, _sentno), tree = trees[sentno]
 		node = min((node for node in tree.findall('.//node')
@@ -2101,6 +2106,8 @@ def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
 		mentions.append(Mention(
 				len(mentions), sentno, parno, tree, node, begin, end, headidx,
 				text.split(' '), ngdata, gadata))
+		if goldclusters:
+			mentions[-1].clusterid = clusterid
 	return mentions
 
 
@@ -2108,7 +2115,9 @@ def conllclusterdict(conlldata, tokenidx=4):
 	"""Extract dict from CoNLL file mapping gold cluster IDs to spans.
 
 	:param tokenidx: 1-based column index of word token; use 2 for semeval2010.
-	"""
+	:returns: dictionary of the form
+		{cluster1: {span1, span2, ...}, cluster2: {...}}
+		where a span is a tuple (sentno, begin, end, text)"""
 	spansforcluster = {}
 	spans = {}
 	for sentno, chunk in enumerate(conlldata):
