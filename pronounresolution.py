@@ -361,12 +361,16 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 				if probs[a:b].max() > MENTION_PAIR_THRESHOLD else -1)
 		y_true.append(anaphor.clusterid)
 		print(f'{int(pred[-1] == y_true[-1])} {probs[a:b].max():.3f}',
-				' '.join(anaphor.tokens), '->',
-				(' '.join(antecedent.tokens)
-				if probs[a:b].max() > MENTION_PAIR_THRESHOLD else '(none)'))
+				anaphor.sentno, anaphor.begin, ' '.join(anaphor.tokens), '->',
+				end=' ')
+		if probs[a:b].max() > MENTION_PAIR_THRESHOLD:
+			print(antecedent.sentno, antecedent.begin,
+					' '.join(antecedent.tokens))
+		else:
+			print('(none)')
 	pairpred = probs > MENTION_PAIR_THRESHOLD
 	print('(pronoun, candidate) pair classification scores:')
-	print(metrics.classification_report(y_val, pairpred))
+	print(metrics.classification_report(y_val, pairpred, digits=3))
 	# The above are scores for mention pairs. To get actual pronoun accuracy,
 	# select a best candidate for each pronoun and evaluate on that.
 	print('Pronoun resolution accuracy: %5.2f'

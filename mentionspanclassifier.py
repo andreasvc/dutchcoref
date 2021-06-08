@@ -278,6 +278,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			probs[:, 0] > 0.5,  # MENTION_THRESHOLD,
+			digits=3,
 			target_names=['nonmention', 'mention']))
 	# better evaluation: pick best span from candidates with same head
 	result = np.zeros(len(spans), dtype=bool)
@@ -292,6 +293,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	print(classification_report(
 			np.array(y_val, dtype=bool),
 			result,
+			digits=3,
 			target_names=['nonmention', 'mention']))
 
 
