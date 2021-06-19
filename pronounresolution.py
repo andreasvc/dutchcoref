@@ -106,11 +106,16 @@ def checkfeat(mention, other, key):
 
 
 class CorefFeatures:
-	def __init__(self):
+	def __init__(self, selectpref='data/inspect-dep35-sort.csv.gz'):
 		self.result = []  # collected features for pairs
 		self.coreferent = []  # the target: pair is coreferent (1) or not (0)
 		self.antecedents = []  # the candidate antecedent mention in each pair
 		self.anaphordata = []  # row indices for each anaphor and its candidates
+		# Get selectional preferences
+		# import pandas as pd
+		# self.selectdf = pd.read_csv(
+		# 		selectpref, index_col=['hdword-rel-depword'],
+		# 		dtype={'npmi': int})
 
 	def add(self, trees, embeddings, mentions):
 		# global token index
@@ -185,9 +190,11 @@ class CorefFeatures:
 					# entity in current context or in the whole document;
 					# this means previous mentions must have already been
 					# resolved.
+					# selpref = self.selectprefscore(mention, other)
 					feats = (
 							mention.sentno, mention.begin, mention.end,
 							other.sentno, other.begin, other.end,
+							mention.parentheadwordidx,
 							other.type == 'pronoun',
 							other.type == 'noun',
 							other.type == 'name',
@@ -213,6 +220,9 @@ class CorefFeatures:
 							# in whole document
 							# globalfreq[other.clusterid]
 							# 	/ sum(globalfreq.values()),
+							# selpref == 0, 0 < selpref < 0.2,
+							# 0.2 < selpref < 0.4, 0.4 < selpref < 0.6,
+							# 0.6 < selpref < 0.8, 0.8 < selpref,
 							)
 					sentdist = mention.sentno - other.sentno  # dist in sents
 					mentdist = n - m  # distance in number of mentions
@@ -229,17 +239,21 @@ class CorefFeatures:
 				self.anaphordata.append((a, len(self.coreferent), mention))
 		if not result:
 			return
-		numotherfeats = len(result[0]) - 6
+		numotherfeats = len(result[0]) - 7
 		buf = np.zeros((len(result),
-				2 * embeddings.shape[-1] + numotherfeats))
+				3 * embeddings.shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			osent, obegin, oend = featvec[3:6]
+			mhd = featvec[6]
 			buf[n, :embeddings.shape[-1]] = embeddings[
 					idx[msent, mbegin]:idx[msent, mend - 1] + 1].mean(axis=0)
-			buf[n, embeddings.shape[-1]:-numotherfeats] = embeddings[
+			buf[n, embeddings.shape[-1]:2 * embeddings.shape[-1]] = embeddings[
 					idx[osent, obegin]:idx[osent, oend - 1] + 1].mean(axis=0)
+			if mhd is not None:
+				buf[n, 2 * embeddings.shape[-1]:-numotherfeats] = embeddings[
+						idx[msent, mhd]]
 			buf[n, -numotherfeats:] = featvec[-numotherfeats:]
 		self.result.append(buf)
 
@@ -248,6 +262,19 @@ class CorefFeatures:
 				np.array(self.coreferent, dtype=int),
 				self.antecedents,
 				self.anaphordata)
+
+	def selectprefscore(self, mention, other):
+		"""Derive selectional preferences for pronoun."""
+		selec_pref = -1000
+		key = None
+		if mention.parentheadword is not None:
+			key = '%s\thd/%s\t%s' % (
+					mention.parentheadword,
+					mention.node.get('rel'),
+					other.head.get('root'))
+		if key in self.selectdf.index:
+			selec_pref = self.selectdf.loc[key, 'npmi'].max()
+		return selec_pref / 10000
 
 
 def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
@@ -370,7 +397,8 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			print('(none)')
 	pairpred = probs > MENTION_PAIR_THRESHOLD
 	print('(pronoun, candidate) pair classification scores:')
-	print(metrics.classification_report(y_val, pairpred, digits=3))
+	print(metrics.classification_report(y_val, pairpred,
+			digits=3, zero_division=0))
 	# The above are scores for mention pairs. To get actual pronoun accuracy,
 	# select a best candidate for each pronoun and evaluate on that.
 	print('Pronoun resolution accuracy: %5.2f'
@@ -391,7 +419,8 @@ def predict(trees, embeddings, mentions):
 	probs = model.predict(X)
 	result = []
 	for a, b, anaphor in anaphordata:
-		debug(anaphor.sentno, anaphor.begin, anaphor, anaphor.featrepr())
+		debug(anaphor.sentno, anaphor.begin, anaphor, anaphor.featrepr(),
+				'depof=%s' % anaphor.parentheadword)
 		if a == b:  # a pronoun with no candidates ...
 			continue
 		# select most likely antecedent
@@ -403,6 +432,7 @@ def predict(trees, embeddings, mentions):
 			debug('\t%d %d %s %s p=%g%s' % (
 					antecedents[n].sentno, antecedents[n].begin,
 					antecedents[n].node.get('rel'), antecedents[n],
+					# data.selectprefscore(anaphor, antecedents[n]),
 					probs[n],
 					' %s %g best' % (
 						'<>'[int(probs[best] > MENTION_PAIR_THRESHOLD)],

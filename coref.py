@@ -158,6 +158,7 @@ class Mention:
 		self.prohibit = set()
 		self.filter = False
 		self.antecedent = self.sieve = None
+		self.parentheadword = self.parentheadwordidx = None
 		removeids = {n for rng in
 				(range(int(child.get('begin')), int(child.get('end')))
 				for child in node.findall('.//node[@rel="app"]')
@@ -189,6 +190,10 @@ class Mention:
 		self.features = {
 				'human': None, 'gender': None,
 				'number': None, 'person': None}
+		parentheadword = getparentheadword(node)
+		if parentheadword is not None:
+			self.parentheadword = parentheadword.get('root')
+			self.parentheadwordidx = int(parentheadword.get('begin'))
 		self._detectfeatures(ngdata, gadata)
 
 	def _detectfeatures(self, ngdata, gadata):
@@ -1304,15 +1309,22 @@ def gettokens(tree, begin, end):
 
 def getheadidx(node):
 	"""Return head word index given constituent."""
+	word = getheadword(node)
+	if word is not None:
+		return int(word.get('begin'))
+
+
+def getheadword(node):
+	"""Return head word given constituent."""
 	if len(node) == 0:
-		return int(node.get('begin'))
+		return node
 	for child in node:
 		# if child.get('rel') in ('hd', 'whd', 'rhd', 'crd', 'cmp'):
 		# conjunctions are tricky; we select the head of the first conjunct.
 		if child.get('rel') in ('hd', 'whd', 'rhd', 'cnj', 'body'):
-			return getheadidx(child)
+			return getheadword(child)
 	# default to last child as head
-	return getheadidx(node[-1])
+	return getheadword(node[-1])
 
 
 def prohibited(mention1, mention2, clusters):
@@ -1445,6 +1457,17 @@ def representativementions(mentions, clusters):
 		if cluster is not None:
 			n = min(cluster)
 			yield n, mentions[n]
+
+
+def getparentheadword(node):
+	"""Find head word which has `node` as dependent."""
+	# look for main verb in clause
+	clausecats = ('smain', 'ssub', 'sv1', 'inf')
+	node1 = node
+	while (node1 is not None and node1.get('cat') not in clausecats):
+		node1 = node1.getparent()
+	if node1 is not None:
+		return getheadword(node1)
 
 
 def sameclause(node1, node2):
