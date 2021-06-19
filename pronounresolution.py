@@ -23,7 +23,7 @@ import numpy as np
 import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata, initialsegment,
-		conllclusterdict, getheadidx, Mention, sameclause, debug, VERBOSE)
+		extractmentionsfromconll, sameclause, debug, VERBOSE)
 import bert
 
 MAXPRONDIST = 20  # max number of mentions between pronoun and candidate
@@ -42,34 +42,6 @@ MODELFILE = 'pronounmodel.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
-def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
-	"""Extract gold mentions from annotated data.
-
-	:returns: mentions sorted by sentno, begin; including gold clusterid."""
-	mentions = []
-	goldspansforcluster = conllclusterdict(conlldata)
-	goldspans = {(clusterid, ) + span
-			for clusterid, spans in goldspansforcluster.items()
-				for span in spans}
-	for clusterid, sentno, begin, end, text in sorted(goldspans):
-		# smallest node spanning begin, end
-		(parno, _sentno), tree = trees[sentno]
-		node = sorted((node for node in tree.findall('.//node')
-					if begin >= int(node.get('begin'))
-					and end <= int(node.get('end'))),
-				key=lambda x: int(x.get('end')) - int(x.get('begin')))[0]
-		headidx = getheadidx(node)
-		if headidx >= end:
-			headidx = max(int(x.get('begin')) for x in node.findall('.//node')
-					if int(x.get('begin')) < end)
-		mention = Mention(
-				len(mentions), sentno, parno, tree, node, begin, end, headidx,
-				text.split(' '), ngdata, gadata)
-		mention.clusterid = clusterid
-		mentions.append(mention)
-	return mentions
-
-
 def loadmentions(conllfile, parsesdir, restrict=None):
 	ngdata, gadata = readngdata()
 	# assume single document
@@ -84,7 +56,8 @@ def loadmentions(conllfile, parsesdir, restrict=None):
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
 	# extract gold mentions with gold clusters
-	mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
+	mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata,
+			goldclusters=True)
 	return trees, mentions
 
 
@@ -128,7 +101,6 @@ class CorefFeatures:
 				idx[sentno, n] = i
 				i += 1
 		result = []
-		mentions = sorted(mentions, key=lambda m: (m.sentno, m.begin))
 		# globalfreq = Counter(other.clusterid for other in mentions)
 		# collect mentions and candidate antecedents
 		for n, mention in enumerate(mentions):
