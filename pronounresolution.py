@@ -5,7 +5,7 @@ Example: pronounresolution.py 'train/*.conll' 'dev/*.conll' parses/
 
 Options:
     --restrict=N    restrict training data to the first N% of each file.
-	--eval=<test>   report evaluation on this set instead of validation
+    --eval=<test>   report evaluation on this set instead of validation
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -26,7 +26,8 @@ from coref import (readconll, parsesentid, readngdata, initialsegment,
 		extractmentionsfromconll, sameclause, debug, VERBOSE)
 import bert
 
-MAXPRONDIST = 20  # max number of mentions between pronoun and candidate
+PRONDISTTYPE = 'words'
+MAXPRONDIST = 100  # max number of words between pronoun and candidate
 DENSE_LAYER_SIZES = [500, 150, 150]
 DROPOUT_RATE = 0.2
 LEARNING_RATE = 0.001
@@ -113,18 +114,23 @@ class CorefFeatures:
 				a = len(self.coreferent)
 				nn = n - 1
 				# determine the candidates using a window of sentences;
-				# while (nn > 0
-				# 		and mention.sentno - mentions[nn].sentno < MAXPRONDIST):
-				# 	nn -= 1
+				if PRONDISTTYPE == 'sents':
+					while (nn > 0 and (mention.sentno - mentions[nn].sentno)
+								< MAXPRONDIST):
+						nn -= 1
 				# determine candidates using window of words
-				# while (nn > 0
-				# 		and idx[mention.sentno, mention.begin]
-				# 		- idx[mentions[nn].sentno, mentions[nn].begin]
-				# 		< MAXPRONDIST):
-				# 	nn -= 1
+				elif PRONDISTTYPE == 'words':
+					while (nn > 0
+							and idx[mention.sentno, mention.begin]
+							- idx[mentions[nn].sentno, mentions[nn].begin]
+							< MAXPRONDIST):
+						nn -= 1
 				# determine candidates using number of mentions
-				nn = max(n - MAXPRONDIST, 0)
-
+				elif PRONDISTTYPE == 'mentions':
+					nn = max(n - MAXPRONDIST, 0)
+				else:
+					raise ValueError('PRONDISTTYPE should be one of %r; got %r'
+							% ({'sents', 'words', 'mentions'}, PRONDISTTYPE))
 				# FIXME: encode context of each mention as a single segment
 				# instead of each sentence independently?
 				# rng = range(mentions[nn].sentno, mention.sentno + 1)
@@ -268,7 +274,7 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
 def build_mlp_model(input_shape):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
-			keras.Input(shape=input_shape),
+			keras.layers.InputLayer(input_shape=input_shape),
 			keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
@@ -309,7 +315,7 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 	classif_model = build_mlp_model([X_train.shape[-1]])
 	classif_model.summary()
 	classif_model.compile(
-			optimizer=keras.optimizers.Adam(lr=LEARNING_RATE),
+			optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
 			loss='binary_crossentropy')
 	callbacks = [
 			keras.callbacks.EarlyStopping(

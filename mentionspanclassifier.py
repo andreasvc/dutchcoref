@@ -5,7 +5,7 @@ Example: mentionspanclassifier.py 'train/*.conll' 'dev/*.conll' parses/
 
 Options:
     --restrict=N    restrict training data to the first N% of each file.
-	--eval=<test>   report evaluation on this set instead of validation
+    --eval=<test>   report evaluation on this set instead of validation
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -204,7 +204,7 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
 def build_mlp_model(input_shape, num_labels):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
-			keras.Input(shape=input_shape),
+			keras.layers.InputLayer(input_shape=input_shape),
 			keras.layers.Dropout(DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
@@ -244,7 +244,7 @@ def train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 	classif_model = build_mlp_model([X_train.shape[-1]], 1)
 	classif_model.summary()
 	classif_model.compile(
-			optimizer=keras.optimizers.Adam(lr=LEARNING_RATE),
+			optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
 			loss='binary_crossentropy')
 	callbacks = [
 			keras.callbacks.EarlyStopping(
