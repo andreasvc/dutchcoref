@@ -58,23 +58,23 @@ def getstats(args, parsesdir=None):
 			numentities += len(goldspansforcluster)
 			numlinks += sum(int((len(cluster) * (len(cluster) - 1)) / 2)
 					for cluster in goldspansforcluster.values())
-	print('sents:', sents)
-	print('tokens:', tokens)
-	print('mentions:', nummentions)
-	print('entities:', numentities)
-	print('links:', numlinks)
-	print('tok/sent:', tokens / sents)
-	print('mentions / tokens:', nummentions / tokens)
-	print('entities / tokens:', numentities / tokens)
-	print('links / tokens:', numlinks / tokens)
-	print('mentions / entities:', nummentions / numentities)
-	print('links / entities:', numlinks / numentities)
+	print('sents                & %5d' % sents)
+	print('tokens               & %5d' % tokens)
+	print('mentions             & %5d' % nummentions)
+	print('entities             & %5d' % numentities)
+	print('links                & %5d' % numlinks)
+	print('tok/sent             & %5.1f' % (tokens / sents))
+	print('mentions / tokens    & %5.3f' % (nummentions / tokens))
+	print('entities / tokens    & %5.4f' % (numentities / tokens))
+	print('links / tokens       & %5.2f' % (numlinks / tokens))
+	print('mentions / entities  & %5.2f' % (nummentions / numentities))
+	print('links / entities     & %5.1f' % (numlinks / numentities))
 	if parsesdir is None:
 		print('specify --parses to get % pronouns, nominals, names')
-	else:
-		print('% pronouns', 100 * pronouns / nummentions)
-		print('% nominals', 100 * nominals / nummentions)
-		print('% names', 100 * names / nummentions)
+		return
+	print('%% pronouns           & %5.1f' % (100 * pronouns / nummentions))
+	print('%% nominals           & %5.1f' % (100 * nominals / nummentions))
+	print('%% names              & %5.1f' % (100 * names / nummentions))
 
 
 def main():
