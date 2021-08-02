@@ -1,6 +1,7 @@
 """Mention feature classifier.
 
 Usage: mentionfeatureclassifier.py <train> <validation> <parsesdir>
+Or: mentionfeatureclassifier.py <parsesdir> --import=<dir> --eval=<test>
 Example: mentionfeatureclassifier.py 'train/*.conll' 'dev/*.conll' parses/
 
 Options:
@@ -10,7 +11,7 @@ Options:
     --export=<dir>  export detected features to TSV files for annotation;
                     when this option is enabled, no training is done.
     --restrict=N    restrict training data to the first N% of each file.
-    --eval=<test>   report evaluation on this set instead of validation.
+    --eval=<test>   report evaluation on this set using already trained model.
                     (NB: this is only meaningful if annotated features are
                     imported for this test set).
 """
@@ -34,13 +35,13 @@ from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		color, debug, VERBOSE)
 import bert
 
-DENSE_LAYER_SIZES = [500, 150, 150]
-DROPOUT_RATE = 0.2
-LEARNING_RATE = 0.001
+DENSE_LAYER_SIZES = [500, 250, 150]
+DROPOUT_RATE = 0.5
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
 EPOCHS = 100  # maximum number of epochs
 PATIENCE = 15  # stop after this number of epochs wo/improvement
-LAMBD = 0.1  # L2 regularization
+LAMBD = 0.05  # L2 regularization
 MODELFILE = 'mentionfeatclassif.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
@@ -381,13 +382,7 @@ def main():
 		print(__doc__)
 		return
 	opts = dict(opts)
-	if '--help' in opts or len(args) != 3:
-		print(__doc__)
-		return
-	trainfiles, validationfiles, parsesdir = args
 	annotations = restrict = None
-	if opts.get('--restrict'):
-		restrict = int(opts.get('--restrict'))
 	if opts.get('--import'):
 		fnames = glob(os.path.join(opts.get('--import'), '*.tsv'))
 		result = []
@@ -402,13 +397,22 @@ def main():
 		annotations = pd.concat(result).set_index(
 				['filename', 'sentno', 'begin', 'end'])[
 				['gender', 'number']].T.to_dict()
+	if opts.get('--eval'):
+		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		evaluate(opts['--eval'], args[0], annotations, tokenizer, bertmodel)
+	elif '--help' in opts or len(args) != 3:
+		print(__doc__)
+		return
+	trainfiles, validationfiles, parsesdir = args
+	if opts.get('--restrict'):
+		restrict = int(opts.get('--restrict'))
 	if opts.get('--export'):
 		exportpath = opts.get('--export')
 		ngdata, gadata = readngdata()
 		for pattern in (trainfiles, validationfiles):
 			files = glob(pattern)
 			if not files:
-				raise ValueError('pattern did not match any files: %s' % pattern)
+				raise ValueError('pattern did not match any files: ' + pattern)
 			for conllfile in files:
 				parses = os.path.join(parsesdir,
 						os.path.basename(conllfile.rsplit('.', 1)[0]))
@@ -418,8 +422,7 @@ def main():
 		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 		train(trainfiles, validationfiles, parsesdir,
 				annotations, restrict, tokenizer, bertmodel)
-		evalfiles = opts.get('--eval', validationfiles)
-		evaluate(evalfiles, parsesdir, annotations, tokenizer, bertmodel)
+		evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel)
 
 
 if __name__ == '__main__':

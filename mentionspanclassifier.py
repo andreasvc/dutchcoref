@@ -2,10 +2,11 @@
 
 Usage: mentionspanclassifier.py <train> <validation> <parsesdir>
 Example: mentionspanclassifier.py 'train/*.conll' 'dev/*.conll' parses/
+Alternatively: mentionspanclassifier.py <parsesdir> --eval <test>
 
 Options:
     --restrict=N    restrict training data to the first N% of each file.
-    --eval=<test>   report evaluation on this set instead of validation
+    --eval=<test>   report evaluation on this set using already trained model.
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -27,9 +28,9 @@ from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		adjustmentionspan, color, debug, VERBOSE)
 import bert
 
-DENSE_LAYER_SIZES = [500, 150, 150]
-DROPOUT_RATE = 0.2
-LEARNING_RATE = 0.001
+DENSE_LAYER_SIZES = [500, 250, 150]
+DROPOUT_RATE = 0.5
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
 EPOCHS = 100
 PATIENCE = 5
@@ -345,7 +346,10 @@ def main():
 		print(__doc__)
 		return
 	opts = dict(opts)
-	if '--help' in opts or len(args) != 3:
+	if '--eval' in opts:
+		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		evaluate(opts['--eval'], args[0], tokenizer, bertmodel)
+	elif '--help' in opts or len(args) != 3:
 		print(__doc__)
 		return
 	trainfiles, validationfiles, parsesdir = args
@@ -355,8 +359,7 @@ def main():
 	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 			restrict)
-	evalfiles = opts.get('--eval', validationfiles)
-	evaluate(evalfiles, parsesdir, tokenizer, bertmodel)
+	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)
 
 
 if __name__ == '__main__':

@@ -126,7 +126,7 @@ class Mention:
 		:number: ('sg', 'pl', 'both', None); None means unknown.
 		:gender: ('m', 'f', 'n', 'fm', 'mn', 'fn', None)
 		:human: (0, 1, None)
-		:person: (1, 2, 3, None); only for pronouns.
+		:person: ('1', '2', '3', None); only for pronouns.
 	:ivar antecedent: mention ID of antecedent of this mention, or None.
 	:ivar sieve: name of sieve responsible for linking this mention, or None.
 	"""
