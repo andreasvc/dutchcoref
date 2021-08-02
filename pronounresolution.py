@@ -2,10 +2,11 @@
 
 Usage: pronounresolution.py <train> <validation> <parsesdir>
 Example: pronounresolution.py 'train/*.conll' 'dev/*.conll' parses/
+Alternatively: pronounresolution.py <parsesdir> --eval=<test>
 
 Options:
     --restrict=N    restrict training data to the first N% of each file.
-    --eval=<test>   report evaluation on this set instead of validation
+    --eval=<test>   report evaluation on this set with already trained model.
 """
 # requirements:
 # - pip install 'transformers>=4.0' keras tensorflow
@@ -28,17 +29,17 @@ import bert
 
 PRONDISTTYPE = 'words'
 MAXPRONDIST = 100  # max number of words between pronoun and candidate
-DENSE_LAYER_SIZES = [500, 150, 150]
-DROPOUT_RATE = 0.2
-LEARNING_RATE = 0.001
+DENSE_LAYER_SIZES = [500, 250, 150]
+DROPOUT_RATE = 0.5
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
 EPOCHS = 100
 PATIENCE = 5
-LAMBD = 0.1  # L2 regularization
+LAMBD = 0.05  # L2 regularization
 
 # do not link anaphor if all scores of candidates are below this value.
 # the model does not have to be re-trained if this value is changed.
-MENTION_PAIR_THRESHOLD = 0.2
+MENTION_PAIR_THRESHOLD = 0.1
 MODELFILE = 'pronounmodel.pt'
 BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
@@ -219,12 +220,12 @@ class CorefFeatures:
 			return
 		numotherfeats = len(result[0]) - 7
 		buf = np.zeros((len(result),
-				3 * embeddings.shape[-1] + numotherfeats))
+				2 * embeddings.shape[-1] + numotherfeats))
 		for n, featvec in enumerate(result):
 			# mean of BERT token representations of the tokens in the mentions.
 			msent, mbegin, mend = featvec[:3]
 			osent, obegin, oend = featvec[3:6]
-			mhd = featvec[6]
+			mhd = None  # featvec[6]
 			buf[n, :embeddings.shape[-1]] = embeddings[
 					idx[msent, mbegin]:idx[msent, mend - 1] + 1].mean(axis=0)
 			buf[n, embeddings.shape[-1]:2 * embeddings.shape[-1]] = embeddings[
@@ -428,7 +429,11 @@ def main():
 		print(__doc__)
 		return
 	opts = dict(opts)
-	if '--help' in opts or len(args) != 3:
+	if '--eval' in opts:
+		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		evaluate(opts.get('--eval'), args[0], tokenizer, bertmodel)
+		return
+	elif '--help' in opts or len(args) != 3:
 		print(__doc__)
 		return
 	trainfiles, validationfiles, parsesdir = args
@@ -438,8 +443,7 @@ def main():
 	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
 	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 			restrict)
-	evalfiles = opts.get('--eval', validationfiles)
-	evaluate(evalfiles, parsesdir, tokenizer, bertmodel)
+	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)
 
 
 if __name__ == '__main__':
