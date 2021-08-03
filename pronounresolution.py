@@ -41,7 +41,6 @@ LAMBD = 0.05  # L2 regularization
 # the model does not have to be re-trained if this value is changed.
 MENTION_PAIR_THRESHOLD = 0.1
 MODELFILE = 'pronounmodel.pt'
-BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
 def loadmentions(conllfile, parsesdir, restrict=None):
@@ -430,7 +429,7 @@ def main():
 		return
 	opts = dict(opts)
 	if '--eval' in opts:
-		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		tokenizer, bertmodel = bert.loadmodel()
 		evaluate(opts.get('--eval'), args[0], tokenizer, bertmodel)
 		return
 	elif '--help' in opts or len(args) != 3:
@@ -440,7 +439,7 @@ def main():
 	restrict = None
 	if opts.get('--restrict'):
 		restrict = int(opts.get('--restrict'))
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+	tokenizer, bertmodel = bert.loadmodel()
 	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 			restrict)
 	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)

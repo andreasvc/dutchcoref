@@ -2276,7 +2276,7 @@ def process(path, output, ngdata, gadata,
 		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
 	if neural:
 		import bert
-		tokenizer, bertmodel = bert.loadmodel('GroNLP/bert-base-dutch-cased')
+		tokenizer, bertmodel = bert.loadmodel()
 		embeddings = bert.getvectors(
 				os.path.dirname(path), trees, tokenizer, bertmodel)
 	mentions, clusters, quotations, idx = resolvecoreference(

@@ -43,7 +43,6 @@ EPOCHS = 100  # maximum number of epochs
 PATIENCE = 5  # stop after this number of epochs wo/improvement
 LAMBD = 0.05  # L2 regularization
 MODELFILE = 'mentionfeatclassif.pt'
-BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
 def extractmentionsfromconll(name, conlldata, trees, ngdata, gadata,
@@ -398,7 +397,7 @@ def main():
 				['filename', 'sentno', 'begin', 'end'])[
 				['gender', 'number']].T.to_dict()
 	if opts.get('--eval'):
-		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		tokenizer, bertmodel = bert.loadmodel()
 		evaluate(opts['--eval'], args[0], annotations, tokenizer, bertmodel)
 	elif '--help' in opts or len(args) != 3:
 		print(__doc__)
@@ -419,7 +418,7 @@ def main():
 				_ = loadmentions(conllfile, parses, ngdata, gadata,
 						annotations=annotations, exportpath=exportpath)
 	else:
-		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		tokenizer, bertmodel = bert.loadmodel()
 		train(trainfiles, validationfiles, parsesdir,
 				annotations, restrict, tokenizer, bertmodel)
 		evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel)

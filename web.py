@@ -47,8 +47,7 @@ def results():
 	if neural:
 		if BERTMODEL is None:
 			try:
-				TOKENIZER, BERTMODEL = bert.loadmodel(
-						'GroNLP/bert-base-dutch-cased')
+				TOKENIZER, BERTMODEL = bert.loadmodel()
 			except Exception as err:
 				print(err)
 				return 'BERT model not available'

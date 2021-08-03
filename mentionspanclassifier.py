@@ -39,7 +39,6 @@ LAMBD = 0.1  # L2 regularization
 # the model does not have to be retrained when this value is modified.
 MENTION_THRESHOLD = 0.3
 MODELFILE = 'mentionspanclassif.pt'
-BERTMODEL = 'GroNLP/bert-base-dutch-cased'
 
 
 def extractmentionsfromconll(conlldata, trees, ngdata, gadata):
@@ -347,7 +346,7 @@ def main():
 		return
 	opts = dict(opts)
 	if '--eval' in opts:
-		tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+		tokenizer, bertmodel = bert.loadmodel()
 		evaluate(opts['--eval'], args[0], tokenizer, bertmodel)
 	elif '--help' in opts or len(args) != 3:
 		print(__doc__)
@@ -356,7 +355,7 @@ def main():
 	restrict = None
 	if opts.get('--restrict'):
 		restrict = int(opts.get('--restrict'))
-	tokenizer, bertmodel = bert.loadmodel(BERTMODEL)
+	tokenizer, bertmodel = bert.loadmodel()
 	train(trainfiles, validationfiles, parsesdir, tokenizer, bertmodel,
 			restrict)
 	evaluate(validationfiles, parsesdir, tokenizer, bertmodel)
