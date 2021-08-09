@@ -80,16 +80,11 @@ def checkfeat(mention, other, key):
 
 
 class CorefFeatures:
-	def __init__(self, selectpref='data/inspect-dep35-sort.csv.gz'):
+	def __init__(self):
 		self.result = []  # collected features for pairs
 		self.coreferent = []  # the target: pair is coreferent (1) or not (0)
 		self.antecedents = []  # the candidate antecedent mention in each pair
 		self.anaphordata = []  # row indices for each anaphor and its candidates
-		# Get selectional preferences
-		# import pandas as pd
-		# self.selectdf = pd.read_csv(
-		# 		selectpref, index_col=['hdword-rel-depword'],
-		# 		dtype={'npmi': int})
 
 	def add(self, trees, embeddings, mentions):
 		# global token index
@@ -168,7 +163,6 @@ class CorefFeatures:
 					# entity in current context or in the whole document;
 					# this means previous mentions must have already been
 					# resolved.
-					# selpref = self.selectprefscore(mention, other)
 					feats = (
 							mention.sentno, mention.begin, mention.end,
 							other.sentno, other.begin, other.end,
@@ -198,9 +192,6 @@ class CorefFeatures:
 							# in whole document
 							# globalfreq[other.clusterid]
 							# 	/ sum(globalfreq.values()),
-							# selpref == 0, 0 < selpref < 0.2,
-							# 0.2 < selpref < 0.4, 0.4 < selpref < 0.6,
-							# 0.6 < selpref < 0.8, 0.8 < selpref,
 							)
 					sentdist = mention.sentno - other.sentno  # dist in sents
 					mentdist = n - m  # distance in number of mentions
@@ -240,19 +231,6 @@ class CorefFeatures:
 				np.array(self.coreferent, dtype=int),
 				self.antecedents,
 				self.anaphordata)
-
-	def selectprefscore(self, mention, other):
-		"""Derive selectional preferences for pronoun."""
-		selec_pref = -1000
-		key = None
-		if mention.parentheadword is not None:
-			key = '%s\thd/%s\t%s' % (
-					mention.parentheadword,
-					mention.node.get('rel'),
-					other.head.get('root'))
-		if key in self.selectdf.index:
-			selec_pref = self.selectdf.loc[key, 'npmi'].max()
-		return selec_pref / 10000
 
 
 def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
@@ -410,7 +388,6 @@ def predict(trees, embeddings, mentions):
 			debug('\t%d %d %s %s p=%g%s' % (
 					antecedents[n].sentno, antecedents[n].begin,
 					antecedents[n].node.get('rel'), antecedents[n],
-					# data.selectprefscore(anaphor, antecedents[n]),
 					probs[n],
 					' %s %g best' % (
 						'<>'[int(probs[best] > MENTION_PAIR_THRESHOLD)],
