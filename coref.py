@@ -325,7 +325,7 @@ def getmentioncandidates(tree, conj=False):
 			'.//node[@cat="mwu"]/node[@pt="spec" or @ntype="eigen"]/..'))
 	candidates.extend(tree.xpath('.//node[@pt="n"]'
 			'[@ntype="eigen" or @rel="su" or @rel="obj1" or @rel="body" '
-			'or @special="er_loc"]'))
+			'or @rel="cnj" or @special="er_loc"]'))
 	candidates.extend(tree.xpath(
 			'.//node[@pt="num" and @rel!="det" and @rel!="mod"]'))
 	candidates.extend(tree.xpath('.//node[@pt="det" and @rel!="det"]'))
@@ -1250,7 +1250,7 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 	if mentions is None and 'span' in neural:
 		import mentionspanclassifier
 		mentions = mentionspanclassifier.predict(
-				trees, embeddings, ngdata, gadata)
+				trees, embeddings, ngdata, gadata, debug=debug, verbose=VERBOSE)
 	elif mentions is None:
 		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	if 'feat' in neural:

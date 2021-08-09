@@ -177,8 +177,17 @@ class MentionFeatures:
 					mention.sentno, mention.begin, mention.end,
 					# additional features
 					mention.node.get('rel') == 'su',
+					mention.node.get('rel') == 'obj1',
 					# does this NP contain another NP?
 					mention.node.find('.//node[@cat="np"]') is not None,
+					# features detected with lexical resources
+					mention.origfeat['human'] == 0,
+					mention.origfeat['human'] == 1,
+					'f' in (mention.origfeat['gender'] or ''),
+					'm' in (mention.origfeat['gender'] or ''),
+					'n' in (mention.origfeat['gender'] or ''),
+					mention.origfeat['number'] == 'sg',
+					mention.origfeat['number'] == 'pl',
 					))
 		buf = np.zeros((len(result), embeddings[0].shape[-1]))
 		# concatenate BERT embeddings with additional features
@@ -291,6 +300,11 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 				mention.origfeat['number'] == 'pl',
 				]
 
+	def featvalsfallback(mention, probs):
+		names = ['human', 'human'] + 3 * ['gender'] + ['number', 'number']
+		return [probs[n] > 0.5 if mention.origfeat[name] is None else val
+				for n, (name, val) in enumerate(zip(names, featvals(mention)))]
+
 	X_val, y_val, mentions = getfeatures(
 			validationfiles, parsesdir, tokenizer, bertmodel, annotations)
 	model = build_mlp_model([X_val.shape[-1]], y_val.shape[-1])
@@ -315,6 +329,14 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 			target_names=target_names,
 			zero_division=0,
 			digits=3))
+	print('\nperformance of ngdata/gadata with fallback to feature classifier:')
+	print(classification_report(
+			np.array(y_val, dtype=bool),
+			np.array([featvalsfallback(mention, pr) for mention, pr
+				in zip(mentions, probs)], dtype=bool),
+			target_names=target_names,
+			zero_division=0,
+			digits=3))
 	print('\nperformance of feature classifier:')
 	print(classification_report(
 			np.array(y_val, dtype=bool),
@@ -329,6 +351,8 @@ def predict(trees, embeddings, mentions):
 	of mentions."""
 	debug(color('mention feature detection', 'yellow'))
 	data = MentionFeatures()
+	for mention in mentions:
+		mention.origfeat = mention.features.copy()
 	data.add(trees, embeddings, mentions)
 	X, y, mentions = data.getvectors()
 	model = build_mlp_model([X.shape[-1]], y.shape[-1])
@@ -399,6 +423,7 @@ def main():
 	if opts.get('--eval'):
 		tokenizer, bertmodel = bert.loadmodel()
 		evaluate(opts['--eval'], args[0], annotations, tokenizer, bertmodel)
+		return
 	elif '--help' in opts or len(args) != 3:
 		print(__doc__)
 		return
