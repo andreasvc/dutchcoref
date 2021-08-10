@@ -29,13 +29,14 @@ from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		getmentions, initialsegment, color, debug)
 import bert
 
-DENSE_LAYER_SIZES = [500, 250, 150]
-DROPOUT_RATE = 0.3
-LEARNING_RATE = 0.001
+DENSE_LAYER_SIZES = [500, 150, 150]
+INPUT_DROPOUT_RATE = 0.2
+DROPOUT_RATE = 0.5
+LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
 EPOCHS = 100
 PATIENCE = 5
-LAMBD = 0.1  # L2 regularization
+LAMBD = 0.05  # L2 regularization
 # the minimum score in the range [0. 1] to consider a span as mention.
 # the model does not have to be retrained when this value is modified.
 MENTION_THRESHOLD = 0.3
@@ -238,7 +239,7 @@ def build_mlp_model(input_shape, num_labels):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.layers.InputLayer(input_shape=input_shape),
-			keras.layers.Dropout(DROPOUT_RATE),
+			keras.layers.Dropout(INPUT_DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),

@@ -35,7 +35,8 @@ from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		color, debug, VERBOSE)
 import bert
 
-DENSE_LAYER_SIZES = [500, 250, 150]
+DENSE_LAYER_SIZES = [500, 150, 150]
+INPUT_DROPOUT_RATE = 0.2
 DROPOUT_RATE = 0.5
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
@@ -230,7 +231,7 @@ def build_mlp_model(input_shape, num_labels):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.layers.InputLayer(input_shape=input_shape),
-			keras.layers.Dropout(0.2),
+			keras.layers.Dropout(INPUT_DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),

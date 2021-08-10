@@ -27,9 +27,10 @@ from coref import (readconll, parsesentid, readngdata, initialsegment,
 		extractmentionsfromconll, sameclause, debug, VERBOSE)
 import bert
 
-PRONDISTTYPE = 'words'
-MAXPRONDIST = 100  # max number of words between pronoun and candidate
-DENSE_LAYER_SIZES = [500, 250, 150]
+PRONDISTTYPE = 'mentions'
+MAXPRONDIST = 22  # max number of words between pronoun and candidate
+DENSE_LAYER_SIZES = [500, 150, 150]
+INPUT_DROPOUT_RATE = 0.2
 DROPOUT_RATE = 0.5
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 32
@@ -39,7 +40,7 @@ LAMBD = 0.05  # L2 regularization
 
 # do not link anaphor if all scores of candidates are below this value.
 # the model does not have to be re-trained if this value is changed.
-MENTION_PAIR_THRESHOLD = 0.1
+MENTION_PAIR_THRESHOLD = 0.2
 MODELFILE = 'pronounmodel.pt'
 
 
@@ -253,7 +254,7 @@ def build_mlp_model(input_shape):
 	"""Define a binary classifier."""
 	model = keras.Sequential([
 			keras.layers.InputLayer(input_shape=input_shape),
-			keras.layers.Dropout(DROPOUT_RATE),
+			keras.layers.Dropout(INPUT_DROPOUT_RATE),
 
 			keras.layers.Dense(DENSE_LAYER_SIZES[0], name='dense0'),
 			keras.layers.BatchNormalization(name='bn0'),
