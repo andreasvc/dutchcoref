@@ -51,7 +51,7 @@ Ik vroeg hem binnen te komen .
 $ mkdir example
 $ cat example.txt | Alpino number_analyses=1 end_hook=xml -parse -flag treebank example
 [...]
-$ python3 coref.py --verbose /tmp/example
+$ python3 coref.py --verbose example/
 ```
 
 ![verbose output](https://github.com/andreasvc/dutchcoref/raw/master/data/output.png "verbose output")
@@ -95,6 +95,50 @@ example  7-1  6   .       .       LET()   2       punct   -       -       -     
 #end document
 ```
 
+### Neural modules
+The base system is purely rule-based, but there are optional neural modules that can be
+enabled. The modules are:
+
+1. `mentionspanclassifier.py`
+2. `mentionfeatureclassifier.py`
+3. `pronounresolution.py`
+
+These modules can be trained (run above scripts without arguments to get help),
+or you can use the trained models made available on the releases tab.
+The modules need to be enabled from the command line:
+```
+$ wget https://github.com/andreasvc/dutchcoref/releases/download/v0.1/models.zip
+$ unzip models.zip
+$ python3 coref.py --neural=span,feat,pron mydocument/ >output.conll
+```
+
+### Web demo
+The web demo accepts short pieces of text, takes care of parsing, and presents
+a visualization of coreference results. Requires a running instance of
+[alpiner](https://github.com/andreasvc/alpino-api/tree/master/demo).
+Run with `python3 web.py`
+
+
+### Evaluation against a gold standard .conll file
+Get the evaluation tool: https://github.com/ns-moosavi/coval
+```
+$ python3 coref.py mydocument/ >output.conll
+$ python3 ../coval/scorer.py mydocument.conll output.conll
+            recall  precision     F1
+mentions     90.52      81.43  85.73
+muc          79.44      74.43  76.85
+bcub         51.72      55.65  53.61
+ceafe        66.64      46.58  54.83
+lea          49.48      52.74  51.05
+CoNLL score: 61.77
+```
+
+**IMPORTANT**: by default the output will follow the dutchcoref annotation guidelines.
+To get output following the Corea/SoNaR annotation guidelines:
+```
+$ python3 coref.py --excludelinks=reflexives --exclude=relpronouns,relpronounsplit mydocument/ >output.conll
+```
+
 ### Error analysis against a gold standard .conll file
 UPDATE: use https://github.com/andreasvc/berkeley-coreference-analyser
 
@@ -123,26 +167,6 @@ This creates the files `output.{mentions,clusters,links,quotes}.tsv` (tabular fo
 Make sure you don't overwrite the gold standard conll file!
 
 
-### Evaluation against a gold standard .conll file
-Get the evaluation tool: https://github.com/ns-moosavi/coval
-```
-$ python3 coref.py mydocument/ >output.conll
-$ python3 ../coval/scorer.py mydocument.conll output.conll
-            recall  precision     F1
-mentions     90.52      81.43  85.73
-muc          79.44      74.43  76.85
-bcub         51.72      55.65  53.61
-ceafe        66.64      46.58  54.83
-lea          49.48      52.74  51.05
-CoNLL score: 61.77
-```
-
-**IMPORTANT**: by default the output will follow the dutchcoref annotation guidelines.
-To get output following the Corea/SoNaR annotation guidelines:
-```
-$ python3 coref.py --excludelinks=reflexives --exclude=relpronouns,relpronounsplit mydocument/ >output.conll
-```
-
 Column types
 ------------
 With `--fmt=booknlp`, the output contains the following columns:
@@ -168,30 +192,6 @@ Make sure to set a $GOPATH and add $GOPATH/bin to your $PATH, e.g.:
 	export GOPATH=$HOME/.local/go
 	export PATH=$GOPATH/bin/:$HOME/.local/bin:$PATH
 
-
-Web demo
---------
-The web demo accepts short pieces of text, takes care of parsing, and presents
-a visualization of coreference results. Requires a running instance of
-[alpiner](https://github.com/andreasvc/alpino-api/tree/master/demo).
-Run with `python3 web.py`
-
-Neural modules
---------------
-The base system is purely rule-based, but there are optional neural modules that can be
-enabled. The modules are:
-
-1. `mentionspanclassifier.py`
-2. `mentionfeatureclassifier.py`
-3. `pronounresolution.py`.
-
-These modules can be trained (run above scripts without arguments to get help),
-or you can use the trained models made available on the releases tab (unzip
-`models.zip` in this directory). The modules can be enabled from the web
-interface, or from the command line:
-```
-$ python3 coref.py --neural=span,feat,pron mydocument/ >output.conll
-```
 
 Annotation workflow
 -------------------
