@@ -126,7 +126,7 @@ Make sure you don't overwrite the gold standard conll file!
 ### Evaluation against a gold standard .conll file
 Get the evaluation tool: https://github.com/ns-moosavi/coval
 ```
-$ python3 coref.py mydocument/ --fmt=conll2012 >output.conll
+$ python3 coref.py mydocument/ >output.conll
 $ python3 ../coval/scorer.py mydocument.conll output.conll
             recall  precision     F1
 mentions     90.52      81.43  85.73
@@ -137,6 +137,11 @@ lea          49.48      52.74  51.05
 CoNLL score: 61.77
 ```
 
+**IMPORTANT**: by default the output will follow the dutchcoref annotation guidelines.
+To get output following the Corea/SoNaR annotation guidelines:
+```
+$ python3 coref.py --excludelinks=reflexives --exclude=relpronouns,relpronounsplit mydocument/ >output.conll
+```
 
 Column types
 ------------
@@ -170,6 +175,23 @@ The web demo accepts short pieces of text, takes care of parsing, and presents
 a visualization of coreference results. Requires a running instance of
 [alpiner](https://github.com/andreasvc/alpino-api/tree/master/demo).
 Run with `python3 web.py`
+
+Neural modules
+--------------
+The base system is purely rule-based, but there are optional neural modules that can be
+enabled. The modules are:
+
+1. `mentionspanclassifier.py`
+2. `mentionfeatureclassifier.py`
+3. `pronounresolution.py`.
+
+These modules can be trained (run above scripts without arguments to get help),
+or you can use the trained models made available on the releases tab (unzip
+`models.zip` in this directory). The modules can be enabled from the web
+interface, or from the command line:
+```
+$ python3 coref.py --neural=span,feat,pron mydocument/ >output.conll
+```
 
 Annotation workflow
 -------------------
