@@ -1,5 +1,6 @@
 """Web interface for coreference system."""
 import io
+import os
 import re
 import sys
 import json
@@ -14,7 +15,7 @@ import coref
 APP = Flask(__name__)
 DEBUG = False
 LIMIT = 5000  # maximum number of bytes of input to accept
-ALPINOAPI = 'http://127.0.0.1:11200/json'
+ALPINOAPI = os.getenv('ALPINOAPI', 'http://127.0.0.1:11200/json')
 BERTMODEL = TOKENIZER = None
 
 
@@ -53,11 +54,14 @@ def results():
 				return 'BERT model not available'
 		embeddings = bert.getvectors(
 				'', trees, TOKENIZER, BERTMODEL, cache=False)
+		log.info('got BERT token vectors; shape: %r' % (embeddings.shape, ))
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations,
 			parses=True, coreffmt='conll2012')
+	log.info('resolved coreference; %d mentions; %d clusters; %d quotations'
+			% (len(mentions), len(clusters), len(quotations)))
 	return render_template('results.html', docname='',
 			corefhtml=Markup(corefhtml),
 			coreftabular=coreftabular,
@@ -100,7 +104,7 @@ def parse(text):
 		if result['code'] != 200:
 			log.error(resp.content)
 			return None
-		log.info('got %d results; code=%s status=%s finished=%s',
+		log.info('got %d parses; code=%s status=%s finished=%s',
 				len(result['batch']), result['code'],
 				result['status'], result['finished'])
 		# log.info(resp.content.decode('utf8'))
@@ -200,7 +204,7 @@ def simplifyunicodespacepunct(text):
 
 logging.basicConfig()
 log = logging.getLogger()
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.INFO)
 log.handlers[0].setFormatter(logging.Formatter(
 		fmt='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
 log.info('loading.')

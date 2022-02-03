@@ -21,7 +21,7 @@ from lxml import etree
 import random as python_random
 from sklearn import metrics
 import numpy as np
-import keras
+from tensorflow import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata, initialsegment,
 		extractmentionsfromconll, sameclause, debug, VERBOSE)
@@ -328,7 +328,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 		# metadata. a and b are row indices in X_train with all the candidates
 		# for a single pronoun.
 		# anaphor: the pronoun mention which needs to be resolved;
-		#	if this mention was loaded from annotated data, it has the correct
+		# 	if this mention was loaded from annotated data, it has the correct
 		#   cluster for this pronoun
 		# the list 'antecedents' has the corresponding antecedent mention for
 		# each row in X_train.

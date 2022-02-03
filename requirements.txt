@@ -7,3 +7,6 @@ keras
 tensorflow
 transformers
 torch
+scikit-learn
+tqdm
+gunicorn

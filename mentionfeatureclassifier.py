@@ -27,7 +27,7 @@ import random as python_random
 from lxml import etree
 import numpy as np
 import pandas as pd
-import keras
+from tensorflow import keras
 import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,

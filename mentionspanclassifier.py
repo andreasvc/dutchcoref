@@ -21,7 +21,7 @@ import random as python_random
 from lxml import etree
 import numpy as np
 import pandas as pd
-import keras
+from tensorflow import keras
 import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
@@ -330,6 +330,8 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			sentno, headidx, begin, end, _n, text = candidates[
 					probs[a:b, 0].argmax()]
 		if (probs[best, 0] > MENTION_THRESHOLD) != y_val[best]:
+			sentno, headidx, begin, end, _n, text = candidates[
+					probs[a:b, 0].argmax()]
 			print(f'predict/actual={int(probs[best, 0] > MENTION_THRESHOLD)}/'
 					f'{int(y_val[best])}, p={probs[best, 0]:.3f}'
 					f' {sentno:3} {headidx:2} {begin:2} {end:2} {text}')
