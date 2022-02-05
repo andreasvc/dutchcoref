@@ -3,10 +3,4 @@ colorama
 ansi2html
 Flask
 pandas
-keras
-tensorflow
-transformers
-torch
-scikit-learn
-tqdm
 gunicorn

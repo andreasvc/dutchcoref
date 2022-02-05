@@ -10,10 +10,11 @@ Options:
     --help          this message
     --slice=N:M     restrict input with a Python slice of sentence numbers
     --verbose       debug output instead of coreference output
-    --gold=<file>   with --verbose, show error analysis against CoNLL file;
-                    this file has to contain the document matching the basename
-                    of the input dir
+    --gold=<file>   CoNLL file with document matching basename of input dir;
+                    with --verbose, show error analysis against this file.
     --goldmentions  instead of predicting mentions, use mentions in --gold file
+    --maxprondist=n the maximum distance in sentences between pronoun and
+                    antecedent; only affects rule-based resolver (default: 15)
     --fmt=<conll2012|semeval2010|booknlp|html|htmlp>
         output format:
             :conll2012: tabular format (default)
@@ -25,8 +26,6 @@ Options:
         write conll/mention/cluster/link info to files
         prefix.{mentions,clusters,links,quotes}.tsv (tabular format)
         prefix.conll (--fmt), and prefix.icarus (ICARUS allocation format)
-    --maxprondist=n
-        the maximum distance in sentences between pronoun and antecedent.
     --neural=<span,feat,pron>
         enable one or more neural components:
             :span: see mentionspanclassifier.py
@@ -46,11 +45,10 @@ Options:
         similar to --excludementions, but only removes links to given mentions.
 
 Instead of specifying a directory and gold file, can use the following presets:
-    --clin=<dev|test>     run on CLIN26 shared task data
-    --semeval=<dev|test>  run on SemEval 2010 data
-    --sonar=<dev|test>    run on SoNaR data
-    --test                run tests
-"""
+    --clin=<dev|test>     run evaluation on CLIN26 shared task data
+    --semeval=<dev|test>  run evaluation on SemEval 2010 data
+    --sonar=<dev|test>    run evaluation on SoNaR data
+    --test                run unit tests"""
 import io
 import os
 import re

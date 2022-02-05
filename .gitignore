@@ -1,5 +1,14 @@
+*.npy
+*.tsv
+*.conll
+checkpoint
+data/*.pkl
+data/*.csv
+outputs/
 results/
-data/ngdata.pkl
+novelresults/
+runs/
+cache_dir/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

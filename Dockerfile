@@ -2,8 +2,8 @@
 FROM python:3.9-bullseye as base
 MAINTAINER Andreas van Cranenburgh <a.w.van.cranenburgh@rug.nl>
 # https://snyk.io/blog/best-practices-containerizing-python-docker/
-COPY requirements.txt /
-RUN pip install --no-cache-dir -r /requirements.txt
+COPY requirements.txt requirements-neural.txt /
+RUN pip install --no-cache-dir -r /requirements.txt -r /requirements-neural.txt
 ENV HOME=/usr
 
 # FIXME: model name should go in a configuration file
