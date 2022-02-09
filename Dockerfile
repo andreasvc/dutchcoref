@@ -2,9 +2,26 @@
 FROM python:3.9-bullseye as base
 MAINTAINER Andreas van Cranenburgh <a.w.van.cranenburgh@rug.nl>
 # https://snyk.io/blog/best-practices-containerizing-python-docker/
+ENV HOME=/usr
+RUN apt-get update && apt-get install --yes --no-install-recommends \
+        build-essential \
+        curl \
+        git \
+        python3-dev \
+        python3-numpy \
+        python3-scipy \
+        python3-pandas \
+        && apt-get clean
+WORKDIR /usr
+RUN git clone --recursive https://github.com/andreasvc/disco-dop.git
+WORKDIR /usr/disco-dop
+RUN pip3 install \
+        --requirement requirements.txt \
+        --requirement web/requirements.txt \
+        && python3 setup.py install
+
 COPY requirements.txt requirements-neural.txt /
 RUN pip install --no-cache-dir -r /requirements.txt -r /requirements-neural.txt
-ENV HOME=/usr
 
 # FIXME: model name should go in a configuration file
 RUN python -c 'from transformers import AutoTokenizer, AutoModel; \
@@ -28,5 +45,7 @@ COPY --chown=user:user *.py ./
 
 USER 999
 RUN python -c 'import coref; coref.readngdata()'
-ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:8899 --workers=2 --preload"
+ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:8899 --workers=2 --preload --timeout=600"
+# disable GPU
+ENV CUDA_VISIBLE_DEVICES="-1"
 CMD ["gunicorn", "web:APP"]

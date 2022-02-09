@@ -2,5 +2,6 @@ lxml
 colorama
 ansi2html
 Flask
+Flask-Caching
 pandas
 gunicorn

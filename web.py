@@ -10,10 +10,18 @@ import requests
 from lxml import etree
 from flask import Flask, Markup
 from flask import request, render_template, redirect, url_for
+from flask_caching import Cache
 import coref
 
-APP = Flask(__name__)
 DEBUG = False
+APP = Flask(__name__)
+CACHE = Cache(config={
+		'CACHE_TYPE': 'SimpleCache',
+		'CACHE_DEFAULT_TIMEOUT': 86400,  # cache responses server side for 24hr
+		'CACHE_THRESHOLD': 128,  # max no of items to cache
+		})
+CACHE.init_app(APP)
+
 LIMIT = 5000  # maximum number of bytes of input to accept
 ALPINOAPI = os.getenv('ALPINOAPI', 'http://127.0.0.1:11200/json')
 BERTMODEL = TOKENIZER = None
@@ -21,12 +29,13 @@ BERTMODEL = TOKENIZER = None
 
 @APP.route('/')
 @APP.route('/index')
+@CACHE.cached()
 def index():
 	"""Start page where a text can be entered."""
 	return render_template('index.html', limit=LIMIT)
 
 
-@APP.route('/coref', methods=('POST', 'GET'))
+@APP.route('/results', methods=('POST', 'GET'))
 def results():
 	"""Get coreference and show results."""
 	global BERTMODEL, TOKENIZER
@@ -52,9 +61,8 @@ def results():
 			except Exception as err:
 				print(err)
 				return 'BERT model not available'
-		embeddings = bert.getvectors(
-				'', trees, TOKENIZER, BERTMODEL, cache=False)
-		log.info('got BERT token vectors; shape: %r' % (embeddings.shape, ))
+			log.info('loaded BERT model')
+		embeddings = getvectors(text)
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
@@ -69,6 +77,17 @@ def results():
 			parses=True)
 
 
+@CACHE.memoize()
+def getvectors(text):
+	parses = parse(simplifyunicodespacepunct(text))
+	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
+	embeddings = bert.getvectors(
+			'', trees, TOKENIZER, BERTMODEL, cache=False)
+	log.info('got BERT token vectors; shape: %r' % (embeddings.shape, ))
+	return embeddings
+
+
+@CACHE.memoize()
 def parse(text):
 	"""Tokenize & parse text with Alpino API.
 
