@@ -1,15 +1,15 @@
 \RequirePackage{filecontents}
 \begin{filecontents}{references.bib}
 @techreport{bouma2007corea,
-  title={The COREA-project, manual for the annotation of coreference in Dutch texts},
+  title={The {COREA}-project: {Manual} for the annotation of coreference in {Dutch} texts},
   author={Bouma, Gosse and Daelemans, Walter and Hendrickx, Iris and Hoste, V{\'e}ronique and Mineur, A},
   year={2007},
   institution={University of Groningen},
-  note={\url{https://www.clips.uantwerpen.be/~iris/corea/publications/manual_corea.aug07.pdf}}
-}
+  note={\url{https://www.researchgate.net/publication/252395718}}
+} % FIXME: permanent link?
 
 @techreport{schoen2014newsreader,
-  title={NewsReader Document-Level Annotation Guidelines-Dutch},
+  title={NewsReader Document-Level Annotation Guidelines - {Dutch}},
   author={Schoen, Anneleen and van Son, Chantal and van Erp, Marieke and van Vliet, Hennie},
   year={2014},
   institution={VU University},
@@ -32,12 +32,13 @@
 \usepackage{kpfonts, mdwlist, microtype, xcolor, natbib}
 \usepackage[unicode=true]{hyperref}
 \hypersetup{pdfborder={0 0 0}, breaklinks=true}
+\setcitestyle{round}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \newcommand{\n}[1]{\textcolor{red}{#1}}
 
 \title{Annotation guidelines for dutchcoref}
 \author{Andreas van Cranenburgh}
-\date{\today}
+\date{March 27, 2019}  % \date{\today}
 
 \begin{document}
 \maketitle
@@ -481,6 +482,6 @@ Differences:
 \end{itemize*}
 
 
-\bibliographystyle{apalike}
+\bibliographystyle{plainnat}
 \bibliography{references}
 \end{document}
