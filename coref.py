@@ -13,6 +13,7 @@ Options:
     --gold=<file>   CoNLL file with document matching basename of input dir;
                     with --verbose, show error analysis against this file.
     --goldmentions  instead of predicting mentions, use mentions in --gold file
+    --goldclusters  instead of predicting clusters, use clusters in --gold file
     --maxprondist=n the maximum distance in sentences between pronoun and
                     antecedent; only affects rule-based resolver (default: 15)
     --fmt=<conll2012|semeval2010|booknlp|html|htmlp>
@@ -1242,7 +1243,7 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 							mentions, clusters)
 
 
-def resolvecoreference(trees, ngdata, gadata, mentions=None,
+def resolvecoreference(trees, ngdata, gadata, mentions=None, clusters=None,
 		maxprondist=None, relpronounsplit=True, neural=(), embeddings=None):
 	"""Get mentions and apply coreference sieves."""
 	if mentions is None and 'span' in neural:
@@ -1254,7 +1255,9 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 	if 'feat' in neural:
 		import mentionfeatureclassifier
 		mentionfeatureclassifier.predict(trees, embeddings, mentions)
-	clusters = [{n} for n, _ in enumerate(mentions)]
+	goldclusters = clusters is not None
+	if clusters is None:
+		clusters = [{n} for n, _ in enumerate(mentions)]
 	quotations, idx, doc = getquotations(trees)
 	if VERBOSE and 'feat' not in neural:
 		for mention in mentions:
@@ -1265,6 +1268,8 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None,
 					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
 					)
 	speakeridentification(mentions, quotations, idx, doc)
+	if goldclusters:
+		return mentions, clusters, quotations, idx
 	stringmatch(mentions, clusters)
 	stringmatch(mentions, clusters, relaxed=True)
 	preciseconstructs(mentions, clusters)
@@ -2256,8 +2261,9 @@ def postprocess(exclude, mentions, clusters, linksonly):
 
 def process(path, output, ngdata, gadata,
 		docname='-', part=0, conlldata=None, fmt=None, start=None, end=None,
-		startcluster=0, goldmentions=False, exclude=(), excludelinks=(),
-		outputprefix=None, maxprondist=None, neural=()):
+		startcluster=0, goldmentions=False, goldclusters=False,
+		exclude=(), excludelinks=(), outputprefix=None, maxprondist=None,
+		neural=()):
 	"""Process a single directory with Alpino XML parses."""
 	if os.path.isdir(path):
 		path = os.path.join(path, '*.xml')
@@ -2269,20 +2275,35 @@ def process(path, output, ngdata, gadata,
 		raise ValueError('no parse trees found: %s' % path)
 	trees = [(parsesentid(filename), etree.parse(filename))
 			for filename in filenames]
-	mentions = embeddings = None
+	mentions = clusters = embeddings = None
 	if goldmentions:
-		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata)
+		mentions = extractmentionsfromconll(conlldata, trees, ngdata, gadata,
+				goldclusters=goldclusters)
+		if goldclusters:
+			maxclusterid = max(mention.clusterid for mention in mentions)
+			clusters = [None] * (maxclusterid + 1)
+			for n, mention in enumerate(mentions):
+				if clusters[mention.clusterid] is None:
+					clusters[mention.clusterid] = set()
+				clusters[mention.clusterid].add(n)
+				mention.sieve = 'gold'
+			for n, mention in enumerate(mentions):
+				# closest preceding mention (if any) as antecedent
+				mention.antecedent = max(
+						(m for m in clusters[mention.clusterid] if m < n),
+						default=None)
 	if neural:
 		import bert
 		tokenizer, bertmodel = bert.loadmodel()
 		embeddings = bert.getvectors(
 				os.path.dirname(path), trees, tokenizer, bertmodel)
 	mentions, clusters, quotations, idx = resolvecoreference(
-			trees, ngdata, gadata, mentions, maxprondist,
+			trees, ngdata, gadata, mentions, clusters, maxprondist,
 			relpronounsplit='relpronounsplit' not in exclude,
 			neural=neural, embeddings=embeddings)
-	postprocess(exclude, mentions, clusters, goldmentions)
-	postprocess(excludelinks, mentions, clusters, True)
+	if not goldclusters:
+		postprocess(exclude, mentions, clusters, goldmentions)
+		postprocess(excludelinks, mentions, clusters, True)
 	if conlldata is not None and VERBOSE:
 		debug(color('evaluating against:', 'yellow'), docname)
 		compare(conlldata, trees, mentions, clusters, out=DEBUGFILE)
@@ -2304,7 +2325,7 @@ def process(path, output, ngdata, gadata,
 	return len(clusters)
 
 
-def clintask(ngdata, gadata, goldmentions, neural, subset='dev'):
+def clintask(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 	"""Run on CLIN26 shared task dev data and evaluate."""
 	debug('CLIN26 entity coreference; %s' % subset)
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -2334,6 +2355,7 @@ def clintask(ngdata, gadata, goldmentions, neural, subset='dev'):
 			process(dirname + '/*.xml', out, ngdata, gadata,
 					docname=docname, part=None, fmt='conll2012', neural=neural,
 					conlldata=conlldata, goldmentions=goldmentions,
+					goldclusters=goldclusters,
 					start=0, end=6 if subset == 'dev' else 7)
 			# shared task says the first 7 sentences are annotated,
 			# but in many documents of the dev set only the first 6 sentences
@@ -2353,7 +2375,7 @@ def clintask(ngdata, gadata, goldmentions, neural, subset='dev'):
 		print(inp.read())
 
 
-def semeval(ngdata, gadata, goldmentions, neural, subset='dev'):
+def semeval(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 	"""Run on semeval 2010 shared task data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	path = 'results/semeval%s/%s%s' % (subset, timestamp,
@@ -2386,6 +2408,7 @@ def semeval(ngdata, gadata, goldmentions, neural, subset='dev'):
 			startcluster += process(dirname, out, ngdata, gadata,
 					fmt='semeval2010', docname=docname, conlldata=conlldata,
 					startcluster=startcluster, goldmentions=goldmentions,
+					goldclusters=goldclusters,
 					neural=neural, exclude=('relpronouns', 'reflexives',
 						'reciprocals', 'predicatives', 'appositives',
 						'npsingletons', 'relpronounsplit'))
@@ -2402,7 +2425,7 @@ def semeval(ngdata, gadata, goldmentions, neural, subset='dev'):
 		print(inp.read())
 
 
-def sonar(ngdata, gadata, goldmentions, neural, subset='dev'):
+def sonar(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 	"""Run on SoNaR data and evaluate."""
 	timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 	path = 'results/sonar%s/%s%s' % (subset, timestamp,
@@ -2429,6 +2452,7 @@ def sonar(ngdata, gadata, goldmentions, neural, subset='dev'):
 			startcluster += process(dirname, out, ngdata, gadata,
 					fmt='conll2012', docname=docname, conlldata=conlldata,
 					startcluster=startcluster, goldmentions=goldmentions,
+					goldclusters=goldclusters,
 					neural=neural, exclude=('relpronouns', 'relpronounsplit'),
 					excludelinks=('reflexives', ))
 	with open('%s/scores.txt' % path, 'w') as out:
@@ -2515,7 +2539,8 @@ def main():
 	"""CLI"""
 	longopts = ['fmt=', 'slice=', 'gold=', 'outputprefix=', 'maxprondist=',
 			'exclude=', 'excludelinks=', 'clin=', 'semeval=', 'sonar=',
-			'neural=', 'goldmentions', 'verbose', 'help', 'test']
+			'neural=', 'goldmentions', 'goldclusters',
+			'verbose', 'help', 'test']
 	try:
 		opts, args = getopt.gnu_getopt(sys.argv[1:], '', longopts)
 	except getopt.GetoptError:
@@ -2528,21 +2553,32 @@ def main():
 	if '--verbose' in opts:
 		setverbose(True, sys.stdout)
 		sys.argv.remove('--verbose')
+	if '--goldclusters' in opts and '--goldmentions' not in opts:
+		raise NotImplementedError('--goldclusters requires --goldmentions')
 	neural = [a for a in opts.get('--neural', '').split(',') if a]
 	ngdata, gadata = readngdata()
 	if opts.get('--clin') == 'test':
 		for subset in ('boeing', 'gm', 'stock'):
-			clintask(ngdata, gadata, '--goldmentions' in opts,
+			clintask(ngdata, gadata,
+					'--goldmentions' in opts,
+					'--goldclusters' in opts,
 					neural, subset=subset)
 	elif '--clin' in opts:
-		clintask(ngdata, gadata, '--goldmentions' in opts, neural,
-				subset=opts['--clin'])
+		clintask(ngdata, gadata,
+				'--goldmentions' in opts,
+				'--goldclusters' in opts,
+				neural, subset=opts['--clin'])
 	elif '--semeval' in opts:
-		semeval(ngdata, gadata, '--goldmentions' in opts, neural,
+		semeval(ngdata, gadata,
+				'--goldmentions' in opts,
+				'--goldclusters' in opts,
+				neural,
 				subset=opts['--semeval'])
 	elif '--sonar' in opts:
-		sonar(ngdata, gadata, '--goldmentions' in opts, neural,
-				subset=opts['--sonar'])
+		sonar(ngdata, gadata,
+				'--goldmentions' in opts,
+				'--goldclusters' in opts,
+				neural, subset=opts['--sonar'])
 	elif '--test' in opts:
 		runtests(ngdata, gadata)
 	else:
@@ -2563,7 +2599,8 @@ def main():
 					'html', 'htmlp') else '.conll'
 			out = open(opts['--outputprefix'] + ext, 'w')
 		conlldata = None
-		if '--goldmentions' in opts and '--gold' not in opts:
+		if ('--goldmentions' in opts
+				or '--goldclusters' in opts) and '--gold' not in opts:
 			raise ValueError('specify gold conll file')
 		if '--gold' in opts:
 			conlldata = getmatchingdoc(readconll(opts['--gold']),
@@ -2573,6 +2610,7 @@ def main():
 					fmt=opts.get('--fmt', 'conll2012'), start=start, end=end,
 					docname=docname, conlldata=conlldata,
 					goldmentions='--goldmentions' in opts,
+					goldclusters='--goldclusters' in opts,
 					outputprefix=opts.get('--outputprefix'),
 					exclude=exclude, excludelinks=excludelinks,
 					maxprondist=int(opts.get('--maxprondist', 15)),
