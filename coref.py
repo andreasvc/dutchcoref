@@ -1268,6 +1268,9 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None, clusters=None,
 					# gadata.get(mention.head.get('lemma', '').replace('_', '')),
 					)
 	speakeridentification(mentions, quotations, idx, doc)
+	if 'quote' in neural:
+		import qaclassifier
+		qaclassifier.predictions(trees, embeddings, quotations, mentions, idx)
 	if goldclusters:
 		return mentions, clusters, quotations, idx
 	stringmatch(mentions, clusters)
@@ -2469,8 +2472,8 @@ def sonar(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 
 def getcmdlines(neural):
 	"""Collect command line options used for training neural modules."""
-	cmdlines = {'span': 'mentionspanclassif.txt',
-			'feat': 'mentionfeatclassif.txt', 'pron': 'pronounmodel.txt'}
+	cmdlines = {'span': 'mentionspanclassif.txt','feat': 'mentionfeatclassif.txt',
+				'pron': 'pronounmodel.txt', 'quote': 'quote.txt'}
 	result = []
 	for a in neural:
 		try:
