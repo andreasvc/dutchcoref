@@ -3,7 +3,6 @@
 *.conll
 checkpoint
 data/*.pkl
-data/*.csv
 outputs/
 results/
 novelresults/

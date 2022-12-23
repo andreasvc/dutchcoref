@@ -16,13 +16,6 @@ install the [Alpino parser](http://www.let.rug.nl/vannoord/alp/Alpino/AlpinoUser
 To get parse tree visualizations in the HTML output,
 install https://github.com/andreasvc/disco-dop/
 
-### Dutch first names (required)
-
-Download `Top_eerste_voornamen_NL_2010.csv`
-from https://www.meertens.knaw.nl/nvb/ (click on "Veelgestelde vragen"
-and then on the bottom "Klik hier").
-Unzip it and put the csv file in the `data/` directory.
-
 ### Number & gender data from Web text (required), CLIN26 shared task data (optional)
 
 Clone this repository under same parent folder as this repository:
@@ -266,3 +259,10 @@ The number & gender data is derived from:
 
 Shane Bergsma and Dekang Lin (2006). Bootstrapping Path-Based Pronoun Resolution, In Proceedings of COLING/ACL. https://www.aclweb.org/anthology/P11-1079
 Data: https://cemantix.org/conll/2012/data.html
+
+The Dutch first names dataset `Top_eerste_voornamen_NL_2010.csv` is based on:
+
+_De Nederlandse Voornamenbank_ (The Dutch First name bank) by Meertens Instituut KNAW. http://www.meertens.knaw.nl/nvb
+
+More recent versions of this dataset have been made available,
+but to ensure reproducibility, the 2010 version is kept in this repository.
