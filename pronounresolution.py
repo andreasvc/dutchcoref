@@ -24,7 +24,7 @@ import numpy as np
 from tensorflow import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata, initialsegment,
-		extractmentionsfromconll, sameclause, debug, VERBOSE)
+		extractmentionsfromconll, sameclause, color, debug)
 import bert
 
 PRONDISTTYPE = 'mentions'
@@ -362,7 +362,7 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			% (100 * metrics.accuracy_score(y_true, pred)))
 
 
-def predict(trees, embeddings, mentions):
+def predict(trees, embeddings, mentions, verbose=False):
 	"""Load pronoun resolver, get features for trees, and return a list of
 	mention pairs (anaphor, antecedent) which are predicted to be
 	coreferent."""
@@ -385,14 +385,14 @@ def predict(trees, embeddings, mentions):
 		if probs[best] > MENTION_PAIR_THRESHOLD:
 			antecedent = antecedents[best]
 			result.append((anaphor, antecedent))
-		for n in range(a, b if VERBOSE else a):
-			debug('\t%d %d %s %s p=%g%s' % (
+		for n in range(a, b if verbose else a):
+			debug('\t%d %d %s %s p=%.3f%s' % (
 					antecedents[n].sentno, antecedents[n].begin,
 					antecedents[n].node.get('rel'), antecedents[n],
 					probs[n],
-					' %s %g best' % (
+					' %s %g %s' % (
 						'<>'[int(probs[best] > MENTION_PAIR_THRESHOLD)],
-						MENTION_PAIR_THRESHOLD)
+						MENTION_PAIR_THRESHOLD, color('best', 'green'))
 						if n == best else ''))
 	return result
 

@@ -109,6 +109,7 @@ enabled. The modules are:
 1. `mentionspanclassifier.py`
 2. `mentionfeatureclassifier.py`
 3. `pronounresolution.py`
+4. `qaclassifier.py`
 
 These modules can be trained (run above scripts without arguments to get help),
 or you can use the trained models made available on the releases tab.
@@ -119,6 +120,9 @@ $ wget https://github.com/andreasvc/dutchcoref/releases/download/v0.1/models.zip
 $ unzip models.zip
 $ python3 coref.py --neural=span,feat,pron mydocument/ >output.conll
 ```
+
+The quote attribution classifier is enabled with `--neural=quote`
+and the models are available at https://github.com/frenkvdberg/dutchqa
 
 ### Web demo
 The web demo accepts short pieces of text, takes care of parsing, and presents

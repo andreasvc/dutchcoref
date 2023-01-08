@@ -44,7 +44,8 @@ def results():
 	if 'text' not in request.form:
 		return 'No text supplied'
 	text = request.form['text']
-	neural = [a for a in ('span', 'feat', 'pron') if request.form.get(a)]
+	neural = [a for a in ('span', 'feat', 'pron', 'quote')
+			if request.form.get(a)]
 	if len(text) > LIMIT:
 		return 'Too much text; limit: %d bytes' % LIMIT
 
@@ -67,9 +68,9 @@ def results():
 			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
 			trees, mentions, clusters, quotations,
-			parses=True, coreffmt='conll2012')
+			parses=True, coreffmt='booknlp')
 	log.info('resolved coreference; %d mentions; %d clusters; %d quotations'
-			% (len(mentions), len(clusters), len(quotations)))
+			% (len(mentions), sum(1 for a in clusters if a), len(quotations)))
 	return render_template('results.html', docname='',
 			corefhtml=Markup(corefhtml),
 			coreftabular=coreftabular,

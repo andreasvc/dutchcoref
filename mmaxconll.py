@@ -479,7 +479,7 @@ def conv(fname, inputdir, lassypath, sonarnerpath, outpath, lassymap,
 			lassyunaligned, sonarunaligned)
 	addclusters(words, nplevel, idxmap, cluster, sentends)
 	conllfile = os.path.join(outpath, 'coref', ldocname + '.conll')
-	with open(conllfile, 'w') as out:
+	with open(conllfile, 'w', encoding='utf8') as out:
 		writeconll(words, sentends, ldocname, out)
 	if lassypath:  # add columns with POS, NER, and parse tree to CoNLL file
 		from addparsebits import convalpino
@@ -490,8 +490,9 @@ def conv(fname, inputdir, lassypath, sonarnerpath, outpath, lassymap,
 def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
 		outpath):
 	"""Dump map of reordered lassy sents, and map of word/token boundaries"""
-	with open(os.path.join(outpath, 'sentmap.tsv'), 'w') as sentmap, \
-			open(os.path.join(outpath, 'tokmap.tsv'), 'w') as tokmap:
+	with open(os.path.join(outpath, 'sentmap.tsv'), 'w',
+			encoding='utf8') as sentmap, open(os.path.join(
+				outpath, 'tokmap.tsv'), 'w', encoding='utf8') as tokmap:
 		print('orig', 'new', sep='\t', file=sentmap)
 		print('lassysentid', 'lassytokenid', 'sonar_doc', 'sonar_word_id',
 				'action', 'token', sep='\t', file=tokmap)
@@ -504,17 +505,19 @@ def dumplassymap(lassymap, lassynewids, lassyunaligned, sonarunaligned,
 				print(os.path.basename(fname), tokidx,
 						sdocname, ','.join(sword_ids), action, token,
 						sep='\t', file=tokmap)
-	with open(os.path.join(outpath, 'lassy_unaligned_sents.tsv'), 'w') as out:
+	with open(os.path.join(outpath, 'lassy_unaligned_sents.tsv'), 'w',
+			encoding='utf8') as out:
 		out.writelines('%s\t%s\n' % (sentid, sent)
 				for sentid, sent in lassyunaligned)
-	with open(os.path.join(outpath, 'sonar_unaligned_tokens.tsv'), 'w') as out:
+	with open(os.path.join(outpath, 'sonar_unaligned_tokens.tsv'), 'w',
+			encoding='utf8') as out:
 		out.writelines('%s\t%s\t%s\n' % (sdocname, wordid, word)
 				for sdocname, wordid, word in sonarunaligned)
 
 
 def makesplit(fname, outpath):
 	"""Divide CoNLL file and trees in train/dev/test according to CSV file."""
-	with open(fname) as inp:
+	with open(fname, encoding='utf8') as inp:
 		lines = [line.strip().split(',') for line in inp]
 	if not all(b in {'dev', 'test', 'train'} for _, b in lines):
 		raise ValueError('second column should only contain: dev, test, train')
@@ -525,10 +528,10 @@ def makesplit(fname, outpath):
 
 	for name, docs in split.items():
 		os.mkdir(os.path.join(outpath, name))
-		with open('%s/%s.conll' % (outpath, name), 'w') as out:
+		with open('%s/%s.conll' % (outpath, name), 'w', encoding='utf8') as out:
 			for doc in docs:
 				conllfile = os.path.join(outpath, 'coref', doc + '.conll')
-				with open(conllfile) as inp:
+				with open(conllfile, encoding='utf8') as inp:
 					out.write(inp.read())
 				os.symlink(
 						os.path.join('..', 'lassy_renumbered', doc),

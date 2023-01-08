@@ -27,11 +27,12 @@ Options:
         write conll/mention/cluster/link info to files
         prefix.{mentions,clusters,links,quotes}.tsv (tabular format)
         prefix.conll (--fmt), and prefix.icarus (ICARUS allocation format)
-    --neural=<span,feat,pron>
+    --neural=<span,feat,pron,quote>
         enable one or more neural components:
             :span: see mentionspanclassifier.py
             :feat: see mentionfeatureclassifier.py
             :pron: see pronounresolution.py
+            :quote: see qaclassifier.py
     --exclude=<item1,item2,...>
         exclude given types of mentions from output:
             :singletons: mentions without any coreference links
@@ -268,7 +269,7 @@ class Mention:
 		return result
 
 	def __str__(self):
-		return "'%s'" % color(' '.join(self.tokens), 'green')
+		return '%s' % color(' '.join(self.tokens), 'green')
 
 	def __repr__(self):
 		return "Mention('%s', ...)" % ' '.join(self.tokens)
@@ -333,7 +334,6 @@ def getmentioncandidates(tree, conj=False):
 
 def getmentions(trees, ngdata, gadata, relpronounsplit):
 	"""Collect and filter mentions."""
-	debug(color('mention detection', 'yellow'))
 	mentions = []
 	for sentno, ((parno, _), tree) in enumerate(trees):
 		candidates = getmentioncandidates(tree)
@@ -1145,7 +1145,8 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 				merge(pronouns[0], a, 'resolvepronouns', mentions, clusters)
 	if embeddings is not None:
 		import pronounresolution
-		result = pronounresolution.predict(trees, embeddings, mentions)
+		result = pronounresolution.predict(trees, embeddings, mentions,
+				verbose=VERBOSE)
 		for mention, other in result:
 			merge(mention, other, 'resolvepronouns.neural',
 					mentions, clusters)
@@ -1249,12 +1250,14 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None, clusters=None,
 	if mentions is None and 'span' in neural:
 		import mentionspanclassifier
 		mentions = mentionspanclassifier.predict(
-				trees, embeddings, ngdata, gadata, debug=debug, verbose=VERBOSE)
+				trees, embeddings, ngdata, gadata, verbose=VERBOSE)
 	elif mentions is None:
+		debug(color('mention detection', 'yellow'))
 		mentions = getmentions(trees, ngdata, gadata, relpronounsplit)
 	if 'feat' in neural:
 		import mentionfeatureclassifier
-		mentionfeatureclassifier.predict(trees, embeddings, mentions)
+		mentionfeatureclassifier.predict(trees, embeddings, mentions,
+				verbose=VERBOSE)
 	goldclusters = clusters is not None
 	if clusters is None:
 		clusters = [{n} for n, _ in enumerate(mentions)]
@@ -1270,7 +1273,8 @@ def resolvecoreference(trees, ngdata, gadata, mentions=None, clusters=None,
 	speakeridentification(mentions, quotations, idx, doc)
 	if 'quote' in neural:
 		import qaclassifier
-		qaclassifier.predictions(trees, embeddings, quotations, mentions, idx)
+		qaclassifier.predict(trees, embeddings, quotations, mentions, idx,
+				verbose=VERBOSE)
 	if goldclusters:
 		return mentions, clusters, quotations, idx
 	stringmatch(mentions, clusters)
@@ -1495,7 +1499,8 @@ def sameclause(node1, node2):
 
 def createngdatadf():
 	"""Create pickled version of ngdata DataFrame."""
-	with open(os.path.join(PARENTDIR, 'groref/ngdata'), 'rb') as inp:
+	with open(os.path.join(PARENTDIR, 'groref/ngdata'), 'rb',
+			encoding='utf8') as inp:
 		df = pandas.DataFrame.from_dict(
 				{line[:line.index(b'\t')]:
 					[int(a) for a in line[line.index(b'\t') + 1:].split(b' ')]
@@ -1643,7 +1648,7 @@ def writeinfo(mentions, clusters, quotations, idx, prefix,
 		docname='-', part=0):
 	"""Write extra information to several files."""
 	# spans are 1-indexed document token IDs, end is inclusive.
-	with open(prefix + '.clusters.tsv', 'w') as out:
+	with open(prefix + '.clusters.tsv', 'w', encoding='utf8') as out:
 		print('id\tgender\thuman\tnumber\tsize\tfirstmention\tmentions\tlabel',
 				file=out)
 		for n, cluster in enumerate(clusters):
@@ -1658,7 +1663,7 @@ def writeinfo(mentions, clusters, quotations, idx, prefix,
 					str(len(cluster)), str(mention.id),
 					','.join(str(m) for m in cluster),
 					' '.join(mention.tokens).replace('\t', ' '))), file=out)
-	with open(prefix + '.mentions.tsv', 'w') as out:
+	with open(prefix + '.mentions.tsv', 'w', encoding='utf8') as out:
 		print('id\tstart\tend\ttype\thead\tneclass\tperson\tquote'
 				'\tgender\thuman\tnumber\tcluster\ttext', file=out)
 		for mention in mentions:
@@ -1679,13 +1684,13 @@ def writeinfo(mentions, clusters, quotations, idx, prefix,
 					str(mention.clusterid),
 					' '.join(mention.tokens).replace('\t', ' '),
 					)), file=out)
-	with open(prefix + '.links.tsv', 'w') as out:
+	with open(prefix + '.links.tsv', 'w', encoding='utf8') as out:
 		print('mention1\tmention2\tsieve', file=out)
 		for mention in mentions:
 			if mention.antecedent is not None:
 				print('%d\t%d\t%s' % (mentions[mention.antecedent].id,
 						mention.id, mention.sieve), file=out)
-	with open(prefix + '.quotes.tsv', 'w') as out:
+	with open(prefix + '.quotes.tsv', 'w', encoding='utf8') as out:
 		print('id\tstart\tend\tsentno\tparno\tsentbounds\tmentions'
 				'\tspeakermention\taddresseemention'
 				'\tspeakercluster\taddresseecluster\ttext', file=out)
@@ -1704,7 +1709,7 @@ def writeinfo(mentions, clusters, quotations, idx, prefix,
 					'-' if quotation.addressee is None
 						else quotation.addressee.clusterid,
 					quotation.text.replace('\t', ' '))), file=out)
-	with open(prefix + '.icarus', 'w') as out:
+	with open(prefix + '.icarus', 'w', encoding='utf8') as out:
 		icarusallocation(mentions, clusters, docname, part, file=out)
 
 
@@ -1782,7 +1787,7 @@ def htmlvis(trees, mentions, clusters, quotations, parses=True, coreffmt=None):
 		from discodop.tree import DrawTree
 		from discodop.treebank import alpinotree
 		from discodop.punctuation import applypunct
-		import xml.etree.ElementTree as ElementTree
+		from xml.etree import ElementTree
 		drawtrees = True
 	except ImportError:
 		drawtrees = False
@@ -1882,7 +1887,7 @@ def readconll(conllfile):
 	Adds orignal line number as first column."""
 	conlldocs = {}
 	lineno = 0  # 1-indexed line numbers
-	with open(conllfile) as inp:
+	with open(conllfile, encoding='utf8') as inp:
 		while True:
 			line = inp.readline()
 			lineno += 1
@@ -1917,7 +1922,7 @@ def readconll(conllfile):
 def initialsegment(fname, percentage):
 	"""Read CoNLL file and return sentence number that covers
 	given percentage of tokens."""
-	with open(fname) as inp:
+	with open(fname, encoding='utf8') as inp:
 		tottokens = 0
 		for line in inp:
 			if (line.strip()
@@ -2315,7 +2320,8 @@ def process(path, output, ngdata, gadata,
 	if fmt in ('html', 'htmlp'):
 		corefhtml, _coreftabular, debugoutput = htmlvis(
 				trees, mentions, clusters, quotations, parses=fmt == 'htmlp')
-		with open(os.path.join(BASEDIR, 'templates/results.html')) as inp:
+		with open(os.path.join(BASEDIR, 'templates/results.html'),
+				encoding='utf8') as inp:
 			template = jinja2.Template(inp.read())
 		print(template.render(docname=docname, corefhtml=corefhtml,
 					debugoutput=debugoutput, parses=fmt == 'htmlp'),
@@ -2354,7 +2360,7 @@ def clintask(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 		conlldata = None
 		if goldmentions or VERBOSE:
 			conlldata = getmatchingdoc(readconll(conllfile), docname)[0:6]
-		with open(os.path.join(path, docname), 'w') as out:
+		with open(os.path.join(path, docname), 'w', encoding='utf8') as out:
 			process(dirname + '/*.xml', out, ngdata, gadata,
 					docname=docname, part=None, fmt='conll2012', neural=neural,
 					conlldata=conlldata, goldmentions=goldmentions,
@@ -2363,7 +2369,7 @@ def clintask(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 			# shared task says the first 7 sentences are annotated,
 			# but in many documents of the dev set only the first 6 sentences
 			# are annotated.
-	with open('%s/blanc_scores' % path, 'w') as out:
+	with open('%s/blanc_scores' % path, 'w', encoding='utf8') as out:
 		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
 		print(getcmdlines(neural), end='', flush=True, file=out)
 		os.chdir('../groref/clin26-eval-master')
@@ -2374,7 +2380,7 @@ def clintask(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 					'../../dutchcoref/' + path, 'blanc'],
 				stdout=out)
 	os.chdir('../../dutchcoref')
-	with open('%s/blanc_scores' % path) as inp:
+	with open('%s/blanc_scores' % path, encoding='utf8') as inp:
 		print(inp.read())
 
 
@@ -2403,7 +2409,7 @@ def semeval(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 	conlldata = None
 	if goldmentions or VERBOSE:
 		conlldocs = readconll(conllfile)
-	with open(os.path.join(path, 'result.conll'), 'w') as out:
+	with open(os.path.join(path, 'result.conll'), 'w', encoding='utf8') as out:
 		for dirname in parses:
 			docname = os.path.basename(dirname.rstrip('/'))
 			if goldmentions or VERBOSE:
@@ -2415,7 +2421,7 @@ def semeval(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 					neural=neural, exclude=('relpronouns', 'reflexives',
 						'reciprocals', 'predicatives', 'appositives',
 						'npsingletons', 'relpronounsplit'))
-	with open('%s/blanc_scores' % path, 'w') as out:
+	with open('%s/blanc_scores' % path, 'w', encoding='utf8') as out:
 		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
 		print(getcmdlines(neural), end='', flush=True, file=out)
 		subprocess.call([
@@ -2424,7 +2430,7 @@ def semeval(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 				conllfile,
 				'%s/result.conll' % path],
 				stdout=out)
-	with open('%s/blanc_scores' % path) as inp:
+	with open('%s/blanc_scores' % path, encoding='utf8') as inp:
 		print(inp.read())
 
 
@@ -2447,7 +2453,7 @@ def sonar(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 	conlldata = None
 	if goldmentions or VERBOSE:
 		conlldocs = readconll(conllfile)
-	with open(os.path.join(path, 'result.conll'), 'w') as out:
+	with open(os.path.join(path, 'result.conll'), 'w', encoding='utf8') as out:
 		for dirname in parses:
 			docname = os.path.basename(dirname.rstrip('/'))
 			if goldmentions or VERBOSE:
@@ -2458,7 +2464,7 @@ def sonar(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 					goldclusters=goldclusters,
 					neural=neural, exclude=('relpronouns', 'relpronounsplit'),
 					excludelinks=('reflexives', ))
-	with open('%s/scores.txt' % path, 'w') as out:
+	with open('%s/scores.txt' % path, 'w', encoding='utf8') as out:
 		print('dutchcoref=%s %s' % (getcommit(), ' '.join(sys.argv)), file=out)
 		print(getcmdlines(neural), end='', flush=True, file=out)
 		subprocess.call([
@@ -2466,14 +2472,17 @@ def sonar(ngdata, gadata, goldmentions, goldclusters, neural, subset='dev'):
 				conllfile,
 				'%s/result.conll' % path],
 				stdout=out)
-	with open('%s/scores.txt' % path) as inp:
+	with open('%s/scores.txt' % path, encoding='utf8') as inp:
 		print(inp.read())
 
 
 def getcmdlines(neural):
 	"""Collect command line options used for training neural modules."""
-	cmdlines = {'span': 'mentionspanclassif.txt','feat': 'mentionfeatclassif.txt',
-				'pron': 'pronounmodel.txt', 'quote': 'quote.txt'}
+	cmdlines = {
+			'span': 'mentionspanclassif.txt',
+			'feat': 'mentionfeatclassif.txt',
+			'pron': 'pronounmodel.txt',
+			'quote': 'quote.txt'}
 	result = []
 	for a in neural:
 		try:
@@ -2559,6 +2568,8 @@ def main():
 	if '--goldclusters' in opts and '--goldmentions' not in opts:
 		raise NotImplementedError('--goldclusters requires --goldmentions')
 	neural = [a for a in opts.get('--neural', '').split(',') if a]
+	if not set(neural) <= {'span', 'feat', 'pron', 'quote'}:
+		raise ValueError('unrecognized --neural option')
 	ngdata, gadata = readngdata()
 	if opts.get('--clin') == 'test':
 		for subset in ('boeing', 'gm', 'stock'):
@@ -2600,7 +2611,7 @@ def main():
 		if '--outputprefix' in opts:
 			ext = '.html' if opts.get('--fmt') in (
 					'html', 'htmlp') else '.conll'
-			out = open(opts['--outputprefix'] + ext, 'w')
+			out = open(opts['--outputprefix'] + ext, 'w', encoding='utf8')
 		conlldata = None
 		if ('--goldmentions' in opts
 				or '--goldclusters' in opts) and '--gold' not in opts:

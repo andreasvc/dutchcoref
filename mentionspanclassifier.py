@@ -361,10 +361,10 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	print(confusion)
 
 
-def predict(trees, embeddings, ngdata, gadata, debug=debug, verbose=False):
+def predict(trees, embeddings, ngdata, gadata, verbose=False):
 	"""Load mention classfier, get candidate mentions, and return predicted
 	mentions."""
-	debug(color('mention span detection (neural classifier)', 'yellow'))
+	debug(color('mention span detection (neural)', 'yellow'))
 	data = MentionDetection(ngdata, gadata)
 	data.add(trees, embeddings)
 	X, _y, spans = data.getvectors()
@@ -374,16 +374,17 @@ def predict(trees, embeddings, ngdata, gadata, debug=debug, verbose=False):
 	mentions = []
 	for (sentno, headidx), candidates in groupby(
 			spans, key=lambda x: (x[0], x[1])):
-		debug('%3d %2d' % (sentno, headidx))
+		debug('sentno=%3d headidx=%2d' % (sentno, headidx))
 		candidates = list(candidates)
 		a, b = candidates[0][4], candidates[-1][4] + 1
 		best = probs[a:b, 0].argmax()
 		for n in range(a, b if verbose else a):
 			sentno, headidx, begin, end, _n, text = candidates[n - a]
-			debug('\t%2d %s %g%s' % (begin, text, probs[n, 0],
-					' %s %g best' % (
+			debug('\t%2d %.3f %s%s' % (begin, probs[n, 0], text,
+					' %s %g %s' % (
 						'<>'[int(probs[a + best, 0] > MENTION_THRESHOLD)],
-						MENTION_THRESHOLD)
+						MENTION_THRESHOLD,
+						color('best', 'green'))
 						if n == a + best else ''))
 		if probs[a + best, 0] <= MENTION_THRESHOLD:
 			continue

@@ -61,7 +61,8 @@ def convalpino(conllfile, parsesdir):
 		print('Install https://github.com/andreasvc/disco-dop')
 		return
 	conlldata = next(iter(readconll(conllfile).values()))
-	header = open(conllfile).readlines()[0].rstrip()
+	with open(conllfile, encoding='utf8') as inp:
+		header = inp.readline().rstrip()
 	treebank = AlpinoCorpusReader(parsesdir + '/*.xml',
 			morphology='replace',
 			headrules='../disco-dop/alpino.headrules')
@@ -73,7 +74,7 @@ def convalpino(conllfile, parsesdir):
 			raise ValueError('length mismatch')
 		if len(chunk[0]) < 12:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
-	with open(conllfile + '.tmp', 'w') as out:
+	with open(conllfile + '.tmp', 'w', encoding='utf8') as out:
 		print(header, file=out)
 		for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
 			raisediscnodes(item.tree)
@@ -96,10 +97,9 @@ def convconll(goldconll, parsesconll):
 	"""Copy columns from parsesconll to goldconll file; overwrite in-place."""
 	goldconlldata = readconll(goldconll)
 	parsesconlldata = readconll(parsesconll)
-	if goldconlldata.viewkeys() != parsesconlldata.viewkeys():
+	if goldconlldata.keys() != parsesconlldata.keys():
 		raise ValueError('mismatch in documents or doc labels')
-	for docname in goldconlldata:
-		gdoc = goldconlldata[docname]
+	for docname, gdoc in goldconlldata.items():
 		pdoc = parsesconlldata[docname]
 		if len(gdoc) != len(pdoc):
 			raise ValueError('mismatch in number of sentences')
@@ -108,7 +108,7 @@ def convconll(goldconll, parsesconll):
 				raise ValueError('Sentence length mismatch')
 			if len(pchunk[0]) < 13:
 				raise ValueError('Not enough fields in parses CoNLL 2012 file')
-	with open(goldconll + '.tmp', 'w') as out:
+	with open(goldconll + '.tmp', 'w', encoding='utf8') as out:
 		for docname in goldconlldata:
 			print('#begin document %s' % docname, file=out)
 			for gchunk, pchunk in zip(goldconlldata, parsesconlldata):

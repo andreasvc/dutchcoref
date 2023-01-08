@@ -32,7 +32,7 @@ import tensorflow as tf
 from sklearn.metrics import classification_report
 from coref import (readconll, readngdata, conllclusterdict, getheadidx,
 		parsesentid, Mention, mergefeatures, gettokens, initialsegment,
-		color, debug, VERBOSE)
+		color, debug)
 import bert
 
 DENSE_LAYER_SIZES = [500, 150, 150]
@@ -347,10 +347,10 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 			digits=3))
 
 
-def predict(trees, embeddings, mentions):
+def predict(trees, embeddings, mentions, verbose=False):
 	"""Load mentions classfier, get features for mentions, and update features
 	of mentions."""
-	debug(color('mention feature detection', 'yellow'))
+	debug(color('mention feature detection (neural)', 'yellow'))
 	data = MentionFeatures()
 	for mention in mentions:
 		mention.origfeat = mention.features.copy()
@@ -385,7 +385,7 @@ def predict(trees, embeddings, mentions):
 			mention.features['number'] = 'pl'
 		else:
 			mention.features['number'] = None
-		if VERBOSE:
+		if verbose:
 			debug('%3d %2d %s ' % (mention.sentno, mention.begin, mention),
 					# mention.featrepr(extended=True)),
 					f'nh={row[0]:.3f} '
