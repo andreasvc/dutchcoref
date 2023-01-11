@@ -21,7 +21,7 @@ from lxml import etree
 from sklearn import metrics
 from tensorflow import keras
 import tensorflow as tf
-from coref import (readconll, parsesentid, readngdata,
+from coref import (readconll, parsesentid, readngdata, gettokens,
 		extractmentionsfromconll, debug, color, getquotations, isspeaker)
 
 
@@ -278,7 +278,8 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, annotationsdir=None):
 		basename = os.path.basename(conllfile.rsplit('.', 1)[0])
 		parses = os.path.join(parsesdir, basename)
 		trees, mentions = loadmentions(conllfile, parses)
-		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		embeddings = bert.getvectors(parses, sentences, tokenizer, bertmodel)
 		quotations, idx, doc = getquotations(trees)
 		if annotationsdir:
 			gqm_dict = get_gqm(os.path.join(annotationsdir, basename + ".xml"))  # gold quotes and mentions

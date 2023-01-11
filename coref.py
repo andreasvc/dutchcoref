@@ -2303,8 +2303,9 @@ def process(path, output, ngdata, gadata,
 	if neural:
 		import bert
 		tokenizer, bertmodel = bert.loadmodel()
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
 		embeddings = bert.getvectors(
-				os.path.dirname(path), trees, tokenizer, bertmodel)
+				os.path.dirname(path), sentences, tokenizer, bertmodel)
 	mentions, clusters, quotations, idx = resolvecoreference(
 			trees, ngdata, gadata, mentions, clusters, maxprondist,
 			relpronounsplit='relpronounsplit' not in exclude,

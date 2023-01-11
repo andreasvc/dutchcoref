@@ -9,7 +9,6 @@ import sys
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModel, logging
-from coref import gettokens
 
 logging.set_verbosity_error()
 
@@ -21,16 +20,15 @@ def loadmodel(name='GroNLP/bert-base-dutch-cased'):
 	return tokenizer, bertmodel
 
 
-def getvectors(parses, trees, tokenizer, model, cache=True):
-	"""Encode sentences in `trees` and cache in file next to directory
-	with parses."""
-	cachefile = parses + '.bertvectors.npy'
+def getvectors(parsespath, sentences, tokenizer, model, cache=True):
+	"""Encode `sentences` (list of lists with tokens) and cache in file next
+	to directory with parses."""
+	cachefile = parsespath + '.bertvectors.npy'
 	if (cache and os.path.exists(cachefile) and os.stat(cachefile).st_mtime
-			> os.stat(parses).st_mtime):
+			> os.stat(parsespath).st_mtime):
 		embeddings = np.load(cachefile)
 	else:
-		# use BERT to obtain vectors for the text of the given trees
-		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		# use BERT to obtain vectors for the given sentences
 		# NB: this encodes each sentence independently
 		# embeddings = encode_sentences(sentences, tokenizer, model)
 		result = []

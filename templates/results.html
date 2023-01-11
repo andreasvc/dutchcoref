@@ -97,6 +97,13 @@ Legend:
 
 {{ corefhtml }}
 
+{% if tokenized %}
+Tokenization and spelling normalization output:
+<pre>
+{{ tokenized }}
+</pre>
+{% endif %}
+
 {% if coreftabular %}
 <div>
 <pre>{{ coreftabular }}</pre></div>

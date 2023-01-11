@@ -22,6 +22,9 @@
 			font-size: 150%;
 			padding: 8px;
 		}
+		label {
+			white-space: nowrap;
+		}
 		</style>
 	</head>
 	<body>
@@ -43,11 +46,12 @@
 			<form name=form action=results method=post enctype="multipart/form-data">
 				<textarea name=text rows=15 cols=80 id=text></textarea>
 				<input type=submit>
-				neural
-				<label><input type=checkbox name=span>span detection</label>
-				<label><input type=checkbox name=feat>feature detection</label>
-				<label><input type=checkbox name=pron>pronoun resolver</label>
-				<label><input type=checkbox name=quote>quote attribution</label>
+				<label><input type=checkbox name=spell>19c spelling normalization</label>;
+				neural modules:
+				<label><input type=checkbox name=span>span detection</label>,
+				<label><input type=checkbox name=feat>feature detection</label>,
+				<label><input type=checkbox name=pron>pronoun resolver</label>,
+				<label><input type=checkbox name=quote>quote attribution</label>.
 			</form>
 		</div>
 	</body>

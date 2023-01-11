@@ -7,6 +7,7 @@ import json
 import time
 import logging
 import requests
+import subprocess
 from lxml import etree
 from flask import Flask, Markup
 from flask import request, render_template, redirect, url_for
@@ -18,7 +19,7 @@ APP = Flask(__name__)
 CACHE = Cache(config={
 		'CACHE_TYPE': 'SimpleCache',
 		'CACHE_DEFAULT_TIMEOUT': 86400,  # cache responses server side for 24hr
-		'CACHE_THRESHOLD': 128,  # max no of items to cache
+		'CACHE_THRESHOLD': 256,  # max no of items to cache
 		})
 CACHE.init_app(APP)
 
@@ -46,10 +47,13 @@ def results():
 	text = request.form['text']
 	neural = [a for a in ('span', 'feat', 'pron', 'quote')
 			if request.form.get(a)]
+	normalizespelling = bool(request.form.get('spell'))
 	if len(text) > LIMIT:
 		return 'Too much text; limit: %d bytes' % LIMIT
 
-	parses = parse(simplifyunicodespacepunct(text))
+	text = simplifyunicodespacepunct(text)
+	tokenized = alpinotokenize(text, normalizespelling=normalizespelling)
+	parses = parse(tokenized)
 	if parses is None:
 		return 'Parsing failed!'
 	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
@@ -63,7 +67,9 @@ def results():
 				print(err)
 				return 'BERT model not available'
 			log.info('loaded BERT model')
-		embeddings = getvectors(text)
+		sentences = tuple(tuple(coref.gettokens(tree, 0, 9999))
+				for _, tree in trees)
+		embeddings = getvectors(sentences)
 	mentions, clusters, quotations, _idx = coref.resolvecoreference(
 			trees, ngdata, gadata, neural=neural, embeddings=embeddings)
 	corefhtml, coreftabular, debugoutput = coref.htmlvis(
@@ -75,36 +81,75 @@ def results():
 			corefhtml=Markup(corefhtml),
 			coreftabular=coreftabular,
 			debugoutput=Markup(debugoutput),
+			tokenized=tokenized if normalizespelling else None,
 			parses=True)
 
 
 @CACHE.memoize()
-def getvectors(text):
-	parses = parse(simplifyunicodespacepunct(text))
-	trees = [(a, etree.parse(io.BytesIO(b))) for a, b in parses]
+def getvectors(sentences):
 	embeddings = bert.getvectors(
-			'', trees, TOKENIZER, BERTMODEL, cache=False)
+			'', sentences, TOKENIZER, BERTMODEL, cache=False)
 	log.info('got BERT token vectors; shape: %r' % (embeddings.shape, ))
 	return embeddings
 
 
 @CACHE.memoize()
-def parse(text):
-	"""Tokenize & parse text with Alpino API.
+def alpinotokenize(text, normalizespelling=False):
+	"""Apply Alpino's tokenizer to the string `text`; returns a string.
+
+	Requires a working installation of Alpino in $ALPINO_HOME
+	See http://www.let.rug.nl/vannoord/alp/Alpino/versions/binary/
+
+	:param text: a string
+	:param normalizespelling: enable optional 19c spelling normalization
+	:returns: a string of space-separated tokens, one sentence per line.
+
+	>>> alpinotokenize('Hallo,\\nwereld! Het werkt.'.replace('\\n', ' '))
+	'Hallo , wereld !\\nHet werkt .\\n'
+	"""
+	pipeline = ('./paragraph_per_line '
+			'| ./add_key '
+			'| ./tokenize.sh '
+			'| ./number_sents')
+	proc = subprocess.run(
+			pipeline,
+			cwd=os.path.join(os.getenv('ALPINO_HOME'), 'Tokenization/'),
+			input=text, shell=True, stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE, encoding='utf8', text=True, check=True)
+	# FIXME: more error checking? io deadlock possible?
+	tokenized = proc.stdout
+	if normalizespelling:
+		pipeline = ('python3 triples.py '
+					'| python3 meta.py spelling '
+					'| sed -f map.sed '
+					'| python3 meta.py hand2')
+		proc = subprocess.run(
+				pipeline,
+				cwd='../oudeboeken',  # FIXME: relative to current script
+				shell=True, input=tokenized, encoding='utf8',
+				capture_output=True, text=True, check=True)
+		tokenized = proc.stdout
+	log.info(tokenized)
+	return tokenized
+
+
+@CACHE.memoize()
+def parse(tokenized):
+	"""Parse tokenized text with Alpino API.
 
 	Cf. https://github.com/andreasvc/alpino-api
 	Expects alpino-api/demo/alpiner server to be running and accessible
 	at URL ALPINOAPI."""
 	def parselabel(label):
 		"""
-		>>> parselabel('doc.p.1.s.2')
+		>>> parselabel('1-2')
 		(1, 2)"""
-		_doc, _p, a, _s, b = label.rsplit('.', 5)
+		a, b = label.rsplit('-', 1)
 		return int(a), int(b)
 
-	command = {'request': 'parse', 'data_type': 'text', 'timeout': 60,
-			'ud': False}
-	data = '%s\n%s' % (json.dumps(command), text)
+	command = {'request': 'parse', 'data_type': 'lines tokens none',
+			'timeout': 60, 'max_tokens': 512, 'ud': False}
+	data = '%s\n%s' % (json.dumps(command), tokenized)
 	log.info('submitting parse')
 	resp = requests.post(ALPINOAPI, data=data.encode('utf8'))
 	result = resp.json()

@@ -228,7 +228,8 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None,
 				os.path.basename(conllfile.rsplit('.', 1)[0]))
 		trees, mentions = loadmentions(conllfile, parses, ngdata, gadata,
 				restrict=restrict)
-		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		embeddings = bert.getvectors(parses, sentences, tokenizer, bertmodel)
 		data.add(trees, embeddings, mentions, predicting)
 		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
 	X, y, spans = data.getvectors()

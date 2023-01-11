@@ -24,7 +24,7 @@ import numpy as np
 from tensorflow import keras
 import tensorflow as tf
 from coref import (readconll, parsesentid, readngdata, initialsegment,
-		extractmentionsfromconll, sameclause, color, debug)
+		gettokens, extractmentionsfromconll, sameclause, color, debug)
 import bert
 
 PRONDISTTYPE = 'mentions'
@@ -243,7 +243,8 @@ def getfeatures(pattern, parsesdir, tokenizer, bertmodel, restrict=None):
 		parses = os.path.join(parsesdir,
 				os.path.basename(conllfile.rsplit('.', 1)[0]))
 		trees, mentions = loadmentions(conllfile, parses, restrict=restrict)
-		embeddings = bert.getvectors(parses, trees, tokenizer, bertmodel)
+		sentences = [gettokens(tree, 0, 9999) for _, tree in trees]
+		embeddings = bert.getvectors(parses, sentences, tokenizer, bertmodel)
 		data.add(trees, embeddings, mentions)
 		print(f'encoded {n}/{len(files)}: {conllfile}', file=sys.stderr)
 	X, y, antecedents, anaphordata = data.getvectors()
