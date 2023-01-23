@@ -362,10 +362,11 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 			% (100 * metrics.accuracy_score(y_true, pred)))
 
 
-def predict(trees, embeddings, mentions):
+def predict(trees, embeddings, mentions, numthreads=1):
 	"""Load pronoun resolver, get features for trees, and return a list of
 	mention pairs (anaphor, antecedent) which are predicted to be
 	coreferent."""
+	tf.config.threading.set_intra_op_parallelism_threads(numthreads)
 	data = CorefFeatures()
 	data.add(trees, embeddings, mentions)
 	if not data.result:

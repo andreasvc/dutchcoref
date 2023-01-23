@@ -1134,7 +1134,9 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 	"""Find antecedents of unresolved pronouns with compatible features."""
 	maxdist = maxdist or 15
 	debug(color('pronoun resolution', 'yellow'))
-	# Link all 1st/2nd person pronouns not in quotes
+	# Link all 1st person pronouns not in quotes
+	# NB: 2nd person pronouns can be generic, cannot link
+	# for person in ('1', ):  # ('1', '2'):
 	for person in ('1', '2'):
 		for number in ('sg', 'pl'):
 			pronouns = [a for a in mentions
@@ -1168,7 +1170,8 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 				and mention.node.get('vwtype') != 'betr'  # no rel. pronouns
 				and mention.node.get('vwtype') != 'recip'  # no recip. pronouns
 				and mention.features['person'] not in ('1', '2')):
-			debug(mention.sentno, mention.begin, mention, mention.featrepr())
+			debug(mention.sentno, mention.begin, mention, mention.featrepr(),
+					len(clusters[mention.clusterid]))
 			i = bisect(sortedmentionssentno, mention.sentno)
 			assert sortedmentionssentno[i - 1] == mention.sentno
 			# consider identical pronouns first (check with string match)
@@ -1219,6 +1222,7 @@ def resolvepronouns(trees, mentions, clusters, quotations,
 					merge(other, mention, 'resolvepronouns',
 							mentions, clusters)
 					break
+	# return  # disable the rules below, cause many incorrect merges
 	debug(color('pronouns in quotations', 'yellow'))
 	for quotation in quotations:
 		for person in ('1', '2'):
@@ -1350,6 +1354,9 @@ def merge(mention1, mention2, sieve, mentions, clusters):
 		return
 	if mention1.clusterid > mention2.clusterid:
 		mention1, mention2 = mention2, mention1
+	s1, s2 = len(clusters[mention1.clusterid]), len(
+			clusters[mention2.clusterid])
+	c2 = mention2.clusterid
 	featrepr1 = mention1.featrepr()
 	featrepr2 = mention2.featrepr()
 	mergefeatures(mention1, mention2)
@@ -1365,10 +1372,10 @@ def merge(mention1, mention2, sieve, mentions, clusters):
 	mention2.sieve = sieve
 	mergemsg = ('\nmerged feats: %s' % newfeatrepr1
 				if featrepr1 != newfeatrepr1 else '')
-	debug('Linked %3d %2d %s %s cluster=%d\n%10d %2d %s %s%s' % (
+	debug('Linked %3d %2d %s %s cluster=%d (%d)\n%10d %2d %s %s %d (%d)%s' % (
 			mention1.sentno, mention1.begin, featrepr1, mention1,
-			mention1.clusterid,
-			mention2.sentno, mention2.begin, featrepr2, mention2,
+			mention1.clusterid, s1,
+			mention2.sentno, mention2.begin, featrepr2, mention2, c2, s2,
 			mergemsg))
 
 
@@ -1611,8 +1618,10 @@ def writetabular(trees, mentions,
 		for tokenid, (token, coreflabel) in enumerate(zip(sent, sentlabels)):
 			if fmt == 'conll2012':
 				print(docname, part, tokenid, token.get('word'),
-						*(['-'] * 6), '*', coreflabel,
-						sep='\t', file=file)
+						token.get('postag'), *(['-'] * 4),
+						# (no parse bit, pred. lemma, frameset ID, word sense)
+						token.get('speaker', '-'), token.get('neclass', '*'),
+						coreflabel, sep='\t', file=file)
 			elif fmt == 'semeval2010':
 				print(tokenid + 1, token.get('word'), coreflabel,
 						sep='\t', file=file)

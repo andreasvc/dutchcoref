@@ -28,6 +28,12 @@ BERTMODEL = TOKENIZER = None
 
 
 @APP.route('/')
+def main():
+	"""Redirect to main page."""
+	return redirect('/andreas/coref/index')
+	# return redirect(url_for('index'))
+
+
 @APP.route('/index')
 @CACHE.cached()
 def index():
@@ -40,7 +46,7 @@ def results():
 	"""Get coreference and show results."""
 	global BERTMODEL, TOKENIZER
 	if request.method == 'GET':
-		return redirect(url_for('index'))
+		return redirect(url_for('main'))
 	if 'text' not in request.form:
 		return 'No text supplied'
 	text = request.form['text']

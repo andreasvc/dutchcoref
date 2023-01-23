@@ -14,8 +14,9 @@ from coref import gettokens
 logging.set_verbosity_error()
 
 
-def loadmodel(name='GroNLP/bert-base-dutch-cased'):
+def loadmodel(name='GroNLP/bert-base-dutch-cased', numthreads=1):
 	"""Load BERT model."""
+	torch.set_num_threads(numthreads)
 	tokenizer = AutoTokenizer.from_pretrained(name)
 	bertmodel = AutoModel.from_pretrained(name)
 	return tokenizer, bertmodel
@@ -39,6 +40,7 @@ def getvectors(parses, trees, tokenizer, model, cache=True):
 			# result.extend(encode_sentences_overlap(
 			# 		sentences, n, tokenizer, model))
 			# NB: this encodes each sentence independently
+			# print('sent:', n, ' '.join(sentences[n]))
 			for sent in _encode_sentences(
 					sentences[n:n + 1], tokenizer, model):
 				result.extend(sent)
@@ -142,6 +144,8 @@ def _encode_sentences(sentences, tokenizer, model, layer=9):
 	https://www.aclweb.org/anthology/2020.findings-emnlp.389.pdf"""
 	# Apply BERT tokenizer (even if sentences are already tokenized, since BERT
 	# uses subword tokenization).
+	# https://discuss.huggingface.co/t/is-transformers-using-gpu-by-default/8500
+	# device = "cuda:0" if torch.cuda.is_available() else "cpu"
 	sentences_tokenized = [
 			[tokenizer.tokenize(word) for word in sentence]
 			for sentence in sentences]
@@ -163,7 +167,7 @@ def _encode_sentences(sentences, tokenizer, model, layer=9):
 	tokens_tensor = torch.tensor(indexed_tokens)
 	with torch.no_grad():
 		# torch tensor of shape (n_sentences, sent_length, hidden_size=768)
-		outputs = model(tokens_tensor, output_hidden_states=True)
+		outputs = model(tokens_tensor, output_hidden_states=True)  # .to(device)
 		bert_output = outputs.hidden_states[layer].numpy()
 
 	# Add up tensors for subtokens coming from same word

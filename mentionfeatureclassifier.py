@@ -347,9 +347,10 @@ def evaluate(validationfiles, parsesdir, annotations, tokenizer, bertmodel):
 			digits=3))
 
 
-def predict(trees, embeddings, mentions):
+def predict(trees, embeddings, mentions, numthreads=1):
 	"""Load mentions classfier, get features for mentions, and update features
 	of mentions."""
+	tf.config.threading.set_intra_op_parallelism_threads(numthreads)
 	debug(color('mention feature detection', 'yellow'))
 	data = MentionFeatures()
 	for mention in mentions:

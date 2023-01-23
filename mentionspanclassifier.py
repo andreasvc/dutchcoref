@@ -361,10 +361,12 @@ def evaluate(validationfiles, parsesdir, tokenizer, bertmodel):
 	print(confusion)
 
 
-def predict(trees, embeddings, ngdata, gadata, debug=debug, verbose=False):
+def predict(trees, embeddings, ngdata, gadata, debug=debug, verbose=False,
+		numthreads=1):
 	"""Load mention classfier, get candidate mentions, and return predicted
 	mentions."""
 	debug(color('mention span detection (neural classifier)', 'yellow'))
+	tf.config.threading.set_intra_op_parallelism_threads(numthreads)
 	data = MentionDetection(ngdata, gadata)
 	data.add(trees, embeddings)
 	X, _y, spans = data.getvectors()
