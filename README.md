@@ -239,7 +239,7 @@ If you use this code for research, please cite the
 }
 ```
 
-If you use the neural modules, cite [this paper](https://aclanthology.org/2021.crac-1.5}):
+If you use the neural modules, cite [this paper](https://aclanthology.org/2021.crac-1.5):
 ```bibtex
 @inproceedings{vancranenburgh2021hybrid,
     author={van Cranenburgh, Andreas  and  Ploeger, Esther  and  van den Berg, Frank  and  Th{\"u}ss, Remi},
