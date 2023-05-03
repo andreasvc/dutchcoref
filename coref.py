@@ -1499,8 +1499,7 @@ def sameclause(node1, node2):
 
 def createngdatadf():
 	"""Create pickled version of ngdata DataFrame."""
-	with open(os.path.join(PARENTDIR, 'groref/ngdata'), 'rb',
-			encoding='utf8') as inp:
+	with open(os.path.join(PARENTDIR, 'groref/ngdata'), 'rb') as inp:
 		df = pandas.DataFrame.from_dict(
 				{line[:line.index(b'\t')]:
 					[int(a) for a in line[line.index(b'\t') + 1:].split(b' ')]
