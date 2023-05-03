@@ -66,12 +66,13 @@ def convalpino(conllfile, parsesdir):
 	treebank = AlpinoCorpusReader(parsesdir + '/*.xml',
 			morphology='replace',
 			headrules='../disco-dop/alpino.headrules')
-	for chunk, (_key, item) in zip(conlldata, treebank.itertrees()):
+	for chunk, (key, item) in zip(conlldata, treebank.itertrees()):
 		if len(chunk) != len(item.sent):
 			for fields in chunk:
 				print(fields)
 			print(item.sent)
-			raise ValueError('length mismatch')
+			raise ValueError('Sentence length mismatch (id=%s): '
+					'conll %d vs parse %d' % (key, len(chunk), len(item.sent)))
 		if len(chunk[0]) < 12:
 			raise ValueError('Not enough fields for gold CoNLL 2012 file')
 	with open(conllfile + '.tmp', 'w', encoding='utf8') as out:
@@ -105,7 +106,8 @@ def convconll(goldconll, parsesconll):
 			raise ValueError('mismatch in number of sentences')
 		for gchunk, pchunk in zip(gdoc, pdoc):
 			if len(gchunk) != len(pchunk):
-				raise ValueError('Sentence length mismatch')
+				raise ValueError('Sentence length mismatch: '
+						'conll %d vs parse %d' % (len(gchunk), len(pchunk)))
 			if len(pchunk[0]) < 13:
 				raise ValueError('Not enough fields in parses CoNLL 2012 file')
 	with open(goldconll + '.tmp', 'w', encoding='utf8') as out:

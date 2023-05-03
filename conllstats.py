@@ -6,7 +6,7 @@ Options:
     --help          this message
     --parses=<dir>  to enable mention type stats for Dutch data, specify a
                     directory of Alpino parses (containing directories with
-					same basename as CoNLL files, containing XML parses)"""
+                    same basename as CoNLL files, containing XML parses)"""
 
 
 def getstats(args, parsesdir=None):
